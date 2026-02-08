@@ -1,0 +1,14 @@
+C:\Users\Neuye\Documents\pows\UniSystem\bin\Debug\net10.0\UniSystem.exe
+C:\Users\Neuye\Documents\pows\UniSystem\bin\Debug\net10.0\UniSystem.deps.json
+C:\Users\Neuye\Documents\pows\UniSystem\bin\Debug\net10.0\UniSystem.runtimeconfig.json
+C:\Users\Neuye\Documents\pows\UniSystem\bin\Debug\net10.0\UniSystem.dll
+C:\Users\Neuye\Documents\pows\UniSystem\bin\Debug\net10.0\UniSystem.pdb
+C:\Users\Neuye\Documents\pows\UniSystem\obj\Debug\net10.0\UniSystem.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Neuye\Documents\pows\UniSystem\obj\Debug\net10.0\UniSystem.AssemblyInfoInputs.cache
+C:\Users\Neuye\Documents\pows\UniSystem\obj\Debug\net10.0\UniSystem.AssemblyInfo.cs
+C:\Users\Neuye\Documents\pows\UniSystem\obj\Debug\net10.0\UniSystem.csproj.CoreCompileInputs.cache
+C:\Users\Neuye\Documents\pows\UniSystem\obj\Debug\net10.0\UniSystem.dll
+C:\Users\Neuye\Documents\pows\UniSystem\obj\Debug\net10.0\refint\UniSystem.dll
+C:\Users\Neuye\Documents\pows\UniSystem\obj\Debug\net10.0\UniSystem.pdb
+C:\Users\Neuye\Documents\pows\UniSystem\obj\Debug\net10.0\UniSystem.genruntimeconfig.cache
+C:\Users\Neuye\Documents\pows\UniSystem\obj\Debug\net10.0\ref\UniSystem.dll
