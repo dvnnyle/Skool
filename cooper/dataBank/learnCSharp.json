@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "section": "Basics",
+    "question": "Which keyword declares a variable with explicit type in C#?",
+    "options": ["var", "let", "int", "def"],
+    "answerIndex": 2,
+    "explanation": "In C#, variables can be declared using explicit types like <code>int</code>, <code>string</code>, etc. <code>var</code> uses type inference but still requires initialization; <code>let</code> and <code>def</code> are not C# keywords."
+  },
+  {
+    "id": 2,
+    "section": "Console",
+    "question": "```csharp\nusing System;\n\nclass Program {\n    static void Main() {\n        Console.WriteLine(\"Hello, C#\");\n    }\n}\n```\nWhat does this code output?",
+    "options": ["Hello, world", "Hello, C#", "Compilation error", "Nothing"],
+    "answerIndex": 1,
+    "explanation": "<code>Console.WriteLine</code> prints text followed by a newline. The program outputs <strong>Hello, C#</strong>."
+  },
+  {
+    "id": 3,
+    "section": "Strings",
+    "question": "Which is the correct string interpolation syntax in C#?",
+    "options": ["printf('%s %s', a, b)", "$a $b", "$\"{a} {b}\"", "$\"{a} {b}\""],
+    "answerIndex": 3,
+    "explanation": "C# uses <code>$\"{expr}\"</code> for string interpolation, e.g., <code>$\"{a} {b}\"</code>."
+  },
+  {
+    "id": 4,
+    "section": "Collections",
+    "question": "Which method adds an item to a <code>List&lt;int&gt;</code>?",
+    "options": ["Append", "Push", "Add", "InsertAtEnd"],
+    "answerIndex": 2,
+    "explanation": "Use <code>list.Add(value)</code> to append an element to a <code>List&lt;T&gt;</code>."
+  },
+  {
+    "id": 5,
+    "section": "Equality",
+    "question": "For strings in C#, which comparison checks value equality?",
+    "options": ["==", "Equals()", "ReferenceEquals", "Both A and B"],
+    "answerIndex": 3,
+    "explanation": "In C#, <code>==</code> for <code>string</code> is overloaded to check value equality. <code>.Equals()</code> also checks value equality. <code>ReferenceEquals</code> checks if two references point to the same object."
+  },
+  {
+    "id": 6,
+    "section": "Control Flow",
+    "question": "What loop prints numbers 0 to 4?\n```csharp\nfor (int i = 0; i < 5; i++) {\n    Console.WriteLine(i);\n}\n```",
+    "options": ["while loop", "for loop", "foreach loop", "do...while loop"],
+    "answerIndex": 1,
+    "explanation": "The <code>for</code> loop initializes <code>i</code> at 0, checks <code>i &lt; 5</code>, and increments <code>i</code> each iteration, printing 0..4."
+  },
+  {
+    "id": 7,
+    "section": "Parsing",
+    "question": "Which is the safest way to parse an <code>int</code> from a string?",
+    "options": ["int.Parse(str)", "Convert.ToInt32(str)", "int.TryParse(str, out var n)", "new int(str)"],
+    "answerIndex": 2,
+    "explanation": "<code>int.TryParse</code> returns a boolean and avoids exceptions when parsing fails."
+  },
+  {
+    "id": 8,
+    "section": "Nullability",
+    "question": "How do you declare a nullable int?",
+    "options": ["int? x", "nullable int x", "Int32 null x", "int* x"],
+    "answerIndex": 0,
+    "explanation": "Use <code>int?</code> to represent a nullable value type in C#."
+  }
+]

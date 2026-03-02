@@ -1,0 +1,498 @@
+[
+  {
+    "id": 1,
+    "section": "UniSystem: Oversikt",
+    "question": "Hva er det overordnede formålet med UniSystem-programmet?",
+    "options": [
+      "En nettside for studentregistrering",
+      "Et spill for å lære C#",
+      "Et regneark for karakterer",
+      "Et konsollprogram som styrer kurs og bibliotek på et universitet"
+    ],
+    "answerIndex": 3,
+    "answer": "Et konsollprogram som styrer kurs og bibliotek på et universitet",
+    "shortExplanation": "UniSystem er et terminalbasert C#-program med to hoveddeler: kurssystem og biblioteksystem.",
+    "explanation": "UniSystem er bygget som et klassisk konsoll-menyprogram i C#.\n\nProgrammet har to store undersystemer:\n- KursSystem: opprette kurs, melde på/av studenter\n- BibliotekSystem: registrere bøker, låne ut og levere inn\n\nStruktur:\n- aMain/ – dataklassene (Student, Ansatt, Kurs, Bok, Lån)\n- aSystemer/ – logikk-klassene (KursSystem, BibliotekSystem)\n- Program.cs – hoved-meny og brukerinteraksjon\n\nAlt kjøres i en while-løkke der brukeren skriver inn tall for å velge menyvalg.",
+    "example": "```csharp\n// Program.cs – slik starter programmet:\nKursSystem kursSystem = new KursSystem();\nBibliotekSystem bibliotekSystem = new BibliotekSystem();\n\nbool running = true;\nwhile (running)\n{\n    Console.WriteLine(\"[1] Opprett kurs\");\n    Console.WriteLine(\"[2] Vis alle kurs\");\n    // ...\n    string valg = Console.ReadLine();\n    if (valg == \"0\") running = false;\n}\n```"
+  },
+  {
+    "id": 2,
+    "section": "UniSystem: Mappestruktur",
+    "question": "Hva er formålet med mappen `aMain/` i UniSystem?",
+    "options": [
+      "Den er der konfigfiler lagres",
+      "Den kjører selve programmet",
+      "Den inneholder dataklassene som representerer objekter i systemet",
+      "Den inneholder systemlogikken for kurs og bibliotek"
+    ],
+    "answerIndex": 2,
+    "answer": "Den inneholder dataklassene som representerer objekter i systemet",
+    "shortExplanation": "`aMain/` holder enkle dataklasser: Student, Ansatt, Kurs, Bok og Lån.",
+    "explanation": "Prosjektet er delt i to logiske lag:\n\naMain/ – datamodellene (POCO-klasser):\n- Student.cs – studentdata\n- Ansatt.cs – ansattdata\n- Kurs.cs – kursdata inkl. studentliste\n- Bok.cs – bokdata\n- Lån.cs – låneregistrering\n\naSystemer/ – forretningslogikken:\n- KursSystem.cs – metoder for kursoperasjoner\n- BibliotekSystem.cs – metoder for bibliotekoperasjoner\n\nDenne separasjonen er et prinsipp kalt separation of concerns: data og logikk holdes adskilt.",
+    "example": "```csharp\n// aMain/ – ren dataklasse, ingen logikk:\npublic class Student\n{\n    public string StudentID;\n    public string Navn;\n    public string Epost;\n\n    public Student(string id, string navn, string epost)\n    {\n        StudentID = id;\n        Navn = navn;\n        Epost = epost;\n    }\n}\n```"
+  },
+  {
+    "id": 3,
+    "section": "UniSystem: Student og Ansatt",
+    "question": "Hva er forskjellen mellom `Student`-klassen og `Ansatt`-klassen i UniSystem?",
+    "options": [
+      "Student har karakterer og Ansatt har lønn",
+      "De er nesten identiske, men Student bruker StudentID og Ansatt bruker AnsattID",
+      "De er helt like – ingen forskjell",
+      "Student arver fra Ansatt"
+    ],
+    "answerIndex": 1,
+    "answer": "De er nesten identiske, men Student bruker StudentID og Ansatt bruker AnsattID",
+    "shortExplanation": "Begge har Navn og Epost, men bruker forskjellige ID-felt: `StudentID` vs `AnsattID`.",
+    "explanation": "Student og Ansatt er begge enkle dataklasser med tre felt.\n\nStudent:\n- StudentID (string)\n- Navn (string)\n- Epost (string)\n\nAnsatt:\n- AnsattID (string)\n- Navn (string)\n- Epost (string)\n\nI et større system ville man typisk laget en felles basisklasse (f.eks. `Bruker`) og latt Student og Ansatt arve fra den – for å unngå kodeduplisering.\n\nBegge brukes som brukertype ved bokutlån: `BrukerType` settes til \"Student\" eller \"Ansatt\".",
+    "example": "```csharp\n// Student\nStudent s = new Student(\"S001\", \"Kari Nordmann\", \"kari@uni.no\");\n\n// Ansatt\nAnsatt a = new Ansatt(\"A001\", \"Ole Hansen\", \"ole@uni.no\");\n\n// Begge kan låne bøker via BibliotekSystem:\nbibliotekSystem.LånUtBok(\"B01\", s.StudentID, s.Navn, \"Student\");\nbibliotekSystem.LånUtBok(\"B01\", a.AnsattID, a.Navn, \"Ansatt\");\n```"
+  },
+  {
+    "id": 4,
+    "section": "UniSystem: Kurs-klassen",
+    "question": "Hva skjer med `LedigePlasser` når et `Kurs`-objekt opprettes?",
+    "options": [
+      "Det settes lik MaksPlasser",
+      "Det er alltid null",
+      "Det beregnes automatisk ut fra studenter",
+      "Det settes til 0"
+    ],
+    "answerIndex": 0,
+    "answer": "Det settes lik MaksPlasser",
+    "shortExplanation": "I konstruktøren settes `LedigePlasser = maksPlasser`, altså er alle plasser ledige ved start.",
+    "explanation": "Kurs-klassen holder oversikt over ledige plasser via to felt:\n- MaksPlasser: det totale antallet (endres aldri)\n- LedigePlasser: starter lik MaksPlasser og telles ned ved påmelding\n\nNår en student meldes på:\n  kurs.LedigePlasser--\n\nNår en student meldes av:\n  kurs.LedigePlasser++\n\nI tillegg har Kurs en List<Student> som faktisk holder studentobjektene. Plass-teller og liste holdes synkronisert manuelt i KursSystem.",
+    "example": "```csharp\npublic class Kurs\n{\n    public int MaksPlasser;\n    public int LedigePlasser;\n    public List<Student> Studenter = new List<Student>();\n\n    public Kurs(string kode, string navn, int studiepoeng, int maksPlasser)\n    {\n        MaksPlasser = maksPlasser;\n        LedigePlasser = maksPlasser; // alle ledige ved start\n    }\n}\n```"
+  },
+  {
+    "id": 5,
+    "section": "UniSystem: KursSystem",
+    "question": "Hva gjør `KursSystem.MeldStudentPåKurs()` dersom kurset er fullt?",
+    "options": [
+      "Den kaster en exception",
+      "Den skriver ut en rød feilmelding og returnerer uten å melde på",
+      "Den legger studenten på venteliste",
+      "Den oppretter et nytt kurs automatisk"
+    ],
+    "answerIndex": 1,
+    "answer": "Den skriver ut en rød feilmelding og returnerer uten å melde på",
+    "shortExplanation": "Hvis `kurs.Studenter.Count >= kurs.MaksPlasser` skrives `kurs Fullt` i rødt og metoden avslutter.",
+    "explanation": "MeldStudentPåKurs() gjør tre ting:\n1. Søker gjennom KursListe etter riktig kurskode\n2. Sjekker om det er plass: Count < MaksPlasser\n3a. Hvis plass: legger til student, reduserer LedigePlasser, viser grønn bekreftelse\n3b. Hvis fullt: viser rød feilmelding, returnerer\n\nHvis kurskoden ikke finnes i det hele tatt, vises en annen feilmelding: 'kurs med kode ikke funnet'.\n\nOBS: Metoden bruker `return` inne i loopen for å avslutte etter første treff.",
+    "example": "```csharp\npublic void MeldStudentPåKurs(Student student, string kursKode)\n{\n    foreach (Kurs kurs in KursListe)\n    {\n        if (kurs.Kode == kursKode)\n        {\n            if (kurs.Studenter.Count < kurs.MaksPlasser)\n            {\n                kurs.Studenter.Add(student);\n                kurs.LedigePlasser--;\n                Console.WriteLine($\"{GREEN}Påmeldt!{RESET}\");\n            }\n            else\n            {\n                Console.WriteLine($\"{RED}kurs Fullt{RESET}\");\n            }\n            return; // ferdig, uansett utfall\n        }\n    }\n    Console.WriteLine($\"{RED}kurs ikke funnet{RESET}\");\n}\n```"
+  },
+  {
+    "id": 6,
+    "section": "UniSystem: KursSystem",
+    "question": "Hva returnerer `List<Student>.Find()` dersom ingen student matcher?",
+    "options": [
+      "Den kaster en exception",
+      "Den returnerer -1",
+      "Den returnerer en tom Student",
+      "Den returnerer null"
+    ],
+    "answerIndex": 3,
+    "answer": "Den returnerer null",
+    "shortExplanation": "`Find()` returnerer `null` når ingen element matcher lambda-betingelsen.",
+    "explanation": "Find() er en metode på List<T> som tar en lambda (predikat) og returnerer det første elementet som matcher.\n\nHvis ingenting matcher: returnerer default(T)\n- For referansetyper (klasser): null\n- For verditype (struct/int): 0 / false etc.\n\nI MeldStudentAvKurs brukes dette slik:\n  Student funnet = kurs.Studenter.Find(s => s.StudentID == studentID);\n  if (funnet != null) { fjern } else { feilmelding }\n\nDette er et trygt mønster: sjekk alltid null etter Find().",
+    "example": "```csharp\nList<Student> liste = new List<Student>();\nliste.Add(new Student(\"S001\", \"Kari\", \"kari@uni.no\"));\n\n// Finn student med ID S001:\nStudent funnet = liste.Find(s => s.StudentID == \"S001\");\nConsole.WriteLine(funnet.Navn); // Kari\n\n// Finn noe som ikke finnes:\nStudent ikkeHer = liste.Find(s => s.StudentID == \"X999\");\nConsole.WriteLine(ikkeHer == null); // True\n```"
+  },
+  {
+    "id": 7,
+    "section": "UniSystem: KursSystem",
+    "question": "Hva skjer med `kurs.LedigePlasser` når en student meldes av?",
+    "options": [
+      "Den økes med 1 (kurs.LedigePlasser++)",
+      "Den endres ikke",
+      "Den settes tilbake til MaksPlasser",
+      "Den reduseres med 1 (kurs.LedigePlasser--)"
+    ],
+    "answerIndex": 0,
+    "answer": "Den økes med 1 (kurs.LedigePlasser++)",
+    "shortExplanation": "Avmelding frigjør én plass: `kurs.LedigePlasser++` øker telleren.",
+    "explanation": "KursSystem holder LedigePlasser synkronisert med studentlisten:\n\nPåmelding:  kurs.Studenter.Add(student)  →  kurs.LedigePlasser--\nAvmelding:  kurs.Studenter.Remove(funnet) →  kurs.LedigePlasser++\n\nDisse to operasjonene gjøres alltid sammen – dette er en form for manuell konsistens-håndtering.\n\nI produksjonskode ville man ofte beregnet LedigePlasser dynamisk:\n  int ledig = MaksPlasser - Studenter.Count;\ni stedet for å holde en egen teller.",
+    "example": "```csharp\npublic void MeldStudentAvKurs(string studentID, string kursKode)\n{\n    foreach (Kurs kurs in KursListe)\n    {\n        if (kurs.Kode == kursKode)\n        {\n            Student funnet = kurs.Studenter.Find(s => s.StudentID == studentID);\n            if (funnet != null)\n            {\n                kurs.Studenter.Remove(funnet);\n                kurs.LedigePlasser++; // frigjør plassen\n                Console.WriteLine($\"{GREEN}Fjernet{RESET}\");\n            }\n            return;\n        }\n    }\n}\n```"
+  },
+  {
+    "id": 8,
+    "section": "UniSystem: Bok-klassen",
+    "question": "Hva er forskjellen på `AntallEksemplarer` og `TilgjengeligeEksemplarer` i `Bok`-klassen?",
+    "options": [
+      "De er det samme feltet med to navn",
+      "AntallEksemplarer styrer utlån",
+      "AntallEksemplarer er det totale antallet, TilgjengeligeEksemplarer synker ved utlån",
+      "TilgjengeligeEksemplarer er alltid 0"
+    ],
+    "answerIndex": 2,
+    "answer": "AntallEksemplarer er det totale antallet, TilgjengeligeEksemplarer synker ved utlån",
+    "shortExplanation": "`AntallEksemplarer` er fast totalt antall; `TilgjengeligeEksemplarer` telles ned/opp ved utlån og innlevering.",
+    "explanation": "Bok-klassen bruker to felt for å spore eksemplarer:\n\nAntallEksemplarer:\n- Settes i konstruktøren og endres aldri\n- Representerer det totale antallet boken finnes i\n\nTilgjengeligeEksemplarer:\n- Starter lik AntallEksemplarer\n- Reduseres med 1 ved utlån\n- Økes med 1 ved innlevering\n- Aldri lov å gå under 0\n\nVises til brukeren som: Tilgjengelig: 2/5 (to av fem tilgjengelig)",
+    "example": "```csharp\npublic class Bok\n{\n    public int AntallEksemplarer;        // fast: 5\n    public int TilgjengeligeEksemplarer; // variabel: 5 → 4 → 3...\n\n    public Bok(string id, string tittel, string forfatter, int år, int antall)\n    {\n        AntallEksemplarer = antall;\n        TilgjengeligeEksemplarer = antall; // starter fullt\n    }\n}\n```"
+  },
+  {
+    "id": 9,
+    "section": "UniSystem: BibliotekSystem",
+    "question": "Hva gjør `BibliotekSystem.LånUtBok()` dersom det ikke finnes noen tilgjengelige eksemplarer?",
+    "options": [
+      "Den kaster en ArgumentException",
+      "Den reserverer boken til neste ledige eksemplar",
+      "Den skriver en rød feilmelding og returnerer",
+      "Den øker AntallEksemplarer automatisk"
+    ],
+    "answerIndex": 2,
+    "answer": "Den skriver en rød feilmelding og returnerer",
+    "shortExplanation": "Hvis `TilgjengeligeEksemplarer == 0` vises 'Ingen eksemplarer tilgjengelig!' og metoden avbrytes.",
+    "explanation": "LånUtBok() sjekker tilgjengelighet før utlån:\n1. Itererer BokListe etter bokID\n2. Sjekker: TilgjengeligeEksemplarer > 0\n3a. Hvis ja: opprett Lån-objekt, legg til LånListe, reduser teller\n3b. Hvis nei: rød feilmelding\n4. Hvis boken ikke finnes: 'Bok ikke funnet'\n\nEn Lån-record holder: bokID, brukerID, brukerNavn og brukerType (Student/Ansatt).\nDette gjør det mulig å lage levering inn – man søker opp lånet via bokID + brukerID.",
+    "example": "```csharp\npublic void LånUtBok(string bokID, string brukerID, string brukerNavn, string brukerType)\n{\n    foreach (Bok bok in BokListe)\n    {\n        if (bok.ID == bokID)\n        {\n            if (bok.TilgjengeligeEksemplarer > 0)\n            {\n                Lån nyttLån = new Lån(bokID, brukerID, brukerNavn, brukerType);\n                LånListe.Add(nyttLån);\n                bok.TilgjengeligeEksemplarer--;\n                Console.WriteLine($\"{GREEN}Lånt ut!{RESET}\");\n            }\n            else\n            {\n                Console.WriteLine($\"{RED}Ingen eksemplarer tilgjengelig!{RESET}\");\n            }\n            return;\n        }\n    }\n    Console.WriteLine($\"{RED}Bok ikke funnet{RESET}\");\n}\n```"
+  },
+  {
+    "id": 10,
+    "section": "UniSystem: BibliotekSystem",
+    "question": "Hvordan finner `LeverInnBok()` det riktige lånet å fjerne?",
+    "options": [
+      "Den spør brukeren om bekreftelse",
+      "Den sletter alle lån for den boken",
+      "Den søker etter tittel og navn",
+      "Den bruker en foreach-løkke og sjekker at både BokID og BrukerID stemmer"
+    ],
+    "answerIndex": 3,
+    "answer": "Den bruker en foreach-løkke og sjekker at både BokID og BrukerID stemmer",
+    "shortExplanation": "Metoden itererer `LånListe` og finner lånet der `lån.BokID == bokID && lån.BrukerID == brukerID`.",
+    "explanation": "LeverInnBok() bruker ett søk med to betingelser:\n  lån.BokID == bokID && lån.BrukerID == brukerID\n\nDette er viktig fordi:\n- Samme bok kan ha flere aktive lån (ulike brukere)\n- Vi vil bare levere inn det ene spesifikke lånet\n\nEtter å ha funnet lånet:\n1. Fjerner det fra LånListe\n2. Finner boken i BokListe\n3. Øker TilgjengeligeEksemplarer++\n\nHvis ingen lån finnes: vises rød feilmelding.",
+    "example": "```csharp\npublic void LeverInnBok(string bokID, string brukerID)\n{\n    Lån? funnetLån = null;\n    foreach (Lån lån in LånListe)\n    {\n        if (lån.BokID == bokID && lån.BrukerID == brukerID)\n        {\n            funnetLån = lån;\n            break;\n        }\n    }\n\n    if (funnetLån != null)\n    {\n        LånListe.Remove(funnetLån);\n        // øk TilgjengeligeEksemplarer...\n    }\n}\n```"
+  },
+  {
+    "id": 11,
+    "section": "UniSystem: Lån-klassen",
+    "question": "Hva lagrer `Lån`-klassen, og hva er den brukt til?",
+    "options": [
+      "Den arver fra Bok",
+      "Den er en record som holder BokID, BrukerID, BrukerNavn og BrukerType som tekst",
+      "Den holder en liste over alle lån i systemet",
+      "Den lagrer en bok og en bruker direkte som objektreferanser"
+    ],
+    "answerIndex": 1,
+    "answer": "Den er en record som holder BokID, BrukerID, BrukerNavn og BrukerType som tekst",
+    "shortExplanation": "`Lån` er en enkel dataklasse med fire string-felt som representerer ett utlån.",
+    "explanation": "Lån er en ren dataholder uten logikk.\n\nFeltene:\n- BokID: hvilken bok som er utlånt\n- BrukerID: StudentID eller AnsattID\n- BrukerNavn: navn for visning\n- BrukerType: \"Student\" eller \"Ansatt\"\n\nI stedet for å lagre selve Student/Bok-objektene, lagres bare ID-ene som strings. Dette holder klassen enkel og løskoblet.\n\nBibliotekSystem holder en List<Lån> som vokser ved utlån og krymper ved innlevering.",
+    "example": "```csharp\npublic class Lån\n{\n    public string BokID;\n    public string BrukerID;  // StudentID eller AnsattID\n    public string BrukerNavn;\n    public string BrukerType; // \"Student\" eller \"Ansatt\"\n\n    public Lån(string bokID, string brukerID, string brukerNavn, string brukerType)\n    {\n        BokID = bokID;\n        BrukerID = brukerID;\n        BrukerNavn = brukerNavn;\n        BrukerType = brukerType;\n    }\n}\n```"
+  },
+  {
+    "id": 12,
+    "section": "UniSystem: ANSI-farger",
+    "question": "Hva er ANSI-fargekoder, og hvorfor brukes de i UniSystem?",
+    "options": [
+      "De er C#-bibliotek for farger i Windows Forms",
+      "De er konstanter som aldri brukes i output",
+      "De er HTML-farger for websider",
+      "De er spesielle escape-sekvenser som gir farge i terminalen"
+    ],
+    "answerIndex": 3,
+    "answer": "De er spesielle escape-sekvenser som gir farge i terminalen",
+    "shortExplanation": "ANSI-koder som `\\u001b[32m` setter grønn tekstfarge i terminalen; `\\u001b[0m` resetter.",
+    "explanation": "ANSI escape-koder er en gammel standard for terminaler.\nFormat: \\u001b[ + tall + m\n\nI UniSystem defineres de som const string:\n  GREEN  = \"\\u001b[32m\"\n  RED    = \"\\u001b[31m\"\n  CYAN   = \"\\u001b[36m\"\n  YELLOW = \"\\u001b[33m\"\n  RESET  = \"\\u001b[0m\"\n\nBruk:\n- Grønn for suksessmeldinger\n- Rød for feil\n- Gul for menyer\n- Cyan for overskrifter\n- RESET brukes alltid til slutt for å tilbakestille\n\nOBS: Fungerer ikke i alle terminaler (f.eks. eldre Windows CMD).",
+    "example": "```csharp\nconst string RESET  = \"\\u001b[0m\";\nconst string GREEN  = \"\\u001b[32m\";\nconst string RED    = \"\\u001b[31m\";\nconst string YELLOW = \"\\u001b[33m\";\n\n// Grønn suksessmelding:\nConsole.WriteLine($\"{GREEN}Kurset ble opprettet!{RESET}\");\n\n// Rød feilmelding:\nConsole.WriteLine($\"{RED}Ugyldig valg{RESET}\");\n```"
+  },
+  {
+    "id": 13,
+    "section": "UniSystem: ANSI-farger",
+    "question": "Hvorfor brukes `RESET` etter en fargekode i Console.WriteLine?",
+    "options": [
+      "For å slette linjeskift",
+      "For å øke skriftstørrelse",
+      "RESET brukes ikke i UniSystem",
+      "For å tilbakestille fargen slik at neste tekst ikke arver fargen"
+    ],
+    "answerIndex": 3,
+    "answer": "For å tilbakestille fargen slik at neste tekst ikke arver fargen",
+    "shortExplanation": "Uten RESET vil all tekst etter en fargekode fortsette i den fargen.",
+    "explanation": "ANSI-farger er \"sticky\" – de gjelder til noe annet settes.\n\nExempel på hva som skjer uten RESET:\n  Console.WriteLine($\"{RED}Feil!\");\n  Console.WriteLine(\"Neste linje\"); // dette blir også rødt!\n\nMed RESET:\n  Console.WriteLine($\"{RED}Feil!{RESET}\");\n  Console.WriteLine(\"Neste linje\"); // normal farge\n\nI UniSystem-klasene er RESET alltid private const string i KursSystem og BibliotekSystem. I Program.cs defineres de lokalt i Main().",
+    "example": "```csharp\n// Uten RESET – fargen \"lekker\":\nConsole.WriteLine($\"{GREEN}Suksess!\");\nConsole.WriteLine(\"Dette er også grønt...\"); // utilsiktet\n\n// Med RESET – trygt:\nConsole.WriteLine($\"{GREEN}Suksess!{RESET}\");\nConsole.WriteLine(\"Dette er normal farge\"); // korrekt\n```"
+  },
+  {
+    "id": 14,
+    "section": "UniSystem: Namespace",
+    "question": "Hva er formålet med `namespace UniSystem.aMain` i klassene?",
+    "options": [
+      "Det er et programnavn for exe-filen",
+      "Det organiserer klassene i logiske grupper og unngår navnkonflikter",
+      "Det brukes kun for kompilering",
+      "Det er et arv-nivå"
+    ],
+    "answerIndex": 1,
+    "answer": "Det organiserer klassene i logiske grupper og unngår navnkonflikter",
+    "shortExplanation": "Namespace grupperer relaterte klasser; `using UniSystem.aMain` gir tilgang til dem i andre filer.",
+    "explanation": "Namespace fungerer som en adresse for en klasse.\n\nI UniSystem:\n- UniSystem.aMain: Student, Ansatt, Kurs, Bok, Lån\n- UniSystem.aSystemer: KursSystem, BibliotekSystem\n\nFor å bruke klassene i Program.cs kreves:\n  using UniSystem.aMain;\n  using UniSystem.aSystemer;\n\nUten using måtte man skrive fullt navn overalt:\n  UniSystem.aMain.Student s = new UniSystem.aMain.Student(...);\n\nNamespace er spesielt viktig i store prosjekter for å hindre at to klasser med samme navn kolliderer.",
+    "example": "```csharp\n// Student.cs:\nnamespace UniSystem.aMain\n{\n    public class Student { ... }\n}\n\n// Program.cs:\nusing UniSystem.aMain;    // gir tilgang til Student, Kurs, etc.\nusing UniSystem.aSystemer; // gir tilgang til KursSystem, BibliotekSystem\n\nStudent s = new Student(\"S01\", \"Per\", \"per@uni.no\"); // fungerer\n```"
+  },
+  {
+    "id": 15,
+    "section": "UniSystem: Løkker og kontrollflyt",
+    "question": "Hvorfor brukes `while (running)` i stedet for `while (true)` i Program.cs?",
+    "options": [
+      "while(running) er raskere",
+      "Det er ingen praktisk forskjell, men `running` er mer lesbar og kontrollerbar",
+      "while(true) er ikke lov i C#",
+      "running-variabelen styrer hastigheten"
+    ],
+    "answerIndex": 1,
+    "answer": "Det er ingen praktisk forskjell, men `running` er mer lesbar og kontrollerbar",
+    "shortExplanation": "`bool running = true` gir en tydelig av-bryter; å sette `running = false` er klarere enn `break` midt i koden.",
+    "explanation": "Begge while(true) og while(running) lager en uendelig løkke som kjøres til noe stopper den.\n\nForskjellen er kodestil:\n\nwhile(true) med break:\n  while (true) {\n    if (valg == \"0\") break; // stopp\n  }\n\nwhile(running):\n  bool running = true;\n  while (running) {\n    if (valg == \"0\") running = false; // stopp\n  }\n\nFordelene med running-flagg:\n- Stopforhold er tydeligere\n- Kan sjekkes fra forskjellige steder\n- Idiomatisk i menybaserte konsollapps",
+    "example": "```csharp\nbool running = true;\nwhile (running)\n{\n    string valg = Console.ReadLine();\n\n    if (valg == \"0\")\n    {\n        running = false;           // avslutter løkken\n        Console.WriteLine(\"Takk for nå!\");\n    }\n    else if (valg == \"1\")\n    {\n        // gjør noe\n    }\n}\n```"
+  },
+  {
+    "id": 16,
+    "section": "UniSystem: Løkker og kontrollflyt",
+    "question": "Hva gjør `continue`-nøkkelordet i Program.cs sin `else`-gren for ugyldig brukertype?",
+    "options": [
+      "Det hopper direkte til neste iterasjon av while-løkken uten å kjøre koden nedenfor",
+      "Det avslutter programmet",
+      "Det nullstiller valg-variabelen",
+      "Det er det samme som break"
+    ],
+    "answerIndex": 0,
+    "answer": "Det hopper direkte til neste iterasjon av while-løkken uten å kjøre koden nedenfor",
+    "shortExplanation": "`continue` avbryter resten av gjeldende iterasjon og starter løkken på nytt.",
+    "explanation": "I menyvalg 5 (lån ut bok) spør programmet om brukertype:\n  [1] Student\n  [2] Ansatt\n\nHvis brukeren skriver noe annet:\n  Console.WriteLine(\"Ugyldig brukertype\");\n  continue; // hopper tilbake til while-løkkens topp\n\nUten continue ville koden under forsøkt å kalle LånUtBok() med uinitialiserte variabler (brukerID, brukerNavn, type).\n\ncontinue vs break:\n- continue: hopp til neste iterasjon\n- break: forlat løkken helt",
+    "example": "```csharp\nwhile (running)\n{\n    // ...\n    string brukerType = Console.ReadLine();\n\n    string brukerID, brukerNavn, type;\n\n    if (brukerType == \"1\")\n    {\n        type = \"Student\";\n        // les brukerID og brukerNavn\n    }\n    else\n    {\n        Console.WriteLine($\"{RED}Ugyldig brukertype{RESET}\");\n        continue; // start while-løkken på nytt\n    }\n\n    bibliotekSystem.LånUtBok(bokID, brukerID, brukerNavn, type); // kjøres kun hvis type er gyldig\n}\n```"
+  },
+  {
+    "id": 17,
+    "section": "UniSystem: List<T>",
+    "question": "Hvilke to `List<T>`-typer bruker `BibliotekSystem`, og hva lagrer hver av dem?",
+    "options": [
+      "List<string> og List<int>",
+      "List<Ansatt> og List<Student>",
+      "List<Kurs> og List<Bok>",
+      "List<Bok> (alle registrerte bøker) og List<Lån> (alle aktive utlån)"
+    ],
+    "answerIndex": 3,
+    "answer": "List<Bok> (alle registrerte bøker) og List<Lån> (alle aktive utlån)",
+    "shortExplanation": "`BokListe` holder alle registrerte bøker; `LånListe` holder alle aktive utlån.",
+    "explanation": "BibliotekSystem har to lister:\n\nBokListe (List<Bok>):\n- Vokser når RegistrerBok() kalles\n- Søkes gjennom ved utlån og innlevering\n- Bøkene forblir i listen selv etter utlån\n\nLånListe (List<Lån>):\n- Vokser når LånUtBok() kalles (nytt Lån-objekt legges til)\n- Krymper når LeverInnBok() fjerner et lån\n- Representerer alle AKTIVE utlån akkurat nå\n\nSkillet er viktig: BokListe er en katalog, LånListe er et aktivt register.",
+    "example": "```csharp\npublic class BibliotekSystem\n{\n    public List<Bok> BokListe = new List<Bok>();\n    public List<Lån> LånListe = new List<Lån>();\n\n    public void RegistrerBok(Bok bok) => BokListe.Add(bok);\n\n    // Utlån: legg til i LånListe\n    // Innlevering: fjern fra LånListe\n}\n```"
+  },
+  {
+    "id": 18,
+    "section": "UniSystem: Konstruktører",
+    "question": "Hva er en konstruktør (**constructor**) i C#, og hvilken regel gjelder for navnet?",
+    "options": [
+      "En metode som sletter objektet; heter ~ClassName",
+      "En spesialmetode som kjøres automatisk ved `new`; heter alltid det samme som klassen",
+      "En statisk metode for å lage lister",
+      "En metode med return-type void"
+    ],
+    "answerIndex": 1,
+    "answer": "En spesialmetode som kjøres automatisk ved `new`; heter alltid det samme som klassen",
+    "shortExplanation": "Konstruktøren initialiserer objektet og kjøres når `new ClassName(...)` skrives.",
+    "explanation": "Alle klasser i UniSystem bruker konstruktører for å sette startverdier.\n\nRegler:\n- Samme navn som klassen\n- Ingen return-type (ikke engang void)\n- Kjøres automatisk ved new-uttrykk\n\nEksempel fra Kurs:\n  public Kurs(string kode, string navn, int studiepoeng, int maksPlasser)\n  { ... sett alle felt ... }\n\nHvis du ikke lager en konstruktør, lager C# en standard tom konstruktør.\nHvis du lager en med parametere, forsvinner den tomme – du MÅ da sende inn verdier.",
+    "example": "```csharp\npublic class Student\n{\n    public string StudentID;\n    public string Navn;\n    public string Epost;\n\n    // Konstruktør: skal ha samme navn som klassen\n    public Student(string id, string navn, string epost)\n    {\n        StudentID = id;\n        Navn = navn;\n        Epost = epost;\n    }\n}\n\n// Bruk:\nStudent s = new Student(\"S001\", \"Kari\", \"kari@uni.no\");\n// Konstruktøren kjøres automatisk her ^\n```"
+  },
+  {
+    "id": 19,
+    "section": "UniSystem: Datakonvertering",
+    "question": "Hvorfor brukes `int.Parse(Console.ReadLine())` i Program.cs?",
+    "options": [
+      "Console.ReadLine() returnerer alltid en int",
+      "int.Parse() runder av desimaltall",
+      "Console.ReadLine() returnerer en string, og int.Parse() konverterer den til et heltall",
+      "Det er en feil – man skal bruke Convert.ToInt32()"
+    ],
+    "answerIndex": 2,
+    "answer": "Console.ReadLine() returnerer en string, og int.Parse() konverterer den til et heltall",
+    "shortExplanation": "`Console.ReadLine()` returnerer alltid `string`; `int.Parse()` konverterer til `int`.",
+    "explanation": "Console.ReadLine() leser tekst fra brukeren – alltid som string.\n\nFor å bruke verdien som et tall (f.eks. antall studiepoeng):\n  string input = Console.ReadLine();\n  int studiepoeng = int.Parse(input);\n\nOBS: int.Parse() kaster FormatException hvis brukeren skriver noe som ikke er et tall.\n\nTryggere alternativ: int.TryParse():\n  bool ok = int.TryParse(input, out int studiepoeng);\n  if (!ok) Console.WriteLine(\"Ugyldig tall\");\n\nUniSystem bruker int.Parse() direkte – det er enkelt, men krasjer ved ugyldig input.",
+    "example": "```csharp\n// Slik gjøres det i Program.cs:\nConsole.Write(\"Skriv inn antall studiepoeng: \");\nint studiepoeng = int.Parse(Console.ReadLine()); // kan kaste FormatException\n\nConsole.Write(\"Maks plasser: \");\nint maksPlasser = int.Parse(Console.ReadLine());\n\nKurs nyttKurs = new Kurs(kode, navn, studiepoeng, maksPlasser);\n```"
+  },
+  {
+    "id": 20,
+    "section": "UniSystem: Strenginterpolasjon",
+    "question": "Hva betyr `$\"{GREEN}Kurset ble opprettet!{RESET}\"` i C#?",
+    "options": [
+      "Det er en formatert string med plassholdere som krever String.Format()",
+      "Det er en feil – $ brukes bare til valuta",
+      "$ lager en interpolert streng der {}-uttrykk byttes ut med variabelverdier ved kjøretid",
+      "$ betyr at strengen er raw og ikke escape-behandles"
+    ],
+    "answerIndex": 2,
+    "answer": "$ lager en interpolert streng der {}-uttrykk byttes ut med variabelverdier ved kjøretid",
+    "shortExplanation": "`$\"...\"` er string interpolation i C# – `{variabel}` erstattes av verdien til variabelen.",
+    "explanation": "String interpolation er C# sin måte å bygge strenger på:\n  $\"Tekst {variabel} mer tekst\"\n\nI UniSystem brukes det overalt:\n  $\"{GREEN}Suksess!{RESET}\"\n  $\"Kode: {kurs.Kode}\"\n  $\"{student.Navn} ble meldt på '{kurs.Navn}'\"\n\nAlternativet er string concatenation:\n  GREEN + \"Suksess!\" + RESET\n  -- men dette er mer klundrete\n\nEller String.Format:\n  String.Format(\"{0}Suksess!{1}\", GREEN, RESET)\n  -- eldre stil\n\nString interpolation er den moderne og mest lesbare måten i C#.",
+    "example": "```csharp\nstring GREEN = \"\\u001b[32m\";\nstring RESET = \"\\u001b[0m\";\nstring navn = \"Kari\";\nstring kurs = \"IS101\";\n\n// Med string interpolation:\nConsole.WriteLine($\"{GREEN}{navn} ble meldt på {kurs}!{RESET}\");\n// Output (grønn tekst): Kari ble meldt på IS101!\n\n// Uten interpolation (gammelt):\nConsole.WriteLine(GREEN + navn + \" ble meldt på \" + kurs + \"!\" + RESET);\n```"
+  },
+  {
+    "id": 21,
+    "section": "UniSystem: foreach",
+    "question": "Hva gjør `foreach (Kurs kurs in KursListe)` i KursSystem?",
+    "options": [
+      "Den oppretter nye Kurs-objekter",
+      "Den itererer over hvert Kurs-objekt i listen, ett om gangen",
+      "Den sletter hvert element etter bruk",
+      "Den sorterer listen"
+    ],
+    "answerIndex": 1,
+    "answer": "Den itererer over hvert Kurs-objekt i listen, ett om gangen",
+    "shortExplanation": "`foreach` går gjennom hvert element i en samling uten å måtte håndtere indekser manuelt.",
+    "explanation": "foreach er C# sin løkke for å iterere samlinger.\n\nSyntaks:\n  foreach (Type variabel in samling) { ... }\n\nI UniSystem brukes det til:\n- VisAlleKurs(): skriver ut hvert kurs\n- MeldStudentPåKurs(): søker etter riktig kurs via kurskode\n- VisAlleBøker(): skriver ut hver bok\n- LeverInnBok(): søker etter bok og lån\n\nforeach vs for:\n- foreach: enklere, kan ikke endre listen mens du itererer\n- for: trenger indeks, kan bruke break/continue/indeks-manipulasjon\n\nKan kombineres med break for å stoppe tidlig ved funn.",
+    "example": "```csharp\n// Eksempel fra VisAlleKurs():\nforeach (Kurs kurs in KursListe)\n{\n    Console.WriteLine($\"Kode: {kurs.Kode}\");\n    Console.WriteLine($\"Navn: {kurs.Navn}\");\n    Console.WriteLine($\"Plasser: {kurs.LedigePlasser}/{kurs.MaksPlasser}\");\n\n    foreach (Student s in kurs.Studenter) // nestet foreach!\n    {\n        Console.WriteLine($\"  {s.Navn} ({s.StudentID})\");\n    }\n}\n```"
+  },
+  {
+    "id": 22,
+    "section": "UniSystem: return i metoder",
+    "question": "Hvorfor returnerer `MeldStudentPåKurs()` umiddelbart etter å ha funnet kurset?",
+    "options": [
+      "Fordi return er obligatorisk etter else",
+      "return avslutter hele programmet",
+      "For å hindre at løkken fortsetter å søke i resten av listen etter at kurset er funnet",
+      "Fordi C# kaster en feil uten return"
+    ],
+    "answerIndex": 2,
+    "answer": "For å hindre at løkken fortsetter å søke i resten av listen etter at kurset er funnet",
+    "shortExplanation": "`return` inne i foreach-løkken avslutter metoden umiddelbart etter første treff.",
+    "explanation": "I søk-mønsteret foreach + if brukes return for early exit:\n\n  foreach (Kurs kurs in KursListe)\n  {\n      if (kurs.Kode == kursKode)\n      {\n          // gjør operasjonen...\n          return; // ferdig! ikke fortsett løkken\n      }\n  }\n\nUten return ville løkken fortsette å iterere resten av listen selv etter funn.\n\nDette er et vanlig og viktig mønster i C#:\n- Effektivt (stopper tidlig)\n- Tydelig (viser at operasjonen er fullført)\n- Unngår doble operasjoner",
+    "example": "```csharp\nforeach (Kurs kurs in KursListe)\n{\n    if (kurs.Kode == kursKode)\n    {\n        if (kurs.Studenter.Count < kurs.MaksPlasser)\n        {\n            kurs.Studenter.Add(student);\n            kurs.LedigePlasser--;\n            Console.WriteLine(\"Påmeldt!\");\n        }\n        else\n        {\n            Console.WriteLine(\"Fullt!\");\n        }\n        return; // viktig: ikke iterer videre\n    }\n}\nConsole.WriteLine(\"Ikke funnet\"); // kun hvis return aldri ble nådd\n```"
+  },
+  {
+    "id": 23,
+    "section": "UniSystem: #nullable disable",
+    "question": "Hva gjør `#nullable disable` øverst i Program.cs?",
+    "options": [
+      "Det skrur av alle advarsler i prosjektet",
+      "Det deaktiverer C# sin nullable reference type-analyse for den filen",
+      "Det er et kommentarformat",
+      "Det forbyr bruk av null i hele programmet"
+    ],
+    "answerIndex": 1,
+    "answer": "Det deaktiverer C# sin nullable reference type-analyse for den filen",
+    "shortExplanation": "`#nullable disable` slår av nullable-advarsler i filen slik at referansetyper ikke krever `?` og null-sjekk.",
+    "explanation": "C# 8+ har et system kalt nullable reference types:\n- Uten `?`: kompilatoren antar at verdien aldri er null\n- Med `?` (f.eks. string?): verdien kan være null\n\n`#nullable disable` slår av dette systemet for den aktuelle filen.\n\nI UniSystem brukes det i Program.cs for å slippe å skrive:\n  string? kurskode = Console.ReadLine();\n  string? kursnavn = Console.ReadLine();\n\nI BibliotekSystem.cs brukes `Lån? funnetLån = null` – filens nullable-modus er aktiv der.\n\nOBS: #nullable disable anbefales ikke i ny kode – bedre å bruke nullable korrekt.",
+    "example": "```csharp\n#nullable disable\n// I denne filen kan man skrive:\nstring navn = Console.ReadLine(); // ingen advarsel om mulig null\n\n// Uten #nullable disable (moderne C#):\nstring? navn = Console.ReadLine(); // readline kan returnere null\nif (navn is null) { ... }\n```"
+  },
+  {
+    "id": 24,
+    "section": "UniSystem: Prosjektstruktur",
+    "question": "Hva er `UniSystem.csproj`-filen?",
+    "options": [
+      "En XML-fil som beskriver prosjektet for .NET: SDK, målrammeverk og avhengigheter",
+      "En C#-klasse som starter programmet",
+      "En binær kompilert fil",
+      "En konfigurasjonsfil for databasetilkobling"
+    ],
+    "answerIndex": 0,
+    "answer": "En XML-fil som beskriver prosjektet for .NET: SDK, målrammeverk og avhengigheter",
+    "shortExplanation": "`.csproj` er .NET sitt prosjektformat – definerer hvilken .NET-versjon som brukes og hvilke pakker som er inkludert.",
+    "explanation": ".csproj er prosjektfilen som styrer hvordan dotnet bygger koden.\n\nTypisk innhold:\n  <Project Sdk=\"Microsoft.NET.Sdk\">\n    <PropertyGroup>\n      <OutputType>Exe</OutputType>\n      <TargetFramework>net8.0</TargetFramework>\n    </PropertyGroup>\n  </Project>\n\nOutputType Exe betyr at det kompileres til en kjørbar .exe-fil.\nTargetFramework angir hvilken .NET-versjon som brukes.\n\nFor å kjøre UniSystem:\n  dotnet run\n\nFor å bygge:\n  dotnet build",
+    "example": "```csharp\n// UniSystem.csproj (XML):\n<Project Sdk=\"Microsoft.NET.Sdk\">\n  <PropertyGroup>\n    <OutputType>Exe</OutputType>\n    <TargetFramework>net8.0</TargetFramework>\n    <Nullable>enable</Nullable>\n    <ImplicitUsings>enable</ImplicitUsings>\n  </PropertyGroup>\n</Project>\n\n// Kjøre i terminal:\n// dotnet run\n// dotnet build\n```"
+  },
+  {
+    "id": 25,
+    "section": "UniSystem: Oversikt",
+    "question": "Hva skjer i steg for steg når brukeren oppretter et nytt kurs i UniSystem (menyvalg 1)?",
+    "options": [
+      "Program.cs leser input → lager Kurs-objekt → kaller OpprettKurs() → legges til KursListe",
+      "KursSystem.cs leser input direkte fra konsollen",
+      "Kurset lagres i en database",
+      "Program.cs kaller Student-konstruktøren"
+    ],
+    "answerIndex": 0,
+    "answer": "Program.cs leser input → lager Kurs-objekt → kaller OpprettKurs() → legges til KursListe",
+    "shortExplanation": "Program.cs håndterer input og objekt-opprettelse; KursSystem tar imot og lagrer via `OpprettKurs()`.",
+    "explanation": "Flyten for å opprette kurs er et godt eksempel på separasjon mellom UI og logikk:\n\n1. Program.cs viser meny og leser:\n   - kurskode (string)\n   - kursnavn (string)\n   - studiepoeng (int.Parse)\n   - maksPlasser (int.Parse)\n\n2. Program.cs lager objektet:\n   Kurs nyttKurs = new Kurs(kode, navn, studiepoeng, maksPlasser);\n\n3. Program.cs sender det til systemet:\n   kursSystem.OpprettKurs(nyttKurs);\n\n4. KursSystem.OpprettKurs() gjør bare:\n   KursListe.Add(kurs);\n\nDenne separasjonen gjør at KursSystem aldri selv leser fra konsollen – det er Program.cs sin jobb.",
+    "example": "```csharp\n// Steg 1-2: Program.cs samler input og lager objekt:\nstring kurskode = Console.ReadLine();\nstring kursnavn = Console.ReadLine();\nint studiepoeng = int.Parse(Console.ReadLine());\nint maksPlasser = int.Parse(Console.ReadLine());\n\nKurs nyttKurs = new Kurs(kurskode, kursnavn, studiepoeng, maksPlasser);\n\n// Steg 3: sender til systemet:\nkursSystem.OpprettKurs(nyttKurs);\n\n// Steg 4: KursSystem lagrer:\npublic void OpprettKurs(Kurs kurs)\n{\n    KursListe.Add(kurs); // enkelt!\n}\n```"
+  },
+  {
+    "id": 26,
+    "section": "UniSystem: Kodesnippet",
+    "question": "Hva gjør denne koden?\n```csharp\nStudent funnet = kurs.Studenter.Find(s => s.StudentID == studentID);\nif (funnet != null)\n{\n    kurs.Studenter.Remove(funnet);\n    kurs.LedigePlasser++;\n    Console.WriteLine(\"Studenten er fjernet\");\n}\nelse\n{\n    Console.WriteLine(\"Student finnes ikke i kurset\");\n}\n```",
+    "options": [
+      "Den sletter hele studentlisten",
+      "Den returnerer antall studenter på kurset",
+      "Den søker etter en student via ID, fjerner den hvis funnet og frigjør én plass",
+      "Den legger til en ny student i kurset"
+    ],
+    "answerIndex": 2,
+    "answer": "Den søker etter en student via ID, fjerner den hvis funnet og frigjør én plass",
+    "shortExplanation": "`Find()` leter etter studenten, `Remove()` fjerner den, og `LedigePlasser++` frigjør plassen.",
+    "explanation": "Dette er avmeldingslogikken fra `MeldStudentAvKurs()`.\n\nSteg for steg:\n1. `Find(s => s.StudentID == studentID)` – lambda-søk i listen\n2. Hvis `null`: student ikke funnet → feilmelding\n3. Hvis funnet:\n   - `Remove(funnet)` fjerner objektet fra listen\n   - `LedigePlasser++` oppdaterer plasstelleren\n\nOBS: `Find()` returnerer `null` (ikke exception) hvis ingen matcher – det er derfor null-sjekken er nødvendig.",
+    "example": "```csharp\n// Lambda: s => s.StudentID == studentID\n// Betyr: \"finn første Student s der s.StudentID er lik studentID\"\n\nList<Student> liste = new List<Student>();\nliste.Add(new Student(\"S01\", \"Kari\", \"kari@uni.no\"));\n\nStudent funnet = liste.Find(s => s.StudentID == \"S01\");\nConsole.WriteLine(funnet?.Navn); // Kari\n\nStudent ikkeHer = liste.Find(s => s.StudentID == \"X99\");\nConsole.WriteLine(ikkeHer == null); // True\n```"
+  },
+  {
+    "id": 27,
+    "section": "UniSystem: Kodesnippet",
+    "question": "Hva skrives ut når denne koden kjøres (ignorer ANSI-fargekoder)?\n```csharp\nKurs k = new Kurs(\"IS101\", \"Databaser\", 10, 3);\nConsole.WriteLine(k.LedigePlasser);\nConsole.WriteLine(k.MaksPlasser);\n```",
+    "options": [
+      "3 og 0",
+      "0 og 3",
+      "10 og 3",
+      "3 og 3"
+    ],
+    "answerIndex": 3,
+    "answer": "3 og 3",
+    "shortExplanation": "Konstruktøren setter `LedigePlasser = maksPlasser`, så begge er 3 ved opprettelse.",
+    "explanation": "Kurs-konstruktøren kjøres med `new Kurs(\"IS101\", \"Databaser\", 10, 3)`:\n- Kode = \"IS101\"\n- Navn = \"Databaser\"\n- Studiepoeng = 10\n- MaksPlasser = 3\n- LedigePlasser = maksPlasser = **3**\n\nBegge feltene er altså 3 rett etter opprettelse – ingen studenter er meldt på ennå.\n\nEtter én påmelding ville LedigePlasser blitt 2, men MaksPlasser forblir alltid 3.",
+    "example": "```csharp\nKurs k = new Kurs(\"IS101\", \"Databaser\", 10, 3);\n\nConsole.WriteLine(k.LedigePlasser); // 3\nConsole.WriteLine(k.MaksPlasser);   // 3\n\n// Meld på student:\nk.Studenter.Add(new Student(\"S01\", \"Per\", \"per@uni.no\"));\nk.LedigePlasser--;\n\nConsole.WriteLine(k.LedigePlasser); // 2\nConsole.WriteLine(k.MaksPlasser);   // fortsatt 3\n```"
+  },
+  {
+    "id": 28,
+    "section": "UniSystem: Kodesnippet",
+    "question": "Hva skjer når denne koden kjøres?\n```csharp\nstring input = \"tjue\";\nint antall = int.Parse(input);\nConsole.WriteLine(antall);\n```",
+    "options": [
+      "Den skriver ut \"tjue\"",
+      "Den skriver ut null",
+      "Den kaster en FormatException og krasjer",
+      "Den skriver ut 0"
+    ],
+    "answerIndex": 2,
+    "answer": "Den kaster en FormatException og krasjer",
+    "shortExplanation": "`int.Parse()` kaster `FormatException` når strengen ikke kan tolkes som et heltall.",
+    "explanation": "UniSystem bruker `int.Parse(Console.ReadLine())` direkte uten feilhåndtering.\n\nHvis brukeren skriver \"tjue\" i stedet for \"20\":\n  System.FormatException: Input string was not in a correct format.\n\nProgrammet krasjer med en ubehandlet exception.\n\nTryggere alternativ – `int.TryParse()`:\n  if (int.TryParse(input, out int antall))\n      Console.WriteLine(antall);\n  else\n      Console.WriteLine(\"Ugyldig tall!\");\n\nTryParse returnerer false i stedet for å kaste exception.",
+    "example": "```csharp\n// Krasjer:\nint antall = int.Parse(\"tjue\"); // FormatException!\n\n// Trygt:\nbool ok = int.TryParse(\"tjue\", out int antall);\nif (ok)\n    Console.WriteLine(antall);\nelse\n    Console.WriteLine(\"Ugyldig – skriv et tall!\");\n// Output: Ugyldig – skriv et tall!\n```"
+  },
+  {
+    "id": 29,
+    "section": "UniSystem: Kodesnippet",
+    "question": "Hva er verdien av `lånFinnes` etter denne koden?\n```csharp\nList<Lån> lånListe = new List<Lån>();\nlånListe.Add(new Lån(\"B01\", \"S01\", \"Kari\", \"Student\"));\nlånListe.Add(new Lån(\"B02\", \"S02\", \"Per\", \"Student\"));\n\nLån? funnetLån = null;\nforeach (Lån lån in lånListe)\n{\n    if (lån.BokID == \"B01\" && lån.BrukerID == \"S01\")\n    {\n        funnetLån = lån;\n        break;\n    }\n}\nbool lånFinnes = funnetLån != null;\n```",
+    "options": [
+      "true – lånet for B01/S01 ble funnet",
+      "false – ingenting ble funnet",
+      "true – alle lån ble funnet",
+      "Koden kaster en NullReferenceException"
+    ],
+    "answerIndex": 0,
+    "answer": "true – lånet for B01/S01 ble funnet",
+    "shortExplanation": "Løkken finner lånet der `BokID == \"B01\"` og `BrukerID == \"S01\"`, setter `funnetLån` og avslutter med `break`.",
+    "explanation": "Dette er søkemønsteret fra `LeverInnBok()` i BibliotekSystem.\n\nSteg:\n1. Listen har to lån: B01/S01 og B02/S02\n2. Første iterasjon: BokID==\"B01\" og BrukerID==\"S01\" → begge true → funnetLån settes\n3. `break` avslutter løkken umiddelbart\n4. `funnetLån != null` → `lånFinnes = true`\n\nViktig: `&&` betyr at BEGGE betingelser må være sanne. Bare riktig bok UG riktig bruker gir treff.",
+    "example": "```csharp\n// Søk med to betingelser – begge må stemme:\nforeach (Lån lån in lånListe)\n{\n    if (lån.BokID == \"B01\" && lån.BrukerID == \"S01\")\n    {\n        funnetLån = lån; // kun dette lånet\n        break;           // stopp, vi er ferdige\n    }\n}\n// Hvis B01 finnes men bruker er S99: ingen treff\n// Hvis S01 finnes men bok er B99: ingen treff\n```"
+  },
+  {
+    "id": 30,
+    "section": "UniSystem: Kodesnippet",
+    "question": "Hva skriver dette ut til konsollen?\n```csharp\nconst string GREEN = \"\\u001b[32m\";\nconst string RESET = \"\\u001b[0m\";\nstring navn = \"Kari\";\nstring kurs = \"IS101\";\nConsole.WriteLine($\"{GREEN}{navn} ble meldt på {kurs}!{RESET}\");\n```",
+    "options": [
+      "Kari ble meldt på IS101! (i grønn farge i terminalen)",
+      "En kompileringsfeil fordi $ og const ikke kan kombineres",
+      "GREEN Kari ble meldt på IS101! RESET",
+      "\\u001b[32mKari ble meldt på IS101!\\u001b[0m (bokstavelig tekst)"
+    ],
+    "answerIndex": 0,
+    "answer": "Kari ble meldt på IS101! (i grønn farge i terminalen)",
+    "shortExplanation": "ANSI-kodene er usynlige escape-sekvenser som setter terminalfarge; teksten vises grønn, ikke rå koder.",
+    "explanation": "String interpolation `$\"...\"` setter inn variabelverdiene ved kjøretid:\n- `{GREEN}` → `\\u001b[32m` (ANSI grønn)\n- `{navn}` → \"Kari\"\n- `{kurs}` → \"IS101\"\n- `{RESET}` → `\\u001b[0m` (tilbakestill)\n\nTerminalen tolker `\\u001b[32m` som en fargekommando, ikke som tekst.\nResultat: teksten «Kari ble meldt på IS101!» vises i grønn farge.\n\nFargen forsvinner etter `{RESET}` – neste linje får normal farge.",
+    "example": "```csharp\nconst string GREEN  = \"\\u001b[32m\";\nconst string YELLOW = \"\\u001b[33m\";\nconst string RESET  = \"\\u001b[0m\";\n\n// Grønn:\nConsole.WriteLine($\"{GREEN}Suksess!{RESET}\");\n\n// Gul meny:\nConsole.WriteLine($\"{YELLOW}--- Meny ---{RESET}\");\n\n// Uten RESET – fargen fortsetter:\nConsole.WriteLine($\"{GREEN}Advarsel!\");\nConsole.WriteLine(\"Dette er også grønt...\"); // utilsiktet\n```"
+  },
+  {
+    "id": 31,
+    "section": "UniSystem: Kodesnippet",
+    "question": "Hva skjer hvis brukeren skriver \"3\" ved brukertype-valget i denne koden?\n```csharp\nstring brukerType = Console.ReadLine();\nstring brukerID, brukerNavn, type;\n\nif (brukerType == \"1\")\n{\n    type = \"Student\";\n    brukerID = Console.ReadLine();\n    brukerNavn = Console.ReadLine();\n}\nelse if (brukerType == \"2\")\n{\n    type = \"Ansatt\";\n    brukerID = Console.ReadLine();\n    brukerNavn = Console.ReadLine();\n}\nelse\n{\n    Console.WriteLine(\"Ugyldig brukertype\");\n    continue;\n}\nbibliotekSystem.LånUtBok(bokID, brukerID, brukerNavn, type);\n```",
+    "options": [
+      "Programmet krasjer med NullReferenceException",
+      "Programmet avslutter",
+      "LånUtBok() kalles med type = \"3\"",
+      "\"Ugyldig brukertype\" skrives ut og `continue` hopper tilbake til while-løkkens start"
+    ],
+    "answerIndex": 3,
+    "answer": "\"Ugyldig brukertype\" skrives ut og `continue` hopper tilbake til while-løkkens start",
+    "shortExplanation": "`continue` hopper til neste iterasjon av while-løkken – `LånUtBok()` kalles aldri.",
+    "explanation": "Når `brukerType` verken er \"1\" eller \"2\", faller koden inn i `else`-grenen:\n1. Feilmelding vises\n2. `continue` avbryter resten av denne iterasjonen\n3. While-løkken starter på ny – menyen vises igjen\n\nUten `continue` ville koden forsøkt å kalle `LånUtBok(bokID, brukerID, brukerNavn, type)` – men `brukerID`, `brukerNavn` og `type` er uinitialiserte variabler, noe som gir en kompileringsfeil.\n\n`continue` er altså nødvendig her, ikke bare god stil.",
+    "example": "```csharp\n// Uten continue – kompileringsfeil:\nstring type; // uinitialisert\n// else { Console.WriteLine(\"Ugyldig\"); }\nbibliotekSystem.LånUtBok(bokID, brukerID, brukerNavn, type);\n// FEIL: \"type\" is unassigned\n\n// Med continue – trygt:\nelse\n{\n    Console.WriteLine(\"Ugyldig brukertype\");\n    continue; // hopp til neste while-iterasjon\n}\n// LånUtBok() nås aldri for ugyldig input\n```"
+  }
+]

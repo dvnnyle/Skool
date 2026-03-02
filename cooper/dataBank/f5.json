@@ -1,0 +1,290 @@
+[
+  {
+    "id": 1,
+    "section": "F5: Inheritance Basics",
+    "question": "Hva er arv (inheritance) i OOP?",
+    "options": [
+      "En mekanisme der en klasse arver medlemmer fra en annen klasse",
+      "En måte å kopiere objekter",
+      "Kun et namespace-konsept",
+      "Kun relatert til databaser"
+    ],
+    "answerIndex": 0,
+    "answer": "En mekanisme der en klasse arver medlemmer fra en annen klasse",
+    "shortExplanation": "Arv lar en sub-klasse gjenbruke og utvide en super-klasse.",
+    "explanation": "Arv er et av de fire grunnprinsippene i OOP og handler om å gjenbruke kode.\n\nHovedidé:år:\n- En klasse kan arve egenskaper og metoder fra en annen klasse\n- Sub-klassen får alt i super-klassen automatisk\n- Sub-klassen kan legge til eget og overstyreeksisterende\n\nTenk på det slik:\n- Dyr er en base-klasse med Spis() og Sov()\n- Hund arver fra Dyr, men legger til Bjeff()\n- Katt arver fra Dyr, men legger til Mjau()",
+    "example": "```csharp\nclass Dyr\n{\n    public string Navn;\n    public void Spis() => Console.WriteLine($\"{Navn} spiser\");\n}\n\nclass Hund : Dyr\n{\n    public void Bjeff() => Console.WriteLine(\"Voff!\");\n}\n\nvar h = new Hund { Navn = \"Fido\" };\nh.Spis();  // Arvet fra Dyr\nh.Bjeff(); // Lagt til i Hund\n```"
+  },
+  {
+    "id": 2,
+    "section": "Terminologi",
+    "question": "Hva kalles klassen det arves fra og klassen som arver?",
+    "options": [
+      "Parent og child",
+      "Base-tabell og child-tabell",
+      "Master og slave",
+      "Super-klasse og sub-klasse"
+    ],
+    "answerIndex": 3,
+    "answer": "Super-klasse og sub-klasse",
+    "shortExplanation": "Base/super-klasse er kilden; sub/avledet klasse er den som arver.",
+    "explanation": "Det finnes mange ord for de to rollene i arv – alle betyr det samme:\n\nKlassen det arves FRA:\n- base class (C# foretrukket)\n- super class\n- parent class\n- mor-klasse\n\nKlassen som ARVER:\n- derived class (C# foretrukket)\n- sub class\n- child class\n- avledet klasse\n\nI C# er \"base class\" og \"derived class\" de mest brukte begrepene.",
+    "example": "```csharp\n// Kjøretøy = base class (super class)\npublic class Kjøretøy\n{\n    public string Merke;\n    public int Hastighet;\n}\n\n// Bil = derived class (sub class)\npublic class Bil : Kjøretøy\n{\n    public int AntallDører;\n}\n```"
+  },
+  {
+    "id": 3,
+    "section": "C# Syntax",
+    "question": "Hvordan representeres arv i C#?",
+    "options": [
+      "class Sub inherits Base",
+      "class Sub <- Base",
+      "class Sub : Base",
+      "class Sub extends Base"
+    ],
+    "answerIndex": 2,
+    "answer": "class Sub : Base",
+    "shortExplanation": "C# bruker `:` for å angi arv fra en base-klasse.",
+    "explanation": "Arv markeres i C# med et kolon (:) i klasse-deklasjonen.\n\nSyntaks:\n  class DerivedClass : BaseClass { ... }\n\nAndre språk bruker annen syntaks:\n- Java: class Dog extends Animal\n- C++: class Dog : public Animal\n- C#: class Dog : Animal (klart og enkelt)\n\nMerk: : brukes også for å implementere interfaces.\n  class Dog : Animal, IRunnable { } er gyldig.",
+    "example": "```csharp\npublic class Dyr\n{\n    public string Navn { get; set; }\n    public void Pust() => Console.WriteLine(\"puster...\");\n}\n\npublic class Fugl : Dyr  // Fugl arver fra Dyr\n{\n    public void Flyv() => Console.WriteLine(\"flyr!\");\n}\n\nvar f = new Fugl { Navn = \"Ørn\" };\nf.Pust(); // Fra Dyr\nf.Flyv(); // Fra Fugl\n```"
+  },
+  {
+    "id": 4,
+    "section": "Single Inheritance",
+    "question": "Har C# klasser flere base-klasser?",
+    "options": [
+      "Ja, ubegrenset",
+      "Kun hvis de er partial",
+      "Kun ved bruk av generics",
+      "Nei, kun enkel arv for klasser"
+    ],
+    "answerIndex": 3,
+    "answer": "Nei, kun enkel arv for klasser",
+    "shortExplanation": "C# støtter enkel arv for klasser; men man kan implementere flere interfaces.",
+    "explanation": "C# tillater kun arv fra én klasse om gangen (single inheritance).\n\nHvorfor ikke multiple inheritance for klasser:\n- Kan lede til \"diamond problem\" (hvilken base-implementasjon skal brukes?)\n- Gjør koden mer forutsigbar og enklere å vedlikeholde\n\nLøsningen i C#:\n- Du kan implementere så mange interfaces du vil\n- Interfaces definerer kontrakt uten implementasjon (som standard)",
+    "example": "```csharp\n// Kun EN base-klasse er tillatt\npublic class MinKlasse : Kjøretøy { }  // OK\n// public class MinKlasse : Kjøretøy, Maskin { } // Feil!\n\n// Men FLERE interfaces er OK\npublic class Robot : Maskin, IBevegelig, ILadbar, IKommuniserende { }\n```"
+  },
+  {
+    "id": 5,
+    "section": "Access Modifiers",
+    "question": "Hvilken modifikator gir tilgang i sub-klasser?",
+    "options": [
+      "protected",
+      "private",
+      "internal",
+      "private protected"
+    ],
+    "answerIndex": 0,
+    "answer": "protected",
+    "shortExplanation": "`protected` gir tilgang i klassen og avledede klasser.",
+    "explanation": "protected er modifikatoren som er designet spesifikt for arv.\n\nHva den gir:\n- Tilgang i klassen selv (som private)\n- Tilgang i alle avledede klasser (sub-klasser)\n- Ingen tilgang for ekstern kode ellers\n\nDette er viktig fordi:\n- private = for stumt for sub-klasser (de kan ikke lese base-data)\n- public = for åpent (alle kan nå den)\n- protected = riktig balanse for arvescenarier",
+    "example": "```csharp\npublic class Dyr\n{\n    protected string art;      // Tilgjengelig for avledede klasser\n    private int alder;         // Ikke tilgjengelig for avledede klasser\n}\n\npublic class Hund : Dyr\n{\n    public void Vis()\n    {\n        Console.WriteLine(art);    // OK - protected\n        // Console.WriteLine(alder); // Feil - private\n    }\n}\n```"
+  },
+  {
+    "id": 6,
+    "section": "Access Modifiers",
+    "question": "Hva betyr protected internal vs private protected?",
+    "options": [
+      "Begge betyr global tilgang",
+      "protected internal: kun i sub-klasser; private protected: kun i assembly",
+      "protected internal: i assembly eller sub-klasser; private protected: kun i klassen og sub-klasser i samme assembly",
+      "De er identiske"
+    ],
+    "answerIndex": 2,
+    "answer": "protected internal: i assembly eller sub-klasser; private protected: kun i klassen og sub-klasser i samme assembly",
+    "shortExplanation": "`protected internal` er åpen (assembly ELLER sub-klasse); `private protected` er streng (assembly OG sub-klasse).",
+    "explanation": "Disse to kombinasjonene styrer tilgang ved arv på to forskjellige måter:\n\nprotected internal (OR-logikk):\n- Tilgjengelig innenfor samme assembly\n- ELLER tilgjengelig i avledede klasser (også utenfor assembly)\n\nprivate protected (AND-logikk):\n- Må være TANTO i same assembly\n- OG må være en avledet klasse\n\nMemorisering: protected internal = mer åpen; private protected = mer lukket.",
+    "example": "```csharp\npublic class Base\n{\n    protected internal int A; // assembly ELLER sub-klasse\n    private protected int B;  // assembly OG sub-klasse\n}\n\n// I samme assembly (begge OK):\nclass Sub : Base { void M() { A = 1; B = 1; } }\n```"
+  },
+  {
+    "id": 7,
+    "section": "Implementering",
+    "question": "Velg korrekt C#-deklarasjon for arv.",
+    "options": [
+      "class Dog inherits Animal",
+      "class Dog extends Animal",
+      "class Dog <- Animal",
+      "class Dog : Animal"
+    ],
+    "answerIndex": 3,
+    "answer": "class Dog : Animal",
+    "shortExplanation": "C# bruker `:` for arv – enkelt og klart.",
+    "explanation": "Dette spørsmålet tester språksyntaks – arv skrives ulikt i ulike språk:\n\nC# (korrekt): class Dog : Animal\nJava: class Dog extends Animal\nC++: class Dog : public Animal\nPython: class Dog(Animal)\n\nI C# er `:` allsidig:\n- Arv: class Dog : Animal\n- Interface: class Dog : IRunnable\n- Begge: class Dog : Animal, IRunnable",
+    "example": "```csharp\npublic class Katt : Dyr // Katt arver fra Dyr\n{\n    public void Mjau() => Console.WriteLine(\"Mjau!\");\n}\n\n// Kan også arve og implementere interface::\npublic class Hund : Dyr, IBjeffende\n{\n    public void Bjeff() => Console.WriteLine(\"Voff!\");\n}\n```"
+  },
+  {
+    "id": 8,
+    "section": "Overriding",
+    "question": "Hva kreves for å kunne override en metode?",
+    "options": [
+      "Metoden i base må være sealed",
+      "Metoden i base må være virtual, abstract eller override",
+      "Metoden i base må være static",
+      "Ingen krav"
+    ],
+    "answerIndex": 1,
+    "answer": "Metoden i base må være virtual, abstract eller override",
+    "shortExplanation": "Bare virtuelle/abstrakte metoder kan overstyres i C#.",
+    "explanation": "I C# kan du ikke bare overstyre en hvilken som helst metode. Base-klassen må eksplisitt tillate det.\n\nBase-metoden må merkes med:\n- virtual: kan overstyres (har en standard-implementasjon)\n- abstract: MÅ overstyres (ingen implementasjon i base)\n- override: allerede overriding, kan overstyres videre\n\nOg i sub-klassen:\n- Bruk override for å overstyre\n\nHvorfor dette kravet? Det gjør arvehierarkiet mer bevisst og forutsigbart.",
+    "example": "```csharp\npublic class Dyr\n{\n    public virtual void LagLyd()\n    {\n        Console.WriteLine(\"...\"); // standard-implementasjon\n    }\n}\n\npublic class Hund : Dyr\n{\n    public override void LagLyd()\n    {\n        Console.WriteLine(\"Voff!\"); // overstyrt\n    }\n}\n```"
+  },
+  {
+    "id": 9,
+    "section": "Overriding",
+    "question": "Hva gjør override-nøkkelordet?",
+    "options": [
+      "Overstyrer en virtuell/abstrakt metode fra base",
+      "Hider en metode",
+      "Skjuler base-klassen",
+      "Gjør metoden static"
+    ],
+    "answerIndex": 0,
+    "answer": "Overstyrer en virtuell/abstrakt metode fra base",
+    "shortExplanation": "`override` implementerer ny oppførsel for en virtuell/abstrakt base-metode.",
+    "explanation": "override-nøkkelordet lar sub-klassen erstatte base-klassens implementasjon med sin egen.\n\nHva override gjør:\n- Erstatter metode-innholdet med sub-klassens versjon\n- Kall via base-referanse bruker FORTSATT sub-klassens versjon (polymorfisme)\n- Dette er dynamisk dispatch\n\nForskjell fra new (hiding):\n- override: polymorfisk – riktig metode velges ved runtime\n- new: skjuling – hvilken metode som kalles avhenger av referansetypen ved kompilering",
+    "example": "```csharp\npublic class Form\n{\n    public virtual double Areal() => 0;\n}\n\npublic class Sirkel : Form\n{\n    private double radius;\n    public Sirkel(double r) => radius = r;\n\n    public override double Areal() => Math.PI * radius * radius;\n}\n\nForm f = new Sirkel(5);\nConsole.WriteLine(f.Areal()); // 78.5... (Sirkel sin versjon)\n```"
+  },
+  {
+    "id": 10,
+    "section": "base Keyword",
+    "question": "Hva brukes base til?",
+    "options": [
+      "Til å referere til global state",
+      "Til å lage nye objekter",
+      "Til å referere til base-klassens medlemmer eller konstruktør",
+      "Til å kalle static metoder"
+    ],
+    "answerIndex": 2,
+    "answer": "Til å referere til base-klassens medlemmer eller konstruktør",
+    "shortExplanation": "`base` brukes for å kalle base-klassens konstruktør eller metoder.",
+    "explanation": "base-nøkkelordet brukes på to forskjellige måter:\n\n1. I konstruktøren (: base(args)):\n   - Kaller base-klassens konstruktør eksplisitt\n   - Nødvendig når base-klassen har en parametrisert konstruktør\n\n2. Inne i en overriding metode (base.MetodeNavn()):\n   - Kaller base-klassens implementasjon før/etter din egen kode\n   - Nyttig når du vil utvide heller enn erstatte oppførsel",
+    "example": "```csharp\npublic class Dyr\n{\n    public string Navn;\n    public Dyr(string navn) => Navn = navn;\n    public virtual void Beskriv() => Console.WriteLine($\"Dyr: {Navn}\");\n}\n\npublic class Hund : Dyr\n{\n    public string Rase;\n\n    public Hund(string navn, string rase) : base(navn) // kall base-ctor\n    {\n        Rase = rase;\n    }\n\n    public override void Beskriv()\n    {\n        base.Beskriv();                               // kall base-metode\n        Console.WriteLine($\"Rase: {Rase}\");\n    }\n}\n```"
+  },
+  {
+    "id": 11,
+    "section": "Hiding vs Overriding",
+    "question": "Hva gjør nøkkelordet new i en metode-signatur?",
+    "options": [
+      "Overstyrer base-metoden",
+      "Skjuler (hider) en base-metode",
+      "Gjør metoden abstrakt",
+      "Gjør klassen sealed"
+    ],
+    "answerIndex": 1,
+    "answer": "Skjuler (hider) en base-metode",
+    "shortExplanation": "`new` i metode-signatur skjuler (hider) base-metoden – uten polymorfisme.",
+    "explanation": "new og override ser like ut fra innsiden, men oppfører seg veldig forskjellig:\n\nMed override (polymorfisk):\n- Base b = new Sub(); b.Print() → kaller Sub.Print()\n- Metode velges basert på runtime-type\n\nMed new (hiding):\n- Base b = new Sub(); b.Print() → kaller Base.Print()\n- Metode velges basert på variabelens type ved kompilering\n\nAnbefaling: Foretrekk override for predictable polymorfisk oppførsel. new er sjeldent nødvendig.",
+    "example": "```csharp\npublic class Base\n{\n    public virtual void Hilsen() => Console.WriteLine(\"Hei fra Base\");\n}\npublic class Sub : Base\n{\n    public new void Hilsen() => Console.WriteLine(\"Hei fra Sub\");\n}\n\nBase b = new Sub();\nb.Hilsen();  // \"Hei fra Base\" (skjuling = base sin versjon brukes)\n\nSub s = new Sub();\ns.Hilsen();  // \"Hei fra Sub\" (riktig type-referanse)\n```"
+  },
+  {
+    "id": 12,
+    "section": "sealed",
+    "question": "Hva betyr sealed for klasser/metoder?",
+    "options": [
+      "Forhindrer videre arv eller override",
+      "Kan ikke instansieres",
+      "Gjør alt protected",
+      "Tillater flere base-klasser"
+    ],
+    "answerIndex": 0,
+    "answer": "Forhindrer videre arv eller override",
+    "shortExplanation": "`sealed class` kan ikke arves videre; `sealed override` kan ikke overstyres mer.",
+    "explanation": "sealed låser arvehierarkiet på to nivåer:\n\nsealed class:\n- Klassen kan ikke brukes som base-klasse\n- Ingen kan arve fra den\n- Eks: string i C# er sealed\n\nsealed override:\n- Stopper en metodes overriding på neste nivå\n- Brukes når du ikke ønsker videre spesialisering\n\nHvorfor sealed:\n- Design-sikkerhet (klassen er komplett som den er)\n- Kan gi ytelsesfordel (optimalisering av method calls)",
+    "example": "```csharp\nsealed class Singleton { }           // kan ikke arves\n// class MySingleton : Singleton {}  // Feil!\n\npublic class A { public virtual void M() {} }\npublic class B : A { public sealed override void M() {} } // kan ikke overstyres videre\n// public class C : B { public override void M() {} } // Feil!\n```"
+  },
+  {
+    "id": 13,
+    "section": "abstract",
+    "question": "Hva kjennetegner en abstrakt klasse?",
+    "options": [
+      "Kan ikke arves",
+      "Kan ikke instansieres og kan inneholde abstrakte medlemmer",
+      "Må være sealed",
+      "Må være static"
+    ],
+    "answerIndex": 1,
+    "answer": "Kan ikke instansieres og kan inneholde abstrakte medlemmer",
+    "shortExplanation": "Abstrakt klasse kan ikke instansieres og definerer kontrakt alle sub-klasser må følge.",
+    "explanation": "En abstrakt klasse er en halvferdig klasse som definerer fælles struktur og krever at sub-klasser fyller inn resten.\n\nKjennetegn:\n- Kan ikke instansieres direkte (new AbstractClass() er feil)\n- Kan ha både vanlige og abstrakte metoder\n- Abstrakte metoder: ingen impl., må implementeres i alle sub-klasser\n\nNår bruke abstrakt klasse:\n- Felles basefunksjonalitet for en gruppe relaterte klasser\n- Når noe må implementeres ulikt i hver sub-klasse (f.eks. Areal() for ulike former)",
+    "example": "```csharp\npublic abstract class Form\n{\n    public string Farge = \"rød\"; // vanlig felt\n\n    public abstract double Areal(); // må implementeres\n    public abstract double Omkrets();\n\n    public void VisFarge() => Console.WriteLine(Farge); // vanlig metode\n}\n\npublic class Sirkel : Form\n{\n    private double r;\n    public Sirkel(double r) => this.r = r;\n    public override double Areal() => Math.PI * r * r;\n    public override double Omkrets() => 2 * Math.PI * r;\n}\n```"
+  },
+  {
+    "id": 14,
+    "section": "Polymorphism",
+    "question": "Hva muliggjør polymorfisme i C# arv?",
+    "options": [
+      "private metoder",
+      "static metoder",
+      "virtual/override og base-referanser",
+      "sealed metoder"
+    ],
+    "answerIndex": 2,
+    "answer": "virtual/override og base-referanser",
+    "shortExplanation": "Virtual/override og base-referanser gjør at riktig sub-klasse-metode kalles automatisk.",
+    "explanation": "Polymorfisme betyr at ett grensesnitt (base-klassen) kan ha mange former (sub-klasser).\n\nPraktisk eksempel:\n- Du har en liste av Form-objekter\n- Noen er Sirkel, noen er Rektangel\n- Du kaller Areal() på alle – riktig versjon kalles automatisk\n\nDette er mulig fordi:\n- Metoden er virtual i Form\n- Hvert sub-objekt har override av Areal()\n- C# velger riktig implementasjon basert på runtime-typen",
+    "example": "```csharp\nList<Form> former = new List<Form>\n{\n    new Sirkel(5),\n    new Rektangel(3, 4)\n};\n\nforeach (var f in former)\n    Console.WriteLine($\"Areal: {f.Areal()}\"); // Riktig versjon kalles!\n// Areal: 78.5\n// Areal: 12\n```"
+  },
+  {
+    "id": 15,
+    "section": "Dispatch",
+    "question": "Hva skjer når en base-referanse peker til en avledet instans og du kaller en overridet metode?",
+    "options": [
+      "Base-implementasjonen kalles alltid",
+      "Kallet feiler",
+      "Metoden blir static",
+      "Den avledede implementasjonen kalles ved runtime"
+    ],
+    "answerIndex": 3,
+    "answer": "Den avledede implementasjonen kalles ved runtime",
+    "shortExplanation": "Dynamisk dispatch betyr at sub-klassens metode kalles ved runtime, selv via base-referanse.",
+    "explanation": "Dynamisk dispatch (runtime polymorphism) er hjertet av OOP.\n\nHva skjer:\n1. Du har en variabel av typen Base\n2. Du peker den til en Sub-instans\n3. Du kaller en overriding metode\n4. C# ser hvilken faktisk type objektet er ved runtime\n5. Sub-klassens metode kalles automatisk\n\nDette er annerledes enn:\n- new hiding: der er det variabeltypen (compile-time) som bestemmer\n- static: ingen runtime lookup i det hele tatt",
+    "example": "```csharp\npublic class Dyr { public virtual void LagLyd() => Console.WriteLine(\"...\"); }\npublic class Hund : Dyr { public override void LagLyd() => Console.WriteLine(\"Voff!\"); }\npublic class Katt : Dyr { public override void LagLyd() => Console.WriteLine(\"Mjau!\"); }\n\nDyr[] dyr = { new Hund(), new Katt(), new Hund() };\n\nforeach (var d in dyr)\n    d.LagLyd(); // Runtime bestemmer!\n// Voff!\n// Mjau!\n// Voff!\n```"
+  },
+  {
+    "id": 16,
+    "section": "Constructors",
+    "question": "Hva er rekkefølgen ved konstruktørkall i arv?",
+    "options": [
+      "Base-konstruktør kjører før avledet",
+      "Avledet først, så base",
+      "Ingen konstruktører kjører",
+      "Kun avledet kjører"
+    ],
+    "answerIndex": 0,
+    "answer": "Base-konstruktør kjører før avledet",
+    "shortExplanation": "Base-klassens konstruktør kjøres først, deretter sub-klassens.",
+    "explanation": "Når du oppretter et objekt av en avledet klasse, initialiseres base-delen først.\n\nRekkefølge:\n1. Base-konstruktør kjører\n2. Sub-konstruktør kjører\n\nHvorfor:\n- Sub-klassen kan avhenge av data fra base-klassen\n- Sikrer at base-delen er komplett klar før sub-delen begynner\n\nBruk : base(args) for å sende argumenter til base-konstruktøren.",
+    "example": "```csharp\npublic class Dyr\n{\n    public Dyr() => Console.WriteLine(\"1: Dyr konstruktør\");\n}\n\npublic class Hund : Dyr\n{\n    public Hund() => Console.WriteLine(\"2: Hund konstruktør\");\n}\n\nvar h = new Hund();\n// Output:\n// 1: Dyr konstruktør\n// 2: Hund konstruktør\n```"
+  },
+  {
+    "id": 17,
+    "section": "Abstract vs Interface",
+    "question": "Hva er en sentral forskjell mellom abstrakt klasse og interface?",
+    "options": [
+      "Interface kan inneholde implementasjon, abstrakt klasse kan ikke",
+      "Abstrakt klasse kan gi delvis implementasjon; interface er primært kontrakt",
+      "Interface kan instansieres, abstrakt klasse kan ikke",
+      "Ingen forskjell"
+    ],
+    "answerIndex": 1,
+    "answer": "Abstrakt klasse kan gi delvis implementasjon; interface er primært kontrakt",
+    "shortExplanation": "Abstrakt klasse gir delvis implementasjon; interface definerer en ren kontrakt.",
+    "explanation": "Når skal du bruke abstrakt klasse vs interface?\n\nAbstrakt klasse:\n- Når du vil gi felles implementasjon til sub-klasser\n- Når sub-klassene er nært relatert (f.eks. alle er \"Former\")\n- En klasse kan kun arve én abstrakt klasse\n\nInterface:\n- Når du definerer en ren kontrakt (hva kan gjøres, ikke hvordan)\n- Når ulike, urelaterte klasser skal ha samme \"evner\"\n- En klasse kan implementere mange interfaces\n\nSiden C# 8.0 kan interfaces ha default implementations.",
+    "example": "```csharp\n// Abstrakt klasse – felles base med delt kode\npublic abstract class Form\n{\n    public string Farge { get; set; }  // delt kode\n    public abstract double Areal();    // kontrakt\n}\n\n// Interface – ren kontrakt\npublic interface ITegnbar\n{\n    void Tegn();\n}\n\n// Klassen får både delvis implementasjon OG kontrakt\npublic class Sirkel : Form, ITegnbar\n{\n    public override double Areal() => Math.PI * 25;\n    public void Tegn() => Console.WriteLine(\"Tegner sirkel\");\n}\n```"
+  },
+  {
+    "id": 18,
+    "section": "Access & Inheritance",
+    "question": "Kan en sub-klasse få direkte tilgang til private medlemmer i base?",
+    "options": [
+      "Ja, alltid",
+      "Nei, private er kun for klassen selv",
+      "Kun med override",
+      "Kun med sealed"
+    ],
+    "answerIndex": 1,
+    "answer": "Nei, private er kun for klassen selv",
+    "shortExplanation": "Sub-klasser kan ikke nå `private` base-medlemmer; bruk `protected` for arvbar tilgang.",
+    "explanation": "private er absolutt i C# – ingen unntak, ikke engang arv.\n\nTilgangsregler i arv:\n- public: alle, inkl. sub-klasser og ekstern kode\n- protected: klassen selv + sub-klasser\n- internal: klassen og alle andre i samme assembly\n- private: KUN klassen selv (sub-klasser har ikke tilgang)\n\nLes privat data i sub-klasse:\n- Base-klassen må eksponere via protected egenskap eller metode\n- Sub-klassen kaller da egenskapen/metoden",
+    "example": "```csharp\npublic class Dyr\n{\n    private string hemmelighet = \"(skjult)\";\n    protected string Beskrivelse = \"et dyr\";\n\n    public string HentBeskrivelse() => Beskrivelse; // eksponert\n}\n\npublic class Hund : Dyr\n{\n    public void Info()\n    {\n        // Console.WriteLine(hemmelighet); // Feil! private\n        Console.WriteLine(Beskrivelse);    // OK - protected\n        Console.WriteLine(HentBeskrivelse()); // OK - public\n    }\n}\n```"
+  }
+]

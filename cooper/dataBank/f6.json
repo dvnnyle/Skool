@@ -1,0 +1,402 @@
+[
+  {
+    "id": 1,
+    "section": "F6: Datatypes",
+    "question": "Hva er `int` i C#?",
+    "options": [
+      "En tekst-type",
+      "En liste med tall",
+      "En boolsk verdi",
+      "En heltallstype som lagrer tall uten desimaler"
+    ],
+    "answerIndex": 3,
+    "answer": "En heltallstype som lagrer tall uten desimaler",
+    "shortExplanation": "`int` lagrer heltall fra ca. −2 milliarder til +2 milliarder.",
+    "explanation": "int er den mest brukte talltypen i C# og representerer et 32-bits heltall.\n\nVanlige tall-typer i C#:\n- int: heltall (-2 147 483 648 → 2 147 483 647)\n- long: større heltall\n- double: desimaltall (64-bit)\n- float: desimaltall (32-bit)\n- decimal: presis desimal (penger)\n\nBruk int for tellere, indekser og heltall-beregninger.",
+    "example": "```csharp\nint alder = 25;\nint antall = 100;\nint sum = alder + antall; // 125\n\nConsole.WriteLine(sum); // 125\n\n// Maks-verdi:\nConsole.WriteLine(int.MaxValue); // 2147483647\n```"
+  },
+  {
+    "id": 2,
+    "section": "F6: Datatypes",
+    "question": "Hva lagrer en `bool` i C#?",
+    "options": [
+      "Et heltall",
+      "Enten true eller false",
+      "En liste",
+      "En tekst"
+    ],
+    "answerIndex": 1,
+    "answer": "Enten true eller false",
+    "shortExplanation": "`bool` representerer en sannhetsverdi: `true` eller `false`.",
+    "explanation": "bool (boolean) er den enkleste datatypen og rommer kun to verdier.\n\nHva den brukes til:\n- Betingelser i if/while/for\n- Flagg-variabler (er pålogget, er ferdig?)\n- Return-type for metoder som sjekker noe\n\nOBS: I C# er true/false alltid smålette (ikke True/False som i Python).",
+    "example": "```csharp\nbool erLoggetInn = false;\nbool erFerdig = true;\n\nif (erLoggetInn)\n    Console.WriteLine(\"Velkommen!\");\nelse\n    Console.WriteLine(\"Logg inn først\");\n\n// Resultat av sammenligninger gir bool:\nbool over18 = (alder >= 18); // true eller false\n```"
+  },
+  {
+    "id": 3,
+    "section": "F6: Datatypes",
+    "question": "Hva er `char` i C#?",
+    "options": [
+      "Et enkelt tegn, f.eks. 'A' eller '5'",
+      "En heltallstype",
+      "En boolsk type",
+      "En tekststreng"
+    ],
+    "answerIndex": 0,
+    "answer": "Et enkelt tegn, f.eks. 'A' eller '5'",
+    "shortExplanation": "`char` holder nøyaktig ett Unicode-tegn, skrevet med enkle anførselstegn.",
+    "explanation": "char er en 16-bits Unicode-tegntype og holder nøyaktig ETT tegn.\n\nViktige detaljer:\n- Skrives med enkle anførselstegn: 'A', '5', ' '\n- string bruker doble anføredselstegn: \"Hei\"\n- char er ikke det samme som string med ett tegn\n\nBrukseksempel:\n- Iterere tegn for tegn i en streng\n- Sjekke om et tegn er bokstav/siffer",
+    "example": "```csharp\nchar forbokstav = 'A';\nchar siffer = '9';\nchar mellomrom = ' ';\n\n// Iterere tegn i en streng:\nstring navn = \"Hei\";\nforeach (char c in navn)\n    Console.Write(c + \"-\"); // H-e-i-\n\n// Sjekk om tegn er bokstav:\nbool erBokstav = char.IsLetter(forbokstav); // true\n```"
+  },
+  {
+    "id": 4,
+    "section": "F6: Datatypes",
+    "question": "Hva er `string` i C#?",
+    "options": [
+      "En boolsk type",
+      "En sekvens av tegn – tekst",
+      "Et enkelt tegn",
+      "Et heltall"
+    ],
+    "answerIndex": 1,
+    "answer": "En sekvens av tegn – tekst",
+    "shortExplanation": "`string` er en uforanderlig sekvens av tegn for tekst-håndtering.",
+    "explanation": "string er den grunnleggende teksttypen i C#.\n\nViktige egenskaper:\n- Uforanderlig (immutable) – du lager en ny streng ved endring\n- Kan være tom (\"\") eller null\n- Rik med metoder: Length, ToUpper(), Contains(), Split(), etc.\n\nNyttige string-operasjoner:\n- Sammenslåing: str1 + str2\n- Interpolasjon: $\"Hei {navn}\"\n- Lengde: .Length",
+    "example": "```csharp\nstring navn = \"Ola Nordmann\";\n\nConsole.WriteLine(navn.Length);         // 12\nConsole.WriteLine(navn.ToUpper());      // OLA NORDMANN\nConsole.WriteLine(navn.Contains(\"Ola\")); // True\n\n// String interpolasjon:\nint alder = 30;\nstring melding = $\"Hei {navn}, du er {alder} år gammel.\";\nConsole.WriteLine(melding);\n```"
+  },
+  {
+    "id": 5,
+    "section": "F6: Metoder",
+    "question": "Hva betyr `void` som returtype?",
+    "options": [
+      "Metoden returnerer ingenting",
+      "Metoden returnerer en boolean",
+      "Metoden returnerer null",
+      "Metoden er asynkron"
+    ],
+    "answerIndex": 0,
+    "answer": "Metoden returnerer ingenting",
+    "shortExplanation": "`void` betyr at metoden ikke returnerer noen verdi – den bare gjør noe.",
+    "explanation": "void er returtypen du bruker når en metode utfører en handling, men ikke gir tilbake noen verdi.\n\nMetode-struktur:\n  tilgangsmodifikator returtype Navn(parametere)\n\nvoid-metoder:\n- Gjør noe (skriver til konsoll, lagrer til database, etc.)\n- Kan ha return; for tidlig avslutning\n- Har IKKE return verdi;\n\nEksempel på ikke-void: int Legg(int a, int b) { return a + b; }",
+    "example": "```csharp\n// void – gjør noe, returnerer ingenting\npublic void Hils(string navn)\n{\n    Console.WriteLine($\"Hei, {navn}!\");\n}\n\n// ikke-void – returnerer en verdi\npublic int Legg(int a, int b)\n{\n    return a + b;\n}\n\nHils(\"Ada\");            // skriver: Hei, Ada!\nint resultat = Legg(3, 4); // 7\n```"
+  },
+  {
+    "id": 6,
+    "section": "F6: Metoder",
+    "question": "Hva skjer med `return`-verdien i en metode med returtype `int`?",
+    "options": [
+      "Den ignoreres alltid",
+      "Den lagres i en global variabel",
+      "Den sendes tilbake til kallstedet",
+      "Den skrives automatisk til konsollen"
+    ],
+    "answerIndex": 2,
+    "answer": "Den sendes tilbake til kallstedet",
+    "shortExplanation": "`return verdi` sender verdien tilbake slik at kalleren kan bruke den.",
+    "explanation": "Når du kaller en metode med returtype, sender den en verdi tilbake med return.\n\nHvordan det fungerer:\n1. Koden kaller metoden\n2. Metoden kjøres og beregner noe\n3. return sender verdien tilbake til kallstedet\n4. Kallstedet kan lagre eller bruke verdien\n\nEn metode med returtype MÅ alltid ha en return-setning.",
+    "example": "```csharp\npublic double BeregnAreal(double bredde, double høyde)\n{\n    return bredde * høyde; // sender tilbake resultatet\n}\n\n// Kaller metoden og lagrer resultatet:\ndouble areal = BeregnAreal(5.0, 3.0);\nConsole.WriteLine($\"Areal: {areal}\"); // Areal: 15\n\n// Eller bruk direkte:\nConsole.WriteLine(BeregnAreal(10, 2)); // 20\n```"
+  },
+  {
+    "id": 7,
+    "section": "F6: Metoder",
+    "question": "Hva er `this` i en klasse?",
+    "options": [
+      "En referanse til det nåværende objektet",
+      "Et nøkkelord for arv",
+      "En referanse til base-klassen",
+      "En referanse til den statiske klassen"
+    ],
+    "answerIndex": 0,
+    "answer": "En referanse til det nåværende objektet",
+    "shortExplanation": "`this` peker på objektet som koden kjøres på akkurat nå.",
+    "explanation": "this er et nøkkelord som refererer til den nåværende instansen av klassen.\n\nNår er this nyttig:\n1. Skille mellom parametre og felt med samme navn\n2. Sende seg selv som argument til en metode\n3. Kalle en annen konstruktør i same klasse (this(...))\n\nBeste praksis: bruk this.feltnavn når parameternavn og feltnavn er identiske.",
+    "example": "```csharp\npublic class Person\n{\n    private string navn;\n    private int alder;\n\n    public Person(string navn, int alder)\n    {\n        this.navn = navn;   // this.navn = felt, navn = parameter\n        this.alder = alder;\n    }\n\n    public void Presenter()\n    {\n        Console.WriteLine($\"Jeg er {this.navn}, {this.alder} år\");\n    }\n}\n```"
+  },
+  {
+    "id": 8,
+    "section": "F6: Kontrollflyt",
+    "question": "Hva gjør `if/else` i C#?",
+    "options": [
+      "Definerer en klasse",
+      "Utfører kode basert på en betingelse",
+      "Importerer et bibliotek",
+      "Gjentar en kodeblokk"
+    ],
+    "answerIndex": 1,
+    "answer": "Utfører kode basert på en betingelse",
+    "shortExplanation": "`if/else` lar programmet ta forskjellige veier basert på sant eller usant.",
+    "explanation": "if/else er grunnleggende betinget logikk i alle programmeringsspråk.\n\nStruktur:\n  if (betingelse) { /* kjør hvis sant */ }\n  else if (annen betingelse) { /* kjør hvis neste er sant */ }\n  else { /* kjør ellers */ }\n\nBetingelsen må evaluere til bool (true/false).\nelse og else if er valgfritt.",
+    "example": "```csharp\nint temperatur = 22;\n\nif (temperatur > 30)\n{\n    Console.WriteLine(\"Veldig varmt!\");\n}\nelse if (temperatur > 20)\n{\n    Console.WriteLine(\"Hyggelig vær\"); // dette kjøres\n}\nelse if (temperatur > 10)\n{\n    Console.WriteLine(\"Litt kjølig\");\n}\nelse\n{\n    Console.WriteLine(\"Kaldt!\");\n}\n```"
+  },
+  {
+    "id": 9,
+    "section": "F6: Kontrollflyt",
+    "question": "Hva gjør en `for`-løkke?",
+    "options": [
+      "Oppretter en klasse",
+      "Gjentar kode et bestemt antall ganger",
+      "Leser fra en fil",
+      "Kaster en exception"
+    ],
+    "answerIndex": 1,
+    "answer": "Gjentar kode et bestemt antall ganger",
+    "shortExplanation": "`for`-løkken er en telleløkke – perfekt når du vet antall gjentakelser.",
+    "explanation": "for-løkken er den klassiske telleløkken med tre deler i parentes:\n\n  for (initiering; betingelse; økning)\n\n1. Initiering: kjøres én gang ved start (int i = 0)\n2. Betingelse: sjekkes før hvert steg (i < 10)\n3. Økning: kjøres etter hvert steg (i++)\n\nNår bruke for:\n- Kjenne antall gjentakelser på forhånd\n- Trenge indeksen inne i løkken",
+    "example": "```csharp\n// Skriv ut 0 til 4:\nfor (int i = 0; i < 5; i++)\n{\n    Console.Write(i + \" \"); // 0 1 2 3 4\n}\n\n// Iterer over array med indeks:\nstring[] navn = { \"Ada\", \"Bjarne\", \"Guido\" };\nfor (int i = 0; i < navn.Length; i++)\n{\n    Console.WriteLine($\"{i}: {navn[i]}\");\n}\n```"
+  },
+  {
+    "id": 10,
+    "section": "F6: Kontrollflyt",
+    "question": "Hva gjør en `while`-løkke?",
+    "options": [
+      "Gjentar kode et fast antall ganger",
+      "Avbryter programmet",
+      "Gjentar kode så lenge betingelsen er sann",
+      "Kjøres aldri mer enn én gang"
+    ],
+    "answerIndex": 2,
+    "answer": "Gjentar kode så lenge betingelsen er sann",
+    "shortExplanation": "`while` gjentar en blokk så lenge betingelsen er `true`.",
+    "explanation": "while-løkken er mer fleksibel enn for – du trenger ikke vite antall gjentakelser.\n\nStruktur:\n  while (betingelse) { ... }\n\nHvis betingelsen er false fra starten, kjøres kroppen aldri.\n\nDo-while varianten:\n  do { ... } while (betingelse);\nDette garanterer at kroppen kjøres minst én gang.\n\nVars om: uendelig løkke oppstår hvis betingelsen aldri blir false!",
+    "example": "```csharp\nint teller = 0;\n\nwhile (teller < 5)\n{\n    Console.Write(teller + \" \"); // 0 1 2 3 4\n    teller++; // viktig! ellers uendelig løkke\n}\n\n// do-while - kjøres minst én gang:\nstring input;\ndo\n{\n    input = Console.ReadLine();\n} while (input != \"ja\");\n```"
+  },
+  {
+    "id": 11,
+    "section": "F6: Kontrollflyt",
+    "question": "Hva gjør `foreach`?",
+    "options": [
+      "Gjentar kode et fast antall ganger",
+      "Itererer over hvert element i en samling",
+      "Fjerner duplikater",
+      "Sorterer en samling"
+    ],
+    "answerIndex": 1,
+    "answer": "Itererer over hvert element i en samling",
+    "shortExplanation": "`foreach` leser hvert element i en samling uten å håndtere indeks manuelt.",
+    "explanation": "foreach er den enkleste og mest lesbare løkketypen for å gå igjennom en samling.\n\nForskjell fra for:\n- for: krever indeks, mer fleksibel\n- foreach: ingen indeks, enklere, kun lesing\n\nforeach fungerer med alt som er IEnumerable:\n- Array, List<T>, Dictionary, streng, etc.\n\nOBS: du kan ikke endre elementene inne i foreach.",
+    "example": "```csharp\nstring[] land = { \"Norge\", \"Sverige\", \"Danmark\" };\n\nforeach (string l in land)\n{\n    Console.WriteLine(l);\n}\n// Norge\n// Sverige\n// Danmark\n\n// Fungerer også med List<T>:\nList<int> tall = new List<int> { 1, 2, 3 };\nforeach (int t in tall)\n    Console.Write(t + \" \"); // 1 2 3\n```"
+  },
+  {
+    "id": 12,
+    "section": "F6: Samlinger",
+    "question": "Hva er `List<T>` i C#?",
+    "options": [
+      "En fast-størrelses array",
+      "Et dictionary med nøkler",
+      "En dynamisk samling av elementer med rik API",
+      "En type for enkelt-tegn"
+    ],
+    "answerIndex": 2,
+    "answer": "En dynamisk samling av elementer med rik API",
+    "shortExplanation": "`List<T>` er en dynamisk liste som vokser/krymper og gir metoder som Add, Remove, Contains.",
+    "explanation": "List<T> er den mest brukte samlingstypen i daglig C#-programmering.\n\nT betyr type – du spesifiserer hva slags ting listen holder:\n- List<int>, List<string>, List<Person>, etc.\n\nRikt API:\n- Add(elem) – legg til bak\n- Remove(elem) – fjern første treff\n- Contains(elem) – finnes elementet?\n- Count – antall elementer\n- Sort() – sorter\n- Clear() – tøm listen",
+    "example": "```csharp\nList<string> handleliste = new List<string>();\n\nhandleliste.Add(\"Melk\");\nhandleliste.Add(\"Brød\");\nhandleliste.Add(\"Egg\");\n\nConsole.WriteLine(handleliste.Count);          // 3\nConsole.WriteLine(handleliste.Contains(\"Brød\")); // True\n\nhandleliste.Remove(\"Melk\");\n\nforeach (string vare in handleliste)\n    Console.WriteLine(vare); // Brød, Egg\n```"
+  },
+  {
+    "id": 13,
+    "section": "F6: Samlinger",
+    "question": "Hva kjennetegner en `Array` i C# sammenlignet med `List<T>`?",
+    "options": [
+      "Array er dynamisk, List er fast",
+      "De er identiske",
+      "Array kan ikke inneholde heltall",
+      "Array har fast størrelse – størrelsen kan ikke endres etter opprettelse"
+    ],
+    "answerIndex": 3,
+    "answer": "Array har fast størrelse – størrelsen kan ikke endres etter opprettelse",
+    "shortExplanation": "Array har fast lengde og raskere tilgang; List<T> er dynamisk og mer fleksibel.",
+    "explanation": "Array er den grunnleggende samlingstypen i C# og mange andre språk.\n\nKjennetegn:\n- Fast størrelse – bestemt ved opprettelse\n- Aksesseres via indeks (arr[0], arr[1])\n- Alle elementer av samme type\n- Rask tilgang (O(1))\n\nNår bruke array:\n- Antall elementer er kjent og uendret\n- Trenger ytelse og lavt overhead\n\nNår bruke List<T>:\n- Ukjent eller variabelt antall elementer",
+    "example": "```csharp\n// Array – fast størrelse:\nint[] tall = new int[3];\ntall[0] = 10;\ntall[1] = 20;\ntall[2] = 30;\n\n// Kortform:\nstring[] uker = { \"Man\", \"Tir\", \"Ons\", \"Tor\", \"Fre\" };\n\nConsole.WriteLine(uker.Length); // 5\nConsole.WriteLine(uker[2]);     // Ons\n\n// Array kan ikke vokse – this gives error:\n// uker[5] = \"Lør\"; → IndexOutOfRange!\n```"
+  },
+  {
+    "id": 14,
+    "section": "F6: Samlinger",
+    "question": "Hva er `Dictionary<K, V>` i C#?",
+    "options": [
+      "En array med kun én type",
+      "En sortert liste",
+      "En type for tekstbehandling",
+      "En samling med nøkkel-verdi par"
+    ],
+    "answerIndex": 3,
+    "answer": "En samling med nøkkel-verdi par",
+    "shortExplanation": "`Dictionary<K, V>` lagrer par av nøkkel og verdi – som et oppslagsregister.",
+    "explanation": "Dictionary er en nøkkel-verdi struktur der hvert element har en unik nøkkel.\n\nAnalogi: tenk på det som en ordbok (eller oppslagsverk):\n- Nøkkel: ordet du slår opp (K)\n- Verdi: definisjonen (V)\n\nEgenskaper:\n- Rask oppslag via nøkkel (O(1) gjennomsnitt)\n- Nøkler må være unike\n- Verdier kan dupliseres\n\nAPI:\n- Add(nøkkel, verdi)\n- [nøkkel] – hent/sett verdi\n- ContainsKey(nøkkel)\n- Remove(nøkkel)",
+    "example": "```csharp\nDictionary<string, int> aldre = new Dictionary<string, int>();\n\naldre.Add(\"Ada\", 30);\naldre.Add(\"Bjarne\", 72);\naldre[\"Guido\"] = 68; // alternativ måte\n\nConsole.WriteLine(aldre[\"Ada\"]);           // 30\nConsole.WriteLine(aldre.ContainsKey(\"Ada\")); // True\n\nforeach (var par in aldre)\n    Console.WriteLine($\"{par.Key}: {par.Value}\");\n```"
+  },
+  {
+    "id": 15,
+    "section": "F6: Feilhåndtering",
+    "question": "Hva gjør `try/catch` i C#?",
+    "options": [
+      "Kompilerer koden",
+      "Deklarerer variabler",
+      "Importerer pakker",
+      "Fanger og håndterer unntak (exceptions)"
+    ],
+    "answerIndex": 3,
+    "answer": "Fanger og håndterer unntak (exceptions)",
+    "shortExplanation": "`try/catch` lar deg håndtere feil som oppstår ved kjøretid, uten at programmet krasjer.",
+    "explanation": "try/catch er C#-mekanismen for feilhåndtering (exception handling).\n\nStruktur:\n  try { /* risikabel kode */ }\n  catch (ExceptionType ex) { /* håndter feilen */ }\n  finally { /* kjøres alltid, valgfritt */ }\n\nHvorfor det er viktig:\n- Unngå at programmet krasjer ved uventede feil\n- Gi brukeren en nyttig feilmelding\n- Rydde opp ressurser (i finally)\n\nVanlige exceptions:\n- NullReferenceException: brukte null som objekt\n- IndexOutOfRangeException: ugyldig indeks\n- FormatException: feil tallformat",
+    "example": "```csharp\ntry\n{\n    string input = \"abc\";\n    int tall = int.Parse(input); // kaster FormatException!\n    Console.WriteLine(tall);\n}\ncatch (FormatException ex)\n{\n    Console.WriteLine($\"Feil: {ex.Message}\");\n    // \"Input string was not in a correct format.\"\n}\nfinally\n{\n    Console.WriteLine(\"Dette kjøres alltid\");\n}\n```"
+  },
+  {
+    "id": 16,
+    "section": "F6: Null & Typer",
+    "question": "Hva betyr `null` i C#?",
+    "options": [
+      "Ingen referanse – variabelen peker ikke til noe objekt",
+      "En ugyldig boolean",
+      "Verdien 0",
+      "En tom streng"
+    ],
+    "answerIndex": 0,
+    "answer": "Ingen referanse – variabelen peker ikke til noe objekt",
+    "shortExplanation": "`null` betyr at en referansevariabel ikke peker på noe objekt i minnet.",
+    "explanation": "null er fraværet av en verdi – variabelen eksisterer, men peker ikke til noe objekt.\n\nHva null gjelder for:\n- Referansetyper (string, klasser, arrays, List<T>)\n- Null-bare verdityper (int?, bool?)\n\nNullReferenceException:\n- Oppstår når du prøver å bruke en null-referanse\n- En av de vanligste feilene i C#\n\nBeskyttelse:\n- Sjekk med if (x != null) eller x?.Metode() (null-conditional operator)",
+    "example": "```csharp\nstring navn = null; // ingen verdi\n\n// Farlig – kaster NullReferenceException:\n// Console.WriteLine(navn.Length);\n\n// Trygt – sjekk før bruk:\nif (navn != null)\n    Console.WriteLine(navn.Length);\n\n// Null-conditional operator (anbefalt):\nConsole.WriteLine(navn?.Length); // skriver null (ikke krasj)\n\n// Null-coalescing:\nstring vis = navn ?? \"Ukjent\"; // \"Ukjent\" hvis null\n```"
+  },
+  {
+    "id": 17,
+    "section": "F6: Null & Typer",
+    "question": "Hva er en nullable type, f.eks. `int?`?",
+    "options": [
+      "En int som kun kan være positiv",
+      "En int som kan inneholde null i tillegg til heltall",
+      "En int med uendelig størrelse",
+      "En int som kan inneholde tekst"
+    ],
+    "answerIndex": 1,
+    "answer": "En int som kan inneholde null i tillegg til heltall",
+    "shortExplanation": "`int?` er en nullable int – kan holde et heltall ELLER null (ingen verdi).",
+    "explanation": "Normale verdityper (int, bool, double, etc.) kan ikke være null.\nMed spørsmålstegn (int?) gjøres de nullable.\n\nSyntaks: Type? variabel\n- int? alder = null;\n- bool? erAktiv = null;\n\nNyttig for:\n- Database-verdier som kan mangle\n- Valgfrie parametere\n- Ukjente tilstander (ikke sant, ikke usant – ukjent)\n\nHasValue og Value:\n- nullable.HasValue → bool om verdien finnes\n- nullable.Value → henter verdien (kaster execption om null)",
+    "example": "```csharp\nint? alder = null; // har ingen verdi ennå\n\nif (alder.HasValue)\n    Console.WriteLine($\"Alder: {alder.Value}\");\nelse\n    Console.WriteLine(\"Alder er ukjent\");\n\nalder = 25; // sett en verdi\nConsole.WriteLine(alder ?? 0); // 25 (eller 0 hvis null)\n```"
+  },
+  {
+    "id": 18,
+    "section": "F6: String",
+    "question": "Hva gjør string interpolasjon med `$\"...\"`?",
+    "options": [
+      "Lager en ny liste av tegn",
+      "Krypterer teksten",
+      "Setter inn variabler direkte i en tekststreng",
+      "Kompilerer teksten til en fil"
+    ],
+    "answerIndex": 2,
+    "answer": "Setter inn variabler direkte i en tekststreng",
+    "shortExplanation": "`$\"Hei {navn}\"` setter variabel-verdien direkte inn i strengen ved kjøretid.",
+    "explanation": "String interpolasjon ble introdusert i C# 6 og er nå den foretrukne måten å sette inn variabler i strenger.\n\nMåter å bygge strenger:\n1. Sammenslåing: \"Hei \" + navn + \", du er \" + alder + \" år\"\n2. string.Format: string.Format(\"Hei {0}, du er {1} år\", navn, alder)\n3. Interpolasjon: $\"Hei {navn}, du er {alder} år\"  ← anbefalt\n\nInnholdet i {} kan være uttrykk, ikke bare variabler.",
+    "example": "```csharp\nstring navn = \"Kari\";\nint poeng = 95;\ndouble snitt = 4.8;\n\n// Enkel interpolasjon:\nConsole.WriteLine($\"Hei {navn}!\"); // Hei Kari!\n\n// Med uttrykk:\nConsole.WriteLine($\"Bestod: {poeng >= 60}\"); // Bestod: True\n\n// Med formatering:\nConsole.WriteLine($\"Snitt: {snitt:F1}\"); // Snitt: 4.8\n\n// Ternary inne i $:\nConsole.WriteLine($\"{(poeng >= 90 ? \"Toppkarakter\" : \"Bra\")}\");\n```"
+  },
+  {
+    "id": 19,
+    "section": "F6: String",
+    "question": "Hva returnerer `str.Length`?",
+    "options": [
+      "Om strengen er tom (bool)",
+      "Antall tegn i strengen",
+      "Første indeks",
+      "Siste tegn i strengen"
+    ],
+    "answerIndex": 1,
+    "answer": "Antall tegn i strengen",
+    "shortExplanation": "`.Length` gir antall tegn i strengen som en `int`.",
+    "explanation": "Length er en egenskap (property) på string og returnerer antall tegn.\n\nViktige detaljer:\n- Mellomrom teller som tegn\n- Empty string \"\" har Length 0\n- null.Length kaster NullReferenceException!\n\nBrukes ofte for:\n- Validering (er strengen lang nok?)\n- Løkker over tegn\n- Sammenligning av lengder",
+    "example": "```csharp\nstring tekst = \"Hei, verden!\";\nConsole.WriteLine(tekst.Length); // 12\n\nstring tom = \"\";\nConsole.WriteLine(tom.Length); // 0\n\n// Sjekk at passord er langt nok:\nstring passord = \"abc123\";\nif (passord.Length < 8)\n    Console.WriteLine(\"Passordet er for kort!\");\nelse\n    Console.WriteLine(\"Passord OK\");\n```"
+  },
+  {
+    "id": 20,
+    "section": "F6: Kontrollflyt",
+    "question": "Hva gjør `break` inne i en løkke?",
+    "options": [
+      "Hopper over til neste iterasjon",
+      "Starter løkken på nytt",
+      "Avslutter løkken umiddelbart",
+      "Returnerer en verdi"
+    ],
+    "answerIndex": 2,
+    "answer": "Avslutter løkken umiddelbart",
+    "shortExplanation": "`break` hopper ut av løkken og fortsetter koden etter den.",
+    "explanation": "break avslutter løkken der og da, uavhengig av betingelsen.\n\nBrukseksempel:\n- Funnet det du leter etter – stopp søket\n- Uendelig løkke med eksplisitt avbruddslogikk\n- switch-setninger (unngå fall-through)\n\nForskjell fra continue:\n- break: stopp løkken\n- continue: hopp til neste iterasjon (ikke stopp)",
+    "example": "```csharp\n// Break: stopp ved første treff\nint[] tall = { 3, 7, 2, 9, 1 };\nint mål = 9;\n\nfor (int i = 0; i < tall.Length; i++)\n{\n    if (tall[i] == mål)\n    {\n        Console.WriteLine($\"Funnet på indeks {i}\"); // 3\n        break; // stopp søket\n    }\n}\n\n// Continue: hopp over partall\nfor (int i = 0; i < 6; i++)\n{\n    if (i % 2 == 0) continue;\n    Console.Write(i + \" \"); // 1 3 5\n}\n```"
+  },
+  {
+    "id": 21,
+    "section": "F6: Metoder",
+    "question": "Hva er metode-parametere?",
+    "options": [
+      "Den interne koden i metoden",
+      "Returverdien fra metoden",
+      "Navn på klassen",
+      "Input-verdier som sendes inn når metoden kalles"
+    ],
+    "answerIndex": 3,
+    "answer": "Input-verdier som sendes inn når metoden kalles",
+    "shortExplanation": "Parametere er variabler metoden mottar – de gjør metoden gjenbrukbar med ulik input.",
+    "explanation": "Parametere er spesifisert i metode-signaturen og tar i mot verdier ved kall.\n\nTerminologi:\n- Parameter: variabelen i metode-definisjonen\n- Argument: verdien du sender ved kall\n\nTyper parametere:\n- Normale (by value): kopi av verdien\n- ref: referanse – endringer reflekteres utenfor\n- out: må settes av metoden\n- params: variabelt antall argumenter",
+    "example": "```csharp\n// Metode-definisjon med parametere:\npublic string LagHilsen(string navn, int alder)\n{\n    return $\"Hei {navn}, du er {alder} år!\";\n}\n\n// Kall med argumenter:\nstring h1 = LagHilsen(\"Ada\", 30);     // \"Hei Ada, du er 30 år!\"\nstring h2 = LagHilsen(\"Bjarne\", 72);  // \"Hei Bjarne, du er 72 år!\"\n\n// Navngitte argumenter (rekkefølge-uavhengig):\nstring h3 = LagHilsen(alder: 25, navn: \"Kari\");\n```"
+  },
+  {
+    "id": 22,
+    "section": "F6: Samlinger",
+    "question": "Hvordan legger du til et element i en `Dictionary<K, V>`?",
+    "options": [
+      "dict.Add(key, value) eller dict[key] = value",
+      "dict.Push(key, value)",
+      "dict.Insert(0, key, value)",
+      "dict.Append(key, value)"
+    ],
+    "answerIndex": 0,
+    "answer": "dict.Add(key, value) eller dict[key] = value",
+    "shortExplanation": "`Add()` kaster unntak om nøkkelen finnes; `[key] = value` oppretter eller overskriver.",
+    "explanation": "Det finnes to måter å legge inn/oppdatere i et Dictionary:\n\nAdd(key, value):\n- Legger til et nytt par\n- Kaster ArgumentException hvis nøkkelen allerede eksisterer\n\ndict[key] = value:\n- Oppretter nøkkelen om den ikke finnes\n- Overskriver eksisterende verdi om den finnes\n- Tryggere for \"upsert\"-operasjoner\n\nTips: Bruk TryGetValue for sikker henting.",
+    "example": "```csharp\nvar score = new Dictionary<string, int>();\n\n// Add – bare nye nøkler:\nscore.Add(\"Ada\", 100);\nscore.Add(\"Bjarne\", 90);\n\n// Indeksert – oppretter eller overskriver:\nscore[\"Guido\"] = 85;  // ny\nscore[\"Ada\"] = 105;    // oppdaterer eksisterende\n\n// Sikker henting:\nif (score.TryGetValue(\"Ada\", out int verdi))\n    Console.WriteLine($\"Ada: {verdi}\");\n```"
+  },
+  {
+    "id": 23,
+    "section": "F6: Feilhåndtering",
+    "question": "Hva er `finally`-blokken i try/catch/finally?",
+    "options": [
+      "Kjøres alltid – enten unntak skjer eller ikke",
+      "Kjøres kun ved unntak",
+      "Kjøres kun hvis ingen feil oppstår",
+      "Avslutter programmet"
+    ],
+    "answerIndex": 0,
+    "answer": "Kjøres alltid – enten unntak skjer eller ikke",
+    "shortExplanation": "`finally` kjøres alltid uansett utfall – brukes til opprydding (lukke fil, connection etc.).",
+    "explanation": "finally er en valgfri blokk etter catch som alltid executeres.\n\nHvorfor vi trenger finally:\n- Ressurser (filer, database-tilkoblinger) må alltid lukkes\n- Selv om en exception kastes og fanges, skal opprydding skje\n- Alternativ: using-setningen (automatisk Dispose)\n\nRekkefølge:\n1. try kjøres\n2. Hvis unntak → catch kjøres\n3. finally kjøres ALLTID",
+    "example": "```csharp\nStreamReader fil = null;\ntry\n{\n    fil = new StreamReader(\"data.txt\");\n    string innhold = fil.ReadToEnd();\n    Console.WriteLine(innhold);\n}\ncatch (FileNotFoundException ex)\n{\n    Console.WriteLine($\"Fil ikke funnet: {ex.Message}\");\n}\nfinally\n{\n    fil?.Close(); // lukk alltid ressursen!\n    Console.WriteLine(\"Opprydding ferdig\");\n}\n```"
+  },
+  {
+    "id": 24,
+    "section": "F6: Kontrollflyt",
+    "question": "Hva gjør den ternære operatoren `betingelse ? a : b`?",
+    "options": [
+      "Sette verdier i et Dictionary",
+      "Definere en klasse",
+      "Kjøre en løkke",
+      "Returnere a eller b basert på om betingelsen er sann"
+    ],
+    "answerIndex": 3,
+    "answer": "Returnere a eller b basert på om betingelsen er sann",
+    "shortExplanation": "`betingelse ? a : b` er en kompakt if/else som evaluerer til én av to verdier.",
+    "explanation": "Den ternære operatoren er en kortform av if/else som returnerer en verdi.\n\nSyntaks:\n  betingelse ? verdiHvisSant : verdiHvisUsant\n\nNår bruke den:\n- Enkel betinget tildeling\n- Inne i strenger, metode-kall, og parametre\n- Unngå for komplekse betingelser – reduserer lesbarhet\n\nEkvivalent med:\n  if (betingelse) x = a; else x = b;",
+    "example": "```csharp\nint alder = 20;\n\n// Ternær:\nstring status = alder >= 18 ? \"Voksen\" : \"Mindreårig\";\nConsole.WriteLine(status); // Voksen\n\n// Inne i interpolasjon:\nConsole.WriteLine($\"Du er {(alder >= 18 ? \"myndig\" : \"ikke myndig\")}\");\n\n// Klassisk if/else tilsvarende:\nstring s;\nif (alder >= 18) s = \"Voksen\";\nelse s = \"Mindreårig\";\n```"
+  },
+  {
+    "id": 25,
+    "section": "F6: Typer",
+    "question": "Hva gjør `var` i C#?",
+    "options": [
+      "Deklarerer en variabel uten type",
+      "Er ekvivalent med object",
+      "Lar kompilatoren utlede typen automatisk fra høyresiden",
+      "Lager en dynamisk type som kan endre type"
+    ],
+    "answerIndex": 2,
+    "answer": "Lar kompilatoren utlede typen automatisk fra høyresiden",
+    "shortExplanation": "`var` er type-inferens – kompilatoren finner ut typen fra verdien du tildeler.",
+    "explanation": "var er ikke en dynamisk type – kompilatoren bestemmer typen ved kompilering.\n\nHva det betyr:\n- var i = 5; → kompilatoren vet at i er int\n- var navn = \"Ada\"; → kompilatoren vet at navn er string\n- Typen er låst – du kan ikke endre til en annen type etterpå\n\nNår bruke var:\n- Typen er åpenbar fra høyresiden (good)\n- Lange generiske typenavn (List<Dictionary<string, int>>)\n\nNår unngå var:\n- Typen ikke er tydelig – reduserer lesbarhet",
+    "example": "```csharp\nvar alder = 25;                         // int\nvar navn = \"Ada\";                        // string\nvar liste = new List<string>();          // List<string>\nvar pi = 3.14;                           // double\n\n// Kompilatoren vet typene:\nConsole.WriteLine(alder.GetType()); // System.Int32\nConsole.WriteLine(navn.GetType());  // System.String\n\n// Kan ikke endre type:\n// alder = \"tekst\"; // Feil – alder er int!\n```"
+  }
+]

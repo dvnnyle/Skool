@@ -1,0 +1,290 @@
+[
+  {
+    "id": 1,
+    "section": "F4: Collections & LINQ",
+    "question": "Hva beskriver best en kolleksjon i C#?",
+    "options": [
+      "En parameterisert datastruktur for grupper av elementer",
+      "En enkelt variabel for én verdi",
+      "Kun en database-tabell",
+      "Kun filsystem-mapper"
+    ],
+    "answerIndex": 0,
+    "answer": "En parameterisert datastruktur for grupper av elementer",
+    "shortExplanation": "Kolleksjoner lagrer og manipulerer grupper av data/objekter.",
+		"explanation": "En kolleksjon er en datastruktur som samler og organiserer flere elementer av samme type.\n\nHvorfor bruke kolleksjoner:\n- Lagre mange verdier i én variabel (istedenfor x1, x2, x3...)\n- Iterere over alle elementene på en enkel måte\n- Legge til, fjerne og søke etter elementer\n\nTyper kolleksjoner i C#:\n- Array: fast størrelse, rask, enkel\n- List<T>: dynamisk størrelse, rik API\n- Dictionary<K,V>: nøkkel-verdi-par",
+		"example": "```csharp\nList<string> land = new List<string> { \"Norge\", \"Sverige\", \"Danmark\" };\n\nforeach (var l in land)\n    Console.WriteLine(l);\n// Norge\n// Sverige\n// Danmark\n```"
+  },
+  {
+    "id": 2,
+    "section": "Collection Hierarchy",
+    "question": "Hva er riktig hierarki?",
+    "options": [
+      "IList → ICollection → IEnumerable",
+      "ICollection → IList → IEnumerable",
+      "ArrayList → List → Array",
+      "IEnumerable → ICollection → IList"
+    ],
+    "answerIndex": 3,
+    "answer": "IEnumerable → ICollection → IList",
+    "shortExplanation": "IEnumerable er basis; ICollection og IList utvider funksjonalitet.",
+		"explanation": "C# har et arve-hierarki for kolleksjon-interfaces, der hvert nivå legger til mer funksjonalitet:\n\nIEnumerable<T> (grunnlaget):\n- Kun iterasjon (foreach)\n- Ingen størrelseinfo eller modifikasjon\n\nICollection<T> (utvider IEnumerable):\n- Legger til Count, Add, Remove, Contains\n\nIList<T> (utvider ICollection):\n- Legger til indeksert tilgang [i], Insert, RemoveAt\n\nList<T> implementerer alle tre interfaces.",
+		"example": "```csharp\nIEnumerable<int> e = new List<int> { 1, 2, 3 }; // kun foreach\nICollection<int> c = new List<int> { 1, 2, 3 }; // + Count + Add/Remove\nIList<int> l = new List<int> { 1, 2, 3 };        // + l[0] + Insert\n```"
+  },
+  {
+    "id": 3,
+    "section": "Arrays",
+    "question": "Hva kjennetegner en array i C#?",
+    "options": [
+      "Dynamisk størrelse og blandede typer",
+      "Kun for referansetyper",
+      "Fast størrelse og elementer av samme type",
+      "Kan ikke itereres"
+    ],
+    "answerIndex": 2,
+    "answer": "Fast størrelse og elementer av samme type",
+    "shortExplanation": "Arrayer har fast lengde og homogen type.",
+    "explanation": "- Lengden settes ved opprettelse\n- Alle elementer må ha samme datatype",
+    "example": "```csharp\nint[] a = { 1, 2, 3 };\n```"
+  },
+  {
+    "id": 4,
+    "section": "Arrays",
+    "question": "Velg gyldig initialisering av en string-array.",
+    "options": [
+      "string[] names = new string[] { \"Espen\", \"Rania\" };",
+      "string names[] = new string(2);",
+      "string[] names = new string(\"Espen\", \"Rania\");",
+      "string names = { \"Espen\", \"Rania\" };"
+    ],
+    "answerIndex": 0,
+    "answer": "string[] names = new string[] { \"Espen\", \"Rania\" };",
+    "shortExplanation": "Bruk new string[] { ... } eller forkortet syntaks.",
+		"explanation": "Det finnes flere måter å opprette en array på i C#:\n\nFull syntaks med størrelse:\n- string[] names = new string[2];\n\nFull syntaks med verdier:\n- string[] names = new string[] { \"Espen\", \"Rania\" };\n\nKortest mulig (type inferert):\n- string[] names = { \"Espen\", \"Rania\" };\n\nAlternativet var is not valid: string names = ... uten [] er ikke en array.",
+		"example": "```csharp\n// Alle tre er ekvivalente:\nstring[] v1 = new string[2];\nv1[0] = \"Espen\"; v1[1] = \"Rania\";\n\nstring[] v2 = new string[] { \"Espen\", \"Rania\" };\n\nstring[] v3 = { \"Espen\", \"Rania\" }; // kortform\n```"
+  },
+  {
+    "id": 5,
+    "section": "Arrays Methods",
+    "question": "Hva gjør Array.Sort(numbers)?",
+    "options": [
+      "Fjerner duplikater",
+      "Reverserer rekkefølgen",
+      "Returnerer lengden",
+      "Sorter i stigende rekkefølge"
+    ],
+    "answerIndex": 3,
+    "answer": "Sorter i stigende rekkefølge",
+    "shortExplanation": "Sort() sorterer elementer i stigende rekkefølge.",
+		"explanation": "Array.Sort() er en statisk metode i Array-klassen som sorterer en array.\n\nViktige egenskaper:\n- Sorter in-place – originalarryen endres\n- Standard: stigende rekkefølge\n- Virker på alle typer som kan sammenlignes (int, string, etc)\n\nFor synkende rekkefølge:\n- Bruk Array.Reverse() etter sort\n- Eller bruk LINQ .OrderByDescending()",
+		"example": "```csharp\nint[] tall = { 5, 1, 8, 3, 2 };\n\nArray.Sort(tall);\n// tall er nå: { 1, 2, 3, 5, 8 }\n\n// For synkende:\nArray.Reverse(tall);\n// tall er nå: { 8, 5, 3, 2, 1 }\n```"
+  },
+  {
+    "id": 6,
+    "section": "Arrays Methods",
+    "question": "Hva returnerer Array.IndexOf(numbers, 5)?",
+    "options": [
+      "Antall elementer",
+      "Siste element",
+      "Indeksen for første forekomst av 5",
+      "Boolean om 5 finnes"
+    ],
+    "answerIndex": 2,
+    "answer": "Indeksen for første forekomst av 5",
+    "shortExplanation": "IndexOf returnerer indeksen eller -1 hvis ikke funnet.",
+    "explanation": "- Første match gir indeks\n- -1 ved fravær",
+    "example": "```csharp\nint idx = Array.IndexOf(new[]{1,5,5}, 5); // 1\n```"
+  },
+  {
+    "id": 7,
+    "section": "Lists",
+    "question": "Hva kjennetegner List<T> kontra arrays?",
+    "options": [
+      "Fast størrelse",
+      "Kan ikke inneholde verdityper",
+      "Kan ikke sorteres",
+      "Dynamisk størrelse med rikere API"
+    ],
+    "answerIndex": 3,
+    "answer": "Dynamisk størrelse med rikere API",
+    "shortExplanation": "List<T> kan vokse/krympe og tilbyr metoder som Add/Remove.",
+		"explanation": "List<T> er den mest brukte kolleksjonstypen i C# til daglig bruk.\n\nForskjell fra array:\n- Array: fast størrelse, kan ikke legge til etterpaa\n- List<T>: dynamisk størrelse, vokser automatisk\n\nRikt API (noen eksempler):\n- Add(element) – legg til bak\n- Remove(element) – fjern første treff\n- Contains(element) –bok true/false\n- Count – antall elementer\n- Sort() – sorter",
+		"example": "```csharp\nvar språk = new List<string> { \"C#\", \"Python\" };\n\nspråk.Add(\"JavaScript\");\nspråk.Remove(\"Python\");\n\nConsole.WriteLine(språk.Count);          // 2\nConsole.WriteLine(språk.Contains(\"C#\")); // True\n```"
+  },
+  {
+    "id": 8,
+    "section": "Lists",
+    "question": "Hvilken metode legger til et element på en spesifikk posisjon?",
+    "options": [
+      "Add",
+      "Insert",
+      "RemoveAt",
+      "Contains"
+    ],
+    "answerIndex": 1,
+    "answer": "Insert",
+    "shortExplanation": "Insert(index, element) setter inn på posisjon.",
+    "explanation": "- Add: legger til på slutten\n- Insert: på gitt indeks",
+    "example": "```csharp\nlist.Insert(1, \"PHP\");\n```"
+  },
+  {
+    "id": 9,
+    "section": "Loops",
+    "question": "Hva er formålet med foreach?",
+    "options": [
+      "Iterere elementer i en kolleksjon på enkel måte",
+      "Manuell indeks-håndtering",
+      "Kun for arrays",
+      "Stopper iterasjon automatisk ved feil"
+    ],
+    "answerIndex": 0,
+    "answer": "Iterere elementer i en kolleksjon på enkel måte",
+    "shortExplanation": "foreach leser hvert element uten indeks.",
+    "explanation": "- For lesbar iterasjon\n- Fungerer med IEnumerable",
+    "example": "```csharp\nforeach (var x in list) Console.WriteLine(x);\n```"
+  },
+  {
+    "id": 10,
+    "section": "LINQ Basics",
+    "question": "Hva er LINQ i C#?",
+    "options": [
+      "Et databaseverktøy utenfor C#",
+      "Kun XML-parsing",
+      "Kun SQL",
+      "Et API for å spørre/filtrere/manipulere data fra ulike kilder"
+    ],
+    "answerIndex": 3,
+    "answer": "Et API for å spørre/filtrere/manipulere data fra ulike kilder",
+    "shortExplanation": "LINQ integrerer spørringer i C# mot lister, arrays m.m.",
+		"explanation": "LINQ (Language Integrated Query) er et kraftig verktøy for å filtrere og manipulere data.\n\nHva LINQ kan gjøre:\n- Filtrere elementer (where)\n- Sortere (orderby)\n- Groupere (group by)\n- Projisere til ny struktur (select)\n\nTo syntakser:\n- Spørringssyntaks: from ... where ... select (ligner SQL)\n- Metodesyntaks: .Where(...).OrderBy(...)\n\nFungerer mot: List<T>, array, database (Entity Framework), XML og mer.",
+		"example": "```csharp\nint[] tall = { 1, 2, 3, 4, 5, 6 };\n\n// Spørringssyntaks\nvar partall = from n in tall\n              where n % 2 == 0\n              select n;\n\n// Metodesyntaks (samme resultat)\nvar ogsåPartall = tall.Where(n => n % 2 == 0);\n\nforeach (var n in partall)\n    Console.Write(n + \" \"); // 2 4 6\n```"
+  },
+  {
+    "id": 11,
+    "section": "LINQ Steps",
+    "question": "Hvilke tre steg gjelder for LINQ-spørringer?",
+    "options": [
+      "Hent kilde → opprett spørring → utfør spørring",
+      "Opprett variabler → skriv til fil → lukk",
+      "Initier klasse → kall metoder → destruktør",
+      "Parse JSON → generer UI → deploy"
+    ],
+    "answerIndex": 0,
+    "answer": "Hent kilde → opprett spørring → utfør spørring",
+    "shortExplanation": "Kilde, spørring, så iterasjon/eksekvering for resultater.",
+		"explanation": "En LINQ-spørring følger alltid tre steg:\n\nSteg 1: Skaff datakilden\n- Array, List, database-kontekst, etc.\n\nSteg 2: Definer spørringen\n- from ... where ... select (eller metode-kjøde)\n- Spørringen er bare en definisjon, ikke et resultat ennå\n\nSteg 3: Utfør spørringen\n- foreach, ToList(), Count(), etc. trigger evaluering\n- LINQ er lazy: ingen kjøring før dette steget",
+		"example": "```csharp\n// Steg 1: kilde\nint[] tall = { 1, 2, 3, 4, 5 };\n\n// Steg 2: definer spørringen (kjøres IKKE ennå)\nvar spørring = from n in tall\n                where n > 2\n                select n;\n\n// Steg 3: utfør spørringen\nforeach (var n in spørring) // nå kjøres den\n    Console.Write(n + \" \"); // 3 4 5\n```"
+  },
+  {
+    "id": 12,
+    "section": "LINQ Where",
+    "question": "Hva gjør where-klausulen?",
+    "options": [
+      "Sorter data",
+      "Gruppér elementer",
+      "Filtrer elementer basert på betingelse",
+      "Projiserer til ny type"
+    ],
+    "answerIndex": 2,
+    "answer": "Filtrer elementer basert på betingelse",
+		"shortExplanation": "where plukker ut elementer som matcher et kriterium.",
+		"explanation": "where-klausulen i LINQ filtrerer elementer basert på en betingelse.\n\nHvordan det fungerer:\n- Hvert element testes mot betingelsen\n- Kun elementer der betingelsen er true inkluderes\n- Returnerer et nytt IEnumerable – original endres ikke\n\nEksempler på betingelser:\n- n > 18 (større enn)\n- s.StartsWith(\"A\") (metodekall)\n- p.Alder >= 18 && p.Er Aktiv (kombinert)",
+		"example": "```csharp\nvar studenter = new List<string> { \"Ada\", \"Bjarne\", \"Anna\", \"Carlos\" };\n\n// Finn alle navn som starter med \"A\"\nvar aStudenter = from navn in studenter\n                  where navn.StartsWith(\"A\")\n                  select navn;\n\nforeach (var s in aStudenter)\n    Console.WriteLine(s); // Ada, Anna\n```"
+  },
+  {
+    "id": 13,
+    "section": "LINQ OrderBy",
+    "question": "Hva gjør orderby i LINQ?",
+    "options": [
+      "Sorter resultatet stigende/descending",
+      "Filtrerer elementer",
+      "Gruppér etter nøkkel",
+      "Fjerner duplikater"
+    ],
+    "answerIndex": 0,
+    "answer": "Sorter resultatet stigende/descending",
+    "shortExplanation": "orderby sorterer resultatet; descending gir synkende rekkefølge.",
+    "explanation": "orderby i LINQ sorterer elementer i spørringens resultat.\n\nTo varianter:\n- orderby felt – stigende (standard, A-Å, 0-9)\n- orderby felt descending – synkende (Å-A, 9-0)\n\nSortering på flere felt:\n- orderby felt1, felt2 descending\n\nTips: orderby påvirker sorteringen, ikke filtreringen. Kombiner gjerne med where.",
+    "example": "```csharp\nvar navn = new List<string> { \"Carlos\", \"Ada\", \"Bjarne\" };\n\n// Stigende\nvar alfabetisk = from n in navn orderby n select n;\n// Ada, Bjarne, Carlos\n\n// Synkende\nvar baklengs = from n in navn orderby n descending select n;\n// Carlos, Bjarne, Ada\n```"
+  },
+  {
+    "id": 14,
+    "section": "LINQ GroupBy",
+    "question": "Hva gjør group by?",
+    "options": [
+      "Sorter elementer",
+      "Projiserer til ny type",
+      "Gruppér elementer etter nøkkel",
+      "Beregner sum automatisk"
+    ],
+    "answerIndex": 2,
+    "answer": "Gruppér elementer etter nøkkel",
+    "shortExplanation": "group by samler elementer etter en nøkkel/kriterie.",
+    "explanation": "group by i LINQ grupperer elementer ut fra en felles egenskap.\n\nResultatet er en samling av IGrouping<Key, Element>:\n- Hvert objekt i resultatet har en Key (gruppen)\n- Og en samling av elementene i den gruppen\n\nBrukseksempel:\n- Grupere bestillinger etter kunde\n- Grupere biler etter merke\n- Grupere studenter etter kull",
+    "example": "```csharp\nvar studenter = new[]\n{\n    new { Navn = \"Ada\",    Kull = \"2023\" },\n    new { Navn = \"Bjarne\", Kull = \"2024\" },\n    new { Navn = \"Anna\",   Kull = \"2023\" }\n};\n\nvar grupper = from s in studenter\n               group s by s.Kull;\n\nforeach (var g in grupper)\n{\n    Console.WriteLine($\"Kull {g.Key}:\");\n    foreach (var s in g)\n        Console.WriteLine($\"  {s.Navn}\");\n}\n```"
+  },
+  {
+    "id": 15,
+    "section": "Lists Methods",
+    "question": "Hvilken metode fjerner element på indeks?",
+    "options": [
+      "Remove",
+      "Insert",
+      "Clear",
+      "RemoveAt"
+    ],
+    "answerIndex": 3,
+    "answer": "RemoveAt",
+    "shortExplanation": "RemoveAt(index) fjerner elementet på den angitte posisjonen.",
+    "explanation": "List<T> har to metoder for fjerning av elementer:\n\nRemove(verdi):\n- Finner og fjerner første element med denne verdien\n- Returnerer true hvis funnet, false hvis ikke\n\nRemoveAt(indeks):\n- Fjerner elementet på den angitte posisjonen\n- Alle elementer etter forskyves ett steg\n- Kaster IndexOutOfRangeException hvis indeks er ugyldig",
+    "example": "```csharp\nvar liste = new List<string> { \"A\", \"B\", \"C\", \"D\" };\n\nliste.Remove(\"B\");    // Fjerner \"B\" ved verdi → A, C, D\nliste.RemoveAt(0);   // Fjerner \"A\" ved indeks → C, D\n\nConsole.WriteLine(string.Join(\", \", liste)); // C, D\n```"
+  },
+  {
+    "id": 16,
+    "section": "IEnumerable",
+    "question": "Hva tilbyr IEnumerable?",
+    "options": [
+      "Indeksert tilgang",
+      "Størrelse og modifikasjon",
+      "Iterasjon over elementer",
+      "Sortering"
+    ],
+    "answerIndex": 2,
+    "answer": "Iterasjon over elementer",
+		"shortExplanation": "IEnumerable lar deg iterere over elementer; grunnlaget for foreach.",
+		"explanation": "IEnumerable<T> er det laveste niviet i kolleksjonshierarkiet.\n\nHva det gir:\n- Kun mulighet til å iterere (gå gjennom elementene)\n- Ingen Count, ingen Add/Remove, ingen indeksering\n\nHvorfor bruke det:\n- Skriv metoder som aksepterer IEnumerable<T> – da fungerer de med alle kolleksjonstyper\n- Skjul implementasjonsdetaljer fra kallende kode\n- LINQ returnerer IEnumerable – lazy evaluering",
+		"example": "```csharp\n// Metode som fungerer med ALLE kolleksjonstyper\nvoid SkrivUt(IEnumerable<string> elementer)\n{\n    foreach (var e in elementer)\n        Console.WriteLine(e);\n}\n\nSkrivUt(new List<string> { \"A\", \"B\" }); // fungerer!\nSkrivUt(new string[] { \"C\", \"D\" });       // fungerer også!\n```"
+  },
+  {
+    "id": 17,
+    "section": "Lists vs Arrays",
+    "question": "Når velge List fremfor Array?",
+    "options": [
+      "Når størrelsen er kjent og konstant",
+      "Når ytelse er kritisk og størrelse fast",
+      "Når du ofte legger til/fjerner elementer",
+      "Når du ikke trenger metoder"
+    ],
+    "answerIndex": 2,
+    "answer": "Når du ofte legger til/fjerner elementer",
+		"shortExplanation": "Bruk List når du ofte legger til eller fjerner elementer.",
+		"explanation": "Valget mellom Array og List avhenger av bruksscenariet:\n\nBruk Array når:\n- Antall elementer er kjent og endres ikke\n- Høy ytelse er viktig (less overhead)\n- Eks: dager i uken, måneder i året\n\nBruk List<T> når:\n- Antall elementer er ukjent eller varierer\n- Du trenger Add, Remove, Insert etc.\n- Eks: loggmeldinger, handleliste, søkeresultater",
+		"example": "```csharp\n// Array: fast liste med ukedager\nstring[] ukedager = { \"Man\", \"Tir\", \"Ons\", \"Tor\", \"Fre\" };\n\n// List: dynamisk logg\nvar logg = new List<string>();\nlogg.Add(\"App startet\");\nlogg.Add(\"Bruker logget inn\");\nlogg.Remove(\"App startet\");\n\nConsole.WriteLine(logg.Count); // 1\n```"
+  },
+  {
+    "id": 18,
+    "section": "LINQ Evaluation",
+    "question": "Når evalueres en LINQ-spørring?",
+    "options": [
+      "Når du itererer over resultatet",
+      "Umiddelbart ved deklarasjon",
+      "Når du kompilerer",
+      "Kun ved database-kall"
+    ],
+    "answerIndex": 0,
+    "answer": "Når du itererer over resultatet",
+		"shortExplanation": "LINQ er lazily evaluert – spørringen kjøres først når du itererer.",
+		"explanation": "LINQ bruker lazy evaluation, også kjent som deferred execution.\n\nHva det betyr:\n- Spørringen kjøres ikke når du definerer den\n- Den kjøres først når du faktisk ber om resultatene\n\nHvordan trigge evaluering:\n- foreach – itererer ett og ett element\n- .ToList() – materialiserer til en ny liste\n- .ToArray() – materialiserer til array\n- .Count(), .First(), .Sum() etc.\n\nPraktisk effekt: om datakilden endres etter spørringen er definert men før evaluering, vil spørringen bruke de oppdaterte dataene.",
+		"example": "```csharp\nvar tall = new List<int> { 1, 2, 3 };\n\n// Spørringen DEFINERES (kjøres ikke ennå)\nvar store = tall.Where(n => n > 1);\n\ntall.Add(10); // legger til etter spørringen er definert\n\n// NÅ evalueres den – ser også 10\nforeach (var n in store)\n    Console.Write(n + \" \"); // 2 3 10\n```"
+  }
+]
