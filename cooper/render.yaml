@@ -1,0 +1,8 @@
+services:
+  - type: static
+    name: cooper
+    buildCommand: npm run build
+    staticPublishPath: dist
+    routes:
+      - path: "/*"
+        destination: /index.html
