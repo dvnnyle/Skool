@@ -1,7 +1,7 @@
 services:
   - type: static
     name: cooper
-    buildCommand: npm install && node ./node_modules/vite/bin/vite.js build
+    buildCommand: npm install && npm run build
     staticPublishPath: dist
     routes:
       - path: "/*"
