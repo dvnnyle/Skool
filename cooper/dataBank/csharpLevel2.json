@@ -1,0 +1,152 @@
+[
+  {
+    "id": 1,
+    "section": "C# Methods",
+    "question": "What is a method in C#?",
+    "options": ["A data type", "A variable", "A reusable block of code that performs a task", "A comment"],
+    "answerIndex": 2,
+    "answer": "A reusable block of code that performs a task",
+    "explanation": "A method groups code into a named block you can call whenever you need it.\n\nExample: `void SayHello() { Console.WriteLine(\"Hello!\"); }` — call it with `SayHello();`",
+    "shortExplanation": "A method is a named, reusable block of code."
+  },
+  {
+    "id": 2,
+    "section": "C# Methods",
+    "question": "How do you call a method named `Greet` that takes no arguments?",
+    "options": ["call Greet", "Greet", "run Greet()", "Greet()"],
+    "answerIndex": 3,
+    "answer": "Greet()",
+    "explanation": "You call a method by writing its name followed by `()`. The parentheses are required even when there are no arguments.",
+    "shortExplanation": "Call a method with its name followed by ()."
+  },
+  {
+    "id": 3,
+    "section": "C# Methods",
+    "question": "Where must a method be defined in C#?",
+    "options": ["Outside any file", "Inside a class", "Inside Main() only", "At the top of the file"],
+    "answerIndex": 1,
+    "answer": "Inside a class",
+    "explanation": "All methods must belong to a class. You define them inside the class body, alongside other members.",
+    "shortExplanation": "Methods are defined inside a class."
+  },
+  {
+    "id": 4,
+    "section": "C# Method Parameters",
+    "question": "What are parameters in a method?",
+    "options": ["Return values", "Variables declared inside the method body", "Values sent back to the caller", "Variables that receive values when the method is called"],
+    "answerIndex": 3,
+    "answer": "Variables that receive values when the method is called",
+    "explanation": "Parameters are placeholders in the method signature. When you call the method you pass values (arguments) that fill those parameters.\n\nExample: `void Add(int a, int b)` — `a` and `b` are parameters.",
+    "shortExplanation": "Parameters are input variables for a method."
+  },
+  {
+    "id": 5,
+    "section": "C# Method Parameters",
+    "question": "What is the term for the actual values you pass when calling a method?",
+    "options": ["Parameters", "Variables", "Arguments", "Returns"],
+    "answerIndex": 2,
+    "answer": "Arguments",
+    "explanation": "**Parameters** are in the method definition; **arguments** are the real values passed at the call site.\n\nExample: `Add(3, 5)` — `3` and `5` are arguments.",
+    "shortExplanation": "Arguments are the values passed when calling a method."
+  },
+  {
+    "id": 6,
+    "section": "Default Parameter",
+    "question": "What happens if you call a method without providing a value for a default parameter?",
+    "options": ["A compile error occurs", "The method is skipped", "null is used", "The default value is used automatically"],
+    "answerIndex": 3,
+    "answer": "The default value is used automatically",
+    "explanation": "A default parameter has a fallback value built into the definition.\n\nExample: `void Greet(string name = \"Guest\")` — calling `Greet()` uses `\"Guest\"` automatically.",
+    "shortExplanation": "Default parameters use their preset value when omitted."
+  },
+  {
+    "id": 7,
+    "section": "Return Values",
+    "question": "Which keyword sends a value back from a method to the caller?",
+    "options": ["send", "return", "give", "output"],
+    "answerIndex": 1,
+    "answer": "return",
+    "explanation": "`return` exits the method and passes a value back.\n\nExample: `int Add(int a, int b) { return a + b; }` — the result is sent back to whoever called `Add()`.",
+    "shortExplanation": "return sends a value back to the caller."
+  },
+  {
+    "id": 8,
+    "section": "Return Values",
+    "question": "What return type do you use when a method gives back a whole number?",
+    "options": ["int", "void", "string", "bool"],
+    "answerIndex": 0,
+    "answer": "int",
+    "explanation": "The return type before the method name must match what `return` produces.\n\nExample: `int Square(int n) { return n * n; }` — declared `int`, returns `int`.",
+    "shortExplanation": "int is the return type for whole numbers."
+  },
+  {
+    "id": 9,
+    "section": "Return Values",
+    "question": "What does void as a return type mean?",
+    "options": ["Returns a zero", "Returns null", "The method returns nothing", "The method never ends"],
+    "answerIndex": 2,
+    "answer": "The method returns nothing",
+    "explanation": "`void` means the method performs an action but hands nothing back to the caller.\n\nExample: `void PrintName(string n) { Console.WriteLine(n); }` — does work, gives nothing back.",
+    "shortExplanation": "void = the method returns nothing."
+  },
+  {
+    "id": 10,
+    "section": "Named Arguments",
+    "question": "What do named arguments let you do when calling a method?",
+    "options": ["Skip the method name", "Pass arguments in any order by specifying parameter names", "Create new parameters", "Rename the method"],
+    "answerIndex": 1,
+    "answer": "Pass arguments in any order by specifying parameter names",
+    "explanation": "With named arguments you prefix each value with `paramName:`.\n\nExample: `Greet(age: 25, name: \"Ali\")` — order doesn't matter because names identify each value.",
+    "shortExplanation": "Named arguments let you pass values in any order by name."
+  },
+  {
+    "id": 11,
+    "section": "Named Arguments",
+    "question": "Which syntax correctly uses a named argument?",
+    "options": ["MyMethod(value = 5)", "MyMethod(5 : x)", "MyMethod(x: 5)", "MyMethod[x: 5]"],
+    "answerIndex": 2,
+    "answer": "MyMethod(x: 5)",
+    "explanation": "Named arguments use `paramName: value` inside the call parentheses.\n\nExample: `SetAge(age: 30)`",
+    "shortExplanation": "Named argument syntax is: paramName: value."
+  },
+  {
+    "id": 12,
+    "section": "C# Method Overloading",
+    "question": "What is method overloading?",
+    "options": ["A method that calls itself", "Running a method twice", "Making a method run faster", "Defining multiple methods with the same name but different parameters"],
+    "answerIndex": 3,
+    "answer": "Defining multiple methods with the same name but different parameters",
+    "explanation": "Overloading lets one name handle different input types/counts.\n\nExample:\n- `int Add(int a, int b)` — adds two ints\n- `double Add(double a, double b)` — adds two doubles\n\nC# picks the right one based on the arguments you pass.",
+    "shortExplanation": "Overloading = same name, different parameters."
+  },
+  {
+    "id": 13,
+    "section": "C# Method Overloading",
+    "question": "What must be different between overloaded methods?",
+    "options": ["The return type", "The method body", "The access modifier", "The parameters (number or types)"],
+    "answerIndex": 3,
+    "answer": "The parameters (number or types)",
+    "explanation": "Two methods can share a name as long as their parameter lists differ — by count or by type.\n\nReturn type alone is not enough to distinguish overloads.",
+    "shortExplanation": "Overloads must differ in parameter count or types."
+  },
+  {
+    "id": 14,
+    "section": "C# Methods",
+    "question": "What does the static keyword on a method mean?",
+    "options": ["The method cannot be called", "The method runs on startup", "The method belongs to the class, not an object", "The method can only run once"],
+    "answerIndex": 2,
+    "answer": "The method belongs to the class, not an object",
+    "explanation": "A `static` method is called on the class itself — no object needed.\n\nExample: `Math.Sqrt(9)` — you never write `new Math()` first.",
+    "shortExplanation": "static = call on the class, not an object."
+  },
+  {
+    "id": 15,
+    "section": "C# Methods",
+    "question": "Can a void method use a return statement?",
+    "options": ["No, it causes a compile error", "Yes, to exit the method early", "Only if it returns null", "Only in a loop"],
+    "answerIndex": 1,
+    "answer": "Yes, to exit the method early",
+    "explanation": "A bare `return;` (with no value) is valid in a void method — it just stops execution at that point.\n\nUseful for early exits based on a condition.",
+    "shortExplanation": "void methods can use return; to exit early."
+  }
+]

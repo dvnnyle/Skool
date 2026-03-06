@@ -12,6 +12,16 @@ const ALL_CHAPTERS = [
   { id: 'f5', name: 'F5: Access Modifiers & Sealed', total: 18, group: 'Lectures' },
   { id: 'f6', name: 'F6: C# Grunnleggende', total: 25, group: 'Basics' },
   { id: 'f7', name: 'F7: UniSystem', total: 31, group: 'Basics' },
+  { id: 'csharpBasics', name: 'C# Basics: Beginner P1', total: 15, group: 'C# Basics' },
+  { id: 'csharpLevel1', name: 'Level 1: Syntax, Vars & Loops', total: 17, group: 'Learning Path' },
+  { id: 'csharpLevel2', name: 'Level 2: Methods', total: 15, group: 'Learning Path' },
+  { id: 'csharpLevel3', name: 'Level 3: OOP & Classes', total: 15, group: 'Learning Path' },
+  { id: 'matchpaircsharp', name: 'Match: Concepts', total: 12, group: 'Match Pairs' },
+  { id: 'matchpaircsharpkeywords', name: 'Match: Keywords', total: 18, group: 'Match Pairs' },
+  { id: 'matchpairarraylist', name: 'Match: Arrays & Lists', total: 14, group: 'Match Pairs' },
+  { id: 'matchpairstrings', name: 'Match: Strings', total: 12, group: 'Match Pairs' },
+  { id: 'matchpairoperators', name: 'Match: Operators', total: 14, group: 'Match Pairs' },
+  { id: 'matchpairoop', name: 'Match: OOP', total: 14, group: 'Match Pairs' },
 ]
 
 function loadChapterProgress() {
@@ -22,7 +32,7 @@ function loadChapterProgress() {
       const attemptHistory = data.attemptHistory || []
       return {
         ...chapter,
-        lastScore: data.lastScore || 0,
+        lastScore: data.lastScore ?? data.score ?? 0,
         attempts: attemptHistory.length,
         bestScore: data.bestScore || 0,
         totalCorrectAllAttempts: attemptHistory.reduce((sum, att) => sum + (att.score || 0), 0),
@@ -57,7 +67,7 @@ function Statistics() {
     return 'linear-gradient(180deg, #ef4444, #dc2626)'
   }
 
-  const groups = ['Basics', 'Lectures']
+  const groups = ['Lectures', 'Basics', 'Learning Path', 'C# Basics', 'Match Pairs']
 
   const handleReset = () => {
     if (confirm('Reset ALL quiz statistics? This cannot be undone.')) {

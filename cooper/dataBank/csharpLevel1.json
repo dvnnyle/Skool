@@ -1,0 +1,172 @@
+[
+  {
+    "id": 1,
+    "section": "C# Syntax",
+    "question": "Where does every C# program start executing?",
+    "options": ["Start()", "Run()", "Main()", "Init()"],
+    "answerIndex": 2,
+    "answer": "Main()",
+    "explanation": "The `Main()` method is the entry point of every C# program. Execution begins there.\n\nExample: `static void Main(string[] args) { }` — this is where your code runs first.",
+    "shortExplanation": "Main() is where a C# program starts."
+  },
+  {
+    "id": 2,
+    "section": "C# Output",
+    "question": "Which method prints text and moves the cursor to a new line?",
+    "options": ["Console.Print()", "Console.WriteLine()", "Console.Write()", "Console.Out()"],
+    "answerIndex": 1,
+    "answer": "Console.WriteLine()",
+    "explanation": "`Console.WriteLine()` prints then adds a newline. `Console.Write()` prints without moving to the next line.\n\nUse `WriteLine` when each output should appear on its own line.",
+    "shortExplanation": "Console.WriteLine() prints and adds a newline."
+  },
+  {
+    "id": 3,
+    "section": "C# Comments",
+    "question": "Which syntax writes a single-line comment in C#?",
+    "options": ["// comment", "# comment", "-- comment", "/* comment */"],
+    "answerIndex": 0,
+    "answer": "// comment",
+    "explanation": "`//` marks everything after it on that line as a comment — ignored by the compiler.\n\n`/* */` is for multi-line comments.",
+    "shortExplanation": "// starts a single-line comment."
+  },
+  {
+    "id": 4,
+    "section": "C# Variables",
+    "question": "Which keyword lets C# automatically figure out the variable's type?",
+    "options": ["auto", "var", "type", "let"],
+    "answerIndex": 1,
+    "answer": "var",
+    "explanation": "`var` tells the compiler to infer the type from the assigned value.\n\nExample: `var name = \"Alice\";` — the compiler knows `name` is a `string`.",
+    "shortExplanation": "var = compiler infers the type automatically."
+  },
+  {
+    "id": 5,
+    "section": "C# Data Types",
+    "question": "Which type stores a 64-bit decimal number?",
+    "options": ["int", "bool", "double", "float"],
+    "answerIndex": 2,
+    "answer": "double",
+    "explanation": "`double` holds decimal values with ~15 digits of precision.\n\n- `float` is 32-bit (less precise)\n- `int` holds whole numbers only",
+    "shortExplanation": "double = 64-bit decimal number."
+  },
+  {
+    "id": 6,
+    "section": "C# Type Casting",
+    "question": "What is type casting?",
+    "options": ["Copying a variable", "Converting a value from one type to another", "Renaming a variable", "Deleting a variable"],
+    "answerIndex": 1,
+    "answer": "Converting a value from one type to another",
+    "explanation": "Type casting converts a value to a different type.\n\nExample: `int x = (int)3.7;` — casts a `double` to `int`, giving `3` (decimal cut off).",
+    "shortExplanation": "Type casting converts a value to another type."
+  },
+  {
+    "id": 7,
+    "section": "C# User Input",
+    "question": "Which method reads a line of text entered by the user?",
+    "options": ["Console.Read()", "Console.Input()", "Console.ReadLine()", "Console.Scan()"],
+    "answerIndex": 2,
+    "answer": "Console.ReadLine()",
+    "explanation": "`Console.ReadLine()` waits for the user to type and press Enter, then returns the input as a `string`.\n\nExample: `string name = Console.ReadLine();`",
+    "shortExplanation": "Console.ReadLine() reads user input as a string."
+  },
+  {
+    "id": 8,
+    "section": "C# Operators",
+    "question": "What does the % operator return?",
+    "options": ["The remainder after division", "The quotient of division", "The product of two numbers", "The power of a number"],
+    "answerIndex": 0,
+    "answer": "The remainder after division",
+    "explanation": "`%` is the modulo operator — it gives the leftover after division.\n\nExample: `10 % 3` = `1` (10 divided by 3 is 3, remainder 1).",
+    "shortExplanation": "% returns the remainder after division."
+  },
+  {
+    "id": 9,
+    "section": "C# Math",
+    "question": "Which built-in class provides functions like Sqrt() and Abs()?",
+    "options": ["Calculator", "Numbers", "Math", "MathUtil"],
+    "answerIndex": 2,
+    "answer": "Math",
+    "explanation": "The `Math` class has ready-to-use math methods.\n\nExamples:\n- `Math.Sqrt(9)` → `3`\n- `Math.Abs(-5)` → `5`\n- `Math.Max(3, 7)` → `7`",
+    "shortExplanation": "Math class has built-in math functions."
+  },
+  {
+    "id": 10,
+    "section": "C# Strings",
+    "question": "Which property gives the number of characters in a string?",
+    "options": [".Size", ".Count", ".Chars", ".Length"],
+    "answerIndex": 3,
+    "answer": ".Length",
+    "explanation": "`.Length` returns how many characters are in the string.\n\nExample: `\"Hello\".Length` → `5`",
+    "shortExplanation": ".Length = number of characters in a string."
+  },
+  {
+    "id": 11,
+    "section": "C# Booleans",
+    "question": "What are the only two values a bool can hold?",
+    "options": ["0 and 1", "true and false", "yes and no", "on and off"],
+    "answerIndex": 1,
+    "answer": "true and false",
+    "explanation": "`bool` is a binary type — it can only ever be `true` or `false`.\n\nUsed in conditions: `if (isLoggedIn == true)` or simply `if (isLoggedIn)`.",
+    "shortExplanation": "bool = true or false only."
+  },
+  {
+    "id": 12,
+    "section": "C# If...Else",
+    "question": "When does the else block run?",
+    "options": ["When the if condition is true", "Always, after the if block", "When the if condition is false", "Only if there is no if block"],
+    "answerIndex": 2,
+    "answer": "When the if condition is false",
+    "explanation": "`else` catches every case the `if` did not handle.\n\nExample:\n```csharp\nif (age >= 18) { Console.WriteLine(\"Adult\"); }\nelse { Console.WriteLine(\"Minor\"); }\n```",
+    "shortExplanation": "else runs when the if condition is false."
+  },
+  {
+    "id": 13,
+    "section": "C# Switch",
+    "question": "What keyword ends a switch case to prevent fall-through?",
+    "options": ["break", "stop", "end", "exit"],
+    "answerIndex": 0,
+    "answer": "break",
+    "explanation": "`break` exits the switch block after a matching case runs, preventing it from running the cases below.\n\nWithout `break`, execution would fall into the next case.",
+    "shortExplanation": "break ends a switch case."
+  },
+  {
+    "id": 14,
+    "section": "C# While Loop",
+    "question": "When does a while loop stop?",
+    "options": ["When its condition becomes false", "After exactly 10 iterations", "After one pass", "When return is called"],
+    "answerIndex": 0,
+    "answer": "When its condition becomes false",
+    "explanation": "A `while` loop checks its condition before each iteration and stops as soon as the condition is `false`.\n\nExample: `while (count < 5) { count++; }` — stops when count reaches 5.",
+    "shortExplanation": "while loop stops when condition is false."
+  },
+  {
+    "id": 15,
+    "section": "C# For Loop",
+    "question": "In `for (int i = 0; i < 5; i++)`, what does `i++` do?",
+    "options": ["Resets i to 0", "Checks the condition", "Stops the loop", "Increases i by 1 after each iteration"],
+    "answerIndex": 3,
+    "answer": "Increases i by 1 after each iteration",
+    "explanation": "The third part of a `for` loop is the update expression, run after every iteration.\n\n`i++` means `i = i + 1`, so the loop counts up: 0, 1, 2, 3, 4.",
+    "shortExplanation": "i++ increments i by 1 each loop iteration."
+  },
+  {
+    "id": 16,
+    "section": "C# Break/Continue",
+    "question": "What does `continue` do inside a loop?",
+    "options": ["Exits the loop entirely", "Skips the rest of the current iteration and moves to the next", "Restarts the program", "Pauses execution"],
+    "answerIndex": 1,
+    "answer": "Skips the rest of the current iteration and moves to the next",
+    "explanation": "`continue` jumps back to the loop condition, skipping anything below it in the current loop body.\n\n`break` would exit the loop entirely — `continue` just skips one pass.",
+    "shortExplanation": "continue skips to the next loop iteration."
+  },
+  {
+    "id": 17,
+    "section": "C# Arrays",
+    "question": "How do you access the first element of an array called `nums`?",
+    "options": ["nums[1]", "nums.first()", "nums[0]", "nums(0)"],
+    "answerIndex": 2,
+    "answer": "nums[0]",
+    "explanation": "Arrays are zero-indexed in C# — the first element is always at index `0`.\n\nExample: `int[] nums = { 10, 20, 30 };` → `nums[0]` is `10`.",
+    "shortExplanation": "Array indexes start at 0, so first = nums[0]."
+  }
+]

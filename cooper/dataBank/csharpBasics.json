@@ -1,0 +1,152 @@
+[
+  {
+    "id": 1,
+    "section": "Variables",
+    "question": "Which keyword declares a variable whose value cannot change?",
+    "options": ["var", "static", "const", "let"],
+    "answerIndex": 2,
+    "answer": "const",
+    "explanation": "`const` declares a constant — set once, never reassigned.\n\n- `var` infers the type but can change\n- `static` relates to class membership, not mutability",
+    "shortExplanation": "const = fixed value, cannot be reassigned."
+  },
+  {
+    "id": 2,
+    "section": "Data Types",
+    "question": "Which data type stores whole numbers (no decimals)?",
+    "options": ["double", "float", "bool", "int"],
+    "answerIndex": 3,
+    "answer": "int",
+    "explanation": "`int` holds whole numbers like 0, 5, -10.\n\n- `double` / `float` store decimals\n- `bool` stores true or false",
+    "shortExplanation": "int = whole numbers."
+  },
+  {
+    "id": 3,
+    "section": "Data Types",
+    "question": "Which data type stores true or false?",
+    "options": ["int", "string", "bool", "char"],
+    "answerIndex": 2,
+    "answer": "bool",
+    "explanation": "`bool` can only be `true` or `false`. Used in conditions and logic.\n\nExample: `bool isLoggedIn = true;`",
+    "shortExplanation": "bool = true or false."
+  },
+  {
+    "id": 4,
+    "section": "Data Types",
+    "question": "Which data type stores text?",
+    "options": ["char", "int", "byte", "string"],
+    "answerIndex": 3,
+    "answer": "string",
+    "explanation": "`string` stores a sequence of characters (words, sentences).\n\nExample: `string name = \"Alice\";`\n\nNote: `char` stores just one character, e.g. `'A'`.",
+    "shortExplanation": "string = text."
+  },
+  {
+    "id": 5,
+    "section": "Output",
+    "question": "Which method prints a line of text to the console?",
+    "options": ["Console.WriteLine()", "Console.Print()", "Console.Write()", "Print.Line()"],
+    "answerIndex": 0,
+    "answer": "Console.WriteLine()",
+    "explanation": "`Console.WriteLine()` outputs text and moves to a new line.\n\n- `Console.Write()` prints without a newline\n- The others don't exist in C#",
+    "shortExplanation": "Console.WriteLine() prints to the screen."
+  },
+  {
+    "id": 6,
+    "section": "Syntax",
+    "question": "What symbol ends a statement in C#?",
+    "options": [".", ":", "!", ";"],
+    "answerIndex": 3,
+    "answer": ";",
+    "explanation": "Every statement in C# must end with a semicolon `;`.\n\nExample: `int x = 5;`\n\nForgetting it is one of the most common beginner mistakes.",
+    "shortExplanation": "; ends every statement."
+  },
+  {
+    "id": 7,
+    "section": "Syntax",
+    "question": "How do you write a single-line comment in C#?",
+    "options": ["# comment", "/* comment */", "<!-- comment -->", "// comment"],
+    "answerIndex": 3,
+    "answer": "// comment",
+    "explanation": "Use `//` to add a comment on one line. The compiler ignores it.\n\nExample: `// This sets the user's age`\n\n`/* */` is used for multi-line comments.",
+    "shortExplanation": "// starts a single-line comment."
+  },
+  {
+    "id": 8,
+    "section": "Objects",
+    "question": "What keyword creates a new object from a class?",
+    "options": ["create", "make", "new", "object"],
+    "answerIndex": 2,
+    "answer": "new",
+    "explanation": "Use `new` followed by the class name to create an instance.\n\nExample: `var dog = new Dog();`\n\nWithout `new`, you don't have a usable object.",
+    "shortExplanation": "new creates an object."
+  },
+  {
+    "id": 9,
+    "section": "Classes",
+    "question": "Which keyword defines a class in C#?",
+    "options": ["object", "type", "struct", "class"],
+    "answerIndex": 3,
+    "answer": "class",
+    "explanation": "`class` defines a blueprint that objects are created from.\n\nExample:\n```csharp\npublic class Dog {\n    public string Name { get; set; }\n}\n```",
+    "shortExplanation": "class defines a blueprint."
+  },
+  {
+    "id": 10,
+    "section": "Methods",
+    "question": "What does a void return type mean?",
+    "options": ["Returns zero", "Returns nothing", "Returns null", "Returns true"],
+    "answerIndex": 1,
+    "answer": "Returns nothing",
+    "explanation": "A `void` method performs an action but does not send back a value.\n\nExample: `void SayHello() { Console.WriteLine(\"Hi!\"); }`\n\nIf you need a value back, use `int`, `string`, etc. instead.",
+    "shortExplanation": "void = no return value."
+  },
+  {
+    "id": 11,
+    "section": "Control Flow",
+    "question": "What does an if statement do?",
+    "options": ["Repeats code in a loop", "Runs code only if a condition is true", "Defines a method", "Creates a variable"],
+    "answerIndex": 1,
+    "answer": "Runs code only if a condition is true",
+    "explanation": "`if` checks a condition and only runs its block when the condition is `true`.\n\nExample: `if (age >= 18) { Console.WriteLine(\"Adult\"); }`",
+    "shortExplanation": "if runs code when condition is true."
+  },
+  {
+    "id": 12,
+    "section": "Loops",
+    "question": "Which loop is best for repeating code a known number of times?",
+    "options": ["while", "do-while", "foreach", "for"],
+    "answerIndex": 3,
+    "answer": "for",
+    "explanation": "A `for` loop lets you set start, condition, and step in one line.\n\nExample: `for (int i = 0; i < 5; i++) { }` — runs 5 times.",
+    "shortExplanation": "for = loop a fixed number of times."
+  },
+  {
+    "id": 13,
+    "section": "Methods",
+    "question": "What does return do in a method?",
+    "options": ["Stops the whole program", "Sends a value back to the caller", "Prints to the screen", "Creates a new object"],
+    "answerIndex": 1,
+    "answer": "Sends a value back to the caller",
+    "explanation": "`return` exits the method and optionally gives back a value.\n\nExample: `int Add(int a, int b) { return a + b; }`\n\nIn a `void` method, `return;` just exits early.",
+    "shortExplanation": "return sends a value out of a method."
+  },
+  {
+    "id": 14,
+    "section": "Access Modifiers",
+    "question": "What does public mean on a class member?",
+    "options": ["Only accessible inside the class", "Accessible only in this file", "Accessible from anywhere", "Not accessible at all"],
+    "answerIndex": 2,
+    "answer": "Accessible from anywhere",
+    "explanation": "`public` removes access restrictions — any code can read or call it.\n\nOpposite: `private` is only accessible inside its own class.",
+    "shortExplanation": "public = accessible from anywhere."
+  },
+  {
+    "id": 15,
+    "section": "Classes",
+    "question": "What does static mean on a method?",
+    "options": ["It belongs to the class, not an object", "It runs automatically at startup", "It cannot be called more than once", "It runs only once"],
+    "answerIndex": 0,
+    "answer": "It belongs to the class, not an object",
+    "explanation": "A `static` method belongs to the class itself — no object needed to call it.\n\nExample: `Math.Sqrt(4)` — you never write `new Math()`.\n\n`Main` in `Program.cs` is also `static`.",
+    "shortExplanation": "static = belongs to the class, not an instance."
+  }
+]

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import '../App.css'
 import './Home.css'
 import NavigationMenu from './widget/navigationMenu'
@@ -9,7 +9,6 @@ import Footer from './widget/footer'
 
 function Home() {
   const [showScrollTop, setShowScrollTop] = useState(false)
-  const location = useLocation()
   const [stats, setStats] = useState({
       completedQuestions: 0,
       correctAnswers: 0,
@@ -21,11 +20,19 @@ function Home() {
     const modules = [
       { id: 'f1', total: 22 },
       { id: 'f2', total: 14 },
-      { id: 'f3', total: 20 },
-      { id: 'f4', total: 22 },
+      { id: 'f3', total: 16 },
+      { id: 'f4', total: 18 },
       { id: 'f5', total: 18 },
-      { id: 'f6', total: 25 },
-      { id: 'f7', total: 31 }
+      { id: 'csharpBasics', total: 15 },
+      { id: 'csharpLevel1', total: 17 },
+      { id: 'csharpLevel2', total: 15 },
+      { id: 'csharpLevel3', total: 15 },
+      { id: 'matchpaircsharp', total: 12 },
+      { id: 'matchpaircsharpkeywords', total: 18 },
+      { id: 'matchpairarraylist', total: 14 },
+      { id: 'matchpairstrings', total: 12 },
+      { id: 'matchpairoperators', total: 14 },
+      { id: 'matchpairoop', total: 14 },
     ]
     
     let totalCompleted = 0
@@ -45,7 +52,7 @@ function Home() {
         }
         
         totalCompleted += questionsAnswered
-        totalCorrect += parsed.lastScore || 0
+        totalCorrect += parsed.lastScore ?? parsed.score ?? 0
         totalCorrectAllAttempts += (parsed.attemptHistory?.reduce((sum, att) => sum + (att.score || 0), 0) || 0)
       }
     })
@@ -60,9 +67,6 @@ function Home() {
 
   useEffect(() => {
     loadStats()
-  }, [location])
-
-  useEffect(() => {
     const handleStorageChange = () => {
       loadStats()
     }
@@ -138,10 +142,13 @@ function Home() {
       <NavigationMenu />
       <CustomMenu />
       <aside className="table-of-contents">
-        <h3>Contents</h3>
+        <h3>List</h3>
         <nav className="toc-nav">
-          <a href="#basics" className="toc-link">Basics</a>
-          <a href="#lectured" className="toc-link">Lectures</a>
+          <a href="#lectures" className="toc-link">Lectures</a>
+          <a href="#learning-path" className="toc-link">Learning Path</a>
+          <a href="#match-pairs" className="toc-link">Match Pairs</a>
+          <a href="#csharp-basics" className="toc-link">C# Basics</a>
+          <a href="#unisystem" className="toc-link">UniSystem</a>
         </nav>
       </aside>
       <div className="home-content">
@@ -218,26 +225,7 @@ function Home() {
           </div>
         </div>
 
-        <div className="chapter-list" id="basics">
-          <div className="chapter-divider">
-            <span>Basics</span>
-          </div>
-          <div className="chapters-grid">
-            <Link to="/f6" className="chapter-button">
-              <h3>💡 C# Grunnleggende</h3>
-              <p>Typer, løkker, metoder, samlinger og feilhåndtering</p>
-              <span className="question-count">25 questions</span>
-            </Link>
-
-            <Link to="/f7" className="chapter-button">
-              <h3>🏫 UniSystem</h3>
-              <p>Kurs- og biblioteksystem – klasser, lister, metoder og kontrollflyt</p>
-              <span className="question-count">31 questions</span>
-            </Link>
-          </div>
-        </div>
-
-        <div className="chapter-list" id="lectured">
+        <div className="chapter-list" id="lectures">
           <div className="chapter-divider">
             <span>Lectures</span>
           </div>
@@ -252,29 +240,117 @@ function Home() {
               <p>OOP, C# types, control flow, methods</p>
               <span className="question-count">22 questions</span>
             </Link>
-
             <Link to="/f2" className="chapter-button">
-              <h3>📚 F2 Quiz</h3>
-              <p>Scope, refactoring, C# syntax, classes</p>
+              <h3>📘 F2 Quiz</h3>
+              <p>Scope, refactoring, projects, classes, methods</p>
               <span className="question-count">14 questions</span>
             </Link>
-
             <Link to="/f3" className="chapter-button">
-              <h3>📖 F3 Quiz</h3>
-              <p>Inheritance, virtual, override, polymorphism</p>
-              <span className="question-count">20 questions</span>
+              <h3>🔒 F3 Quiz</h3>
+              <p>Encapsulation, access modifiers, properties, constructors</p>
+              <span className="question-count">16 questions</span>
             </Link>
-
             <Link to="/f4" className="chapter-button">
-              <h3>📝 F4 Quiz</h3>
-              <p>Abstract classes, interfaces, contracts</p>
-              <span className="question-count">22 questions</span>
-            </Link>
-
-            <Link to="/f5" className="chapter-button">
-              <h3>🚀 F5 Quiz</h3>
-              <p>Access modifiers, inheritance, sealed</p>
+              <h3>📚 F4 Quiz</h3>
+              <p>Collections, arrays, lists, loops, LINQ basics</p>
               <span className="question-count">18 questions</span>
+            </Link>
+            <Link to="/f5" className="chapter-button">
+              <h3>🧬 F5 Quiz</h3>
+              <p>Inheritance, override, base/new, access modifiers</p>
+              <span className="question-count">18 questions</span>
+            </Link>
+          </div>
+        </div>
+
+        <div className="chapter-list" id="learning-path">
+          <div className="chapter-divider">
+            <span>Learning Path</span>
+          </div>
+          <div className="chapters-grid">
+            <Link to="/csharp-level1" className="chapter-button">
+              <h3>🗺️ Level 1</h3>
+              <p>Syntax, output, variables, types, loops, arrays</p>
+              <span className="question-count">17 questions</span>
+            </Link>
+            <Link to="/csharp-level2" className="chapter-button">
+              <h3>⚙️ Level 2</h3>
+              <p>Methods, parameters, return values, overloading</p>
+              <span className="question-count">15 questions</span>
+            </Link>
+            <Link to="/csharp-level3" className="chapter-button">
+              <h3>🏛️ Level 3</h3>
+              <p>OOP, classes, constructors, inheritance, interfaces, enums</p>
+              <span className="question-count">15 questions</span>
+            </Link>
+          </div>
+        </div>
+
+        <div className="chapter-list" id="match-pairs">
+          <div className="chapter-divider">
+            <span>Match Pairs</span>
+          </div>
+          <div className="chapters-grid">
+            <Link to="/match-pair-csharp" className="chapter-button">
+              <h3>🔗 Concepts</h3>
+              <p>Match C# keywords and concepts to their descriptions</p>
+              <span className="question-count">12 pairs</span>
+            </Link>
+            <Link to="/match-pair-csharp-keywords" className="chapter-button">
+              <h3>📝 Keywords</h3>
+              <p>namespace, this, new, static, foreach, try/catch, List methods and more</p>
+              <span className="question-count">18 pairs</span>
+            </Link>
+            <Link to="/match-pair-array-list" className="chapter-button">
+              <h3>📦 Arrays &amp; Lists</h3>
+              <p>Array syntax, sorting, List&lt;T&gt; methods: Add, Remove, Insert, IndexOf and more</p>
+              <span className="question-count">14 pairs</span>
+            </Link>
+            <Link to="/match-pair-strings" className="chapter-button">
+              <h3>💬 Strings</h3>
+              <p>Interpolation, concatenation, ToUpper, Substring, Replace, IndexOf, escape chars</p>
+              <span className="question-count">12 pairs</span>
+            </Link>
+            <Link to="/match-pair-operators" className="chapter-button">
+              <h3>⚙️ Operators</h3>
+              <p>Comparison, logical, assignment operators, type casting and const</p>
+              <span className="question-count">14 pairs</span>
+            </Link>
+            <Link to="/match-pair-oop" className="chapter-button">
+              <h3>🦠 OOP</h3>
+              <p>override, virtual, base, abstract, interface, enum, properties, exceptions</p>
+              <span className="question-count">14 pairs</span>
+            </Link>
+          </div>
+        </div>
+
+        <div className="chapter-list" id="csharp-basics">
+          <div className="chapter-divider">
+            <span>C# Basics</span>
+          </div>
+          <div className="chapters-grid">
+            <Link to="/learn-csharp" className="chapter-button">
+              <h3>📗 Intro til C#</h3>
+              <p>Klasser, objekter, metoder, OOP-prinsipper</p>
+              <span className="question-count">Quiz</span>
+            </Link>
+            <Link to="/csharp-basics" className="chapter-button">
+              <h3>🟢 Beginner P1</h3>
+              <p>Variables, types, output, methods, loops, classes</p>
+              <span className="question-count">15 questions</span>
+            </Link>
+          </div>
+        </div>
+
+        <div className="chapter-list" id="unisystem">
+          <div className="chapter-divider">
+            <span>UniSystem</span>
+          </div>
+          <div className="chapters-grid">
+            <Link to="/unisystem" className="chapter-button">
+              <h3>🏫 UniSystem Kode</h3>
+              <p>Annotert C# kildekode — Student, Ansatt, Kurs, Bok, Lån og mer</p>
+              <span className="question-count">8 filer</span>
             </Link>
           </div>
         </div>

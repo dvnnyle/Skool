@@ -9,8 +9,16 @@ import F2 from './pages/moduleChapters/f2'
 import F3 from './pages/moduleChapters/f3'
 import F4 from './pages/moduleChapters/f4'
 import F5 from './pages/moduleChapters/f5'
-import F6 from './pages/moduleChapters/f6'
-import F7 from './pages/moduleChapters/f7'
+import CsharpBasics from './pages/moduleChapters/csharpBasics'
+import CsharpLevel1 from './pages/moduleChapters/csharpLevel1'
+import CsharpLevel2 from './pages/moduleChapters/csharpLevel2'
+import CsharpLevel3 from './pages/moduleChapters/csharpLevel3'
+import MatchPairCsharp from './pages/moduleChapters/matchPairCsharp'
+import MatchPairCsharpKeywords from './pages/moduleChapters/matchPairCsharpKeywords'
+import MatchPairArrayList from './pages/moduleChapters/matchPairArrayList'
+import MatchPairStrings from './pages/moduleChapters/matchPairStrings'
+import MatchPairOperators from './pages/moduleChapters/matchPairOperators'
+import MatchPairOOP from './pages/moduleChapters/matchPairOOP'
 import UniSystemCode from './pages/UniSystemCode'
 
 function AnimatedRoutes() {
@@ -27,8 +35,16 @@ function AnimatedRoutes() {
         <Route path="/f3" element={<F3 key="f3" />} />
         <Route path="/f4" element={<F4 key="f4" />} />
         <Route path="/f5" element={<F5 key="f5" />} />
-        <Route path="/f6" element={<F6 key="f6" />} />
-        <Route path="/f7" element={<F7 key="f7" />} />
+        <Route path="/csharp-basics" element={<CsharpBasics key="csharp-basics" />} />
+        <Route path="/csharp-level1" element={<CsharpLevel1 key="csharp-level1" />} />
+        <Route path="/csharp-level2" element={<CsharpLevel2 key="csharp-level2" />} />
+        <Route path="/csharp-level3" element={<CsharpLevel3 key="csharp-level3" />} />
+        <Route path="/match-pair-csharp" element={<MatchPairCsharp key="match-pair-csharp" />} />
+        <Route path="/match-pair-csharp-keywords" element={<MatchPairCsharpKeywords key="match-pair-csharp-keywords" />} />
+        <Route path="/match-pair-array-list" element={<MatchPairArrayList key="match-pair-array-list" />} />
+        <Route path="/match-pair-strings" element={<MatchPairStrings key="match-pair-strings" />} />
+        <Route path="/match-pair-operators" element={<MatchPairOperators key="match-pair-operators" />} />
+        <Route path="/match-pair-oop" element={<MatchPairOOP key="match-pair-oop" />} />
         <Route path="/unisystem" element={<UniSystemCode key="unisystem" />} />
       </Routes>
     </AnimatePresence>

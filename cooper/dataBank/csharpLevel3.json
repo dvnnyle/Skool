@@ -1,0 +1,152 @@
+[
+  {
+    "id": 1,
+    "section": "C# OOP",
+    "question": "What does OOP stand for?",
+    "options": ["Optional Object Prototype", "Output Oriented Program", "Object Oriented Programming", "Open Object Process"],
+    "answerIndex": 2,
+    "answer": "Object Oriented Programming",
+    "explanation": "OOP organises code around **objects** — combinations of data and behaviour — rather than just functions and logic.",
+    "shortExplanation": "OOP = Object Oriented Programming."
+  },
+  {
+    "id": 2,
+    "section": "C# Classes/Objects",
+    "question": "What is a class in C#?",
+    "options": ["A running program", "A variable", "A blueprint that describes objects", "A loop"],
+    "answerIndex": 2,
+    "answer": "A blueprint that describes objects",
+    "explanation": "A class defines the structure (fields, properties) and behaviour (methods) that its objects will have.\n\nExample: `class Dog { public string Name; }` — any `Dog` object you create will have a `Name`.",
+    "shortExplanation": "A class is a blueprint for creating objects."
+  },
+  {
+    "id": 3,
+    "section": "C# Classes/Objects",
+    "question": "What keyword creates an object from a class?",
+    "options": ["create", "object", "make", "new"],
+    "answerIndex": 3,
+    "answer": "new",
+    "explanation": "`new` allocates memory and calls the constructor to produce a usable object.\n\nExample: `var dog = new Dog();`",
+    "shortExplanation": "new creates an object from a class."
+  },
+  {
+    "id": 4,
+    "section": "Multiple Objects",
+    "question": "Can you create more than one object from the same class?",
+    "options": ["Yes, as many as you need", "No, only one per program", "Only two", "Only if the class is static"],
+    "answerIndex": 0,
+    "answer": "Yes, as many as you need",
+    "explanation": "A class is a template — you can stamp out as many objects as needed, each with its own data.\n\nExample:\n```csharp\nvar d1 = new Dog { Name = \"Rex\" };\nvar d2 = new Dog { Name = \"Bella\" };\n```",
+    "shortExplanation": "You can create as many objects as needed from one class."
+  },
+  {
+    "id": 5,
+    "section": "C# Class Members",
+    "question": "What are fields in a class?",
+    "options": ["Methods that run automatically", "Return types of a method", "Access modifiers", "Variables declared directly inside a class"],
+    "answerIndex": 3,
+    "answer": "Variables declared directly inside a class",
+    "explanation": "Fields store the **state** (data) of an object. They live inside the class but outside any method.\n\nExample: `public string Name;` declared inside a class is a field.",
+    "shortExplanation": "Fields are variables that store an object's data."
+  },
+  {
+    "id": 6,
+    "section": "C# Constructors",
+    "question": "What is a constructor?",
+    "options": ["A method that deletes an object", "A type of loop", "A special method called automatically when an object is created", "A static method"],
+    "answerIndex": 2,
+    "answer": "A special method called automatically when an object is created",
+    "explanation": "The constructor runs the moment you use `new` to create an object — used to set initial values.\n\nExample: `public Dog(string name) { Name = name; }`",
+    "shortExplanation": "Constructor = runs automatically when an object is created."
+  },
+  {
+    "id": 7,
+    "section": "C# Constructors",
+    "question": "What must the constructor's name be?",
+    "options": ["Constructor", "Init", "Same as the class name", "Create"],
+    "answerIndex": 2,
+    "answer": "Same as the class name",
+    "explanation": "A constructor must share the exact name of its class — that is how C# recognises it as a constructor.\n\nExample: class `Dog` → constructor `public Dog() { }`",
+    "shortExplanation": "Constructor name must match the class name."
+  },
+  {
+    "id": 8,
+    "section": "C# Access Modifiers",
+    "question": "What does private mean on a class member?",
+    "options": ["Accessible from any file", "Accessible anywhere in the program", "Readable but not writable", "Only accessible inside its own class"],
+    "answerIndex": 3,
+    "answer": "Only accessible inside its own class",
+    "explanation": "`private` hides a member from outside code — only methods within the same class can read or change it.\n\nThis is the foundation of **encapsulation**.",
+    "shortExplanation": "private = only accessible inside its own class."
+  },
+  {
+    "id": 9,
+    "section": "C# Properties",
+    "question": "What does a property with get and set do?",
+    "options": ["Defines a method", "Controls how a field is read and written", "Replaces a constructor", "Creates a new class"],
+    "answerIndex": 1,
+    "answer": "Controls how a field is read and written",
+    "explanation": "Properties wrap a private field and expose it safely.\n\nExample:\n```csharp\nprivate int _age;\npublic int Age { get => _age; set => _age = value; }\n```\n`get` returns the value, `set` changes it.",
+    "shortExplanation": "Properties control read/write access to a field."
+  },
+  {
+    "id": 10,
+    "section": "C# Inheritance",
+    "question": "Which symbol denotes inheritance in C#?",
+    "options": [":", "->", "::", "=>"],
+    "answerIndex": 0,
+    "answer": ":",
+    "explanation": "A colon after the class name followed by the base class declares inheritance.\n\nExample: `class Dog : Animal { }` — `Dog` inherits everything from `Animal`.",
+    "shortExplanation": ": BaseClass declares inheritance."
+  },
+  {
+    "id": 11,
+    "section": "C# Polymorphism",
+    "question": "What does the override keyword do?",
+    "options": ["Hides the base method completely", "Copies the base method", "Redefines a virtual method from a base class in a derived class", "Creates a new constructor"],
+    "answerIndex": 2,
+    "answer": "Redefines a virtual method from a base class in a derived class",
+    "explanation": "`override` lets a child class provide its own version of a method marked `virtual` in the parent.\n\nExample: `public override string ToString() { return Name; }`",
+    "shortExplanation": "override replaces a base class's virtual method."
+  },
+  {
+    "id": 12,
+    "section": "C# Abstraction",
+    "question": "What is an abstract class?",
+    "options": ["A class with no fields", "A class that cannot be instantiated and may have abstract methods", "A class that cannot inherit from anything", "A class with only static methods"],
+    "answerIndex": 1,
+    "answer": "A class that cannot be instantiated and may have abstract methods",
+    "explanation": "Abstract classes are meant to be inherited, not used directly with `new`.\n\nThey can define abstract methods (no body) that subclasses **must** implement.",
+    "shortExplanation": "abstract class = cannot be created directly, must be inherited."
+  },
+  {
+    "id": 13,
+    "section": "C# Interface",
+    "question": "What is an interface in C#?",
+    "options": ["A type of loop", "A class with fields only", "A contract that defines what methods a class must implement", "A built-in data type"],
+    "answerIndex": 2,
+    "answer": "A contract that defines what methods a class must implement",
+    "explanation": "An interface only declares method signatures — no bodies. Any class that implements it must provide those methods.\n\nExample: `interface IShape { double Area(); }` — every shape class must have `Area()`.",
+    "shortExplanation": "Interface = a contract of methods a class must implement."
+  },
+  {
+    "id": 14,
+    "section": "C# Enums",
+    "question": "What is an enum?",
+    "options": ["A type of array", "A loop counter", "A method with multiple return types", "A set of named constant values"],
+    "answerIndex": 3,
+    "answer": "A set of named constant values",
+    "explanation": "Enums give meaningful names to a fixed set of values.\n\nExample: `enum Day { Mon, Tue, Wed, Thu, Fri, Sat, Sun }` — use `Day.Mon` instead of a magic number.",
+    "shortExplanation": "Enum = named set of constants."
+  },
+  {
+    "id": 15,
+    "section": "C# Exceptions",
+    "question": "Which block catches and handles a runtime error in C#?",
+    "options": ["try { } handle { }", "error { } fix { }", "safe { } recover { }", "try { } catch { }"],
+    "answerIndex": 3,
+    "answer": "try { } catch { }",
+    "explanation": "Put risky code in `try`. If an exception occurs, execution jumps to `catch` where you handle the error gracefully.\n\nExample:\n```csharp\ntry { int x = int.Parse(\"abc\"); }\ncatch (FormatException e) { Console.WriteLine(e.Message); }\n```",
+    "shortExplanation": "try/catch handles runtime exceptions."
+  }
+]
