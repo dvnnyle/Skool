@@ -7,8 +7,101 @@ import NavigationMenu from './widget/navigationMenu'
 import CustomMenu from './widget/customMenu'
 import Footer from './widget/footer'
 
+const LEARNING_ROAD = [
+  {
+    stage: 'Stage 1 · Foundations',
+    icon: '🌱',
+    color: '#10b981',
+    steps: [
+      { key: 'csharpBasics', to: '/csharp-basics', emoji: '🟢', title: 'Beginner P1', count: '15q' },
+      { key: 'csharpLevel1', to: '/csharp-level1', emoji: '🗺️', title: 'Level 1', count: '17q' },
+      { key: 'matchpaircsharp', to: '/match-pair-csharp', emoji: '🔗', title: 'Match: Concepts', count: '12p' },
+      { key: 'matchpaircsharpkeywords', to: '/match-pair-csharp-keywords', emoji: '📝', title: 'Match: Keywords', count: '18p' },
+    ]
+  },
+  {
+    stage: 'Stage 2 · Core Skills',
+    icon: '⚡',
+    color: '#646cff',
+    steps: [
+      { key: 'f1', to: '/f1', emoji: '🎓', title: 'F1 Quiz', count: '22q' },
+      { key: 'csharpLevel2', to: '/csharp-level2', emoji: '⚙️', title: 'Level 2', count: '15q' },
+      { key: 'matchpairstrings', to: '/match-pair-strings', emoji: '💬', title: 'Match: Strings', count: '12p' },
+      { key: 'matchpairoperators', to: '/match-pair-operators', emoji: '⚙️', title: 'Match: Operators', count: '14p' },
+    ]
+  },
+  {
+    stage: 'Stage 3 · Collections',
+    icon: '📦',
+    color: '#f59e0b',
+    steps: [
+      { key: 'f2', to: '/f2', emoji: '📘', title: 'F2 Quiz', count: '14q' },
+      { key: 'f3', to: '/f3', emoji: '🔒', title: 'F3 Quiz', count: '16q' },
+      { key: 'matchpairarraylist', to: '/match-pair-array-list', emoji: '📦', title: 'Match: Arrays', count: '14p' },
+      { key: 'f4', to: '/f4', emoji: '📚', title: 'F4 Quiz', count: '18q' },
+    ]
+  },
+  {
+    stage: 'Stage 4 · Advanced OOP',
+    icon: '🏆',
+    color: '#ef4444',
+    steps: [
+      { key: 'csharpLevel3', to: '/csharp-level3', emoji: '🏛️', title: 'Level 3', count: '15q' },
+      { key: 'matchpairoop', to: '/match-pair-oop', emoji: '🦠', title: 'Match: OOP', count: '14p' },
+      { key: 'f5', to: '/f5', emoji: '🧬', title: 'F5 Quiz', count: '18q' },
+    ]
+  }
+]
+
+const LEARNING_ROAD_2 = [
+  {
+    stage: 'Stage A · Lecture Series',
+    icon: '📖',
+    color: '#3b82f6',
+    steps: [
+      { key: 'f1', to: '/f1', emoji: '🎓', title: 'F1 Quiz', count: '22q' },
+      { key: 'f2', to: '/f2', emoji: '📘', title: 'F2 Quiz', count: '14q' },
+      { key: 'f3', to: '/f3', emoji: '🔒', title: 'F3 Quiz', count: '16q' },
+    ]
+  },
+  {
+    stage: 'Stage B · Collections',
+    icon: '📦',
+    color: '#f59e0b',
+    steps: [
+      { key: 'f4', to: '/f4', emoji: '📚', title: 'F4 Quiz', count: '18q' },
+      { key: 'matchpairarraylist', to: '/match-pair-array-list', emoji: '📦', title: 'Match: Arrays', count: '14p' },
+      { key: 'matchpairstrings', to: '/match-pair-strings', emoji: '💬', title: 'Match: Strings', count: '12p' },
+    ]
+  },
+  {
+    stage: 'Stage C · OOP Mastery',
+    icon: '🔬',
+    color: '#8b5cf6',
+    steps: [
+      { key: 'f5', to: '/f5', emoji: '🧬', title: 'F5 Quiz', count: '18q' },
+      { key: 'matchpairoop', to: '/match-pair-oop', emoji: '🦠', title: 'Match: OOP', count: '14p' },
+      { key: 'matchpairoperators', to: '/match-pair-operators', emoji: '⚙️', title: 'Match: Ops', count: '14p' },
+      { key: 'matchpaircsharp', to: '/match-pair-csharp', emoji: '🔗', title: 'Match: Concepts', count: '12p' },
+    ]
+  },
+  {
+    stage: 'Stage D · Full Mastery',
+    icon: '💪',
+    color: '#9370db',
+    steps: [
+      { key: 'csharpLevel1', to: '/csharp-level1', emoji: '🗺️', title: 'Level 1', count: '17q' },
+      { key: 'csharpLevel2', to: '/csharp-level2', emoji: '⚙️', title: 'Level 2', count: '15q' },
+      { key: 'csharpLevel3', to: '/csharp-level3', emoji: '🏛️', title: 'Level 3', count: '15q' },
+      { key: 'matchpaircsharpkeywords', to: '/match-pair-csharp-keywords', emoji: '📝', title: 'Match: Keys', count: '18p' },
+    ]
+  }
+]
+
 function Home() {
   const [showScrollTop, setShowScrollTop] = useState(false)
+  const [roadCompletion, setRoadCompletion] = useState({})
+  const [streak, setStreak] = useState({ count: 0, longest: 0 })
   const [stats, setStats] = useState({
       completedQuestions: 0,
       correctAnswers: 0,
@@ -57,6 +150,38 @@ function Home() {
       }
     })
     
+    const completion = {}
+    LEARNING_ROAD.forEach(stage => {
+      stage.steps.forEach(step => {
+        const d = localStorage.getItem(`quiz_${step.key}`)
+        completion[step.key] = d ? (JSON.parse(d).attempts || 0) : 0
+      })
+    })
+    LEARNING_ROAD_2.forEach(stage => {
+      stage.steps.forEach(step => {
+        if (!(step.key in completion)) {
+          const d = localStorage.getItem(`quiz_${step.key}`)
+          completion[step.key] = d ? (JSON.parse(d).attempts || 0) : 0
+        }
+      })
+    })
+    setRoadCompletion(completion)
+
+    const today = new Date().toISOString().split('T')[0]
+    const raw = localStorage.getItem('study_streak')
+    const sd = raw ? JSON.parse(raw) : { date: '', count: 0, longest: 0 }
+    let newCount = sd.count
+    let newLongest = sd.longest
+    if (sd.date !== today) {
+      const yest = new Date()
+      yest.setDate(yest.getDate() - 1)
+      const yesterdayStr = yest.toISOString().split('T')[0]
+      newCount = sd.date === yesterdayStr ? sd.count + 1 : 1
+      newLongest = Math.max(newCount, sd.longest)
+      localStorage.setItem('study_streak', JSON.stringify({ date: today, count: newCount, longest: newLongest }))
+    }
+    setStreak({ count: newCount, longest: newLongest })
+
     setStats({
       completedQuestions: totalCompleted,
       correctAnswers: totalCorrect,
@@ -132,6 +257,44 @@ function Home() {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
+  const allRoadSteps = LEARNING_ROAD.flatMap(s => s.steps)
+  const roadComplete = allRoadSteps.every(s => (roadCompletion[s.key] || 0) >= 1)
+  let foundCurrent = false
+  const stepStatuses = {}
+  const stepNums = {}
+  let rStepNum = 0
+  allRoadSteps.forEach(step => {
+    rStepNum++
+    stepNums[step.key] = rStepNum
+    if ((roadCompletion[step.key] || 0) >= 1) {
+      stepStatuses[step.key] = 'completed'
+    } else if (!foundCurrent) {
+      stepStatuses[step.key] = 'current'
+      foundCurrent = true
+    } else {
+      stepStatuses[step.key] = 'upcoming'
+    }
+  })
+
+  const allRoadSteps2 = LEARNING_ROAD_2.flatMap(s => s.steps)
+  const roadComplete2 = allRoadSteps2.every(s => (roadCompletion[s.key] || 0) >= 2)
+  let foundCurrent2 = false
+  const stepStatuses2 = {}
+  const stepNums2 = {}
+  let rStepNum2 = 0
+  allRoadSteps2.forEach(step => {
+    rStepNum2++
+    stepNums2[step.key] = rStepNum2
+    if ((roadCompletion[step.key] || 0) >= 2) {
+      stepStatuses2[step.key] = 'completed'
+    } else if (!foundCurrent2 && roadComplete) {
+      stepStatuses2[step.key] = 'current'
+      foundCurrent2 = true
+    } else {
+      stepStatuses2[step.key] = 'upcoming'
+    }
+  })
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -151,6 +314,88 @@ function Home() {
           <a href="#unisystem" className="toc-link">UniSystem</a>
         </nav>
       </aside>
+
+      <aside className="road-panel">
+        <div className="road-panel-header">
+          <h3>Road</h3>
+          {streak.count > 0 && (
+            <div className="road-streak">
+              <span>🔥</span>
+              <span>{streak.count}</span>
+            </div>
+          )}
+        </div>
+        <div className="road-panel-nodes">
+          {LEARNING_ROAD.map((stage, si) => (
+            <div key={si} className="road-panel-stage" style={{ '--stage-color': stage.color }}>
+              <div className="road-panel-stage-label">
+                <span>{stage.icon}</span>
+                <span>{stage.stage.split(' · ')[1]}</span>
+              </div>
+              {stage.steps.map((step, i) => {
+                const status = stepStatuses[step.key] || 'upcoming'
+                return (
+                  <div key={step.key} className="road-panel-item">
+                    {i > 0 && <div className={`road-panel-line${status === 'completed' ? ' done' : ''}`} />}
+                    <Link to={step.to} className={`road-panel-node ${status}`}>
+                      <div className="road-panel-circle">
+                        {status === 'completed' ? '✓' : stepNums[step.key]}
+                      </div>
+                      <span className="road-panel-title">{step.title}</span>
+                    </Link>
+                  </div>
+                )
+              })}
+            </div>
+          ))}
+        </div>
+        {roadComplete && (
+          <div className="road-panel-complete">
+            <span>🏆</span>
+            <span>Road 1 Complete!</span>
+          </div>
+        )}
+
+        {roadComplete && (
+          <>
+            <div className="road-panel-road2-unlock">
+              <span>⚔️ Road 2 Unlocked</span>
+              <span className="road2-unlock-sub">Repeat each quiz twice for mastery</span>
+            </div>
+            <div className="road-panel-nodes">
+              {LEARNING_ROAD_2.map((stage, si) => (
+                <div key={si} className="road-panel-stage" style={{ '--stage-color': stage.color }}>
+                  <div className="road-panel-stage-label">
+                    <span>{stage.icon}</span>
+                    <span>{stage.stage.split(' · ')[1]}</span>
+                  </div>
+                  {stage.steps.map((step, i) => {
+                    const status = stepStatuses2[step.key] || 'upcoming'
+                    return (
+                      <div key={step.key} className="road-panel-item">
+                        {i > 0 && <div className={`road-panel-line${status === 'completed' ? ' done' : ''}`} />}
+                        <Link to={step.to} className={`road-panel-node ${status}`}>
+                          <div className="road-panel-circle">
+                            {status === 'completed' ? '✓' : stepNums2[step.key]}
+                          </div>
+                          <span className="road-panel-title">{step.title}</span>
+                        </Link>
+                      </div>
+                    )
+                  })}
+                </div>
+              ))}
+            </div>
+            {roadComplete2 && (
+              <div className="road-panel-complete road2-complete">
+                <span>💎</span>
+                <span>Mastery Complete!</span>
+              </div>
+            )}
+          </>
+        )}
+      </aside>
+
       <div className="home-content">
         <h1 className="home-title">Teamwork & Group Dynamics</h1>
         <p>Master the fundamentals of effective teamwork</p>
