@@ -7,101 +7,104 @@ import NavigationMenu from './widget/navigationMenu'
 import CustomMenu from './widget/customMenu'
 import Footer from './widget/footer'
 
-const LEARNING_ROAD = [
+const ROADS = [
   {
-    stage: 'Stage 1 · Foundations',
-    icon: '🌱',
-    color: '#10b981',
-    steps: [
-      { key: 'csharpBasics', to: '/csharp-basics', emoji: '🟢', title: 'Beginner P1', count: '15q' },
-      { key: 'csharpLevel1', to: '/csharp-level1', emoji: '🗺️', title: 'Level 1', count: '17q' },
-      { key: 'matchpaircsharp', to: '/match-pair-csharp', emoji: '🔗', title: 'Match: Concepts', count: '12p' },
-      { key: 'matchpaircsharpkeywords', to: '/match-pair-csharp-keywords', emoji: '📝', title: 'Match: Keywords', count: '18p' },
+    id: 'road1', label: 'Road 1', subtitle: 'C# Foundations',
+    stages: [
+      { name: 'Foundations', icon: '🌱', color: '#10b981', steps: [
+        { key: 'csharpBasics', to: '/csharp-basics', title: 'Beginner P1' },
+        { key: 'csharpLevel1', to: '/csharp-level1', title: 'Level 1' },
+        { key: 'matchpaircsharp', to: '/match-pair-csharp', title: 'Match: Concepts' },
+        { key: 'matchpaircsharpkeywords', to: '/match-pair-csharp-keywords', title: 'Match: Keywords' },
+      ]},
+      { name: 'Core Skills', icon: '⚡', color: '#646cff', steps: [
+        { key: 'f1', to: '/f1', title: 'F1 Quiz' },
+        { key: 'csharpLevel2', to: '/csharp-level2', title: 'Level 2' },
+        { key: 'matchpairstrings', to: '/match-pair-strings', title: 'Match: Strings' },
+        { key: 'matchpairoperators', to: '/match-pair-operators', title: 'Match: Ops' },
+      ]},
+      { name: 'Collections', icon: '📦', color: '#f59e0b', steps: [
+        { key: 'f2', to: '/f2', title: 'F2 Quiz' },
+        { key: 'f3', to: '/f3', title: 'F3 Quiz' },
+        { key: 'matchpairarraylist', to: '/match-pair-array-list', title: 'Match: Arrays' },
+        { key: 'f4', to: '/f4', title: 'F4 Quiz' },
+      ]},
+      { name: 'Advanced OOP', icon: '🏆', color: '#ef4444', steps: [
+        { key: 'csharpLevel3', to: '/csharp-level3', title: 'Level 3' },
+        { key: 'matchpairoop', to: '/match-pair-oop', title: 'Match: OOP' },
+        { key: 'f5', to: '/f5', title: 'F5 Quiz' },
+      ]},
     ]
   },
   {
-    stage: 'Stage 2 · Core Skills',
-    icon: '⚡',
-    color: '#646cff',
-    steps: [
-      { key: 'f1', to: '/f1', emoji: '🎓', title: 'F1 Quiz', count: '22q' },
-      { key: 'csharpLevel2', to: '/csharp-level2', emoji: '⚙️', title: 'Level 2', count: '15q' },
-      { key: 'matchpairstrings', to: '/match-pair-strings', emoji: '💬', title: 'Match: Strings', count: '12p' },
-      { key: 'matchpairoperators', to: '/match-pair-operators', emoji: '⚙️', title: 'Match: Operators', count: '14p' },
+    id: 'road2', label: 'Road 2', subtitle: 'Methods & Strings',
+    stages: [
+      { name: 'Methods', icon: '⚙️', color: '#3b82f6', steps: [
+        { key: 'csharpLevel2', to: '/csharp-level2', title: 'Level 2' },
+        { key: 'matchpairstrings', to: '/match-pair-strings', title: 'Match: Strings' },
+        { key: 'f2', to: '/f2', title: 'F2 Quiz' },
+      ]},
+      { name: 'Operators', icon: '🔧', color: '#8b5cf6', steps: [
+        { key: 'matchpairoperators', to: '/match-pair-operators', title: 'Match: Ops' },
+        { key: 'csharpBasics', to: '/csharp-basics', title: 'Beginner' },
+        { key: 'matchpaircsharpkeywords', to: '/match-pair-csharp-keywords', title: 'Match: Keys' },
+      ]},
     ]
   },
   {
-    stage: 'Stage 3 · Collections',
-    icon: '📦',
-    color: '#f59e0b',
-    steps: [
-      { key: 'f2', to: '/f2', emoji: '📘', title: 'F2 Quiz', count: '14q' },
-      { key: 'f3', to: '/f3', emoji: '🔒', title: 'F3 Quiz', count: '16q' },
-      { key: 'matchpairarraylist', to: '/match-pair-array-list', emoji: '📦', title: 'Match: Arrays', count: '14p' },
-      { key: 'f4', to: '/f4', emoji: '📚', title: 'F4 Quiz', count: '18q' },
+    id: 'road3', label: 'Road 3', subtitle: 'Loops & Collections',
+    stages: [
+      { name: 'Loops', icon: '🔄', color: '#f59e0b', steps: [
+        { key: 'csharpLevel1', to: '/csharp-level1', title: 'Level 1' },
+        { key: 'matchpairarraylist', to: '/match-pair-array-list', title: 'Match: Arrays' },
+        { key: 'f4', to: '/f4', title: 'F4 Quiz' },
+      ]},
+      { name: 'Strings & Data', icon: '📊', color: '#10b981', steps: [
+        { key: 'matchpairstrings', to: '/match-pair-strings', title: 'Match: Strings' },
+        { key: 'f3', to: '/f3', title: 'F3 Quiz' },
+        { key: 'matchpairoperators', to: '/match-pair-operators', title: 'Match: Ops' },
+      ]},
     ]
   },
   {
-    stage: 'Stage 4 · Advanced OOP',
-    icon: '🏆',
-    color: '#ef4444',
-    steps: [
-      { key: 'csharpLevel3', to: '/csharp-level3', emoji: '🏛️', title: 'Level 3', count: '15q' },
-      { key: 'matchpairoop', to: '/match-pair-oop', emoji: '🦠', title: 'Match: OOP', count: '14p' },
-      { key: 'f5', to: '/f5', emoji: '🧬', title: 'F5 Quiz', count: '18q' },
-    ]
-  }
-]
-
-const LEARNING_ROAD_2 = [
-  {
-    stage: 'Stage A · Lecture Series',
-    icon: '📖',
-    color: '#3b82f6',
-    steps: [
-      { key: 'f1', to: '/f1', emoji: '🎓', title: 'F1 Quiz', count: '22q' },
-      { key: 'f2', to: '/f2', emoji: '📘', title: 'F2 Quiz', count: '14q' },
-      { key: 'f3', to: '/f3', emoji: '🔒', title: 'F3 Quiz', count: '16q' },
+    id: 'road4', label: 'Road 4', subtitle: 'OOP Sprint',
+    stages: [
+      { name: 'Classes', icon: '🏛️', color: '#ef4444', steps: [
+        { key: 'csharpLevel3', to: '/csharp-level3', title: 'Level 3' },
+        { key: 'matchpairoop', to: '/match-pair-oop', title: 'Match: OOP' },
+        { key: 'f3', to: '/f3', title: 'F3 Quiz' },
+      ]},
+      { name: 'Inheritance', icon: '🧬', color: '#9333ea', steps: [
+        { key: 'f5', to: '/f5', title: 'F5 Quiz' },
+        { key: 'matchpaircsharp', to: '/match-pair-csharp', title: 'Match: Concepts' },
+        { key: 'f1', to: '/f1', title: 'F1 Quiz' },
+      ]},
     ]
   },
   {
-    stage: 'Stage B · Collections',
-    icon: '📦',
-    color: '#f59e0b',
-    steps: [
-      { key: 'f4', to: '/f4', emoji: '📚', title: 'F4 Quiz', count: '18q' },
-      { key: 'matchpairarraylist', to: '/match-pair-array-list', emoji: '📦', title: 'Match: Arrays', count: '14p' },
-      { key: 'matchpairstrings', to: '/match-pair-strings', emoji: '💬', title: 'Match: Strings', count: '12p' },
+    id: 'road5', label: 'Road 5', subtitle: 'Full Mastery Blast',
+    stages: [
+      { name: 'All Lectures', icon: '🚀', color: '#ec4899', steps: [
+        { key: 'f1', to: '/f1', title: 'F1 Quiz' },
+        { key: 'f2', to: '/f2', title: 'F2 Quiz' },
+        { key: 'f3', to: '/f3', title: 'F3 Quiz' },
+        { key: 'f4', to: '/f4', title: 'F4 Quiz' },
+        { key: 'f5', to: '/f5', title: 'F5 Quiz' },
+      ]},
+      { name: 'All Levels', icon: '🏆', color: '#ffd700', steps: [
+        { key: 'csharpLevel1', to: '/csharp-level1', title: 'Level 1' },
+        { key: 'csharpLevel2', to: '/csharp-level2', title: 'Level 2' },
+        { key: 'csharpLevel3', to: '/csharp-level3', title: 'Level 3' },
+      ]},
     ]
   },
-  {
-    stage: 'Stage C · OOP Mastery',
-    icon: '🔬',
-    color: '#8b5cf6',
-    steps: [
-      { key: 'f5', to: '/f5', emoji: '🧬', title: 'F5 Quiz', count: '18q' },
-      { key: 'matchpairoop', to: '/match-pair-oop', emoji: '🦠', title: 'Match: OOP', count: '14p' },
-      { key: 'matchpairoperators', to: '/match-pair-operators', emoji: '⚙️', title: 'Match: Ops', count: '14p' },
-      { key: 'matchpaircsharp', to: '/match-pair-csharp', emoji: '🔗', title: 'Match: Concepts', count: '12p' },
-    ]
-  },
-  {
-    stage: 'Stage D · Full Mastery',
-    icon: '💪',
-    color: '#9370db',
-    steps: [
-      { key: 'csharpLevel1', to: '/csharp-level1', emoji: '🗺️', title: 'Level 1', count: '17q' },
-      { key: 'csharpLevel2', to: '/csharp-level2', emoji: '⚙️', title: 'Level 2', count: '15q' },
-      { key: 'csharpLevel3', to: '/csharp-level3', emoji: '🏛️', title: 'Level 3', count: '15q' },
-      { key: 'matchpaircsharpkeywords', to: '/match-pair-csharp-keywords', emoji: '📝', title: 'Match: Keys', count: '18p' },
-    ]
-  }
 ]
 
 function Home() {
   const [showScrollTop, setShowScrollTop] = useState(false)
   const [roadCompletion, setRoadCompletion] = useState({})
-  const [streak, setStreak] = useState({ count: 0, longest: 0 })
+  const [roadStore, setRoadStore] = useState({ completedRoads: [], baselines: {} })
+  const [streak, setStreak] = useState(0)
   const [stats, setStats] = useState({
       completedQuestions: 0,
       correctAnswers: 0,
@@ -150,37 +153,52 @@ function Home() {
       }
     })
     
-    const completion = {}
-    LEARNING_ROAD.forEach(stage => {
-      stage.steps.forEach(step => {
-        const d = localStorage.getItem(`quiz_${step.key}`)
-        completion[step.key] = d ? (JSON.parse(d).attempts || 0) : 0
-      })
+    // Road completion tracking with baselines
+    const allStepKeys = new Set()
+    ROADS.forEach(road => road.stages.forEach(stage => stage.steps.forEach(s => allStepKeys.add(s.key))))
+    const quizAttempts = {}
+    allStepKeys.forEach(key => {
+      const d = localStorage.getItem(`quiz_${key}`)
+      quizAttempts[key] = d ? (JSON.parse(d).attempts || 0) : 0
     })
-    LEARNING_ROAD_2.forEach(stage => {
-      stage.steps.forEach(step => {
-        if (!(step.key in completion)) {
-          const d = localStorage.getItem(`quiz_${step.key}`)
-          completion[step.key] = d ? (JSON.parse(d).attempts || 0) : 0
-        }
-      })
-    })
-    setRoadCompletion(completion)
+    setRoadCompletion(quizAttempts)
 
-    const today = new Date().toISOString().split('T')[0]
-    const raw = localStorage.getItem('study_streak')
-    const sd = raw ? JSON.parse(raw) : { date: '', count: 0, longest: 0 }
-    let newCount = sd.count
-    let newLongest = sd.longest
-    if (sd.date !== today) {
-      const yest = new Date()
-      yest.setDate(yest.getDate() - 1)
-      const yesterdayStr = yest.toISOString().split('T')[0]
-      newCount = sd.date === yesterdayStr ? sd.count + 1 : 1
-      newLongest = Math.max(newCount, sd.longest)
-      localStorage.setItem('study_streak', JSON.stringify({ date: today, count: newCount, longest: newLongest }))
+    const rawStore = localStorage.getItem('road_store')
+    let rs = rawStore ? JSON.parse(rawStore) : { completedRoads: [], baselines: {} }
+    const activeIdx = ROADS.findIndex(r => !rs.completedRoads.includes(r.id))
+    if (activeIdx >= 0) {
+      const activeRoad = ROADS[activeIdx]
+      const baseline = rs.baselines[activeRoad.id] || {}
+      const allDone = activeRoad.stages.flatMap(s => s.steps).every(s => quizAttempts[s.key] > (baseline[s.key] || 0))
+      if (allDone) {
+        rs = { ...rs, completedRoads: [...rs.completedRoads, activeRoad.id] }
+        const nextRoad = ROADS[activeIdx + 1]
+        if (nextRoad) {
+          const nextBaseline = {}
+          nextRoad.stages.flatMap(s => s.steps).forEach(s => { nextBaseline[s.key] = quizAttempts[s.key] })
+          rs = { ...rs, baselines: { ...rs.baselines, [nextRoad.id]: nextBaseline } }
+        }
+        localStorage.setItem('road_store', JSON.stringify(rs))
+      }
     }
-    setStreak({ count: newCount, longest: newLongest })
+    setRoadStore(rs)
+
+    // Streak: only counts after Road 1 is complete
+    if (rs.completedRoads.includes('road1')) {
+      const today = new Date().toISOString().split('T')[0]
+      const raw = localStorage.getItem('study_streak')
+      const sd = raw ? JSON.parse(raw) : { date: '', count: 0 }
+      let newCount = sd.count
+      if (sd.date !== today) {
+        const yest = new Date()
+        yest.setDate(yest.getDate() - 1)
+        newCount = sd.date === yest.toISOString().split('T')[0] ? sd.count + 1 : 1
+        localStorage.setItem('study_streak', JSON.stringify({ date: today, count: newCount }))
+      }
+      setStreak(newCount)
+    } else {
+      setStreak(0)
+    }
 
     setStats({
       completedQuestions: totalCompleted,
@@ -257,41 +275,27 @@ function Home() {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  const allRoadSteps = LEARNING_ROAD.flatMap(s => s.steps)
-  const roadComplete = allRoadSteps.every(s => (roadCompletion[s.key] || 0) >= 1)
+  const activeRoadIdx = ROADS.findIndex(r => !roadStore.completedRoads.includes(r.id))
+  const allRoadsComplete = activeRoadIdx === -1
+  const displayRoadIdx = allRoadsComplete ? ROADS.length - 1 : activeRoadIdx
+  const activeRoad = ROADS[displayRoadIdx]
+  const baseline = roadStore.baselines?.[activeRoad?.id] || {}
+  const activeSteps = activeRoad ? activeRoad.stages.flatMap(s => s.steps) : []
   let foundCurrent = false
   const stepStatuses = {}
   const stepNums = {}
-  let rStepNum = 0
-  allRoadSteps.forEach(step => {
-    rStepNum++
-    stepNums[step.key] = rStepNum
-    if ((roadCompletion[step.key] || 0) >= 1) {
+  let stepNum = 0
+  activeSteps.forEach(step => {
+    stepNum++
+    stepNums[step.key] = stepNum
+    const done = (roadCompletion[step.key] || 0) > (baseline[step.key] || 0)
+    if (done) {
       stepStatuses[step.key] = 'completed'
-    } else if (!foundCurrent) {
+    } else if (!foundCurrent && !allRoadsComplete) {
       stepStatuses[step.key] = 'current'
       foundCurrent = true
     } else {
-      stepStatuses[step.key] = 'upcoming'
-    }
-  })
-
-  const allRoadSteps2 = LEARNING_ROAD_2.flatMap(s => s.steps)
-  const roadComplete2 = allRoadSteps2.every(s => (roadCompletion[s.key] || 0) >= 2)
-  let foundCurrent2 = false
-  const stepStatuses2 = {}
-  const stepNums2 = {}
-  let rStepNum2 = 0
-  allRoadSteps2.forEach(step => {
-    rStepNum2++
-    stepNums2[step.key] = rStepNum2
-    if ((roadCompletion[step.key] || 0) >= 2) {
-      stepStatuses2[step.key] = 'completed'
-    } else if (!foundCurrent2 && roadComplete) {
-      stepStatuses2[step.key] = 'current'
-      foundCurrent2 = true
-    } else {
-      stepStatuses2[step.key] = 'upcoming'
+      stepStatuses[step.key] = allRoadsComplete ? 'completed' : 'upcoming'
     }
   })
 
@@ -317,20 +321,32 @@ function Home() {
 
       <aside className="road-panel">
         <div className="road-panel-header">
-          <h3>Road</h3>
-          {streak.count > 0 && (
+          <h3>{allRoadsComplete ? '🏆 Mastered' : activeRoad?.label}</h3>
+          {streak > 0 && (
             <div className="road-streak">
               <span>🔥</span>
-              <span>{streak.count}</span>
+              <span>{streak}</span>
             </div>
           )}
         </div>
+        <div className="road-panel-dots">
+          {ROADS.map((r, i) => (
+            <div
+              key={r.id}
+              className={`road-dot${roadStore.completedRoads.includes(r.id) ? ' done' : i === displayRoadIdx ? ' active' : ''}`}
+              title={r.label}
+            />
+          ))}
+        </div>
+        {activeRoad && (
+          <div className="road-panel-subtitle">{activeRoad.subtitle}</div>
+        )}
         <div className="road-panel-nodes">
-          {LEARNING_ROAD.map((stage, si) => (
+          {activeRoad?.stages.map((stage, si) => (
             <div key={si} className="road-panel-stage" style={{ '--stage-color': stage.color }}>
               <div className="road-panel-stage-label">
                 <span>{stage.icon}</span>
-                <span>{stage.stage.split(' · ')[1]}</span>
+                <span>{stage.name}</span>
               </div>
               {stage.steps.map((step, i) => {
                 const status = stepStatuses[step.key] || 'upcoming'
@@ -349,50 +365,11 @@ function Home() {
             </div>
           ))}
         </div>
-        {roadComplete && (
-          <div className="road-panel-complete">
-            <span>🏆</span>
-            <span>Road 1 Complete!</span>
+        {allRoadsComplete && (
+          <div className="road-panel-complete road2-complete">
+            <span>💎</span>
+            <span>All Roads Complete!</span>
           </div>
-        )}
-
-        {roadComplete && (
-          <>
-            <div className="road-panel-road2-unlock">
-              <span>⚔️ Road 2 Unlocked</span>
-              <span className="road2-unlock-sub">Repeat each quiz twice for mastery</span>
-            </div>
-            <div className="road-panel-nodes">
-              {LEARNING_ROAD_2.map((stage, si) => (
-                <div key={si} className="road-panel-stage" style={{ '--stage-color': stage.color }}>
-                  <div className="road-panel-stage-label">
-                    <span>{stage.icon}</span>
-                    <span>{stage.stage.split(' · ')[1]}</span>
-                  </div>
-                  {stage.steps.map((step, i) => {
-                    const status = stepStatuses2[step.key] || 'upcoming'
-                    return (
-                      <div key={step.key} className="road-panel-item">
-                        {i > 0 && <div className={`road-panel-line${status === 'completed' ? ' done' : ''}`} />}
-                        <Link to={step.to} className={`road-panel-node ${status}`}>
-                          <div className="road-panel-circle">
-                            {status === 'completed' ? '✓' : stepNums2[step.key]}
-                          </div>
-                          <span className="road-panel-title">{step.title}</span>
-                        </Link>
-                      </div>
-                    )
-                  })}
-                </div>
-              ))}
-            </div>
-            {roadComplete2 && (
-              <div className="road-panel-complete road2-complete">
-                <span>💎</span>
-                <span>Mastery Complete!</span>
-              </div>
-            )}
-          </>
         )}
       </aside>
 
