@@ -159,7 +159,8 @@ function Home() {
     const quizAttempts = {}
     allStepKeys.forEach(key => {
       const d = localStorage.getItem(`quiz_${key}`)
-      quizAttempts[key] = d ? (JSON.parse(d).attempts || 0) : 0
+      const parsed = d ? JSON.parse(d) : null
+      quizAttempts[key] = parsed ? (parsed.attempts || parsed.attemptHistory?.length || 0) : 0
     })
     setRoadCompletion(quizAttempts)
 
