@@ -131,16 +131,7 @@ function F1() {
 											{isCorrect ? '✓ Correct' : '✗ Incorrect'}
 										</span>
 									</div>
-									<h3 className="question-text">{question.question.split('```')[0].trim()}</h3>
-
-									{question.question.includes('```csharp') && (
-										<div className="code-snippet-card">
-											<div className="code-header">C#</div>
-											<pre className="code-display">
-												<code>{question.question.split('```csharp\n')[1].split('```')[0]}</code>
-											</pre>
-										</div>
-									)}
+									<h3 className="question-text">{question.question}</h3>
 									<div className="review-options">
 										{question.options.map((option, optIndex) => {
 											const isCorrectOption = optIndex === question.answerIndex
@@ -233,14 +224,7 @@ function F1() {
 					{currentQuestion.section && (
 						<div className="section-badge">Section {currentQuestion.section}</div>
 					)}
-					<h3 className="question-text">{currentQuestion.question.split('```')[0].trim()}</h3>
-
-					{currentQuestion.question.includes('```csharp') && (
-						<div className="code-snippet-card">
-							<div className="code-header">C#</div>
-							<pre className="code-display"><code>{currentQuestion.question.split('```csharp\n')[1].split('```')[0]}</code></pre>
-						</div>
-					)}
+					<h3 className="question-text">{currentQuestion.question}</h3>
 
 					<div className="options-list">
 						{currentQuestion.options.map((option, index) => {

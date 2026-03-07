@@ -5,7 +5,7 @@
     "question": "Which keyword declares a variable with explicit type in C#?",
     "options": ["var", "let", "int", "def"],
     "answerIndex": 2,
-    "explanation": "In C#, variables can be declared using explicit types like <code>int</code>, <code>string</code>, etc. <code>var</code> uses type inference but still requires initialization; <code>let</code> and <code>def</code> are not C# keywords."
+    "explanation": "Use explicit types (e.g., `int`, `string`) when you want clarity; `var` uses compile-time type inference and still results in a static type. Prefer explicit types in public APIs; `var` is great for long generic types.\n\nExample:\n```csharp\nint count = 5;           // explicit\nstring name = \"Ada\";   // explicit\nvar total = count + 3;   // inferred as int\nvar list = new List<string>(); // inferred as List<string>\n```"
   },
   {
     "id": 2,
@@ -13,15 +13,15 @@
     "question": "```csharp\nusing System;\n\nclass Program {\n    static void Main() {\n        Console.WriteLine(\"Hello, C#\");\n    }\n}\n```\nWhat does this code output?",
     "options": ["Hello, world", "Hello, C#", "Compilation error", "Nothing"],
     "answerIndex": 1,
-    "explanation": "<code>Console.WriteLine</code> prints text followed by a newline. The program outputs <strong>Hello, C#</strong>."
+    "explanation": "`Console.WriteLine` prints the text followed by a newline, so the output is **Hello, C#**.\n\nNotes:\n- `Console.WriteLine` adds a newline; `Console.Write` does not.\n- If you run this program, the console shows:\n```\nHello, C#\n```"
   },
   {
     "id": 3,
     "section": "Strings",
     "question": "Which is the correct string interpolation syntax in C#?",
-    "options": ["printf('%s %s', a, b)", "$a $b", "$\"{a} {b}\"", "$\"{a} {b}\""],
-    "answerIndex": 3,
-    "explanation": "C# uses <code>$\"{expr}\"</code> for string interpolation, e.g., <code>$\"{a} {b}\"</code>."
+    "options": ["printf('%s %s', a, b)", "$a $b", "$\"{a} {b}\"", "string.Format(\"{0} {1}\", a, b)"],
+    "answerIndex": 2,
+    "explanation": "C# uses `$\"{expr}\"` for interpolation, evaluating expressions inside `{}`.\n\nExamples:\n```csharp\nvar a = \"Ada\";\nvar b = \"Lovelace\";\nvar msg = $\"{a} {b}\"; // \"Ada Lovelace\"\nvar math = $\"1 + 2 = {1 + 2}\"; // \"1 + 2 = 3\"\n```\nAlternatives:\n- `string.Format(\"{0} {1}\", a, b)` works but is not interpolation.\n- `\"\" + a + b` concatenates strings but is less readable."
   },
   {
     "id": 4,
@@ -29,7 +29,7 @@
     "question": "Which method adds an item to a <code>List&lt;int&gt;</code>?",
     "options": ["Append", "Push", "Add", "InsertAtEnd"],
     "answerIndex": 2,
-    "explanation": "Use <code>list.Add(value)</code> to append an element to a <code>List&lt;T&gt;</code>."
+    "explanation": "Use `list.Add(value)` to append an element to a `List<T>`.\n\nExamples:\n```csharp\nvar numbers = new List<int>();\nnumbers.Add(42);\nnumbers.AddRange(new[] { 1, 2, 3 }); // adds multiple\nnumbers.Insert(0, 99);              // inserts at index 0\n```"
   },
   {
     "id": 5,
@@ -37,7 +37,7 @@
     "question": "For strings in C#, which comparison checks value equality?",
     "options": ["==", "Equals()", "ReferenceEquals", "Both A and B"],
     "answerIndex": 3,
-    "explanation": "In C#, <code>==</code> for <code>string</code> is overloaded to check value equality. <code>.Equals()</code> also checks value equality. <code>ReferenceEquals</code> checks if two references point to the same object."
+    "explanation": "For `string`, both `==` and `.Equals()` compare values (the characters). `ReferenceEquals` checks whether two variables point to the exact same object.\n\nExamples:\n```csharp\nstring a = \"abc\";\nstring b = new string(new[] { 'a','b','c' });\nbool v1 = (a == b);           // true (value equality)\nbool v2 = a.Equals(b);        // true (value equality)\nbool v3 = object.ReferenceEquals(a, b); // false (different references)\n```\nUse `StringComparison` for culture/ordinal control:\n```csharp\na.Equals(b, StringComparison.OrdinalIgnoreCase);\n```"
   },
   {
     "id": 6,
@@ -45,7 +45,7 @@
     "question": "What loop prints numbers 0 to 4?\n```csharp\nfor (int i = 0; i < 5; i++) {\n    Console.WriteLine(i);\n}\n```",
     "options": ["while loop", "for loop", "foreach loop", "do...while loop"],
     "answerIndex": 1,
-    "explanation": "The <code>for</code> loop initializes <code>i</code> at 0, checks <code>i &lt; 5</code>, and increments <code>i</code> each iteration, printing 0..4."
+    "explanation": "A `for` loop has initialization (`int i = 0`), condition (`i < 5`), and iteration (`i++`). It prints `0`..`4`.\n\nOutput:\n```\n0\n1\n2\n3\n4\n```"
   },
   {
     "id": 7,
@@ -53,7 +53,7 @@
     "question": "Which is the safest way to parse an <code>int</code> from a string?",
     "options": ["int.Parse(str)", "Convert.ToInt32(str)", "int.TryParse(str, out var n)", "new int(str)"],
     "answerIndex": 2,
-    "explanation": "<code>int.TryParse</code> returns a boolean and avoids exceptions when parsing fails."
+    "explanation": "`int.TryParse` returns `true`/`false` and avoids exceptions on invalid input. The parsed value is returned via the `out` parameter.\n\nExample:\n```csharp\nif (int.TryParse(str, out var n)) {\n    Console.WriteLine($\"Value: {n}\");\n} else {\n    Console.WriteLine(\"Invalid number\");\n}\n```\nContrast with `int.Parse`, which throws on bad input:\n```csharp\nint x = int.Parse(\"abc\"); // FormatException\n```"
   },
   {
     "id": 8,
@@ -61,6 +61,6 @@
     "question": "How do you declare a nullable int?",
     "options": ["int? x", "nullable int x", "Int32 null x", "int* x"],
     "answerIndex": 0,
-    "explanation": "Use <code>int?</code> to represent a nullable value type in C#."
+    "explanation": "Use `int?` to represent a nullable value type (it can be either an `int` or `null`).\n\nExamples:\n```csharp\nint? maybeAge = null;\nif (maybeAge.HasValue) {\n    Console.WriteLine(maybeAge.Value);\n}\nint age = maybeAge ?? 0; // null-coalescing: uses 0 if null\n```"
   }
 ]

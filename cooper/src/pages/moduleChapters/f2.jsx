@@ -215,7 +215,7 @@ function F2() {
       <NavigationMenu />
       <div className="quiz-container">
         <div className="quiz-header">
-          <h2>F2: Variabel Omfang, Refaktorering, C# Grunnlag</h2>
+          <h2>F2: Forelesning 2 – C# grunnlag</h2>
           <div className="progress-info">
             <div style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
               <span>Question {currentQuestionIndex + 1} of {questionsData.length}</span>

@@ -8,29 +8,55 @@ export function formatExplanation(text) {
 
   let safe = escapeHtml(text);
 
-  const codeBlocks = [];
-
-  safe = safe.replace(/```([a-zA-Z0-9#+.-]*)\r?\n([\s\S]*?)```/g, (_m, lang, code) => {
-    const normalizedLang = (lang || '').toLowerCase();
-    const isCSharp = normalizedLang === 'csharp' || normalizedLang === 'cs';
-
-    const blockHtml = isCSharp
-      ? `<div class="inline-code-block"><span class="inline-code-lang">C#</span><pre class="code-display"><code>${code}</code></pre></div>`
-      : `<pre class="code-display"><code>${code}</code></pre>`;
-
-    const token = `@@CODEBLOCK_${codeBlocks.length}@@`;
-    codeBlocks.push(blockHtml);
-    return token;
+  // Convert fenced code blocks for C# to <pre><code>
+  safe = safe.replace(/```csharp\n([\s\S]*?)```/g, (_m, code) => {
+    return `<div class="code-snippet-card"><div class="code-header">C#</div><pre class="code-display"><code>${code}</code></pre></div>`;
   });
-
+  // Convert generic fenced code blocks
+  safe = safe.replace(/```\n([\s\S]*?)```/g, (_m, code) => {
+    return `<pre class="code-display"><code>${code}</code></pre>`;
+  });
   // Bold markers **text**
   safe = safe.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
   // Inline code `code`
-  safe = safe.replace(/`([^`\n]+)`/g, '<code>$1</code>');
-  // Line breaks
-  safe = safe.replace(/\n/g, '<br/>');
+  safe = safe.replace(/`([^`]+)`/g, '<code>$1</code>');
+  // Convert markdown-like list blocks to HTML lists
+  const convertListBlocks = (input) => {
+    const lines = input.split(/\r?\n/);
+    const out = [];
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      // Unordered list block (- or *)
+      if (/^\s*[-*]\s+/.test(line)) {
+        const items = [];
+        while (i < lines.length && /^\s*[-*]\s+/.test(lines[i])) {
+          items.push(lines[i].replace(/^\s*[-*]\s+/, ''));
+          i++;
+        }
+        out.push('<ul>' + items.map(li => `<li>${li}</li>`).join('') + '</ul>');
+        continue;
+      }
+      // Ordered list block (1. 2. ...)
+      if (/^\s*\d+\.\s+/.test(line)) {
+        const items = [];
+        while (i < lines.length && /^\s*\d+\.\s+/.test(lines[i])) {
+          items.push(lines[i].replace(/^\s*\d+\.\s+/, ''));
+          i++;
+        }
+        out.push('<ol>' + items.map(li => `<li>${li}</li>`).join('') + '</ol>');
+        continue;
+      }
+      // Normal line: keep as-is
+      out.push(line);
+      i++;
+    }
+    return out.join('\n');
+  };
 
-  safe = safe.replace(/@@CODEBLOCK_(\d+)@@/g, (_m, i) => codeBlocks[Number(i)] || '');
+  safe = convertListBlocks(safe);
+  // Line breaks
+  // Avoid converting all line breaks to <br/> to reduce visual noise.
 
   return safe;
 }

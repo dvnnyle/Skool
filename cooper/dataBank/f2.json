@@ -12,8 +12,8 @@
 		"answerIndex": 1,
 		"answer": "Hvor i koden en variabel er synlig og tilgjengelig",
 		"shortExplanation": "Scope handler om synlighet og levetid for variabler.",
-		"explanation": "Variabelomfang (scope) bestemmer hvor i koden en variabel er tilgjengelig.\n\nTenk på det som rom i et hus:\n- En variabel i soverommet (lokal) er bare tilgjengelig på soverommet\n- En variabel i stuen (feltvarabel) er tilgjengelig overalt i huset (klassen)\n\nNivåer av scope:\n- Blokk-scope: synlig bare innenfor { }\n- Metode-scope: synlig gjennom hele metoden\n- Klasse-scope: synlig i hele klassen (felt)",
-		"example": "```csharp\nclass Eksempel\n{\n    private int klasseFelt = 10; // synlig i hele klassen\n\n    void Metode()\n    {\n        int lokal = 5; // synlig kun i Metode()\n        {\n            int blokk = 2; // synlig kun i denne { }\n        }\n        // blokk er ikke tilgjengelig her\n    }\n}\n```"
+		"explanation": "Scope bestemmer hvor en variabel kan brukes: lokalt i en blokk/metode, eller som felt i en klasse. Feil scope kan føre til navnekollisjoner eller feil bruk.",
+		"example": "Eksempel på lokalt scope vs felt:\n```csharp\nclass C {\n  private int felt = 10; // synlig i hele klassen\n  void M() {\n    int lokal = 5; // synlig kun i M\n    { int blokk = 2; } // synlig kun her\n  }\n}\n```"
 	},
 	{
 		"id": 2,
@@ -28,8 +28,8 @@
 		"answerIndex": 1,
 		"answer": "Kun innenfor blokken/metoden der den er deklarert",
 		"shortExplanation": "Lokale variabler er begrenset til sitt kodeblokk-scope.",
-		"explanation": "En lokal variabel lever kun der den ble opprettet.\n\nNår blokken (metoden eller { }) slutter, «dør» variabelen.\n\nPraktiske konsekvenser:\n- Du kan ikke lese den utenfor blokken\n- To metoder kan ha variabler med samme navn uten konflikt\n- Kompilatoren påpeker feil hvis du forsøker å bruke en variabel utenfor dens scope",
-		"example": "```csharp\nvoid Beregn()\n{\n    int sum = 0;        // synlig i hele Beregn()\n\n    if (true)\n    {\n        int temp = 5;   // synlig kun inne i if-blokken\n        sum += temp;\n    }\n    // temp er ikke tilgjengelig her\n    Console.WriteLine(sum); // 5\n}\n```"
+		"explanation": "En lokal variabel lever i den blokken den ble opprettet i. Den er ikke tilgjengelig utenfor blokken eller i andre metoder.",
+		"example": "Blokkscope:\n```csharp\nvoid M() {\n  if (true) { int x = 1; }\n  // x er ikke synlig her\n}\n```"
 	},
 	{
 		"id": 3,
@@ -44,8 +44,8 @@
 		"answerIndex": 1,
 		"answer": "Å forbedre struktur og lesbarhet uten å endre oppførsel",
 		"shortExplanation": "Refaktorering forbedrer design uten å endre hva koden gjør.",
-		"explanation": "Refaktorering handler om å forbedre koden innenfra uten å endre hva den gjør utenfra.\n\nMål med refaktorering:\n- Gi variabler og metoder bedre, mer beskrivende navn\n- Dele opp lange metoder i mindre, fokuserte deler\n- Fjerne duplisert kode (DRY – Don't Repeat Yourself)\n- Gjøre koden enklere å teste\n\nViktig: programmet skal oppføre seg nøyaktig det samme før og etter refaktorering!",
-		"example": "```csharp\n// FØR refaktorering: lang, uklar metode\nvoid Behandle()\n{\n    // valider...\n    // lang forretningslogikk...\n    // logg...\n}\n\n// ETTER: oppdelt og lesbar\nvoid Behandle()\n{\n    Valider();\n    UtførArbeid();\n    Logg();\n}\n```"
+		"explanation": "Mål: bedre navn, mindre duplisering, klare ansvar, enklere tester. Oppførselen skal være den samme før og etter.",
+		"example": "Ekstraksjon av metode:\n```csharp\n// før\nvoid Process() { Validate(); /* lang logikk */ Log(); }\n// etter\nvoid Process() { Validate(); DoWork(); Log(); }\nvoid DoWork() { /* flyttet logikk */ }\n```"
 	},
 	{
 		"id": 4,
@@ -59,9 +59,9 @@
 		],
 		"answerIndex": 3,
 		"answer": "Alle ovenfor",
-		"shortExplanation": "Navn, metodeekstraksjon og å fjerne duplikater er sentralt i refaktorering.",
-		"explanation": "De vanligste refaktorerings-teknikkene er:\n\n1. Bedre navngiving:\n   - Endre x til antallBiler, b til harBetalt\n\n2. Ekstraksjon av metode:\n   - Ta ut en kodeblokk i en separat metode for gjenbruk\n\n3. Fjerne duplisert kode:\n   - Samle felles logikk på étt sted i stedet for å ha det mange steder\n\nAlle tre målene hænger sammen: god navngiving gjør koden lesbar, ekstraksjon gjør den gjenbrukbar, ingen duplisering gjør den vedlikeholdbar.",
-		"example": "```csharp\n// Gi funksjoner tydelige navn\nvoid KjørBetaling() { /* ... */ }  // bedre enn void KB()\n\n// Del opp en lang metode\nvoid RegistrerKunde()\n{\n    ValiderInformasjon();   // ekstraher logikk\n    LagreIDatabase();\n    SendVelkomstEpost();\n}\n```"
+		"shortExplanation": "Navn, metodeekstraksjon og å fjerne duplikater er sentralt.",
+		"explanation": "Refaktorering handler ofte om å gi meningsfulle navn, bryte opp lange funksjoner og samle felles logikk for å redusere duplisering.",
+		"example": "Eksempler:\n- Gi funksjoner tydelige navn\n- Del opp lange metoder i mindre\n- Flytt felles logikk til én metode"
 	},
 	{
 		"id": 5,
@@ -75,9 +75,9 @@
 		],
 		"answerIndex": 0,
 		"answer": "dotnet new console",
-		"shortExplanation": "Bruk .NET CLI: dotnet new console oppretter et nytt konsollprosjekt.",
-		"explanation": "dotnet new console oppretter et nytt C# konsollprosjekt fra kommandolinjen.\n\nHva kommandoen gjør:\n- Lager en mappe med prosjektstrukturen\n- Oppretter Program.cs med en main-metode\n- Oppretter *.csproj-filen som konfigurerer prosjektet\n\nKombinasjonen oppretter alt du trenger for å komme i gang med C# på sekunder, uten manuelle filer.",
-		"example": "```csharp\n// Kjør i terminalen:\nmkdir MinApp\ncd MinApp\ndotnet new console\n\n// Resulterer i:\n// MinApp/\n//   MinApp.csproj\n//   Program.cs\n```"
+		"shortExplanation": "Bruk .NET CLI: dotnet new console.",
+		"explanation": "CLI-verktøyet \"dotnet\" genererer prosjektstruktur med Program.cs og .csproj.",
+		"example": "Kommandoer:\n```\nmkdir MyApp && cd MyApp\ndotnet new console\n```"
 	},
 	{
 		"id": 6,
@@ -91,9 +91,9 @@
 		],
 		"answerIndex": 1,
 		"answer": "dotnet run",
-		"shortExplanation": "dotnet run bygger og starter prosjektet med én kommando.",
-		"explanation": "dotnet run er din beste venn under utvikling.\n\nHva kommandoen gjør:\n1. Bygger prosjektet om nødvendig (kompilerer C# til kjørbar kode)\n2. Starter programmet automatisk\n\nAndre nyttige dotnet-kommandoer:\n- dotnet build – kun kompiler uten å starte\n- dotnet test – kjør enhetstester\n- dotnet publish – klargjrø for distribusjon",
-		"example": "```csharp\n// I Program.cs:\nConsole.WriteLine(\"Hei fra .NET!\");\n\n// I terminalen:\ndotnet run\n// Output: Hei fra .NET!\n```"
+		"shortExplanation": "dotnet run bygger og kjører prosjektet.",
+		"explanation": "`dotnet run` bygger automatisk om nødvendig og starter programmet.",
+		"example": "Kjør prosjektet:\n```\ndotnet run\n```"
 	},
 	{
 		"id": 7,
@@ -102,9 +102,9 @@
 		"options": ["class", "struct", "object", "new"],
 		"answerIndex": 0,
 		"answer": "class",
-		"shortExplanation": "`class` brukes for å definere en klasse i C#.",
-		"explanation": "class er nøkkelordet for å definere en klasse – en mal (template) for objekter.\n\nEn klasse kan inneholde:\n- Felt (data): hva objektet husker\n- Egenskaper (properties): kontrollert tilgang til data\n- Metoder: hva objektet kan gjøre\n- Konstruktører: hvordan objektet initialiseres\n\nNavnekonvensjon: klasser starter alltid med stor bokstav, f.eks. Person, Bankkonto, Bil.",
-		"example": "```csharp\npublic class Person\n{\n    public string Navn { get; set; }\n    public int Alder { get; set; }\n\n    public void Hils()\n    {\n        Console.WriteLine($\"Hei, jeg heter {Navn}!\");\n    }\n}\n```"
+		"shortExplanation": "`class` brukes for å definere klasser.",
+		"explanation": "Klasser beskriver struktur og oppførsel for objekter gjennom felt og metoder.",
+		"example": "Definere klasse:\n```csharp\npublic class Person { public string Navn { get; set; } }\n```"
 	},
 	{
 		"id": 8,
@@ -113,9 +113,9 @@
 		"options": ["class", "using", "new", "this"],
 		"answerIndex": 2,
 		"answer": "new",
-		"shortExplanation": "`new` allokerer minne og kaller konstruktøren for å opprette et objekt.",
-		"explanation": "For å bruke en klasse må du opprette en instans med new.\n\nNår du skriver new Person():\n1. C# reserverer plass i minnet til objektet\n2. Konstruktøren kalles og initialiserer feltene\n3. En referanse til det nye objektet returneres\n\nDu kan opprette så mange instanser du vil fra samme klasse. Hver instans er selvstendig med egne verdier.",
-		"example": "```csharp\nvar ada = new Person { Navn = \"Ada\", Alder = 36 };\nvar alan = new Person { Navn = \"Alan\", Alder = 41 };\n\nada.Hils();  // Hei, jeg heter Ada!\nalan.Hils(); // Hei, jeg heter Alan!\n```"
+		"shortExplanation": "`new` allokerer og initialiserer et objekt.",
+		"explanation": "`new` kaller klassens konstruktør og returnerer en referanse til objektet.",
+		"example": "Opprette objekt:\n```csharp\nvar p = new Person { Navn = \"Ada\" };\n```"
 	},
 	{
 		"id": 9,
@@ -129,9 +129,9 @@
 		],
 		"answerIndex": 1,
 		"answer": "public int Sum(int a, int b)",
-		"shortExplanation": "Metoden tar inn parametere og returnerer en verdi av angitt type.",
-		"explanation": "En metode har tre viktige deler i sin signatur:\n\n1. Returtype: hva metoden sender tilbake (int, string, void, ...)\n2. Metodenavn: beskrivende navn på hva den gjør (Sum, HentNavn...)\n3. Parametere: input metoden trenger for å gjøre jobben sin\n\npublic int Sum(int a, int b) har:\n- Returtype: int\n- Navn: Sum\n- Parametere: to int-verdier (a og b)",
-		"example": "```csharp\nint Sum(int a, int b)\n{\n    return a + b;\n}\n\n// Kortform med expression body:\nint Kvadrat(int x) => x * x;\n\nConsole.WriteLine(Sum(3, 4));   // 7\nConsole.WriteLine(Kvadrat(5));  // 25\n```"
+		"shortExplanation": "Metoden tar parametere og returnerer `int`.",
+		"explanation": "Signaturen viser returtypen (`int`) og to parametere (`a`, `b`).",
+		"example": "Metode og kall:\n```csharp\nint Sum(int a, int b) => a + b;\nvar s = Sum(2, 3); // 5\n```"
 	},
 	{
 		"id": 10,
@@ -145,9 +145,9 @@
 		],
 		"answerIndex": 1,
 		"answer": "obj.Method()",
-		"shortExplanation": "Bruk punktums­notasjon for å kalle metoder på et objekt.",
-		"explanation": "For å kalle en metode på et objekt bruker du punktum (.) mellom objektet og metodenavnet.\n\nSyntaks: objekt.Metode(argumenter)\n\nDette er grunnleggende OOP-syntaks i C#.\nDu \"sender en melding\" til objektet og ber det utføre en handling.\n\nKjede-kall er også mulig når en metode returnerer et objekt:", 
-		"example": "```csharp\nvar person = new Person { Navn = \"Ada Lovelace\" };\n\n// Kalle metode på objektet\nperson.Hils();\n\n// Kjedet kall\nstring store = person.Navn.ToUpper(); // \"ADA LOVELACE\"\nConsole.WriteLine(store);\n```"
+		"shortExplanation": "Bruk punktum for å aksessere metoder.",
+		"explanation": "Syntaksen er `objekt.Metode(args)`.",
+		"example": "Kalle metode:\n```csharp\nvar p = new Person { Navn = \"Ada\" };\nConsole.WriteLine(p.Navn.ToUpper());\n```"
 	},
 	{
 		"id": 11,
@@ -156,9 +156,9 @@
 		"options": ["if/else", "switch", "do-while", "foreach"],
 		"answerIndex": 0,
 		"answer": "if/else",
-		"shortExplanation": "Betinget kjøring med `if`/`else` – koden i blokken kjøres bare hvis betingelsen er true.",
-		"explanation": "if/else er den mest grunnleggende kontrollstruktur i C#.\n\nHvordan det fungerer:\n- if (betingelse): kjør blokken hvis true\n- else: kjør denne blokken hvis betingelsen ovenfor er false\n\nKoden i eksempelet:\n- score = 12\n- 12 >= 10 er true\n- Derfor skrives \"Bra!\" ut",
-		"example": "```csharp\nint score = 12;\n\nif (score >= 10)\n{\n    Console.WriteLine(\"Bra!\"); // kjøres (12 >= 10 er true)\n}\nelse\n{\n    Console.WriteLine(\"\u00d8v mer\"); // hopper over\n}\n```"
+		"shortExplanation": "Betinget kjøring med `if`/`else`.",
+		"explanation": "`if` evaluerer et boolsk uttrykk og kjører blokk basert på resultatet.",
+		"example": "Output:\n```\nBra!\n```"
 	},
 	{
 		"id": 12,
@@ -167,9 +167,9 @@
 		"options": ["Program.cs", "README.md", "*.csproj", "app.config"],
 		"answerIndex": 2,
 		"answer": "*.csproj",
-		"shortExplanation": "`csproj` inneholder prosjektets konfigurasjon, byggeinstellinger og pakkereferanser.",
-		"explanation": "*.csproj (C# project file) er XML-filen som beskriver prosjektet ditt til .NET.\n\nDen inneholder:\n- SDK og målrammeverk (f.eks. net8.0)\n- NuGet-pakkeavhengigheter\n- Kompileringsinnstillinger\n- Output-konfigurasjon\n\nDu trenger sjelden å redigere den manuelt – dotnet add package og lignende kommandoer oppdaterer den automatisk.",
-		"example": "```csharp\n// Typisk .csproj-fil:\n<Project Sdk=\"Microsoft.NET.Sdk\">\n  <PropertyGroup>\n    <OutputType>Exe</OutputType>\n    <TargetFramework>net8.0</TargetFramework>\n  </PropertyGroup>\n\n  <ItemGroup>\n    <PackageReference Include=\"Newtonsoft.Json\" Version=\"13.0.3\" />\n  </ItemGroup>\n</Project>\n```"
+		"shortExplanation": "`csproj` inneholder metadata og referanser.",
+		"explanation": "`csproj`-filen beskriver SDK, målramme, pakker og byggeinnstillinger.",
+		"example": "Utdrag:\n```xml\n<Project Sdk=\"Microsoft.NET.Sdk\">\n  <PropertyGroup>\n    <TargetFramework>net8.0</TargetFramework>\n  </PropertyGroup>\n</Project>\n```"
 	},
 	{
 		"id": 13,
@@ -183,9 +183,9 @@
 		],
 		"answerIndex": 0,
 		"answer": "Felt lagrer data direkte; egenskaper gir get/set med validering",
-		"shortExplanation": "Bruk egenskaper for kontrollert tilgang til private felt.",
-		"explanation": "Et felt er en vanlig variabel i klassen. En egenskap (property) pakker feltet inn og gir kontroll:\n\nFelt (direkte tilgang):\n- Alle kan lese og skrive hva de vil\n- Ingen validering mulig\n\nEgenskap med get/set:\n- get: kontroller hva som leses\n- set: kontroller og valider hva som skrives\n\nBest practice: gjrø felt private og eksponere data via egenskaper.",
-		"example": "```csharp\nclass Bankkonto\n{\n    private decimal _saldo; // privat felt\n\n    public decimal Saldo    // egenskap med validering\n    {\n        get => _saldo;\n        set\n        {\n            if (value < 0)\n                throw new ArgumentException(\"Saldo kan ikke være negativ\");\n            _saldo = value;\n        }\n    }\n}\n```"
+		"shortExplanation": "Bruk egenskaper for kontrollert tilgang.",
+		"explanation": "Egenskaper kapsler inn felt med `get`/`set` og kan validere/transformere verdier.",
+		"example": "Egenskap over felt:\n```csharp\nclass Konto {\n  private decimal _saldo;\n  public decimal Saldo {\n    get => _saldo;\n    private set { if (value < 0) throw new ArgumentException(); _saldo = value; }\n  }\n}\n```"
 	},
 	{
 		"id": 14,
