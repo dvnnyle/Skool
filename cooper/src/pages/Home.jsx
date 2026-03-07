@@ -375,8 +375,8 @@ function Home() {
       </aside>
 
       <div className="home-content">
-        <h1 className="home-title">Teamwork & Group Dynamics</h1>
-        <p>Master the fundamentals of effective teamwork</p>
+        <h1 className="home-title">C# Learning Hub</h1>
+        <p>Master C# from the ground up — quizzes, match pairs & guided roads</p>
         
         <div className="gamification-wrapper">
           <div className="medal-milestones-inline">
