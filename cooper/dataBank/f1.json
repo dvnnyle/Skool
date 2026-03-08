@@ -24,11 +24,11 @@
       "Kun metoder",
       "Kun data",
       "Attributter og metoder",
-      "Klasser og løkker"
+      "Klasser og loops"
     ],
     "answerIndex": 2,
     "answer": "Attributter og metoder",
-    "explanation": "Objekter inneholder både data (**attributter/egenskaper**) og funksjonalitet (**metoder**).\n\nBegreper:\n- **Attributter**/egenskaper: verdier som beskriver objektets tilstand\n- **Metoder**: funksjoner som utfører oppgaver/oppførsel",
+    "explanation": "Objekter inneholder både data (**attributter/properties**) og funksjonalitet (**metoder**).\n\nBegreper:\n- **Attributter**/properties: verdier som beskriver objektets tilstand\n- **Metoder**: funksjoner som utfører oppgaver/oppførsel",
     "shortExplanation": "Objekter har data og metoder.",
     "example": "Attributter beskriver tilstand, metoder oppførsel:\n```csharp\npublic class Person {\n    public string Navn { get; set; }\n    public int Alder { get; set; }\n    public string Presenter() => $\"Hei, jeg heter {Navn} og er {Alder} år.\";\n}\nvar p = new Person { Navn = \"Jonas\", Alder = 20 };\nConsole.WriteLine(p.Presenter());\n```",
     "hvaGjørDen": "Et objekt er en «ting» i koden med egne data (attributter) og oppgaver det kan utføre (metoder)."
@@ -52,24 +52,24 @@
   },
   {
     "id": 4,
-    "section": "OOP-Prinsipper",
-    "question": "Hva er innkapsling (encapsulation)?",
+    "section": "OOP Principles",
+    "question": "Hva er encapsulation (encapsulation)?",
     "options": [
       "Å arve fra en annen klasse",
       "Å skjule implementasjonsdetaljer",
       "Å bruke mange klasser",
-      "Å bruke løkker"
+      "Å bruke loops"
     ],
     "answerIndex": 1,
     "answer": "Å skjule implementasjonsdetaljer",
-    "explanation": "**Innkapsling** skjuler og beskytter interne detaljer ved å kontrollere tilgang til data gjennom egenskaper/metoder. Målet er å hindre feil bruk og ivareta konsistens.\n\nNyttige nøkkelord:\n- `private` for interne felt\n- `public` for kontrollert tilgang via metoder/egenskaper",
-    "shortExplanation": "Innkapsling skjuler detaljer.",
+    "explanation": "**Encapsulation** skjuler og beskytter interne detaljer ved å kontrollere tilgang til data gjennom properties/metoder. Målet er å hindre feil bruk og ivareta konsistens.\n\nNyttige nøkkelord:\n- `private` for interne felt\n- `public` for kontrollert tilgang via metoder/properties",
+    "shortExplanation": "Encapsulation skjuler detaljer.",
     "example": "Kontrollert tilgang med egenskaper:\n```csharp\npublic class Konto {\n    private decimal saldo;\n    public decimal Saldo {\n        get => saldo;\n        private set {\n            if (value < 0) throw new ArgumentException(\"Saldo kan ikke være negativ\");\n            saldo = value;\n        }\n    }\n    public void SettInn(decimal beløp) => Saldo += beløp;\n}\n```",
-    "hvaGjørDen": "Innkapsling betyr at vi gjemmer innmaten i en klasse og bare viser det vi ønsker at andre skal se."
+    "hvaGjørDen": "Encapsulation betyr at vi gjemmer innmaten i en klasse og bare viser det vi ønsker at andre skal se."
   },
   {
     "id": 5,
-    "section": "OOP-Prinsipper",
+    "section": "OOP Principles",
     "question": "Hva er arv (inheritance)?",
     "options": [
       "Når en metode kalles",
@@ -79,32 +79,32 @@
     ],
     "answerIndex": 1,
     "answer": "Når en klasse arver fra en annen",
-    "explanation": "**Arv** lar en klasse (subklasse) gjenbruke og utvide egenskaper/metoder fra en annen klasse (superklasse). Dette fremmer gjenbruk og struktur.",
+    "explanation": "**Arv** lar en klasse (subclass) gjenbruke og utvide properties/metoder fra en annen klasse (superclass). Dette fremmer gjenbruk og struktur.",
     "shortExplanation": "Arv betyr gjenbruk av kode.",
     "example": "Subklasser arver fra superklasser:\n```csharp\npublic class Dyr { public virtual string Lyd() => \"(stille)\"; }\npublic class Hund : Dyr { public override string Lyd() => \"Voff!\"; }\nvar d = new Hund();\nConsole.WriteLine(d.Lyd()); // Voff!\n```",
     "hvaGjørDen": "Arv lar en klasse ta i bruk og utvide kode fra en annen klasse, slik at du slipper å skrive det samme om igjen."
   },
   {
     "id": 6,
-    "section": "OOP-Prinsipper",
-    "question": "Hva er polymorfisme?",
+    "section": "OOP Principles",
+    "question": "Hva er polymorphism?",
     "options": [
       "Én metode, flere former",
       "Flere klasser, én variabel",
       "Én klasse, én metode",
-      "Flere løkker"
+      "Flere loops"
     ],
     "answerIndex": 0,
     "answer": "Én metode, flere former",
-    "explanation": "**Polymorfisme** betyr at samme metode kan ha ulik oppførsel avhengig av objektets konkrete type. Oftest via `virtual`/`override` og kall gjennom en felles referanse.",
-    "shortExplanation": "Polymorfisme = mange former.",
+    "explanation": "**Polymorphism** betyr at samme metode kan ha ulik oppførsel avhengig av objektets konkrete type. Oftest via `virtual`/`override` og kall gjennom en felles referanse.",
+    "shortExplanation": "Polymorphism = mange former.",
     "example": "Samme metode, ulik oppførsel:\n```csharp\npublic class Dyr { public virtual string Lyd() => \"(stille)\"; }\npublic class Hund : Dyr { public override string Lyd() => \"Voff!\"; }\npublic class Katt : Dyr { public override string Lyd() => \"Mjau!\"; }\nDyr[] dyr = { new Hund(), new Katt() };\nforeach (var d in dyr) Console.WriteLine(d.Lyd());\n```",
-    "hvaGjørDen": "Polymorfisme betyr at samme metode kan oppføre seg ulikt avhengig av hvilken type objekt du bruker den på."
+    "hvaGjørDen": "Polymorphism betyr at samme metode kan oppføre seg ulikt avhengig av hvilken type objekt du bruker den på."
   },
   {
     "id": 7,
-    "section": "OOP-Prinsipper",
-    "question": "Hva er abstraksjon?",
+    "section": "OOP Principles",
+    "question": "Hva er abstraction?",
     "options": [
       "Å skjule kompleksitet",
       "Å skrive all kode i én klasse",
@@ -113,10 +113,10 @@
     ],
     "answerIndex": 0,
     "answer": "Å skjule kompleksitet",
-    "explanation": "**Abstraksjon** viser kun nødvendig funksjonalitet og skjuler detaljer for brukeren. Man kan definere **abstrakte klasser** eller **interfacer** for felles kontrakter.",
-    "shortExplanation": "Abstraksjon skjuler detaljer.",
+    "explanation": "**Abstraction** viser kun nødvendig funksjonalitet og skjuler detaljer for brukeren. Man kan definere **abstrakte klasser** eller **interfacer** for felles kontrakter.",
+    "shortExplanation": "Abstraction skjuler detaljer.",
     "example": "Bruke interface for å skjule implementasjon:\n```csharp\npublic interface IBetaling { void Betal(decimal beløp); }\npublic class KortBetaling : IBetaling { public void Betal(decimal beløp) { /* ... */ } }\n```",
-    "hvaGjørDen": "Abstraksjon betyr at vi skjuler kompliserte detaljer og bare viser det brukeren trenger å vite."
+    "hvaGjørDen": "Abstraction betyr at vi skjuler kompliserte detaljer og bare viser det brukeren trenger å vite."
   },
   {
     "id": 8,
@@ -171,11 +171,11 @@
   },
   {
     "id": 11,
-    "section": "Variabler",
+    "section": "Variables",
     "question": "Hva er en variabel?",
     "options": [
       "En metode",
-      "En løkke",
+      "En loop",
       "En beholder for data",
       "En klasse"
     ],
@@ -188,7 +188,7 @@
   },
   {
     "id": 12,
-    "section": "Variabler",
+    "section": "Variables",
     "question": "Hvilket variabelnavn er gyldig i C#?",
     "options": [
       "2alder",
@@ -205,7 +205,7 @@
   },
   {
     "id": 13,
-    "section": "Operatorer",
+    "section": "Operators",
     "question": "Hvilken operator brukes for likhet?",
     "options": [
       "=",
@@ -222,7 +222,7 @@
   },
   {
     "id": 14,
-    "section": "Operatorer",
+    "section": "Operators",
     "question": "Hva returnerer logiske operatorer?",
     "options": [
       "int",
@@ -239,7 +239,7 @@
   },
   {
     "id": 15,
-    "section": "Kontrollflyt",
+    "section": "Control Flow",
     "question": "Når brukes if-setning?",
     "options": [
       "For gjentakelse",
@@ -256,12 +256,12 @@
   },
   {
     "id": 16,
-    "section": "Kontrollflyt",
+    "section": "Control Flow",
     "question": "Når er switch mer hensiktsmessig enn if?",
     "options": [
       "Når det er få betingelser",
       "Når man sjekker mange verdier",
-      "Når man bruker løkker",
+      "Når man bruker loops",
       "Når man bruker metoder"
     ],
     "answerIndex": 1,
@@ -273,8 +273,8 @@
   },
   {
     "id": 17,
-    "section": "Løkker",
-    "question": "Hvilken løkke kjøres minst én gang?",
+    "section": "Loops",
+    "question": "Hvilken loop kjøres minst én gang?",
     "options": [
       "for",
       "while",
@@ -283,15 +283,15 @@
     ],
     "answerIndex": 2,
     "answer": "do-while",
-    "explanation": "`do-while` løkken evaluerer betingelsen **etter** første gjennomløp og kjøres derfor minst én gang.",
+    "explanation": "`do-while` loopen evaluerer betingelsen **etter** første gjennomløp og kjøres derfor minst én gang.",
     "shortExplanation": "do-while alltid én gang.",
     "example": "Minst én iterasjon:\n```csharp\nint i = 0;\ndo { Console.WriteLine(i); i++; } while (i < 1);\n```",
-    "hvaGjørDen": "`do-while` er en løkke som alltid kjøres minst én gang, uansett betingelse."
+    "hvaGjørDen": "`do-while` er en loop som alltid kjøres minst én gang, uansett betingelse."
   },
   {
     "id": 18,
-    "section": "Løkker",
-    "question": "Når brukes for-løkke oftest?",
+    "section": "Loops",
+    "question": "Når brukes for-loop oftest?",
     "options": [
       "Når antall repetisjoner er kjent",
       "Når betingelsen er ukjent",
@@ -303,11 +303,11 @@
     "explanation": "`for` brukes når du **vet antallet** repetisjoner eller vil styre indeks.",
     "shortExplanation": "for = kjent antall.",
     "example": "For-løkke med tre iterasjoner:\n```csharp\nfor (int i = 0; i < 3; i++) {\n    Console.WriteLine(i);\n}\n```",
-    "hvaGjørDen": "`for`-løkken brukes når du på forhånd vet nøyaktig hvor mange ganger koden skal kjøres."
+    "hvaGjørDen": "`for`-loopen brukes når du på forhånd vet nøyaktig hvor mange ganger koden skal kjøres."
   },
   {
     "id": 19,
-    "section": "Metoder",
+    "section": "Methods",
     "question": "Hva betyr void i en metode?",
     "options": [
       "Metoden returnerer int",
@@ -324,8 +324,8 @@
   },
   {
     "id": 20,
-    "section": "Metoder",
-    "question": "Hva er metodeoverbelastning?",
+    "section": "Methods",
+    "question": "Hva er method overloading?",
     "options": [
       "Samme metode i ulike klasser",
       "Samme metode med ulike parametere",
@@ -334,14 +334,14 @@
     ],
     "answerIndex": 1,
     "answer": "Samme metode med ulike parametere",
-    "explanation": "**Metodeoverbelastning**: flere metoder med **samme navn** men **ulike parametere** (type/antall/rekkefølge).",
+    "explanation": "**Method overloading**: flere metoder med **samme navn** men **ulike parametere** (type/antall/rekkefølge).",
     "shortExplanation": "Samme navn, ulike parametere.",
     "example": "Overbelastede metoder:\n```csharp\npublic void Send(string tekst) { /* ... */ }\npublic void Send(string tekst, int prioritet) { /* ... */ }\n```",
-    "hvaGjørDen": "Metodeoverbelastning lar deg ha flere metoder med samme navn, men med ulike typer eller antall parametere."
+    "hvaGjørDen": "Method overloading lar deg ha flere metoder med samme navn, men med ulike typer eller antall parametere."
   },
   {
     "id": 21,
-    "section": "Klasser",
+    "section": "Classes",
     "question": "Hvordan oppretter man et objekt i C#?",
     "options": [
       "Ved bruk av class",
@@ -351,26 +351,26 @@
     ],
     "answerIndex": 1,
     "answer": "Ved bruk av new",
-    "explanation": "Objekter opprettes med `new` som kaller klassens konstruktør.",
+    "explanation": "Objekter opprettes med `new` som kaller klassens constructor.",
     "shortExplanation": "new lager objekt.",
     "example": "Opprette objekt og liste:\n```csharp\nvar p = new Person(\"Ada\");\nvar liste = new List<int>();\n```",
-    "hvaGjørDen": "`new` oppretter et nytt objekt fra en klasse og kaller konstruktøren."
+    "hvaGjørDen": "`new` oppretter et nytt objekt fra en klasse og kaller constructoren."
   },
   {
     "id": 22,
-    "section": "Klasser",
-    "question": "Hva er en konstruktør?",
+    "section": "Classes",
+    "question": "Hva er en constructor?",
     "options": [
       "En metode som sletter objekter",
       "En metode som initialiserer objekter",
-      "En løkke",
+      "En loop",
       "En datatype"
     ],
     "answerIndex": 1,
     "answer": "En metode som initialiserer objekter",
-    "explanation": "En **konstruktør** initialiserer nye objekter (setter starttilstand). Den har samme navn som klassen og ingen returtype.",
-    "shortExplanation": "Konstruktør = init.",
+    "explanation": "En **constructor** initialiserer nye objekter (setter starttilstand). Den har samme navn som klassen og ingen returtype.",
+    "shortExplanation": "Constructor = init.",
     "example": "Konstruktør setter starttilstand:\n```csharp\npublic class Person {\n    public string Navn { get; }\n    public Person(string navn) { Navn = navn; }\n}\nvar p = new Person(\"Ada\");\n```",
-    "hvaGjørDen": "En konstruktør er en spesiell metode uten returtype som kjøres automatisk når du lager et objekt med `new`."
+    "hvaGjørDen": "En constructor er en spesiell metode uten returtype som kjøres automatisk når du lager et objekt med `new`."
   }
 ]

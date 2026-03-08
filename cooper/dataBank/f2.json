@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "section": "Variabelomfang",
+    "section": "Variable Scope",
     "question": "Hva betyr variabelomfang (scope) i C#?",
     "options": [
       "Regler for minnehåndtering",
@@ -18,7 +18,7 @@
   },
   {
     "id": 2,
-    "section": "Variabelomfang",
+    "section": "Variable Scope",
     "question": "Hvor er en lokal variabel i C# synlig?",
     "options": [
       "I hele programmet",
@@ -35,7 +35,7 @@
   },
   {
     "id": 3,
-    "section": "Refaktorering",
+    "section": "Refactoring",
     "question": "Hva betyr refaktorering av kode?",
     "options": [
       "Å endre kode for ny funksjonalitet",
@@ -52,7 +52,7 @@
   },
   {
     "id": 4,
-    "section": "Refaktorering",
+    "section": "Refactoring",
     "question": "Hvilket av følgende er vanlige refaktoreringsteknikker?",
     "options": [
       "Bedre navngivning",
@@ -69,7 +69,7 @@
   },
   {
     "id": 5,
-    "section": "Prosjekter",
+    "section": "Projects",
     "question": "Hvordan oppretter du et nytt .NET C# konsollprosjekt?",
     "options": [
       "dotnet new console",
@@ -86,7 +86,7 @@
   },
   {
     "id": 6,
-    "section": "Prosjekter",
+    "section": "Projects",
     "question": "Hvordan kjører du et .NET-prosjekt fra kommandolinjen?",
     "options": [
       "dotnet compile",
@@ -103,7 +103,7 @@
   },
   {
     "id": 7,
-    "section": "Syntaks",
+    "section": "Syntax",
     "question": "Hvilket nøkkelord erklærer en klasse i C#?",
     "options": [
       "class",
@@ -120,7 +120,7 @@
   },
   {
     "id": 8,
-    "section": "Objekter",
+    "section": "Objects",
     "question": "Hvordan oppretter du et objekt av en klasse?",
     "options": [
       "class",
@@ -131,13 +131,13 @@
     "answerIndex": 2,
     "answer": "new",
     "shortExplanation": "`new` allokerer og initialiserer et objekt.",
-    "explanation": "`new` kaller klassens konstruktør og returnerer en referanse til objektet.",
+    "explanation": "`new` kaller klassens constructor og returnerer en referanse til objektet.",
     "example": "Opprette objekt:\n```csharp\nvar p = new Person { Navn = \"Ada\" };\n```",
     "hvaGjørDen": "`new` brukes til å opprette et nytt objekt fra en klasse."
   },
   {
     "id": 9,
-    "section": "Metoder",
+    "section": "Methods",
     "question": "Hvilken metode har både parametere og returverdi?",
     "options": [
       "public void Logg()",
@@ -154,7 +154,7 @@
   },
   {
     "id": 10,
-    "section": "Metoder",
+    "section": "Methods",
     "question": "Hvordan kaller du en metode på et objekt?",
     "options": [
       "Method obj()",
@@ -171,7 +171,7 @@
   },
   {
     "id": 11,
-    "section": "Syntaks",
+    "section": "Syntax",
     "question": "Hva er korrekt C#-syntaks for en if/else?\n```csharp\nint score = 12;\nif (score >= 10) {\n    Console.WriteLine(\"Bra!\");\n} else {\n    Console.WriteLine(\"Øv mer\");\n}\n```",
     "options": [
       "if/else",
@@ -188,7 +188,7 @@
   },
   {
     "id": 12,
-    "section": "Prosjekter",
+    "section": "Projects",
     "question": "Hvilken fil beskriver prosjektets konfigurasjon og avhengigheter?",
     "options": [
       "Program.cs",
@@ -205,24 +205,24 @@
   },
   {
     "id": 13,
-    "section": "Klasser",
-    "question": "Hva er forskjellen på et felt og en egenskap i C#?",
+    "section": "Classes",
+    "question": "Hva er forskjellen på et felt og en property i C#?",
     "options": [
-      "Felt lagrer data direkte; egenskaper gir get/set med validering",
-      "Egenskap er alltid det samme som et felt",
-      "Felt er en metode; egenskap er en variabel",
+      "Felt lagrer data direkte; properties gir get/set med validering",
+      "Property er alltid det samme som et felt",
+      "Felt er en metode; property er en variabel",
       "Ingen forskjell"
     ],
     "answerIndex": 0,
-    "answer": "Felt lagrer data direkte; egenskaper gir get/set med validering",
-    "shortExplanation": "Bruk egenskaper for kontrollert tilgang.",
-    "explanation": "Egenskaper kapsler inn felt med `get`/`set` og kan validere/transformere verdier.",
+    "answer": "Felt lagrer data direkte; properties gir get/set med validering",
+    "shortExplanation": "Bruk properties for kontrollert tilgang.",
+    "explanation": "Properties kapsler inn felt med `get`/`set` og kan validere/transformere verdier.",
     "example": "Egenskap over felt:\n```csharp\nclass Konto {\n  private decimal _saldo;\n  public decimal Saldo {\n    get => _saldo;\n    private set { if (value < 0) throw new ArgumentException(); _saldo = value; }\n  }\n}\n```",
-    "hvaGjørDen": "Et felt lagrer data direkte; en egenskap gir kontrollert tilgang via `get` og `set`."
+    "hvaGjørDen": "Et felt lagrer data direkte; en property gir kontrollert tilgang via `get` og `set`."
   },
   {
     "id": 14,
-    "section": "Metoder",
+    "section": "Methods",
     "question": "Hvilken signatur beskriver en metode uten parametere som returnerer int?",
     "options": [
       "int Get()",

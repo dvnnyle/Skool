@@ -63,13 +63,13 @@
     "answerIndex": 1,
     "answer": "En sekvens av tegn – tekst",
     "shortExplanation": "`string` er en uforanderlig sekvens av tegn for tekst-håndtering.",
-    "explanation": "string er den grunnleggende teksttypen i C#.\n\nViktige egenskaper:\n- Uforanderlig (immutable) – du lager en ny streng ved endring\n- Kan være tom (\"\") eller null\n- Rik med metoder: Length, ToUpper(), Contains(), Split(), etc.\n\nNyttige string-operasjoner:\n- Sammenslåing: str1 + str2\n- Interpolasjon: $\"Hei {navn}\"\n- Lengde: .Length",
+    "explanation": "string er den grunnleggende teksttypen i C#.\n\nViktige properties:\n- Uforanderlig (immutable) – du lager en ny streng ved endring\n- Kan være tom (\"\") eller null\n- Rik med metoder: Length, ToUpper(), Contains(), Split(), etc.\n\nNyttige string-operasjoner:\n- Sammenslåing: str1 + str2\n- Interpolasjon: $\"Hei {navn}\"\n- Lengde: .Length",
     "example": "```csharp\nstring navn = \"Ola Nordmann\";\n\nConsole.WriteLine(navn.Length);         // 12\nConsole.WriteLine(navn.ToUpper());      // OLA NORDMANN\nConsole.WriteLine(navn.Contains(\"Ola\")); // True\n\n// String interpolasjon:\nint alder = 30;\nstring melding = $\"Hei {navn}, du er {alder} år gammel.\";\nConsole.WriteLine(melding);\n```",
     "hvaGjørDen": "`string` er datatypen for tekst – en rekke tegn som navn, setninger og kodeord."
   },
   {
     "id": 5,
-    "section": "F6: Metoder",
+    "section": "F6: Methods",
     "question": "Hva betyr `void` som returtype?",
     "options": [
       "Metoden returnerer ingenting",
@@ -86,7 +86,7 @@
   },
   {
     "id": 6,
-    "section": "F6: Metoder",
+    "section": "F6: Methods",
     "question": "Hva skjer med `return`-verdien i en metode med returtype `int`?",
     "options": [
       "Den ignoreres alltid",
@@ -103,7 +103,7 @@
   },
   {
     "id": 7,
-    "section": "F6: Metoder",
+    "section": "F6: Methods",
     "question": "Hva er `this` i en klasse?",
     "options": [
       "En referanse til det nåværende objektet",
@@ -114,13 +114,13 @@
     "answerIndex": 0,
     "answer": "En referanse til det nåværende objektet",
     "shortExplanation": "`this` peker på objektet som koden kjøres på akkurat nå.",
-    "explanation": "this er et nøkkelord som refererer til den nåværende instansen av klassen.\n\nNår er this nyttig:\n1. Skille mellom parametre og felt med samme navn\n2. Sende seg selv som argument til en metode\n3. Kalle en annen konstruktør i same klasse (this(...))\n\nBeste praksis: bruk this.feltnavn når parameternavn og feltnavn er identiske.",
+    "explanation": "this er et nøkkelord som refererer til den nåværende instansen av klassen.\n\nNår er this nyttig:\n1. Skille mellom parametre og felt med samme navn\n2. Sende seg selv som argument til en metode\n3. Kalle en annen constructor i same klasse (this(...))\n\nBeste praksis: bruk this.feltnavn når parameternavn og feltnavn er identiske.",
     "example": "```csharp\npublic class Person\n{\n    private string navn;\n    private int alder;\n\n    public Person(string navn, int alder)\n    {\n        this.navn = navn;   // this.navn = felt, navn = parameter\n        this.alder = alder;\n    }\n\n    public void Presenter()\n    {\n        Console.WriteLine($\"Jeg er {this.navn}, {this.alder} år\");\n    }\n}\n```",
     "hvaGjørDen": "`this` refererer til det nåværende objektet – nyttig for å skille felt fra parametere med samme navn."
   },
   {
     "id": 8,
-    "section": "F6: Kontrollflyt",
+    "section": "F6: Control Flow",
     "question": "Hva gjør `if/else` i C#?",
     "options": [
       "Definerer en klasse",
@@ -137,8 +137,8 @@
   },
   {
     "id": 9,
-    "section": "F6: Kontrollflyt",
-    "question": "Hva gjør en `for`-løkke?",
+    "section": "F6: Control Flow",
+    "question": "Hva gjør en `for`-loop?",
     "options": [
       "Oppretter en klasse",
       "Gjentar kode et bestemt antall ganger",
@@ -147,15 +147,15 @@
     ],
     "answerIndex": 1,
     "answer": "Gjentar kode et bestemt antall ganger",
-    "shortExplanation": "`for`-løkken er en telleløkke – perfekt når du vet antall gjentakelser.",
-    "explanation": "for-løkken er den klassiske telleløkken med tre deler i parentes:\n\n  for (initiering; betingelse; økning)\n\n1. Initiering: kjøres én gang ved start (int i = 0)\n2. Betingelse: sjekkes før hvert steg (i < 10)\n3. Økning: kjøres etter hvert steg (i++)\n\nNår bruke for:\n- Kjenne antall gjentakelser på forhånd\n- Trenge indeksen inne i løkken",
+    "shortExplanation": "`for`-loopen er en for-loop – perfekt når du vet antall gjentakelser.",
+    "explanation": "for-loopen er den klassiske for-loop med tre deler i parentes:\n\n  for (initiering; betingelse; økning)\n\n1. Initiering: kjøres én gang ved start (int i = 0)\n2. Betingelse: sjekkes før hvert steg (i < 10)\n3. Økning: kjøres etter hvert steg (i++)\n\nNår bruke for:\n- Kjenne antall gjentakelser på forhånd\n- Trenge indeksen inne i loopen",
     "example": "```csharp\n// Skriv ut 0 til 4:\nfor (int i = 0; i < 5; i++)\n{\n    Console.Write(i + \" \"); // 0 1 2 3 4\n}\n\n// Iterer over array med indeks:\nstring[] navn = { \"Ada\", \"Bjarne\", \"Guido\" };\nfor (int i = 0; i < navn.Length; i++)\n{\n    Console.WriteLine($\"{i}: {navn[i]}\");\n}\n```",
-    "hvaGjørDen": "`for`-løkken gjentar kode et bestemt antall ganger og holder styr på telleren for deg."
+    "hvaGjørDen": "`for`-loopen gjentar kode et bestemt antall ganger og holder styr på telleren for deg."
   },
   {
     "id": 10,
-    "section": "F6: Kontrollflyt",
-    "question": "Hva gjør en `while`-løkke?",
+    "section": "F6: Control Flow",
+    "question": "Hva gjør en `while`-loop?",
     "options": [
       "Gjentar kode et fast antall ganger",
       "Avbryter programmet",
@@ -165,13 +165,13 @@
     "answerIndex": 2,
     "answer": "Gjentar kode så lenge betingelsen er sann",
     "shortExplanation": "`while` gjentar en blokk så lenge betingelsen er `true`.",
-    "explanation": "while-løkken er mer fleksibel enn for – du trenger ikke vite antall gjentakelser.\n\nStruktur:\n  while (betingelse) { ... }\n\nHvis betingelsen er false fra starten, kjøres kroppen aldri.\n\nDo-while varianten:\n  do { ... } while (betingelse);\nDette garanterer at kroppen kjøres minst én gang.\n\nVars om: uendelig løkke oppstår hvis betingelsen aldri blir false!",
+    "explanation": "while-loopen er mer fleksibel enn for – du trenger ikke vite antall gjentakelser.\n\nStruktur:\n  while (betingelse) { ... }\n\nHvis betingelsen er false fra starten, kjøres kroppen aldri.\n\nDo-while varianten:\n  do { ... } while (betingelse);\nDette garanterer at kroppen kjøres minst én gang.\n\nVars om: uendelig loop oppstår hvis betingelsen aldri blir false!",
     "example": "```csharp\nint teller = 0;\n\nwhile (teller < 5)\n{\n    Console.Write(teller + \" \"); // 0 1 2 3 4\n    teller++; // viktig! ellers uendelig løkke\n}\n\n// do-while - kjøres minst én gang:\nstring input;\ndo\n{\n    input = Console.ReadLine();\n} while (input != \"ja\");\n```",
-    "hvaGjørDen": "`while`-løkken gjentar en kodeblokk så lenge betingelsen er `true`."
+    "hvaGjørDen": "`while`-loopen gjentar en kodeblokk så lenge betingelsen er `true`."
   },
   {
     "id": 11,
-    "section": "F6: Kontrollflyt",
+    "section": "F6: Control Flow",
     "question": "Hva gjør `foreach`?",
     "options": [
       "Gjentar kode et fast antall ganger",
@@ -182,13 +182,13 @@
     "answerIndex": 1,
     "answer": "Itererer over hvert element i en samling",
     "shortExplanation": "`foreach` leser hvert element i en samling uten å håndtere indeks manuelt.",
-    "explanation": "foreach er den enkleste og mest lesbare løkketypen for å gå igjennom en samling.\n\nForskjell fra for:\n- for: krever indeks, mer fleksibel\n- foreach: ingen indeks, enklere, kun lesing\n\nforeach fungerer med alt som er IEnumerable:\n- Array, List<T>, Dictionary, streng, etc.\n\nOBS: du kan ikke endre elementene inne i foreach.",
+    "explanation": "foreach er den enkleste og mest lesbare looptypen for å gå igjennom en samling.\n\nForskjell fra for:\n- for: krever indeks, mer fleksibel\n- foreach: ingen indeks, enklere, kun lesing\n\nforeach fungerer med alt som er IEnumerable:\n- Array, List<T>, Dictionary, streng, etc.\n\nOBS: du kan ikke endre elementene inne i foreach.",
     "example": "```csharp\nstring[] land = { \"Norge\", \"Sverige\", \"Danmark\" };\n\nforeach (string l in land)\n{\n    Console.WriteLine(l);\n}\n// Norge\n// Sverige\n// Danmark\n\n// Fungerer også med List<T>:\nList<int> tall = new List<int> { 1, 2, 3 };\nforeach (int t in tall)\n    Console.Write(t + \" \"); // 1 2 3\n```",
     "hvaGjørDen": "`foreach` leser hvert element i en samling én etter én – uten at du trenger indeks."
   },
   {
     "id": 12,
-    "section": "F6: Samlinger",
+    "section": "F6: Collections",
     "question": "Hva er `List<T>` i C#?",
     "options": [
       "En fast-størrelses array",
@@ -205,7 +205,7 @@
   },
   {
     "id": 13,
-    "section": "F6: Samlinger",
+    "section": "F6: Collections",
     "question": "Hva kjennetegner en `Array` i C# sammenlignet med `List<T>`?",
     "options": [
       "Array er dynamisk, List er fast",
@@ -222,7 +222,7 @@
   },
   {
     "id": 14,
-    "section": "F6: Samlinger",
+    "section": "F6: Collections",
     "question": "Hva er `Dictionary<K, V>` i C#?",
     "options": [
       "En array med kun én type",
@@ -233,13 +233,13 @@
     "answerIndex": 3,
     "answer": "En samling med nøkkel-verdi par",
     "shortExplanation": "`Dictionary<K, V>` lagrer par av nøkkel og verdi – som et oppslagsregister.",
-    "explanation": "Dictionary er en nøkkel-verdi struktur der hvert element har en unik nøkkel.\n\nAnalogi: tenk på det som en ordbok (eller oppslagsverk):\n- Nøkkel: ordet du slår opp (K)\n- Verdi: definisjonen (V)\n\nEgenskaper:\n- Rask oppslag via nøkkel (O(1) gjennomsnitt)\n- Nøkler må være unike\n- Verdier kan dupliseres\n\nAPI:\n- Add(nøkkel, verdi)\n- [nøkkel] – hent/sett verdi\n- ContainsKey(nøkkel)\n- Remove(nøkkel)",
+    "explanation": "Dictionary er en nøkkel-verdi struktur der hvert element har en unik nøkkel.\n\nAnalogi: tenk på det som en ordbok (eller oppslagsverk):\n- Nøkkel: ordet du slår opp (K)\n- Verdi: definisjonen (V)\n\nProperties:\n- Rask oppslag via nøkkel (O(1) gjennomsnitt)\n- Nøkler må være unike\n- Verdier kan dupliseres\n\nAPI:\n- Add(nøkkel, verdi)\n- [nøkkel] – hent/sett verdi\n- ContainsKey(nøkkel)\n- Remove(nøkkel)",
     "example": "```csharp\nDictionary<string, int> aldre = new Dictionary<string, int>();\n\naldre.Add(\"Ada\", 30);\naldre.Add(\"Bjarne\", 72);\naldre[\"Guido\"] = 68; // alternativ måte\n\nConsole.WriteLine(aldre[\"Ada\"]);           // 30\nConsole.WriteLine(aldre.ContainsKey(\"Ada\")); // True\n\nforeach (var par in aldre)\n    Console.WriteLine($\"{par.Key}: {par.Value}\");\n```",
     "hvaGjørDen": "`Dictionary<K, V>` lagrer par av nøkkel og verdi – som en ordbok der nøkkelen er oppslagsordet."
   },
   {
     "id": 15,
-    "section": "F6: Feilhåndtering",
+    "section": "F6: Error Handling",
     "question": "Hva gjør `try/catch` i C#?",
     "options": [
       "Kompilerer koden",
@@ -256,7 +256,7 @@
   },
   {
     "id": 16,
-    "section": "F6: Null & Typer",
+    "section": "F6: Null & Types",
     "question": "Hva betyr `null` i C#?",
     "options": [
       "Ingen referanse – variabelen peker ikke til noe objekt",
@@ -273,7 +273,7 @@
   },
   {
     "id": 17,
-    "section": "F6: Null & Typer",
+    "section": "F6: Null & Types",
     "question": "Hva er en nullable type, f.eks. `int?`?",
     "options": [
       "En int som kun kan være positiv",
@@ -318,30 +318,30 @@
     "answerIndex": 1,
     "answer": "Antall tegn i strengen",
     "shortExplanation": "`.Length` gir antall tegn i strengen som en `int`.",
-    "explanation": "Length er en egenskap (property) på string og returnerer antall tegn.\n\nViktige detaljer:\n- Mellomrom teller som tegn\n- Empty string \"\" har Length 0\n- null.Length kaster NullReferenceException!\n\nBrukes ofte for:\n- Validering (er strengen lang nok?)\n- Løkker over tegn\n- Sammenligning av lengder",
+    "explanation": "Length er en property (property) på string og returnerer antall tegn.\n\nViktige detaljer:\n- Mellomrom teller som tegn\n- Empty string \"\" har Length 0\n- null.Length kaster NullReferenceException!\n\nBrukes ofte for:\n- Validering (er strengen lang nok?)\n- Loops over tegn\n- Sammenligning av lengder",
     "example": "```csharp\nstring tekst = \"Hei, verden!\";\nConsole.WriteLine(tekst.Length); // 12\n\nstring tom = \"\";\nConsole.WriteLine(tom.Length); // 0\n\n// Sjekk at passord er langt nok:\nstring passord = \"abc123\";\nif (passord.Length < 8)\n    Console.WriteLine(\"Passordet er for kort!\");\nelse\n    Console.WriteLine(\"Passord OK\");\n```",
     "hvaGjørDen": "`.Length` gir deg antall tegn i en streng som et heltall."
   },
   {
     "id": 20,
-    "section": "F6: Kontrollflyt",
-    "question": "Hva gjør `break` inne i en løkke?",
+    "section": "F6: Control Flow",
+    "question": "Hva gjør `break` inne i en loop?",
     "options": [
       "Hopper over til neste iterasjon",
-      "Starter løkken på nytt",
-      "Avslutter løkken umiddelbart",
+      "Starter loopen på nytt",
+      "Avslutter loopen umiddelbart",
       "Returnerer en verdi"
     ],
     "answerIndex": 2,
-    "answer": "Avslutter løkken umiddelbart",
-    "shortExplanation": "`break` hopper ut av løkken og fortsetter koden etter den.",
-    "explanation": "break avslutter løkken der og da, uavhengig av betingelsen.\n\nBrukseksempel:\n- Funnet det du leter etter – stopp søket\n- Uendelig løkke med eksplisitt avbruddslogikk\n- switch-setninger (unngå fall-through)\n\nForskjell fra continue:\n- break: stopp løkken\n- continue: hopp til neste iterasjon (ikke stopp)",
+    "answer": "Avslutter loopen umiddelbart",
+    "shortExplanation": "`break` hopper ut av loopen og fortsetter koden etter den.",
+    "explanation": "break avslutter loopen der og da, uavhengig av betingelsen.\n\nBrukseksempel:\n- Funnet det du leter etter – stopp søket\n- Uendelig loop med eksplisitt avbruddslogikk\n- switch-setninger (unngå fall-through)\n\nForskjell fra continue:\n- break: stopp loopen\n- continue: hopp til neste iterasjon (ikke stopp)",
     "example": "```csharp\n// Break: stopp ved første treff\nint[] tall = { 3, 7, 2, 9, 1 };\nint mål = 9;\n\nfor (int i = 0; i < tall.Length; i++)\n{\n    if (tall[i] == mål)\n    {\n        Console.WriteLine($\"Funnet på indeks {i}\"); // 3\n        break; // stopp søket\n    }\n}\n\n// Continue: hopp over partall\nfor (int i = 0; i < 6; i++)\n{\n    if (i % 2 == 0) continue;\n    Console.Write(i + \" \"); // 1 3 5\n}\n```",
-    "hvaGjørDen": "`break` avslutter løkken umiddelbart og fortsetter med koden etter løkken."
+    "hvaGjørDen": "`break` avslutter loopen umiddelbart og fortsetter med koden etter loopen."
   },
   {
     "id": 21,
-    "section": "F6: Metoder",
+    "section": "F6: Methods",
     "question": "Hva er metode-parametere?",
     "options": [
       "Den interne koden i metoden",
@@ -358,7 +358,7 @@
   },
   {
     "id": 22,
-    "section": "F6: Samlinger",
+    "section": "F6: Collections",
     "question": "Hvordan legger du til et element i en `Dictionary<K, V>`?",
     "options": [
       "dict.Add(key, value) eller dict[key] = value",
@@ -375,7 +375,7 @@
   },
   {
     "id": 23,
-    "section": "F6: Feilhåndtering",
+    "section": "F6: Error Handling",
     "question": "Hva er `finally`-blokken i try/catch/finally?",
     "options": [
       "Kjøres alltid – enten unntak skjer eller ikke",
@@ -392,12 +392,12 @@
   },
   {
     "id": 24,
-    "section": "F6: Kontrollflyt",
+    "section": "F6: Control Flow",
     "question": "Hva gjør den ternære operatoren `betingelse ? a : b`?",
     "options": [
       "Sette verdier i et Dictionary",
       "Definere en klasse",
-      "Kjøre en løkke",
+      "Kjøre en loop",
       "Returnere a eller b basert på om betingelsen er sann"
     ],
     "answerIndex": 3,
@@ -409,7 +409,7 @@
   },
   {
     "id": 25,
-    "section": "F6: Typer",
+    "section": "F6: Types",
     "question": "Hva gjør `var` i C#?",
     "options": [
       "Deklarerer en variabel uten type",

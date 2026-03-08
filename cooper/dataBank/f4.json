@@ -80,7 +80,7 @@
     "answerIndex": 3,
     "answer": "Sorter i stigende rekkefølge",
     "shortExplanation": "Sort() sorterer elementer i stigende rekkefølge.",
-    "explanation": "Array.Sort() er en statisk metode i Array-klassen som sorterer en array.\n\nViktige egenskaper:\n- Sorter in-place – originalarryen endres\n- Standard: stigende rekkefølge\n- Virker på alle typer som kan sammenlignes (int, string, etc)\n\nFor synkende rekkefølge:\n- Bruk Array.Reverse() etter sort\n- Eller bruk LINQ .OrderByDescending()",
+    "explanation": "Array.Sort() er en statisk metode i Array-klassen som sorterer en array.\n\nViktige properties:\n- Sorter in-place – originalarryen endres\n- Standard: stigende rekkefølge\n- Virker på alle typer som kan sammenlignes (int, string, etc)\n\nFor synkende rekkefølge:\n- Bruk Array.Reverse() etter sort\n- Eller bruk LINQ .OrderByDescending()",
     "example": "```csharp\nint[] tall = { 5, 1, 8, 3, 2 };\n\nArray.Sort(tall);\n// tall er nå: { 1, 2, 3, 5, 8 }\n\n// For synkende:\nArray.Reverse(tall);\n// tall er nå: { 8, 5, 3, 2, 1 }\n```",
     "hvaGjørDen": "`Array.Sort()` sorterer arrayen direkte slik at elementene kommer i stigende rekkefølge."
   },
@@ -233,9 +233,9 @@
     "answerIndex": 2,
     "answer": "Gruppér elementer etter nøkkel",
     "shortExplanation": "group by samler elementer etter en nøkkel/kriterie.",
-    "explanation": "group by i LINQ grupperer elementer ut fra en felles egenskap.\n\nResultatet er en samling av IGrouping<Key, Element>:\n- Hvert objekt i resultatet har en Key (gruppen)\n- Og en samling av elementene i den gruppen\n\nBrukseksempel:\n- Grupere bestillinger etter kunde\n- Grupere biler etter merke\n- Grupere studenter etter kull",
+    "explanation": "group by i LINQ grupperer elementer ut fra en felles property.\n\nResultatet er en samling av IGrouping<Key, Element>:\n- Hvert objekt i resultatet har en Key (gruppen)\n- Og en samling av elementene i den gruppen\n\nBrukseksempel:\n- Grupere bestillinger etter kunde\n- Grupere biler etter merke\n- Grupere studenter etter kull",
     "example": "```csharp\nvar studenter = new[]\n{\n    new { Navn = \"Ada\",    Kull = \"2023\" },\n    new { Navn = \"Bjarne\", Kull = \"2024\" },\n    new { Navn = \"Anna\",   Kull = \"2023\" }\n};\n\nvar grupper = from s in studenter\n               group s by s.Kull;\n\nforeach (var g in grupper)\n{\n    Console.WriteLine($\"Kull {g.Key}:\");\n    foreach (var s in g)\n        Console.WriteLine($\"  {s.Navn}\");\n}\n```",
-    "hvaGjørDen": "`group by` samler elementer i grupper basert på en felles egenskap, som f.eks. kull eller kategori."
+    "hvaGjørDen": "`group by` samler elementer i grupper basert på en felles property, som f.eks. kull eller kategori."
   },
   {
     "id": 15,

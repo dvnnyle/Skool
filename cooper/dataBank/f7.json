@@ -12,7 +12,7 @@
     "answerIndex": 3,
     "answer": "Et konsollprogram som styrer kurs og bibliotek på et universitet",
     "shortExplanation": "UniSystem er et terminalbasert C#-program med to hoveddeler: kurssystem og biblioteksystem.",
-    "explanation": "UniSystem er bygget som et klassisk konsoll-menyprogram i C#.\n\nProgrammet har to store undersystemer:\n- KursSystem: opprette kurs, melde på/av studenter\n- BibliotekSystem: registrere bøker, låne ut og levere inn\n\nStruktur:\n- aMain/ – dataklassene (Student, Ansatt, Kurs, Bok, Lån)\n- aSystemer/ – logikk-klassene (KursSystem, BibliotekSystem)\n- Program.cs – hoved-meny og brukerinteraksjon\n\nAlt kjøres i en while-løkke der brukeren skriver inn tall for å velge menyvalg.",
+    "explanation": "UniSystem er bygget som et klassisk konsoll-menyprogram i C#.\n\nProgrammet har to store undersystemer:\n- KursSystem: opprette kurs, melde på/av studenter\n- BibliotekSystem: registrere bøker, låne ut og levere inn\n\nStruktur:\n- aMain/ – dataklassene (Student, Ansatt, Kurs, Bok, Lån)\n- aSystemer/ – logikk-klassene (KursSystem, BibliotekSystem)\n- Program.cs – hoved-meny og brukerinteraksjon\n\nAlt kjøres i en while-loop der brukeren skriver inn tall for å velge menyvalg.",
     "example": "```csharp\n// Program.cs – slik starter programmet:\nKursSystem kursSystem = new KursSystem();\nBibliotekSystem bibliotekSystem = new BibliotekSystem();\n\nbool running = true;\nwhile (running)\n{\n    Console.WriteLine(\"[1] Opprett kurs\");\n    Console.WriteLine(\"[2] Vis alle kurs\");\n    // ...\n    string valg = Console.ReadLine();\n    if (valg == \"0\") running = false;\n}\n```",
     "hvaGjørDen": "UniSystem er et konsollprogram i C# med to hoveddeler: et kurssystem og et biblioteksystem."
   },
@@ -46,7 +46,7 @@
     "answerIndex": 1,
     "answer": "De er nesten identiske, men Student bruker StudentID og Ansatt bruker AnsattID",
     "shortExplanation": "Begge har Navn og Epost, men bruker forskjellige ID-felt: `StudentID` vs `AnsattID`.",
-    "explanation": "Student og Ansatt er begge enkle dataklasser med tre felt.\n\nStudent:\n- StudentID (string)\n- Navn (string)\n- Epost (string)\n\nAnsatt:\n- AnsattID (string)\n- Navn (string)\n- Epost (string)\n\nI et større system ville man typisk laget en felles basisklasse (f.eks. `Bruker`) og latt Student og Ansatt arve fra den – for å unngå kodeduplisering.\n\nBegge brukes som brukertype ved bokutlån: `BrukerType` settes til \"Student\" eller \"Ansatt\".",
+    "explanation": "Student og Ansatt er begge enkle dataklasser med tre felt.\n\nStudent:\n- StudentID (string)\n- Navn (string)\n- Epost (string)\n\nAnsatt:\n- AnsattID (string)\n- Navn (string)\n- Epost (string)\n\nI et større system ville man typisk laget en felles base class (f.eks. `Bruker`) og latt Student og Ansatt arve fra den – for å unngå kodeduplisering.\n\nBegge brukes som brukertype ved bokutlån: `BrukerType` settes til \"Student\" eller \"Ansatt\".",
     "example": "```csharp\n// Student\nStudent s = new Student(\"S001\", \"Kari Nordmann\", \"kari@uni.no\");\n\n// Ansatt\nAnsatt a = new Ansatt(\"A001\", \"Ole Hansen\", \"ole@uni.no\");\n\n// Begge kan låne bøker via BibliotekSystem:\nbibliotekSystem.LånUtBok(\"B01\", s.StudentID, s.Navn, \"Student\");\nbibliotekSystem.LånUtBok(\"B01\", a.AnsattID, a.Navn, \"Ansatt\");\n```",
     "hvaGjørDen": "Begge klasser har `Navn` og `Epost`, men `Student` bruker `StudentID` og `Ansatt` bruker `AnsattID`."
   },
@@ -62,7 +62,7 @@
     ],
     "answerIndex": 0,
     "answer": "Det settes lik MaksPlasser",
-    "shortExplanation": "I konstruktøren settes `LedigePlasser = maksPlasser`, altså er alle plasser ledige ved start.",
+    "shortExplanation": "I constructoren settes `LedigePlasser = maksPlasser`, altså er alle plasser ledige ved start.",
     "explanation": "Kurs-klassen holder oversikt over ledige plasser via to felt:\n- MaksPlasser: det totale antallet (endres aldri)\n- LedigePlasser: starter lik MaksPlasser og telles ned ved påmelding\n\nNår en student meldes på:\n  kurs.LedigePlasser--\n\nNår en student meldes av:\n  kurs.LedigePlasser++\n\nI tillegg har Kurs en List<Student> som faktisk holder studentobjektene. Plass-teller og liste holdes synkronisert manuelt i KursSystem.",
     "example": "```csharp\npublic class Kurs\n{\n    public int MaksPlasser;\n    public int LedigePlasser;\n    public List<Student> Studenter = new List<Student>();\n\n    public Kurs(string kode, string navn, int studiepoeng, int maksPlasser)\n    {\n        MaksPlasser = maksPlasser;\n        LedigePlasser = maksPlasser; // alle ledige ved start\n    }\n}\n```",
     "hvaGjørDen": "Når et kurs opprettes, settes `LedigePlasser` lik `MaksPlasser` – alle plasser er ledige fra start."
@@ -131,7 +131,7 @@
     "answerIndex": 2,
     "answer": "AntallEksemplarer er det totale antallet, TilgjengeligeEksemplarer synker ved utlån",
     "shortExplanation": "`AntallEksemplarer` er fast totalt antall; `TilgjengeligeEksemplarer` telles ned/opp ved utlån og innlevering.",
-    "explanation": "Bok-klassen bruker to felt for å spore eksemplarer:\n\nAntallEksemplarer:\n- Settes i konstruktøren og endres aldri\n- Representerer det totale antallet boken finnes i\n\nTilgjengeligeEksemplarer:\n- Starter lik AntallEksemplarer\n- Reduseres med 1 ved utlån\n- Økes med 1 ved innlevering\n- Aldri lov å gå under 0\n\nVises til brukeren som: Tilgjengelig: 2/5 (to av fem tilgjengelig)",
+    "explanation": "Bok-klassen bruker to felt for å spore eksemplarer:\n\nAntallEksemplarer:\n- Settes i constructoren og endres aldri\n- Representerer det totale antallet boken finnes i\n\nTilgjengeligeEksemplarer:\n- Starter lik AntallEksemplarer\n- Reduseres med 1 ved utlån\n- Økes med 1 ved innlevering\n- Aldri lov å gå under 0\n\nVises til brukeren som: Tilgjengelig: 2/5 (to av fem tilgjengelig)",
     "example": "```csharp\npublic class Bok\n{\n    public int AntallEksemplarer;        // fast: 5\n    public int TilgjengeligeEksemplarer; // variabel: 5 → 4 → 3...\n\n    public Bok(string id, string tittel, string forfatter, int år, int antall)\n    {\n        AntallEksemplarer = antall;\n        TilgjengeligeEksemplarer = antall; // starter fullt\n    }\n}\n```",
     "hvaGjørDen": "`AntallEksemplarer` er det totale antallet; `TilgjengeligeEksemplarer` telles ned ved utlån og opp ved innlevering."
   },
@@ -160,10 +160,10 @@
       "Den spør brukeren om bekreftelse",
       "Den sletter alle lån for den boken",
       "Den søker etter tittel og navn",
-      "Den bruker en foreach-løkke og sjekker at både BokID og BrukerID stemmer"
+      "Den bruker en foreach loop og sjekker at både BokID og BrukerID stemmer"
     ],
     "answerIndex": 3,
-    "answer": "Den bruker en foreach-løkke og sjekker at både BokID og BrukerID stemmer",
+    "answer": "Den bruker en foreach loop og sjekker at både BokID og BrukerID stemmer",
     "shortExplanation": "Metoden itererer `LånListe` og finner lånet der `lån.BokID == bokID && lån.BrukerID == brukerID`.",
     "explanation": "LeverInnBok() bruker ett søk med to betingelser:\n  lån.BokID == bokID && lån.BrukerID == brukerID\n\nDette er viktig fordi:\n- Samme bok kan ha flere aktive lån (ulike brukere)\n- Vi vil bare levere inn det ene spesifikke lånet\n\nEtter å ha funnet lånet:\n1. Fjerner det fra LånListe\n2. Finner boken i BokListe\n3. Øker TilgjengeligeEksemplarer++\n\nHvis ingen lån finnes: vises rød feilmelding.",
     "example": "```csharp\npublic void LeverInnBok(string bokID, string brukerID)\n{\n    Lån? funnetLån = null;\n    foreach (Lån lån in LånListe)\n    {\n        if (lån.BokID == bokID && lån.BrukerID == brukerID)\n        {\n            funnetLån = lån;\n            break;\n        }\n    }\n\n    if (funnetLån != null)\n    {\n        LånListe.Remove(funnetLån);\n        // øk TilgjengeligeEksemplarer...\n    }\n}\n```",
@@ -250,26 +250,26 @@
     "answerIndex": 1,
     "answer": "Det er ingen praktisk forskjell, men `running` er mer lesbar og kontrollerbar",
     "shortExplanation": "`bool running = true` gir en tydelig av-bryter; å sette `running = false` er klarere enn `break` midt i koden.",
-    "explanation": "Begge while(true) og while(running) lager en uendelig løkke som kjøres til noe stopper den.\n\nForskjellen er kodestil:\n\nwhile(true) med break:\n  while (true) {\n    if (valg == \"0\") break; // stopp\n  }\n\nwhile(running):\n  bool running = true;\n  while (running) {\n    if (valg == \"0\") running = false; // stopp\n  }\n\nFordelene med running-flagg:\n- Stopforhold er tydeligere\n- Kan sjekkes fra forskjellige steder\n- Idiomatisk i menybaserte konsollapps",
+    "explanation": "Begge while(true) og while(running) lager en uendelig loop som kjøres til noe stopper den.\n\nForskjellen er kodestil:\n\nwhile(true) med break:\n  while (true) {\n    if (valg == \"0\") break; // stopp\n  }\n\nwhile(running):\n  bool running = true;\n  while (running) {\n    if (valg == \"0\") running = false; // stopp\n  }\n\nFordelene med running-flagg:\n- Stopforhold er tydeligere\n- Kan sjekkes fra forskjellige steder\n- Idiomatisk i menybaserte konsollapps",
     "example": "```csharp\nbool running = true;\nwhile (running)\n{\n    string valg = Console.ReadLine();\n\n    if (valg == \"0\")\n    {\n        running = false;           // avslutter løkken\n        Console.WriteLine(\"Takk for nå!\");\n    }\n    else if (valg == \"1\")\n    {\n        // gjør noe\n    }\n}\n```",
-    "hvaGjørDen": "`bool running = true` er en tydelig av-bryter for løkken – klarere enn `while (true)` med `break`."
+    "hvaGjørDen": "`bool running = true` er en tydelig av-bryter for loopen – klarere enn `while (true)` med `break`."
   },
   {
     "id": 16,
     "section": "UniSystem: Løkker og kontrollflyt",
     "question": "Hva gjør `continue`-nøkkelordet i Program.cs sin `else`-gren for ugyldig brukertype?",
     "options": [
-      "Det hopper direkte til neste iterasjon av while-løkken uten å kjøre koden nedenfor",
+      "Det hopper direkte til neste iterasjon av while-loopen uten å kjøre koden nedenfor",
       "Det avslutter programmet",
       "Det nullstiller valg-variabelen",
       "Det er det samme som break"
     ],
     "answerIndex": 0,
-    "answer": "Det hopper direkte til neste iterasjon av while-løkken uten å kjøre koden nedenfor",
-    "shortExplanation": "`continue` avbryter resten av gjeldende iterasjon og starter løkken på nytt.",
-    "explanation": "I menyvalg 5 (lån ut bok) spør programmet om brukertype:\n  [1] Student\n  [2] Ansatt\n\nHvis brukeren skriver noe annet:\n  Console.WriteLine(\"Ugyldig brukertype\");\n  continue; // hopper tilbake til while-løkkens topp\n\nUten continue ville koden under forsøkt å kalle LånUtBok() med uinitialiserte variabler (brukerID, brukerNavn, type).\n\ncontinue vs break:\n- continue: hopp til neste iterasjon\n- break: forlat løkken helt",
+    "answer": "Det hopper direkte til neste iterasjon av while-loopen uten å kjøre koden nedenfor",
+    "shortExplanation": "`continue` avbryter resten av gjeldende iterasjon og starter loopen på nytt.",
+    "explanation": "I menyvalg 5 (lån ut bok) spør programmet om brukertype:\n  [1] Student\n  [2] Ansatt\n\nHvis brukeren skriver noe annet:\n  Console.WriteLine(\"Ugyldig brukertype\");\n  continue; // hopper tilbake til while-loopens topp\n\nUten continue ville koden under forsøkt å kalle LånUtBok() med uinitialiserte variabler (brukerID, brukerNavn, type).\n\ncontinue vs break:\n- continue: hopp til neste iterasjon\n- break: forlat loopen helt",
     "example": "```csharp\nwhile (running)\n{\n    // ...\n    string brukerType = Console.ReadLine();\n\n    string brukerID, brukerNavn, type;\n\n    if (brukerType == \"1\")\n    {\n        type = \"Student\";\n        // les brukerID og brukerNavn\n    }\n    else\n    {\n        Console.WriteLine($\"{RED}Ugyldig brukertype{RESET}\");\n        continue; // start while-løkken på nytt\n    }\n\n    bibliotekSystem.LånUtBok(bokID, brukerID, brukerNavn, type); // kjøres kun hvis type er gyldig\n}\n```",
-    "hvaGjørDen": "`continue` hopper over resten av gjeldende iterasjon og starter løkken på nytt fra toppen."
+    "hvaGjørDen": "`continue` hopper over resten av gjeldende iterasjon og starter loopen på nytt fra toppen."
   },
   {
     "id": 17,
@@ -291,7 +291,7 @@
   {
     "id": 18,
     "section": "UniSystem: Konstruktører",
-    "question": "Hva er en konstruktør (**constructor**) i C#, og hvilken regel gjelder for navnet?",
+    "question": "Hva er en constructor (**constructor**) i C#, og hvilken regel gjelder for navnet?",
     "options": [
       "En metode som sletter objektet; heter ~ClassName",
       "En spesialmetode som kjøres automatisk ved `new`; heter alltid det samme som klassen",
@@ -300,10 +300,10 @@
     ],
     "answerIndex": 1,
     "answer": "En spesialmetode som kjøres automatisk ved `new`; heter alltid det samme som klassen",
-    "shortExplanation": "Konstruktøren initialiserer objektet og kjøres når `new ClassName(...)` skrives.",
-    "explanation": "Alle klasser i UniSystem bruker konstruktører for å sette startverdier.\n\nRegler:\n- Samme navn som klassen\n- Ingen return-type (ikke engang void)\n- Kjøres automatisk ved new-uttrykk\n\nEksempel fra Kurs:\n  public Kurs(string kode, string navn, int studiepoeng, int maksPlasser)\n  { ... sett alle felt ... }\n\nHvis du ikke lager en konstruktør, lager C# en standard tom konstruktør.\nHvis du lager en med parametere, forsvinner den tomme – du MÅ da sende inn verdier.",
+    "shortExplanation": "Constructoren initialiserer objektet og kjøres når `new ClassName(...)` skrives.",
+    "explanation": "Alle klasser i UniSystem bruker constructors for å sette startverdier.\n\nRegler:\n- Samme navn som klassen\n- Ingen return-type (ikke engang void)\n- Kjøres automatisk ved new-uttrykk\n\nEksempel fra Kurs:\n  public Kurs(string kode, string navn, int studiepoeng, int maksPlasser)\n  { ... sett alle felt ... }\n\nHvis du ikke lager en constructor, lager C# en standard tom constructor.\nHvis du lager en med parametere, forsvinner den tomme – du MÅ da sende inn verdier.",
     "example": "```csharp\npublic class Student\n{\n    public string StudentID;\n    public string Navn;\n    public string Epost;\n\n    // Konstruktør: skal ha samme navn som klassen\n    public Student(string id, string navn, string epost)\n    {\n        StudentID = id;\n        Navn = navn;\n        Epost = epost;\n    }\n}\n\n// Bruk:\nStudent s = new Student(\"S001\", \"Kari\", \"kari@uni.no\");\n// Konstruktøren kjøres automatisk her ^\n```",
-    "hvaGjørDen": "En konstruktør er en spesiell metode som kjøres automatisk ved `new` og setter opp objektets startdata."
+    "hvaGjørDen": "En constructor er en spesiell metode som kjøres automatisk ved `new` og setter opp objektets startdata."
   },
   {
     "id": 19,
@@ -352,7 +352,7 @@
     "answerIndex": 1,
     "answer": "Den itererer over hvert Kurs-objekt i listen, ett om gangen",
     "shortExplanation": "`foreach` går gjennom hvert element i en samling uten å måtte håndtere indekser manuelt.",
-    "explanation": "foreach er C# sin løkke for å iterere samlinger.\n\nSyntaks:\n  foreach (Type variabel in samling) { ... }\n\nI UniSystem brukes det til:\n- VisAlleKurs(): skriver ut hvert kurs\n- MeldStudentPåKurs(): søker etter riktig kurs via kurskode\n- VisAlleBøker(): skriver ut hver bok\n- LeverInnBok(): søker etter bok og lån\n\nforeach vs for:\n- foreach: enklere, kan ikke endre listen mens du itererer\n- for: trenger indeks, kan bruke break/continue/indeks-manipulasjon\n\nKan kombineres med break for å stoppe tidlig ved funn.",
+    "explanation": "foreach er C# sin loop for å iterere samlinger.\n\nSyntaks:\n  foreach (Type variabel in samling) { ... }\n\nI UniSystem brukes det til:\n- VisAlleKurs(): skriver ut hvert kurs\n- MeldStudentPåKurs(): søker etter riktig kurs via kurskode\n- VisAlleBøker(): skriver ut hver bok\n- LeverInnBok(): søker etter bok og lån\n\nforeach vs for:\n- foreach: enklere, kan ikke endre listen mens du itererer\n- for: trenger indeks, kan bruke break/continue/indeks-manipulasjon\n\nKan kombineres med break for å stoppe tidlig ved funn.",
     "example": "```csharp\n// Eksempel fra VisAlleKurs():\nforeach (Kurs kurs in KursListe)\n{\n    Console.WriteLine($\"Kode: {kurs.Kode}\");\n    Console.WriteLine($\"Navn: {kurs.Navn}\");\n    Console.WriteLine($\"Plasser: {kurs.LedigePlasser}/{kurs.MaksPlasser}\");\n\n    foreach (Student s in kurs.Studenter) // nestet foreach!\n    {\n        Console.WriteLine($\"  {s.Navn} ({s.StudentID})\");\n    }\n}\n```",
     "hvaGjørDen": "`foreach (Kurs kurs in KursListe)` går gjennom hvert kurs i listen, ett om gangen."
   },
@@ -363,13 +363,13 @@
     "options": [
       "Fordi return er obligatorisk etter else",
       "return avslutter hele programmet",
-      "For å hindre at løkken fortsetter å søke i resten av listen etter at kurset er funnet",
+      "For å hindre at loopen fortsetter å søke i resten av listen etter at kurset er funnet",
       "Fordi C# kaster en feil uten return"
     ],
     "answerIndex": 2,
-    "answer": "For å hindre at løkken fortsetter å søke i resten av listen etter at kurset er funnet",
-    "shortExplanation": "`return` inne i foreach-løkken avslutter metoden umiddelbart etter første treff.",
-    "explanation": "I søk-mønsteret foreach + if brukes return for early exit:\n\n  foreach (Kurs kurs in KursListe)\n  {\n      if (kurs.Kode == kursKode)\n      {\n          // gjør operasjonen...\n          return; // ferdig! ikke fortsett løkken\n      }\n  }\n\nUten return ville løkken fortsette å iterere resten av listen selv etter funn.\n\nDette er et vanlig og viktig mønster i C#:\n- Effektivt (stopper tidlig)\n- Tydelig (viser at operasjonen er fullført)\n- Unngår doble operasjoner",
+    "answer": "For å hindre at loopen fortsetter å søke i resten av listen etter at kurset er funnet",
+    "shortExplanation": "`return` inne i foreach loop avslutter metoden umiddelbart etter første treff.",
+    "explanation": "I søk-mønsteret foreach + if brukes return for early exit:\n\n  foreach (Kurs kurs in KursListe)\n  {\n      if (kurs.Kode == kursKode)\n      {\n          // gjør operasjonen...\n          return; // ferdig! ikke fortsett loopen\n      }\n  }\n\nUten return ville loopen fortsette å iterere resten av listen selv etter funn.\n\nDette er et vanlig og viktig mønster i C#:\n- Effektivt (stopper tidlig)\n- Tydelig (viser at operasjonen er fullført)\n- Unngår doble operasjoner",
     "example": "```csharp\nforeach (Kurs kurs in KursListe)\n{\n    if (kurs.Kode == kursKode)\n    {\n        if (kurs.Studenter.Count < kurs.MaksPlasser)\n        {\n            kurs.Studenter.Add(student);\n            kurs.LedigePlasser--;\n            Console.WriteLine(\"Påmeldt!\");\n        }\n        else\n        {\n            Console.WriteLine(\"Fullt!\");\n        }\n        return; // viktig: ikke iterer videre\n    }\n}\nConsole.WriteLine(\"Ikke funnet\"); // kun hvis return aldri ble nådd\n```",
     "hvaGjørDen": "`return` inne i `foreach` avslutter metoden umiddelbart etter at kurset er funnet – ingen videre søk."
   },
@@ -415,7 +415,7 @@
       "Program.cs leser input → lager Kurs-objekt → kaller OpprettKurs() → legges til KursListe",
       "KursSystem.cs leser input direkte fra konsollen",
       "Kurset lagres i en database",
-      "Program.cs kaller Student-konstruktøren"
+      "Program.cs kaller Student-constructoren"
     ],
     "answerIndex": 0,
     "answer": "Program.cs leser input → lager Kurs-objekt → kaller OpprettKurs() → legges til KursListe",
@@ -453,10 +453,10 @@
     ],
     "answerIndex": 3,
     "answer": "3 og 3",
-    "shortExplanation": "Konstruktøren setter `LedigePlasser = maksPlasser`, så begge er 3 ved opprettelse.",
-    "explanation": "Kurs-konstruktøren kjøres med `new Kurs(\"IS101\", \"Databaser\", 10, 3)`:\n- Kode = \"IS101\"\n- Navn = \"Databaser\"\n- Studiepoeng = 10\n- MaksPlasser = 3\n- LedigePlasser = maksPlasser = **3**\n\nBegge feltene er altså 3 rett etter opprettelse – ingen studenter er meldt på ennå.\n\nEtter én påmelding ville LedigePlasser blitt 2, men MaksPlasser forblir alltid 3.",
+    "shortExplanation": "Constructoren setter `LedigePlasser = maksPlasser`, så begge er 3 ved opprettelse.",
+    "explanation": "Kurs-constructoren kjøres med `new Kurs(\"IS101\", \"Databaser\", 10, 3)`:\n- Kode = \"IS101\"\n- Navn = \"Databaser\"\n- Studiepoeng = 10\n- MaksPlasser = 3\n- LedigePlasser = maksPlasser = **3**\n\nBegge feltene er altså 3 rett etter opprettelse – ingen studenter er meldt på ennå.\n\nEtter én påmelding ville LedigePlasser blitt 2, men MaksPlasser forblir alltid 3.",
     "example": "```csharp\nKurs k = new Kurs(\"IS101\", \"Databaser\", 10, 3);\n\nConsole.WriteLine(k.LedigePlasser); // 3\nConsole.WriteLine(k.MaksPlasser);   // 3\n\n// Meld på student:\nk.Studenter.Add(new Student(\"S01\", \"Per\", \"per@uni.no\"));\nk.LedigePlasser--;\n\nConsole.WriteLine(k.LedigePlasser); // 2\nConsole.WriteLine(k.MaksPlasser);   // fortsatt 3\n```",
-    "hvaGjørDen": "Siden konstruktøren setter `LedigePlasser = MaksPlasser`, er begge 3 rett etter at kurset opprettes."
+    "hvaGjørDen": "Siden constructoren setter `LedigePlasser = MaksPlasser`, er begge 3 rett etter at kurset opprettes."
   },
   {
     "id": 28,
@@ -487,10 +487,10 @@
     ],
     "answerIndex": 0,
     "answer": "true – lånet for B01/S01 ble funnet",
-    "shortExplanation": "Løkken finner lånet der `BokID == \"B01\"` og `BrukerID == \"S01\"`, setter `funnetLån` og avslutter med `break`.",
-    "explanation": "Dette er søkemønsteret fra `LeverInnBok()` i BibliotekSystem.\n\nSteg:\n1. Listen har to lån: B01/S01 og B02/S02\n2. Første iterasjon: BokID==\"B01\" og BrukerID==\"S01\" → begge true → funnetLån settes\n3. `break` avslutter løkken umiddelbart\n4. `funnetLån != null` → `lånFinnes = true`\n\nViktig: `&&` betyr at BEGGE betingelser må være sanne. Bare riktig bok UG riktig bruker gir treff.",
+    "shortExplanation": "Loopen finner lånet der `BokID == \"B01\"` og `BrukerID == \"S01\"`, setter `funnetLån` og avslutter med `break`.",
+    "explanation": "Dette er søkemønsteret fra `LeverInnBok()` i BibliotekSystem.\n\nSteg:\n1. Listen har to lån: B01/S01 og B02/S02\n2. Første iterasjon: BokID==\"B01\" og BrukerID==\"S01\" → begge true → funnetLån settes\n3. `break` avslutter loopen umiddelbart\n4. `funnetLån != null` → `lånFinnes = true`\n\nViktig: `&&` betyr at BEGGE betingelser må være sanne. Bare riktig bok UG riktig bruker gir treff.",
     "example": "```csharp\n// Søk med to betingelser – begge må stemme:\nforeach (Lån lån in lånListe)\n{\n    if (lån.BokID == \"B01\" && lån.BrukerID == \"S01\")\n    {\n        funnetLån = lån; // kun dette lånet\n        break;           // stopp, vi er ferdige\n    }\n}\n// Hvis B01 finnes men bruker er S99: ingen treff\n// Hvis S01 finnes men bok er B99: ingen treff\n```",
-    "hvaGjørDen": "Løkken finner lånet der `BokID` og `BrukerID` begge stemmer, og `break` stopper søket."
+    "hvaGjørDen": "Loopen finner lånet der `BokID` og `BrukerID` begge stemmer, og `break` stopper søket."
   },
   {
     "id": 30,
@@ -517,12 +517,12 @@
       "Programmet krasjer med NullReferenceException",
       "Programmet avslutter",
       "LånUtBok() kalles med type = \"3\"",
-      "\"Ugyldig brukertype\" skrives ut og `continue` hopper tilbake til while-løkkens start"
+      "\"Ugyldig brukertype\" skrives ut og `continue` hopper tilbake til while-loopens start"
     ],
     "answerIndex": 3,
-    "answer": "\"Ugyldig brukertype\" skrives ut og `continue` hopper tilbake til while-løkkens start",
-    "shortExplanation": "`continue` hopper til neste iterasjon av while-løkken – `LånUtBok()` kalles aldri.",
-    "explanation": "Når `brukerType` verken er \"1\" eller \"2\", faller koden inn i `else`-grenen:\n1. Feilmelding vises\n2. `continue` avbryter resten av denne iterasjonen\n3. While-løkken starter på ny – menyen vises igjen\n\nUten `continue` ville koden forsøkt å kalle `LånUtBok(bokID, brukerID, brukerNavn, type)` – men `brukerID`, `brukerNavn` og `type` er uinitialiserte variabler, noe som gir en kompileringsfeil.\n\n`continue` er altså nødvendig her, ikke bare god stil.",
+    "answer": "\"Ugyldig brukertype\" skrives ut og `continue` hopper tilbake til while-loopens start",
+    "shortExplanation": "`continue` hopper til neste iterasjon av while-loopen – `LånUtBok()` kalles aldri.",
+    "explanation": "Når `brukerType` verken er \"1\" eller \"2\", faller koden inn i `else`-grenen:\n1. Feilmelding vises\n2. `continue` avbryter resten av denne iterasjonen\n3. While-loopn starter på ny – menyen vises igjen\n\nUten `continue` ville koden forsøkt å kalle `LånUtBok(bokID, brukerID, brukerNavn, type)` – men `brukerID`, `brukerNavn` og `type` er uinitialiserte variabler, noe som gir en kompileringsfeil.\n\n`continue` er altså nødvendig her, ikke bare god stil.",
     "example": "```csharp\n// Uten continue – kompileringsfeil:\nstring type; // uinitialisert\n// else { Console.WriteLine(\"Ugyldig\"); }\nbibliotekSystem.LånUtBok(bokID, brukerID, brukerNavn, type);\n// FEIL: \"type\" is unassigned\n\n// Med continue – trygt:\nelse\n{\n    Console.WriteLine(\"Ugyldig brukertype\");\n    continue; // hopp til neste while-iterasjon\n}\n// LånUtBok() nås aldri for ugyldig input\n```",
     "hvaGjørDen": "Ugyldig brukertype gir feilmelding, og `continue` sørger for at `LånUtBok()` aldri kalles."
   }
