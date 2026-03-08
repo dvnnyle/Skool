@@ -263,6 +263,21 @@
 	line-height: 1.5;
 }
 
+.explanation-section-label {
+	margin: 0.6rem 0 0.2rem 0;
+	font-size: 0.72rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	color: #666;
+}
+
+.example-box {
+	margin-top: 0.25rem;
+	padding-top: 0.5rem;
+	border-top: 1px solid rgba(100, 108, 255, 0.2);
+}
+
 .short-explanation {
 	margin: 0 0 0.75rem 0;
 	padding: 0.01rem 1rem;
