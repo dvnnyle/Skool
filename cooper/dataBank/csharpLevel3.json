@@ -29,7 +29,8 @@
     "answer": "A blueprint that describes objects",
     "explanation": "A class defines the structure (fields, properties) and behaviour (methods) that its objects will have.",
     "shortExplanation": "A class is a blueprint for creating objects.",
-    "example": "```csharp\nclass Dog\n{\n    public string Name;\n    public int Age;\n}\n\n// Dog is the blueprint — Name and Age define what every Dog has\n```"
+    "example": "```csharp\nclass Dog\n{\n    public string Name;\n    public int Age;\n}\n\n// Dog is the blueprint — Name and Age define what every Dog has\n```",
+    "thinkOfIt": "Think of it like this:\n- A class is a blueprint — it's not a house, it describes a house\n- An object is the actual house built from that blueprint\n- You can build many houses from one blueprint"
   },
   {
     "id": 3,
@@ -45,7 +46,8 @@
     "answer": "new",
     "explanation": "`new` allocates memory and calls the constructor to produce a usable object.",
     "shortExplanation": "new creates an object from a class.",
-    "example": "```csharp\nvar dog = new Dog();\ndog.Name = \"Rex\";\nConsole.WriteLine(dog.Name); // Rex\n```"
+    "example": "```csharp\nvar dog = new Dog();\ndog.Name = \"Rex\";\nConsole.WriteLine(dog.Name); // Rex\n```",
+    "thinkOfIt": "Think of it like this:\n- The class is the cookie cutter\n- new is the action of pressing it into dough\n- The resulting cookie is the object"
   },
   {
     "id": 4,
@@ -93,7 +95,8 @@
     "answer": "A special method called automatically when an object is created",
     "explanation": "The constructor runs the moment you use `new` to create an object — used to set initial values.",
     "shortExplanation": "Constructor = runs automatically when an object is created.",
-    "example": "```csharp\nclass Dog\n{\n    public string Name;\n\n    public Dog(string name) // constructor\n    {\n        Name = name;\n    }\n}\n\nvar dog = new Dog(\"Rex\"); // Name is set on creation\n```"
+    "example": "```csharp\nclass Dog\n{\n    public string Name;\n\n    public Dog(string name) // constructor\n    {\n        Name = name;\n    }\n}\n\nvar dog = new Dog(\"Rex\"); // Name is set on creation\n```",
+    "thinkOfIt": "Think of it like this:\n- A constructor is like a setup wizard that runs automatically the moment you install (create) something\n- It lets you set the initial state of the object right away, instead of setting fields manually afterwards"
   },
   {
     "id": 7,
@@ -125,7 +128,8 @@
     "answer": "Only accessible inside its own class",
     "explanation": "`private` hides a member from outside code — only methods within the same class can read or change it.\n\nThis is the foundation of **encapsulation**.",
     "shortExplanation": "private = only accessible inside its own class.",
-    "example": "```csharp\nclass BankAccount\n{\n    private int _balance; // only this class can touch it\n\n    public void Deposit(int amount)\n    {\n        _balance += amount; // OK — we're inside the class\n    }\n}\n```"
+    "example": "```csharp\nclass BankAccount\n{\n    private int _balance; // only this class can touch it\n\n    public void Deposit(int amount)\n    {\n        _balance += amount; // OK — we're inside the class\n    }\n}\n```",
+    "thinkOfIt": "Think of it like this:\n- private = your diary: only you (the class itself) can read or write it\n- public = a whiteboard: anyone can read or write it\n- Keeping fields private protects them from being changed incorrectly from outside"
   },
   {
     "id": 9,
@@ -141,7 +145,8 @@
     "answer": "Controls how a field is read and written",
     "explanation": "Properties wrap a private field and expose it safely.",
     "shortExplanation": "Properties control read/write access to a field.",
-    "example": "```csharp\nclass Person\n{\n    private int _age;\n\n    public int Age\n    {\n        get => _age;\n        set => _age = value;\n    }\n}\n\nvar p = new Person();\np.Age = 25;              // set\nConsole.WriteLine(p.Age); // get → 25\n```"
+    "example": "```csharp\nclass Person\n{\n    private int _age;\n\n    public int Age\n    {\n        get => _age;\n        set => _age = value;\n    }\n}\n\nvar p = new Person();\np.Age = 25;              // set\nConsole.WriteLine(p.Age); // get → 25\n```",
+    "thinkOfIt": "Think of it like this:\n- A property is like a vending machine:\n  - get = see what's inside (read the value)\n  - set = insert money / choose item (write the value)\n- You never reach in directly — you go through the controlled slots"
   },
   {
     "id": 10,
@@ -157,7 +162,8 @@
     "answer": ":",
     "explanation": "A colon after the class name followed by the base class declares inheritance.",
     "shortExplanation": ": BaseClass declares inheritance.",
-    "example": "```csharp\nclass Animal { public string Name; }\n\nclass Dog : Animal  // Dog inherits from Animal\n{\n    public void Bark() { Console.WriteLine(\"Woof!\"); }\n}\n\nvar dog = new Dog { Name = \"Rex\" }; // Name comes from Animal\n```"
+    "example": "```csharp\nclass Animal { public string Name; }\n\nclass Dog : Animal  // Dog inherits from Animal\n{\n    public void Bark() { Console.WriteLine(\"Woof!\"); }\n}\n\nvar dog = new Dog { Name = \"Rex\" }; // Name comes from Animal\n```",
+    "thinkOfIt": "Think of it like this:\n- Inheritance is like a child getting traits from a parent\n- Dog : Animal means Dog is an Animal — it gets everything Animal has\n- You write : BaseClass to say \"this class is a more specific version of that one\""
   },
   {
     "id": 11,
@@ -173,7 +179,8 @@
     "answer": "Redefines a virtual method from a base class in a derived class",
     "explanation": "`override` lets a child class provide its own version of a method marked `virtual` in the parent.",
     "shortExplanation": "override replaces a base class's virtual method.",
-    "example": "```csharp\nclass Animal\n{\n    public virtual string Sound() { return \"...\"; }\n}\n\nclass Dog : Animal\n{\n    public override string Sound() { return \"Woof!\"; }\n}\n\nAnimal a = new Dog();\nConsole.WriteLine(a.Sound()); // Woof!\n```"
+    "example": "```csharp\nclass Animal\n{\n    public virtual string Sound() { return \"...\"; }\n}\n\nclass Dog : Animal\n{\n    public override string Sound() { return \"Woof!\"; }\n}\n\nAnimal a = new Dog();\nConsole.WriteLine(a.Sound()); // Woof!\n```",
+    "thinkOfIt": "Think of it like this:\n- virtual = the parent class says \"I have a default way of doing this, but you're allowed to replace it\"\n- override = the child class says \"I'll do it my own way instead\"\n- Without virtual/override, the parent's version always runs"
   },
   {
     "id": 12,
@@ -189,7 +196,8 @@
     "answer": "A class that cannot be instantiated and may have abstract methods",
     "explanation": "Abstract classes are meant to be inherited, not used directly with `new`.\n\nThey can define abstract methods (no body) that subclasses **must** implement.",
     "shortExplanation": "abstract class = cannot be created directly, must be inherited.",
-    "example": "```csharp\nabstract class Shape\n{\n    public abstract double Area(); // no body — must be implemented\n}\n\nclass Circle : Shape\n{\n    double r;\n    public Circle(double r) { this.r = r; }\n    public override double Area() { return Math.PI * r * r; }\n}\n```"
+    "example": "```csharp\nabstract class Shape\n{\n    public abstract double Area(); // no body — must be implemented\n}\n\nclass Circle : Shape\n{\n    double r;\n    public Circle(double r) { this.r = r; }\n    public override double Area() { return Math.PI * r * r; }\n}\n```",
+    "thinkOfIt": "Think of it like this:\n- An abstract class is a half-finished template: it defines the shape but leaves some blanks that subclasses must fill in\n- You can never create it directly with new — it's not complete enough to use on its own"
   },
   {
     "id": 13,
@@ -205,7 +213,8 @@
     "answer": "A contract that defines what methods a class must implement",
     "explanation": "An interface only declares method signatures — no bodies. Any class that implements it must provide those methods.",
     "shortExplanation": "Interface = a contract of methods a class must implement.",
-    "example": "```csharp\ninterface IShape\n{\n    double Area();\n}\n\nclass Square : IShape\n{\n    double side;\n    public Square(double s) { side = s; }\n    public double Area() { return side * side; }\n}\n```"
+    "example": "```csharp\ninterface IShape\n{\n    double Area();\n}\n\nclass Square : IShape\n{\n    double side;\n    public Square(double s) { side = s; }\n    public double Area() { return side * side; }\n}\n```",
+    "thinkOfIt": "Think of it like this:\n- An interface is a job description: it says what you must be able to do, but not how to do it\n- Any class that signs the contract (implements the interface) must provide all the methods listed\n- Unlike inheritance, one class can implement many interfaces"
   },
   {
     "id": 14,
@@ -221,7 +230,8 @@
     "answer": "A set of named constant values",
     "explanation": "Enums give meaningful names to a fixed set of values.",
     "shortExplanation": "Enum = named set of constants.",
-    "example": "```csharp\nenum Day { Mon, Tue, Wed, Thu, Fri, Sat, Sun }\n\nDay today = Day.Wed;\nConsole.WriteLine(today); // Wed\n```"
+    "example": "```csharp\nenum Day { Mon, Tue, Wed, Thu, Fri, Sat, Sun }\n\nDay today = Day.Wed;\nConsole.WriteLine(today); // Wed\n```",
+    "thinkOfIt": "Think of it like this:\n- An enum is like a dropdown menu: a fixed set of named choices\n- Instead of using mystery numbers (0, 1, 2 for days), you write Day.Mon, Day.Tue — much clearer"
   },
   {
     "id": 15,

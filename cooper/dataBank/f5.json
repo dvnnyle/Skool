@@ -14,7 +14,8 @@
     "shortExplanation": "Arv lar en subclass gjenbruke og utvide en super-klasse.",
     "explanation": "- Sub-klassen arver felt og metoder fra super-klassen\n- Fremmer gjenbruk og polymorphism",
     "example": "```csharp\nclass Animal { public void Eat() => Console.WriteLine(\"Eating\"); }\nclass Dog : Animal { }\n```",
-    "hvaGjørDen": "Arv lar en klasse ta i bruk felt og metoder fra en annen klasse, uten å skrive dem om igjen."
+    "hvaGjørDen": "Arv lar en klasse ta i bruk felt og metoder fra en annen klasse, uten å skrive dem om igjen.",
+    "thinkOfIt": "Think of it like this:\n- Inheritance = a child class getting everything from a parent class for free\n- Dog : Animal means Dog IS-A Animal — no need to re-write Name, Age, etc.\n- You only write what's new or different in Dog"
   },
   {
     "id": 2,
@@ -48,7 +49,8 @@
     "shortExplanation": ": brukes for å angi base-klassen.",
     "explanation": "- Syntaks: class Derived : Base\n- Flere baser: ikke for klasser, men flere interfaces",
     "example": "```csharp\nclass Bird : Animal { }\n```",
-    "hvaGjørDen": "I C# brukes `:` for å arve – `class Hund : Dyr` betyr at `Hund` arver alt fra `Dyr`."
+    "hvaGjørDen": "I C# brukes `:` for å arve – `class Hund : Dyr` betyr at `Hund` arver alt fra `Dyr`.",
+    "thinkOfIt": "Think of it like this:\n- class Dog : Animal { } is literally saying \"Dog is a type of Animal\"\n- The : is like the word 'extends' in other languages\n- After this, Dog has everything Animal has, plus whatever you add to Dog"
   },
   {
     "id": 4,
@@ -65,7 +67,8 @@
     "shortExplanation": "C# støtter enkel arv for klasser; flere interfaces er mulig.",
     "explanation": "- Multiple inheritance for klasser er ikke tillatt\n- Implementer flere interfaces for liknende effekt",
     "example": "```csharp\nclass MyClass : Base, IDisposable, IComparable { /* ok */ }\n```",
-    "hvaGjørDen": "C# støtter enkel arv for klasser – én klasse kan bare arve fra én annen klasse."
+    "hvaGjørDen": "C# støtter enkel arv for klasser – én klasse kan bare arve fra én annen klasse.",
+    "thinkOfIt": "Think of it like this:\n- C# allows one parent class (single inheritance) to keep it simple and avoid conflicts\n- But you can implement many interfaces — that's how C# gives you flexibility without the mess of multiple class inheritance"
   },
   {
     "id": 5,
@@ -133,7 +136,8 @@
     "shortExplanation": "Bare virtuelle/abstrakte kan overstyres i C#.",
     "explanation": "- Markér base-metoden med virtual eller abstract\n- Derived bruker override",
     "example": "```csharp\nclass Base { public virtual void Speak() { } }\nclass Sub : Base { public override void Speak() { } }\n```",
-    "hvaGjørDen": "For å overstyre en metode i en subclass, må base classmetoden merkes `virtual` eller `abstract`."
+    "hvaGjørDen": "For å overstyre en metode i en subclass, må base classmetoden merkes `virtual` eller `abstract`.",
+    "thinkOfIt": "Think of it like this:\n- virtual = the parent says \"I have a default, but you're welcome to replace it\"\n- Without virtual, the child cannot override — the parent's version always runs\n- It's an opt-in system: the parent must give permission to override"
   },
   {
     "id": 9,
@@ -184,7 +188,8 @@
     "shortExplanation": "new skjuler; override overstyrer.",
     "explanation": "- new Method() → skjuling; base-kall avhenger av referansetypen",
     "example": "```csharp\nclass Base { public void Print() { } }\nclass Sub : Base { public new void Print() { } }\n```",
-    "hvaGjørDen": "`new` foran en metode skjuler base classs metode, i stedet for å overstyre den."
+    "hvaGjørDen": "`new` foran en metode skjuler base classs metode, i stedet for å overstyre den.",
+    "thinkOfIt": "Think of it like this:\n- override = child replaces the parent's version entirely\n- new (method hiding) = child has a same-named method but they're completely separate\n- With override, calling Sound() on an Animal reference still calls the Dog version\n- With new/hiding, calling Sound() on an Animal reference calls Animal's version"
   },
   {
     "id": 12,
@@ -235,7 +240,8 @@
     "shortExplanation": "Virtuelle metoder med override gir dynamisk dispatch via basereferanser.",
     "explanation": "- Kall bestemmes av objektets runtime-type",
     "example": "```csharp\nBase b = new Sub();\nb.Speak(); // kaller Sub.Speak()\n```",
-    "hvaGjørDen": "Polymorphism virker ved at `virtual`/`override`-metoder velger riktig versjon ved kjøretid."
+    "hvaGjørDen": "Polymorphism virker ved at `virtual`/`override`-metoder velger riktig versjon ved kjøretid.",
+    "thinkOfIt": "Think of it like this:\n- Polymorphism = \"many forms\"\n- You can store Dog, Cat, Bird all as Animal references in one list\n- When you call animal.Sound(), each plays its own sound — same call, different result\n- You don't need to know the specific type; you just call the method"
   },
   {
     "id": 15,
@@ -252,7 +258,8 @@
     "shortExplanation": "Dynamisk dispatch opprettholder riktig atferd basert på runtime-type.",
     "explanation": "- Polymorphism: metodevalg ved runtime",
     "example": "```csharp\nBase b = new Sub();\nb.Speak(); // Sub.Speak()\n```",
-    "hvaGjørDen": "Når en basisreferanse peker på en subclass, er det subclassens metode som kalles."
+    "hvaGjørDen": "Når en basisreferanse peker på en subclass, er det subclassens metode som kalles.",
+    "thinkOfIt": "Think of it like this:\n- At runtime, C# looks at the ACTUAL object, not the reference type\n- Animal a = new Dog() — the reference says Animal, but the actual object is Dog\n- a.Sound() calls Dog's Sound() because of virtual/override dispatch\n- This is what makes polymorphism work in practice"
   },
   {
     "id": 16,
@@ -269,7 +276,8 @@
     "shortExplanation": "base() kjører først; sikrer korrekt initiering av base-delen.",
     "explanation": "- : base(args) kan spesifisere hvilke ctor som kalles",
     "example": "```csharp\nclass B { public B(){ Console.WriteLine(\"B\"); } }\nclass S : B { public S(){ Console.WriteLine(\"S\"); } }\n// Output: B, S\n```",
-    "hvaGjørDen": "base classs constructor kjøres alltid FRIST, deretter subclassens – dette sikrer riktig oppsett."
+    "hvaGjørDen": "base classs constructor kjøres alltid FRIST, deretter subclassens – dette sikrer riktig oppsett.",
+    "thinkOfIt": "Think of it like this:\n- When you create a Dog, C# must first set up the Animal part\n- Animal constructor runs first (the foundation), then Dog's constructor runs on top\n- base() is how you explicitly call and pass values to the parent constructor"
   },
   {
     "id": 17,

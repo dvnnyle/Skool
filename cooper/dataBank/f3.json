@@ -14,7 +14,8 @@
     "shortExplanation": "Encapsulation samler data/metoder og begrenser tilgang for å beskytte integritet.",
     "explanation": "Encapsulation er et av de fire grunnprinsippene i OOP.\n\nKjerneidéen:\n- Pakk data og logikk inn i en klasse\n- Kontroller hva omverdenen kan se og endre\n\nTenk på en bankkonto:\n- Du kan sette inn penger via en metode (SetInn)\n- Du kan ikke direkte sette saldo til et negativt tall\n- Kontoens interne felt er beskyttet\n\nFordelene:\n- Hindrer uautoriserte eller feilaktige endringer av data\n- Gjør koden lettere å vedlikeholde og teste",
     "example": "```csharp\npublic class BankAccount\n{\n    private decimal balance; // skjult felt\n\n    public decimal Balance\n    {\n        get => balance;\n        set { if (value >= 0) balance = value; }\n    }\n\n    public void Deposit(decimal amount)\n    {\n        if (amount > 0) balance += amount;\n    }\n}\n```",
-    "hvaGjørDen": "Encapsulation betyr å pakke data og logikk inn i en klasse og bestemme hva som er synlig utenfra."
+    "hvaGjørDen": "Encapsulation betyr å pakke data og logikk inn i en klasse og bestemme hva som er synlig utenfra.",
+    "thinkOfIt": "Think of it like this:\n- Encapsulation = a capsule (pill) — the contents are inside, protected\n- private data + public methods = the pill's coating that controls what gets in and out\n- Without encapsulation, any part of the code could break your object's data directly"
   },
   {
     "id": 2,
@@ -31,7 +32,8 @@
     "shortExplanation": "`private` gjør et medlem kun tilgjengelig innenfor sin egen klasse.",
     "explanation": "private er den mest restriktive tilgangsmodifikatoren i C#.\n\nHva det betyr:\n- Kun koden innenfor samme klasse kan lese eller endre dette medlemmet\n- Ingen andre klasser, ikke engang subclasses, har tilgang\n\nHvorfor bruke private:\n- Beskytt intern tilstand mot feil bruk\n- Du kan endre den interne implementasjonen uten at andre klasser løsner\n\nBest practice: alle felt bør være private som standard – bruk properties for tilgang.",
     "example": "```csharp\npublic class Bruker\n{\n    private string passord;  // kun klassen selv kan bruke dette\n    private int forsøk = 0;\n\n    public bool Logg Inn(string input)\n    {\n        forsøk++;\n        return input == passord; // OK – vi er innenfor klassen\n    }\n}\n```",
-    "hvaGjørDen": "`private` betyr at et felt eller en metode bare kan brukes inne i selve klassen – ingen utenfor kan se det."
+    "hvaGjørDen": "`private` betyr at et felt eller en metode bare kan brukes inne i selve klassen – ingen utenfor kan se det.",
+    "thinkOfIt": "Think of it like this:\n- private = your diary — only the class itself can open it\n- public = a poster on the wall — anyone can see it\n- Default to private for data fields; expose only what's necessary"
   },
   {
     "id": 3,
@@ -48,7 +50,8 @@
     "shortExplanation": "`protected` gir tilgang i base class og derived classes.",
     "explanation": "protected er tilgangsmodifikatoren for arv.\n\nHva det betyr:\n- Tilgjengelig i klassen selv\n- Tilgjengelig i alle klasser som arver fra den (subclasses)\n- Ikke tilgjengelig for ekstern kode\n\nNår benytte protected:\n- Når en base class ønsker å eksponere noe for sine derived classes\n- Men ikke for alle andre\n\nTenk på det som felles arv innad i en familie – bare familiemedlemmer får tilgang.",
     "example": "```csharp\npublic class Kjøretøy\n{\n    protected int motorEffekt; // kun synlig for Kjøretøy og sub-klasser\n}\n\npublic class Bil : Kjøretøy\n{\n    public void VisYtelse()\n    {\n        Console.WriteLine(motorEffekt); // OK – Bil arver fra Kjøretøy\n    }\n}\n```",
-    "hvaGjørDen": "`protected` gjør at et felt er tilgjengelig i klassen og i alle klasser som arver fra den."
+    "hvaGjørDen": "`protected` gjør at et felt er tilgjengelig i klassen og i alle klasser som arver fra den.",
+    "thinkOfIt": "Think of it like this:\n- protected = a family secret — the class and its children (subclasses) know it, but no one else\n- Use it when derived classes need access to something the public shouldn't see"
   },
   {
     "id": 4,
@@ -116,7 +119,8 @@
     "shortExplanation": "Felt lagrer data; properties kontrollerer tilgang til data via get/set.",
     "explanation": "Felt og properties ser like ut når du bruker dem, men er fundamentalt forskjellige:\n\nFelt (direkte):  \n- public string navn; \n- Rask og enkel, men ingen kontroll\n- Alle kan sette hva de vil\n\nProperty (property):\n- public string Navn { get; set; }\n- Kan ha logikk i get (les) og set (skriv)\n- Kan validere, transformere eller beregne verdier\n\nBest practice: felt bør være private, properties bør være public.",
     "example": "```csharp\npublic class BankAccount\n{\n    private decimal balance; // privat felt\n\n    public decimal Balance   // egenskap med kontroll\n    {\n        get => balance;\n        set => balance = value;\n    }\n}\n```",
-    "hvaGjørDen": "Felt lagrer data direkte; properties lar deg kontrollere og validere verdiene via `get` og `set`."
+    "hvaGjørDen": "Felt lagrer data direkte; properties lar deg kontrollere og validere verdiene via `get` og `set`.",
+    "thinkOfIt": "Think of it like this:\n- A field is a raw storage slot — no rules, direct access\n- A property is a smart slot with a bouncer: get controls reading, set controls writing\n- Properties let you add validation: prevent negative age, auto-calculate derived values"
   },
   {
     "id": 8,
@@ -184,7 +188,8 @@
     "shortExplanation": "Constructors matcher klassenavn, har ingen returtype og kalles ved `new`.",
     "explanation": "En constructor er en spesiell metode med klare regler:\n\nKjennetegn:\n- Har alltid samme navn som klassen\n- Har ingen returtype (ikke engang void)\n- Kalles automatisk når du bruker new\n\nFormålet:\n- Sette opp objektet i en gyldig starttilstand\n- Motta startverdier som input\n\nHvis du ikke lager en constructor, lager C# en tom standardconstructor for deg automatisk.",
     "example": "```csharp\npublic class BankAccount\n{\n    private decimal balance;\n\n    // Konstruktør: kjøres automatisk ved new BankAccount()\n    public BankAccount()\n    {\n        balance = 0m; // sett gyldig startverdi\n    }\n\n    public BankAccount(decimal startSaldo)\n    {\n        balance = startSaldo;\n    }\n}\n```",
-    "hvaGjørDen": "En constructor er en spesiell metode uten returtype som kjøres automatisk ved `new`."
+    "hvaGjørDen": "En constructor er en spesiell metode uten returtype som kjøres automatisk ved `new`.",
+    "thinkOfIt": "Think of it like this:\n- A constructor is the birth certificate of the object\n- It runs exactly once — at the moment new is called\n- Its job: set initial values so the object starts in a valid, usable state"
   },
   {
     "id": 12,
@@ -201,7 +206,8 @@
     "shortExplanation": "Overloading lar deg opprette objekter på forskjellige måter – med ulike startverdier.",
     "explanation": "Constructor-overloading betyr å ha flere constructors i samme klasse med ulike signaturer.\n\nHvorfor er det nyttig:\n- Gir fleksibilitet i hvordan objektet opprettes\n- Noen ganger kjenner du startverdiene, andre ganger ikke\n\nBruk this() for å kalle en annen constructor i samme klasse og unngå duplisert kode.",
     "example": "```csharp\npublic class BankAccount\n{\n    private decimal balance;\n    private string eier;\n\n    public BankAccount()\n    {\n        balance = 0m;\n        eier = \"Ukjent\";\n    }\n\n    public BankAccount(string navn, decimal startSaldo)\n    {\n        eier = navn;\n        balance = startSaldo;\n    }\n}\n\nvar konto1 = new BankAccount();                 // standard\nvar konto2 = new BankAccount(\"Ada\", 1000m); // med verdier\n```",
-    "hvaGjørDen": "Constructor-overloading betyr at du kan lage objektet på ulike måter med forskjellige startverdier."
+    "hvaGjørDen": "Constructor-overloading betyr at du kan lage objektet på ulike måter med forskjellige startverdier.",
+    "thinkOfIt": "Think of it like this:\n- Constructor overloading = multiple ways to \"be born\"\n- Person() → create with no info\n- Person(string name) → create with a name\n- Person(string name, int age) → create with full details\n- C# picks the matching constructor based on what you pass to new"
   },
   {
     "id": 13,
@@ -269,6 +275,7 @@
     "shortExplanation": "Encapsulation gir dataintegritet, sikkerhet og kode som er lettere å vedlikeholde.",
     "explanation": "Encapsulation har mange fordeler som gjør koden mer robust:\n\n1. Dataintegritet:\n   - Hindrer at objektet kommer i ugyldig tilstand\n   - Setter gjør validering før endring\n\n2. Skjuler kompleksitet:\n   - Brukere av klassen trenger ikke vite hvordan dataene lagres\n   - Du kan endre internt uten å bryte ekstern kode\n\n3. Lettere å vedlikeholde:\n   - Endringer i intern implementasjon påvirker ikke andre klasser",
     "example": "```csharp\npublic class Profil\n{\n    private string epost;\n\n    public string Epost\n    {\n        get => epost;\n        set\n        {\n            if (value.Contains(\"@\"))\n                epost = value;\n            else\n                throw new ArgumentException(\"Ugyldig e-postadresse\");\n        }\n    }\n}\n\nvar p = new Profil();\np.Epost = \"ada@example.com\";  // OK\np.Epost = \"ugyldig tekst\";    // kaster unntak\n```",
-    "hvaGjørDen": "Encapsulation beskytter dataene mot feil bruk og gjør koden enklere å vedlikeholde over tid."
+    "hvaGjørDen": "Encapsulation beskytter dataene mot feil bruk og gjør koden enklere å vedlikeholde over tid.",
+    "thinkOfIt": "Think of it like this:\n- Without encapsulation, anyone can write bank.Balance = -999 directly\n- With encapsulation, the Balance setter can reject invalid values\n- It makes the object responsible for its own rules"
   }
 ]

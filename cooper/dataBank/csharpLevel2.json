@@ -13,7 +13,8 @@
     "answer": "A reusable block of code that performs a task",
     "explanation": "A method groups code into a named block you can call whenever you need it.",
     "shortExplanation": "A method is a named, reusable block of code.",
-    "example": "```csharp\nvoid SayHello()\n{\n    Console.WriteLine(\"Hello!\");\n}\n\nSayHello(); // call it\n```"
+    "example": "```csharp\nvoid SayHello()\n{\n    Console.WriteLine(\"Hello!\");\n}\n\nSayHello(); // call it\n```",
+    "thinkOfIt": "Think of it like this:\n- A method is like a recipe: you write it once, give it a name, and use it whenever you need it\n- Without methods, you'd have to copy-paste the same code everywhere"
   },
   {
     "id": 2,
@@ -61,7 +62,8 @@
     "answer": "Variables that receive values when the method is called",
     "explanation": "Parameters are placeholders in the method signature. When you call the method you pass values (arguments) that fill those parameters.",
     "shortExplanation": "Parameters are input variables for a method.",
-    "example": "```csharp\nvoid Add(int a, int b)  // a and b are parameters\n{\n    Console.WriteLine(a + b);\n}\n\nAdd(3, 5); // 3 and 5 are arguments\n```"
+    "example": "```csharp\nvoid Add(int a, int b)  // a and b are parameters\n{\n    Console.WriteLine(a + b);\n}\n\nAdd(3, 5); // 3 and 5 are arguments\n```",
+    "thinkOfIt": "Think of it like this:\n- Parameters are the empty slots in the method definition (the form template)\n- Arguments are the actual values you fill into those slots when you call the method"
   },
   {
     "id": 5,
@@ -77,7 +79,8 @@
     "answer": "Arguments",
     "explanation": "**Parameters** are in the method definition; **arguments** are the real values passed at the call site.",
     "shortExplanation": "Arguments are the values passed when calling a method.",
-    "example": "```csharp\nvoid Greet(string name)  // name = parameter\n{\n    Console.WriteLine(\"Hello \" + name);\n}\n\nGreet(\"Alice\"); // \"Alice\" = argument\n```"
+    "example": "```csharp\nvoid Greet(string name)  // name = parameter\n{\n    Console.WriteLine(\"Hello \" + name);\n}\n\nGreet(\"Alice\"); // \"Alice\" = argument\n```",
+    "thinkOfIt": "Think of it like this:\n- The method signature says \"I need a name and an age\" → those are parameters\n- When you call Greet(\"Alice\", 25) → \"Alice\" and 25 are the arguments filling those slots"
   },
   {
     "id": 6,
@@ -141,7 +144,8 @@
     "answer": "The method returns nothing",
     "explanation": "`void` means the method performs an action but hands nothing back to the caller.",
     "shortExplanation": "void = the method returns nothing.",
-    "example": "```csharp\nvoid PrintName(string name)\n{\n    Console.WriteLine(name);\n    // nothing returned\n}\n\nPrintName(\"Bob\"); // prints: Bob\n```"
+    "example": "```csharp\nvoid PrintName(string name)\n{\n    Console.WriteLine(name);\n    // nothing returned\n}\n\nPrintName(\"Bob\"); // prints: Bob\n```",
+    "thinkOfIt": "Think of it like this:\n- void = the method is a worker who does a job but doesn't hand you anything back\n- int, string, bool etc. = the method hands you a result you can use"
   },
   {
     "id": 10,
@@ -189,7 +193,8 @@
     "answer": "Defining multiple methods with the same name but different parameters",
     "explanation": "Overloading lets one name handle different input types/counts.",
     "shortExplanation": "Overloading = same name, different parameters.",
-    "example": "```csharp\nint Add(int a, int b)          { return a + b; }\ndouble Add(double a, double b) { return a + b; }\n\nAdd(2, 3);     // uses int version\nAdd(2.5, 3.5); // uses double version\n```"
+    "example": "```csharp\nint Add(int a, int b)          { return a + b; }\ndouble Add(double a, double b) { return a + b; }\n\nAdd(2, 3);     // uses int version\nAdd(2.5, 3.5); // uses double version\n```",
+    "thinkOfIt": "Think of it like this:\n- Like a restaurant waiter named \"Take order\" who handles different situations:\n  - dine-in order (int parameters)\n  - takeaway order (string parameters)\n- Same name, different inputs — C# picks the right version automatically"
   },
   {
     "id": 13,
@@ -221,7 +226,8 @@
     "answer": "The method belongs to the class, not an object",
     "explanation": "A `static` method is called on the class itself — no object needed.",
     "shortExplanation": "static = call on the class, not an object.",
-    "example": "```csharp\nclass MathHelper\n{\n    public static int Square(int n)\n    {\n        return n * n;\n    }\n}\n\nConsole.WriteLine(MathHelper.Square(4)); // no 'new' needed\n```"
+    "example": "```csharp\nclass MathHelper\n{\n    public static int Square(int n)\n    {\n        return n * n;\n    }\n}\n\nConsole.WriteLine(MathHelper.Square(4)); // no 'new' needed\n```",
+    "thinkOfIt": "Think of it like this:\n- Some things exist once for the whole program → static\n- Some things exist per object → non-static\n- Math.Sqrt() makes no sense \"per object\" — it's a tool that belongs to the class itself, not to any instance"
   },
   {
     "id": 15,
@@ -237,6 +243,7 @@
     "answer": "Yes, to exit the method early",
     "explanation": "A bare `return;` (with no value) is valid in a void method — it just stops execution at that point.\n\nUseful for early exits based on a condition.",
     "shortExplanation": "void methods can use return; to exit early.",
-    "example": "```csharp\nvoid PrintPositive(int n)\n{\n    if (n <= 0) return; // exit early\n    Console.WriteLine(n);\n}\n\nPrintPositive(-1); // prints nothing\nPrintPositive(5);  // prints 5\n```"
+    "example": "```csharp\nvoid PrintPositive(int n)\n{\n    if (n <= 0) return; // exit early\n    Console.WriteLine(n);\n}\n\nPrintPositive(-1); // prints nothing\nPrintPositive(5);  // prints 5\n```",
+    "thinkOfIt": "Think of it like this:\n- It's like an emergency exit\n- return; in a void method = \"I'm done here, leave early\"\n- No value is returned — it just stops execution at that point"
   }
 ]

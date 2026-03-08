@@ -99,7 +99,8 @@
     "shortExplanation": "`return verdi` sender verdien tilbake slik at kalleren kan bruke den.",
     "explanation": "Når du kaller en metode med returtype, sender den en verdi tilbake med return.\n\nHvordan det fungerer:\n1. Koden kaller metoden\n2. Metoden kjøres og beregner noe\n3. return sender verdien tilbake til kallstedet\n4. Kallstedet kan lagre eller bruke verdien\n\nEn metode med returtype MÅ alltid ha en return-setning.",
     "example": "```csharp\npublic double BeregnAreal(double bredde, double høyde)\n{\n    return bredde * høyde; // sender tilbake resultatet\n}\n\n// Kaller metoden og lagrer resultatet:\ndouble areal = BeregnAreal(5.0, 3.0);\nConsole.WriteLine($\"Areal: {areal}\"); // Areal: 15\n\n// Eller bruk direkte:\nConsole.WriteLine(BeregnAreal(10, 2)); // 20\n```",
-    "hvaGjørDen": "En metode med returtype sender tilbake en verdi med `return` som kallende kode kan bruke."
+    "hvaGjørDen": "En metode med returtype sender tilbake en verdi med `return` som kallende kode kan bruke.",
+    "thinkOfIt": "Think of it like this:\n- The return type is a promise: \"this method will hand back a value of this type\"\n- int Add() promises to return a whole number\n- If you declare int but forget return, the compiler rejects it — promise broken"
   },
   {
     "id": 7,
@@ -116,7 +117,8 @@
     "shortExplanation": "`this` peker på objektet som koden kjøres på akkurat nå.",
     "explanation": "this er et nøkkelord som refererer til den nåværende instansen av klassen.\n\nNår er this nyttig:\n1. Skille mellom parametre og felt med samme navn\n2. Sende seg selv som argument til en metode\n3. Kalle en annen constructor i same klasse (this(...))\n\nBeste praksis: bruk this.feltnavn når parameternavn og feltnavn er identiske.",
     "example": "```csharp\npublic class Person\n{\n    private string navn;\n    private int alder;\n\n    public Person(string navn, int alder)\n    {\n        this.navn = navn;   // this.navn = felt, navn = parameter\n        this.alder = alder;\n    }\n\n    public void Presenter()\n    {\n        Console.WriteLine($\"Jeg er {this.navn}, {this.alder} år\");\n    }\n}\n```",
-    "hvaGjørDen": "`this` refererer til det nåværende objektet – nyttig for å skille felt fra parametere med samme navn."
+    "hvaGjørDen": "`this` refererer til det nåværende objektet – nyttig for å skille felt fra parametere med samme navn.",
+    "thinkOfIt": "Think of it like this:\n- this = \"myself\" — the current object talking about itself\n- Used to distinguish between a field and a parameter with the same name\n- this.name refers to the field on the object; name (without this) refers to the parameter"
   },
   {
     "id": 8,
@@ -201,7 +203,8 @@
     "shortExplanation": "`List<T>` er en dynamisk liste som vokser/krymper og gir metoder som Add, Remove, Contains.",
     "explanation": "List<T> er den mest brukte samlingstypen i daglig C#-programmering.\n\nT betyr type – du spesifiserer hva slags ting listen holder:\n- List<int>, List<string>, List<Person>, etc.\n\nRikt API:\n- Add(elem) – legg til bak\n- Remove(elem) – fjern første treff\n- Contains(elem) – finnes elementet?\n- Count – antall elementer\n- Sort() – sorter\n- Clear() – tøm listen",
     "example": "```csharp\nList<string> handleliste = new List<string>();\n\nhandleliste.Add(\"Melk\");\nhandleliste.Add(\"Brød\");\nhandleliste.Add(\"Egg\");\n\nConsole.WriteLine(handleliste.Count);          // 3\nConsole.WriteLine(handleliste.Contains(\"Brød\")); // True\n\nhandleliste.Remove(\"Melk\");\n\nforeach (string vare in handleliste)\n    Console.WriteLine(vare); // Brød, Egg\n```",
-    "hvaGjørDen": "`List<T>` er en dynamisk liste som kan vokse og krympe, med metoder som `Add`, `Remove` og `Contains`."
+    "hvaGjørDen": "`List<T>` er en dynamisk liste som kan vokse og krympe, med metoder som `Add`, `Remove` og `Contains`.",
+    "thinkOfIt": "Think of it like this:\n- List<T> is a dynamic shopping bag — you can add or remove items anytime\n- The <T> means it only holds one type of item (e.g. List<string> only holds strings)\n- Unlike arrays, you don't declare the size upfront"
   },
   {
     "id": 13,
@@ -235,7 +238,8 @@
     "shortExplanation": "`Dictionary<K, V>` lagrer par av nøkkel og verdi – som et oppslagsregister.",
     "explanation": "Dictionary er en nøkkel-verdi struktur der hvert element har en unik nøkkel.\n\nAnalogi: tenk på det som en ordbok (eller oppslagsverk):\n- Nøkkel: ordet du slår opp (K)\n- Verdi: definisjonen (V)\n\nProperties:\n- Rask oppslag via nøkkel (O(1) gjennomsnitt)\n- Nøkler må være unike\n- Verdier kan dupliseres\n\nAPI:\n- Add(nøkkel, verdi)\n- [nøkkel] – hent/sett verdi\n- ContainsKey(nøkkel)\n- Remove(nøkkel)",
     "example": "```csharp\nDictionary<string, int> aldre = new Dictionary<string, int>();\n\naldre.Add(\"Ada\", 30);\naldre.Add(\"Bjarne\", 72);\naldre[\"Guido\"] = 68; // alternativ måte\n\nConsole.WriteLine(aldre[\"Ada\"]);           // 30\nConsole.WriteLine(aldre.ContainsKey(\"Ada\")); // True\n\nforeach (var par in aldre)\n    Console.WriteLine($\"{par.Key}: {par.Value}\");\n```",
-    "hvaGjørDen": "`Dictionary<K, V>` lagrer par av nøkkel og verdi – som en ordbok der nøkkelen er oppslagsordet."
+    "hvaGjørDen": "`Dictionary<K, V>` lagrer par av nøkkel og verdi – som en ordbok der nøkkelen er oppslagsordet.",
+    "thinkOfIt": "Think of it like this:\n- A Dictionary is like a real dictionary: you look up a word (key) to get its meaning (value)\n- Keys must be unique — you can't have two entries for the same word\n- Lookup by key is instant (very fast) unlike searching a list"
   },
   {
     "id": 15,
@@ -269,7 +273,8 @@
     "shortExplanation": "`null` betyr at en referansevariabel ikke peker på noe objekt i minnet.",
     "explanation": "null er fraværet av en verdi – variabelen eksisterer, men peker ikke til noe objekt.\n\nHva null gjelder for:\n- Referansetyper (string, klasser, arrays, List<T>)\n- Null-bare verdityper (int?, bool?)\n\nNullReferenceException:\n- Oppstår når du prøver å bruke en null-referanse\n- En av de vanligste feilene i C#\n\nBeskyttelse:\n- Sjekk med if (x != null) eller x?.Metode() (null-conditional operator)",
     "example": "```csharp\nstring navn = null; // ingen verdi\n\n// Farlig – kaster NullReferenceException:\n// Console.WriteLine(navn.Length);\n\n// Trygt – sjekk før bruk:\nif (navn != null)\n    Console.WriteLine(navn.Length);\n\n// Null-conditional operator (anbefalt):\nConsole.WriteLine(navn?.Length); // skriver null (ikke krasj)\n\n// Null-coalescing:\nstring vis = navn ?? \"Ukjent\"; // \"Ukjent\" hvis null\n```",
-    "hvaGjørDen": "`null` betyr at en referansevariabel ikke peker på noe objekt – den er «tom»."
+    "hvaGjørDen": "`null` betyr at en referansevariabel ikke peker på noe objekt – den er «tom».",
+    "thinkOfIt": "Think of it like this:\n- null = \"nothing here\" / \"no object assigned\"\n- It's like an empty box — the variable exists but contains no actual object\n- Forgetting to check for null before using an object causes a NullReferenceException"
   },
   {
     "id": 17,
@@ -286,7 +291,8 @@
     "shortExplanation": "`int?` er en nullable int – kan holde et heltall ELLER null (ingen verdi).",
     "explanation": "Normale verdityper (int, bool, double, etc.) kan ikke være null.\nMed spørsmålstegn (int?) gjøres de nullable.\n\nSyntaks: Type? variabel\n- int? alder = null;\n- bool? erAktiv = null;\n\nNyttig for:\n- Database-verdier som kan mangle\n- Valgfrie parametere\n- Ukjente tilstander (ikke sant, ikke usant – ukjent)\n\nHasValue og Value:\n- nullable.HasValue → bool om verdien finnes\n- nullable.Value → henter verdien (kaster execption om null)",
     "example": "```csharp\nint? alder = null; // har ingen verdi ennå\n\nif (alder.HasValue)\n    Console.WriteLine($\"Alder: {alder.Value}\");\nelse\n    Console.WriteLine(\"Alder er ukjent\");\n\nalder = 25; // sett en verdi\nConsole.WriteLine(alder ?? 0); // 25 (eller 0 hvis null)\n```",
-    "hvaGjørDen": "`int?` er en int som i tillegg kan være `null` – nyttig for verdier som kan mangle."
+    "hvaGjørDen": "`int?` er en int som i tillegg kan være `null` – nyttig for verdier som kan mangle.",
+    "thinkOfIt": "Think of it like this:\n- int can never hold null — it always has some number value\n- int? = a nullable int — it can be either a number OR null\n- Useful when data might be missing: age not yet entered, score not yet set"
   },
   {
     "id": 18,
@@ -388,7 +394,8 @@
     "shortExplanation": "`finally` kjøres alltid uansett utfall – brukes til opprydding (lukke fil, connection etc.).",
     "explanation": "finally er en valgfri blokk etter catch som alltid executeres.\n\nHvorfor vi trenger finally:\n- Ressurser (filer, database-tilkoblinger) må alltid lukkes\n- Selv om en exception kastes og fanges, skal opprydding skje\n- Alternativ: using-setningen (automatisk Dispose)\n\nRekkefølge:\n1. try kjøres\n2. Hvis unntak → catch kjøres\n3. finally kjøres ALLTID",
     "example": "```csharp\nStreamReader fil = null;\ntry\n{\n    fil = new StreamReader(\"data.txt\");\n    string innhold = fil.ReadToEnd();\n    Console.WriteLine(innhold);\n}\ncatch (FileNotFoundException ex)\n{\n    Console.WriteLine($\"Fil ikke funnet: {ex.Message}\");\n}\nfinally\n{\n    fil?.Close(); // lukk alltid ressursen!\n    Console.WriteLine(\"Opprydding ferdig\");\n}\n```",
-    "hvaGjørDen": "`finally`-blokken kjøres alltid etter `try/catch`, enten det oppstod en feil eller ikke."
+    "hvaGjørDen": "`finally`-blokken kjøres alltid etter `try/catch`, enten det oppstod en feil eller ikke.",
+    "thinkOfIt": "Think of it like this:\n- try = \"attempt this risky action\"\n- catch = \"if it goes wrong, do this\"\n- finally = \"no matter what happened, always do this\" (cleanup)\n- finally is guaranteed to run even if an exception is thrown and caught"
   },
   {
     "id": 24,

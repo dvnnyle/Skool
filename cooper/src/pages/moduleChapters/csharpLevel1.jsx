@@ -269,8 +269,12 @@ function CsharpLevel1() {
 								</div>
 								<div className="explanation-text" dangerouslySetInnerHTML={{ __html: formatExplanation(currentQuestion.example) }} />
 							</div>
-						)}
-						</div>
+						)}						{currentQuestion.thinkOfIt && (
+							<div className="think-of-it-box">
+								<p className="think-of-it-label">💭 Think of it like this</p>
+								<div className="explanation-text" dangerouslySetInnerHTML={{ __html: formatExplanation(currentQuestion.thinkOfIt) }} />
+							</div>
+						)}						</div>
 					)}
 				</div>
 

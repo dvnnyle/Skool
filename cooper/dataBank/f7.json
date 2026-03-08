@@ -99,7 +99,8 @@
     "shortExplanation": "`Find()` returnerer `null` når ingen element matcher lambda-betingelsen.",
     "explanation": "Find() er en metode på List<T> som tar en lambda (predikat) og returnerer det første elementet som matcher.\n\nHvis ingenting matcher: returnerer default(T)\n- For referansetyper (klasser): null\n- For verditype (struct/int): 0 / false etc.\n\nI MeldStudentAvKurs brukes dette slik:\n  Student funnet = kurs.Studenter.Find(s => s.StudentID == studentID);\n  if (funnet != null) { fjern } else { feilmelding }\n\nDette er et trygt mønster: sjekk alltid null etter Find().",
     "example": "```csharp\nList<Student> liste = new List<Student>();\nliste.Add(new Student(\"S001\", \"Kari\", \"kari@uni.no\"));\n\n// Finn student med ID S001:\nStudent funnet = liste.Find(s => s.StudentID == \"S001\");\nConsole.WriteLine(funnet.Navn); // Kari\n\n// Finn noe som ikke finnes:\nStudent ikkeHer = liste.Find(s => s.StudentID == \"X999\");\nConsole.WriteLine(ikkeHer == null); // True\n```",
-    "hvaGjørDen": "`Find()` returnerer `null` hvis ingen elementer i listen oppfyller betingelsen."
+    "hvaGjørDen": "`Find()` returnerer `null` hvis ingen elementer i listen oppfyller betingelsen.",
+    "thinkOfIt": "Think of it like this:\n- When a search fails to find a match, returning null is C#'s way of saying \"I found nothing\"\n- Always check the result before using it: if (funnet != null)\n- Ignoring this will cause a NullReferenceException when you try to use the result"
   },
   {
     "id": 7,
@@ -184,7 +185,8 @@
     "shortExplanation": "`Lån` er en enkel dataklasse med fire string-felt som representerer ett utlån.",
     "explanation": "Lån er en ren dataholder uten logikk.\n\nFeltene:\n- BokID: hvilken bok som er utlånt\n- BrukerID: StudentID eller AnsattID\n- BrukerNavn: navn for visning\n- BrukerType: \"Student\" eller \"Ansatt\"\n\nI stedet for å lagre selve Student/Bok-objektene, lagres bare ID-ene som strings. Dette holder klassen enkel og løskoblet.\n\nBibliotekSystem holder en List<Lån> som vokser ved utlån og krymper ved innlevering.",
     "example": "```csharp\npublic class Lån\n{\n    public string BokID;\n    public string BrukerID;  // StudentID eller AnsattID\n    public string BrukerNavn;\n    public string BrukerType; // \"Student\" eller \"Ansatt\"\n\n    public Lån(string bokID, string brukerID, string brukerNavn, string brukerType)\n    {\n        BokID = bokID;\n        BrukerID = brukerID;\n        BrukerNavn = brukerNavn;\n        BrukerType = brukerType;\n    }\n}\n```",
-    "hvaGjørDen": "`Lån` er en enkel dataklasse som lagrer `BokID`, `BrukerID`, navn og type for ett enkelt utlån."
+    "hvaGjørDen": "`Lån` er en enkel dataklasse som lagrer `BokID`, `BrukerID`, navn og type for ett enkelt utlån.",
+    "thinkOfIt": "Think of it like this:\n- A Lån (loan) class is a record that connects two things: a Student and a Bok\n- Instead of trying to track loans inside the Student or Bok class, a separate Lån object holds both references\n- This is the \"relationship object\" pattern — used whenever two things have a connection with its own data"
   },
   {
     "id": 12,
@@ -252,7 +254,8 @@
     "shortExplanation": "`bool running = true` gir en tydelig av-bryter; å sette `running = false` er klarere enn `break` midt i koden.",
     "explanation": "Begge while(true) og while(running) lager en uendelig loop som kjøres til noe stopper den.\n\nForskjellen er kodestil:\n\nwhile(true) med break:\n  while (true) {\n    if (valg == \"0\") break; // stopp\n  }\n\nwhile(running):\n  bool running = true;\n  while (running) {\n    if (valg == \"0\") running = false; // stopp\n  }\n\nFordelene med running-flagg:\n- Stopforhold er tydeligere\n- Kan sjekkes fra forskjellige steder\n- Idiomatisk i menybaserte konsollapps",
     "example": "```csharp\nbool running = true;\nwhile (running)\n{\n    string valg = Console.ReadLine();\n\n    if (valg == \"0\")\n    {\n        running = false;           // avslutter løkken\n        Console.WriteLine(\"Takk for nå!\");\n    }\n    else if (valg == \"1\")\n    {\n        // gjør noe\n    }\n}\n```",
-    "hvaGjørDen": "`bool running = true` er en tydelig av-bryter for loopen – klarere enn `while (true)` med `break`."
+    "hvaGjørDen": "`bool running = true` er en tydelig av-bryter for loopen – klarere enn `while (true)` med `break`.",
+    "thinkOfIt": "Think of it like this:\n- while (true) = an infinite loop with no clear exit condition in the loop head\n- while (running) = the same idea, but the exit signal is explicit: set running = false\n- Using a named boolean makes the code self-documenting — you can see «running stays true until we choose to stop»"
   },
   {
     "id": 16,
@@ -303,7 +306,8 @@
     "shortExplanation": "Constructoren initialiserer objektet og kjøres når `new ClassName(...)` skrives.",
     "explanation": "Alle klasser i UniSystem bruker constructors for å sette startverdier.\n\nRegler:\n- Samme navn som klassen\n- Ingen return-type (ikke engang void)\n- Kjøres automatisk ved new-uttrykk\n\nEksempel fra Kurs:\n  public Kurs(string kode, string navn, int studiepoeng, int maksPlasser)\n  { ... sett alle felt ... }\n\nHvis du ikke lager en constructor, lager C# en standard tom constructor.\nHvis du lager en med parametere, forsvinner den tomme – du MÅ da sende inn verdier.",
     "example": "```csharp\npublic class Student\n{\n    public string StudentID;\n    public string Navn;\n    public string Epost;\n\n    // Konstruktør: skal ha samme navn som klassen\n    public Student(string id, string navn, string epost)\n    {\n        StudentID = id;\n        Navn = navn;\n        Epost = epost;\n    }\n}\n\n// Bruk:\nStudent s = new Student(\"S001\", \"Kari\", \"kari@uni.no\");\n// Konstruktøren kjøres automatisk her ^\n```",
-    "hvaGjørDen": "En constructor er en spesiell metode som kjøres automatisk ved `new` og setter opp objektets startdata."
+    "hvaGjørDen": "En constructor er en spesiell metode som kjøres automatisk ved `new` og setter opp objektets startdata.",
+    "thinkOfIt": "Think of it like this:\n- A constructor runs automatically the moment you write new ClassName()\n- It must be named exactly like the class — that's how C# recognises it\n- Its job: set up the object's initial state so it's ready to use immediately"
   },
   {
     "id": 19,
@@ -320,7 +324,8 @@
     "shortExplanation": "`Console.ReadLine()` returnerer alltid `string`; `int.Parse()` konverterer til `int`.",
     "explanation": "Console.ReadLine() leser tekst fra brukeren – alltid som string.\n\nFor å bruke verdien som et tall (f.eks. antall studiepoeng):\n  string input = Console.ReadLine();\n  int studiepoeng = int.Parse(input);\n\nOBS: int.Parse() kaster FormatException hvis brukeren skriver noe som ikke er et tall.\n\nTryggere alternativ: int.TryParse():\n  bool ok = int.TryParse(input, out int studiepoeng);\n  if (!ok) Console.WriteLine(\"Ugyldig tall\");\n\nUniSystem bruker int.Parse() direkte – det er enkelt, men krasjer ved ugyldig input.",
     "example": "```csharp\n// Slik gjøres det i Program.cs:\nConsole.Write(\"Skriv inn antall studiepoeng: \");\nint studiepoeng = int.Parse(Console.ReadLine()); // kan kaste FormatException\n\nConsole.Write(\"Maks plasser: \");\nint maksPlasser = int.Parse(Console.ReadLine());\n\nKurs nyttKurs = new Kurs(kode, navn, studiepoeng, maksPlasser);\n```",
-    "hvaGjørDen": "`Console.ReadLine()` returnerer alltid tekst (string); `int.Parse()` konverterer den til et heltall."
+    "hvaGjørDen": "`Console.ReadLine()` returnerer alltid tekst (string); `int.Parse()` konverterer den til et heltall.",
+    "thinkOfIt": "Think of it like this:\n- Console.ReadLine() always returns a string — even if the user types \"5\"\n- int.Parse() converts that string to an actual integer you can do math with\n- If the user types something that isn't a number, int.Parse throws a FormatException"
   },
   {
     "id": 20,
@@ -473,7 +478,8 @@
     "shortExplanation": "`int.Parse()` kaster `FormatException` når strengen ikke kan tolkes som et heltall.",
     "explanation": "UniSystem bruker `int.Parse(Console.ReadLine())` direkte uten feilhåndtering.\n\nHvis brukeren skriver \"tjue\" i stedet for \"20\":\n  System.FormatException: Input string was not in a correct format.\n\nProgrammet krasjer med en ubehandlet exception.\n\nTryggere alternativ – `int.TryParse()`:\n  if (int.TryParse(input, out int antall))\n      Console.WriteLine(antall);\n  else\n      Console.WriteLine(\"Ugyldig tall!\");\n\nTryParse returnerer false i stedet for å kaste exception.",
     "example": "```csharp\n// Krasjer:\nint antall = int.Parse(\"tjue\"); // FormatException!\n\n// Trygt:\nbool ok = int.TryParse(\"tjue\", out int antall);\nif (ok)\n    Console.WriteLine(antall);\nelse\n    Console.WriteLine(\"Ugyldig – skriv et tall!\");\n// Output: Ugyldig – skriv et tall!\n```",
-    "hvaGjørDen": "`int.Parse()` kaster en `FormatException` når teksten som sendes inn ikke er et gyldig heltall."
+    "hvaGjørDen": "`int.Parse()` kaster en `FormatException` når teksten som sendes inn ikke er et gyldig heltall.",
+    "thinkOfIt": "Think of it like this:\n- int.Parse(\"tjue\") fails because \"tjue\" is a Norwegian word, not a digit\n- This throws a FormatException at runtime\n- To handle this safely, wrap in try/catch or use int.TryParse() which returns false instead of crashing"
   },
   {
     "id": 29,

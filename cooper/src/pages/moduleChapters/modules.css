@@ -272,6 +272,27 @@
 	color: #666;
 }
 
+.think-of-it-box {
+	margin-top: 0.75rem;
+	padding: 0.65rem 1rem;
+	background: rgba(16, 185, 129, 0.08);
+	border-left: 3px solid #10b981;
+	border-radius: 4px;
+}
+
+.think-of-it-label {
+	margin: 0 0 0.35rem 0;
+	font-size: 0.78rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	color: #10b981;
+}
+
+.think-of-it-box .explanation-text {
+	color: #a7f3d0;
+}
+
 .example-box {
 	margin-top: 0.25rem;
 	padding-top: 0.5rem;

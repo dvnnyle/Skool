@@ -14,7 +14,8 @@
     "explanation": "OOP organiserer programmer rundt objekter som kombinerer data og oppførsel.\n\nKort sagt:\n- **Objekter** = data (tilstand) + metoder (oppførsel)\n- **Klasser** beskriver hvordan objekter ser ut og oppfører seg\n- **Modularitet** gjør det enklere å teste, vedlikeholde og gjenbruke kode",
     "shortExplanation": "OOP organiserer kode rundt objekter.",
     "example": "Et objekt med både data og metoder:\n```csharp\npublic class Konto {\n    public string Eier { get; set; }\n    private decimal saldo;\n    public void SettInn(decimal beløp) { saldo += beløp; }\n    public decimal HentSaldo() => saldo;\n}\nvar k = new Konto { Eier = \"Ada\" };\nk.SettInn(100m);\nConsole.WriteLine(k.HentSaldo()); // 100\n```",
-    "hvaGjørDen": "OOP betyr at vi bygger programmer av «objekter» – egne biter med data og handlinger, akkurat som ting i virkeligheten."
+    "hvaGjørDen": "OOP betyr at vi bygger programmer av «objekter» – egne biter med data og handlinger, akkurat som ting i virkeligheten.",
+    "thinkOfIt": "Think of it like this:\n- OOP is about modeling the real world in code\n- Instead of writing a list of steps, you create \"things\" (objects) that know their own data and behavior\n- A Dog knows its name and can bark — you don't have to explain what a dog is every time"
   },
   {
     "id": 2,
@@ -48,7 +49,8 @@
     "explanation": "En **instans** er et konkret objekt opprettet fra en klasse ved hjelp av `new`.",
     "shortExplanation": "En instans er et objekt.",
     "example": "Opprette instanser med new:\n```csharp\npublic class Bil { public string Modell { get; set; } }\nvar bil1 = new Bil { Modell = \"Tesla Model 3\" };\nvar bil2 = new Bil { Modell = \"Volvo XC40\" };\n```",
-    "hvaGjørDen": "En instans er et ferdig objekt laget fra en klasse – som en bil bygget etter en tegning."
+    "hvaGjørDen": "En instans er et ferdig objekt laget fra en klasse – som en bil bygget etter en tegning.",
+    "thinkOfIt": "Think of it like this:\n- A class is a cookie cutter\n- An instance (object) is one actual cookie stamped out from it\n- You can make as many cookies (instances) as you want from the same cutter (class)"
   },
   {
     "id": 4,
@@ -65,7 +67,8 @@
     "explanation": "**Encapsulation** skjuler og beskytter interne detaljer ved å kontrollere tilgang til data gjennom properties/metoder. Målet er å hindre feil bruk og ivareta konsistens.\n\nNyttige nøkkelord:\n- `private` for interne felt\n- `public` for kontrollert tilgang via metoder/properties",
     "shortExplanation": "Encapsulation skjuler detaljer.",
     "example": "Kontrollert tilgang med egenskaper:\n```csharp\npublic class Konto {\n    private decimal saldo;\n    public decimal Saldo {\n        get => saldo;\n        private set {\n            if (value < 0) throw new ArgumentException(\"Saldo kan ikke være negativ\");\n            saldo = value;\n        }\n    }\n    public void SettInn(decimal beløp) => Saldo += beløp;\n}\n```",
-    "hvaGjørDen": "Encapsulation betyr at vi gjemmer innmaten i en klasse og bare viser det vi ønsker at andre skal se."
+    "hvaGjørDen": "Encapsulation betyr at vi gjemmer innmaten i en klasse og bare viser det vi ønsker at andre skal se.",
+    "thinkOfIt": "Think of it like this:\n- Encapsulation = keeping the internals hidden, like a car engine under the hood\n- You turn the key to start the car — you don't need to know how the engine works\n- private fields + public methods = controlled access"
   },
   {
     "id": 5,
@@ -82,7 +85,8 @@
     "explanation": "**Arv** lar en klasse (subclass) gjenbruke og utvide properties/metoder fra en annen klasse (superclass). Dette fremmer gjenbruk og struktur.",
     "shortExplanation": "Arv betyr gjenbruk av kode.",
     "example": "Subklasser arver fra superklasser:\n```csharp\npublic class Dyr { public virtual string Lyd() => \"(stille)\"; }\npublic class Hund : Dyr { public override string Lyd() => \"Voff!\"; }\nvar d = new Hund();\nConsole.WriteLine(d.Lyd()); // Voff!\n```",
-    "hvaGjørDen": "Arv lar en klasse ta i bruk og utvide kode fra en annen klasse, slik at du slipper å skrive det samme om igjen."
+    "hvaGjørDen": "Arv lar en klasse ta i bruk og utvide kode fra en annen klasse, slik at du slipper å skrive det samme om igjen.",
+    "thinkOfIt": "Think of it like this:\n- Inheritance = a child getting traits from a parent\n- Dog : Animal means Dog IS an Animal — it gets everything Animal already has\n- You only write what's new or different in the child class"
   },
   {
     "id": 6,
@@ -99,7 +103,8 @@
     "explanation": "**Polymorphism** betyr at samme metode kan ha ulik oppførsel avhengig av objektets konkrete type. Oftest via `virtual`/`override` og kall gjennom en felles referanse.",
     "shortExplanation": "Polymorphism = mange former.",
     "example": "Samme metode, ulik oppførsel:\n```csharp\npublic class Dyr { public virtual string Lyd() => \"(stille)\"; }\npublic class Hund : Dyr { public override string Lyd() => \"Voff!\"; }\npublic class Katt : Dyr { public override string Lyd() => \"Mjau!\"; }\nDyr[] dyr = { new Hund(), new Katt() };\nforeach (var d in dyr) Console.WriteLine(d.Lyd());\n```",
-    "hvaGjørDen": "Polymorphism betyr at samme metode kan oppføre seg ulikt avhengig av hvilken type objekt du bruker den på."
+    "hvaGjørDen": "Polymorphism betyr at samme metode kan oppføre seg ulikt avhengig av hvilken type objekt du bruker den på.",
+    "thinkOfIt": "Think of it like this:\n- Polymorphism = one name, different behavior depending on the object\n- Animal.Sound() behaves differently for a Dog (\"Woof\") vs. a Cat (\"Meow\")\n- The caller doesn't need to know which — it just calls Sound() and gets the right result"
   },
   {
     "id": 7,
@@ -116,7 +121,8 @@
     "explanation": "**Abstraction** viser kun nødvendig funksjonalitet og skjuler detaljer for brukeren. Man kan definere **abstrakte klasser** eller **interfacer** for felles kontrakter.",
     "shortExplanation": "Abstraction skjuler detaljer.",
     "example": "Bruke interface for å skjule implementasjon:\n```csharp\npublic interface IBetaling { void Betal(decimal beløp); }\npublic class KortBetaling : IBetaling { public void Betal(decimal beløp) { /* ... */ } }\n```",
-    "hvaGjørDen": "Abstraction betyr at vi skjuler kompliserte detaljer og bare viser det brukeren trenger å vite."
+    "hvaGjørDen": "Abstraction betyr at vi skjuler kompliserte detaljer og bare viser det brukeren trenger å vite.",
+    "thinkOfIt": "Think of it like this:\n- Abstraction = showing only what matters, hiding the rest\n- You use a TV remote without knowing the electronics inside\n- Abstract classes and interfaces are the \"remotes\" of OOP"
   },
   {
     "id": 8,
@@ -167,7 +173,8 @@
     "explanation": "`var` lar kompilatoren **utlede** (infernere) den statiske datatypen fra initialiseringen. Det er fortsatt sterkt typet. Bruk eksplisitt type i offentlige API-er for klarhet; `var` er nyttig i lokal, lesbar kode.",
     "shortExplanation": "var = automatisk datatype.",
     "example": "Typeinference i praksis:\n```csharp\nvar x = 5;            // int\nvar tekst = \"Hei\";   // string\nvar liste = new List<int>(); // List<int>\n```",
-    "hvaGjørDen": "`var` lar C# finne ut datatypen selv, basert på verdien du gir variabelen."
+    "hvaGjørDen": "`var` lar C# finne ut datatypen selv, basert på verdien du gir variabelen.",
+    "thinkOfIt": "Think of it like this:\n- var doesn't mean \"no type\" — the type is still there, the compiler just figures it out\n- var name = \"Alice\" → compiler sees a string\n- var count = 0 → compiler sees an int\n- You can never reassign a var to a different type later"
   },
   {
     "id": 11,
@@ -286,7 +293,8 @@
     "explanation": "`do-while` loopen evaluerer betingelsen **etter** første gjennomløp og kjøres derfor minst én gang.",
     "shortExplanation": "do-while alltid én gang.",
     "example": "Minst én iterasjon:\n```csharp\nint i = 0;\ndo { Console.WriteLine(i); i++; } while (i < 1);\n```",
-    "hvaGjørDen": "`do-while` er en loop som alltid kjøres minst én gang, uansett betingelse."
+    "hvaGjørDen": "`do-while` er en loop som alltid kjøres minst én gang, uansett betingelse.",
+    "thinkOfIt": "Think of it like this:\n- do-while = \"do the action first, then ask if we should continue\"\n- while = \"ask first, skip entirely if false\"\n- Use do-while when the loop body must run at least once (e.g. a menu that must display before checking input)"
   },
   {
     "id": 18,
@@ -337,7 +345,8 @@
     "explanation": "**Method overloading**: flere metoder med **samme navn** men **ulike parametere** (type/antall/rekkefølge).",
     "shortExplanation": "Samme navn, ulike parametere.",
     "example": "Overbelastede metoder:\n```csharp\npublic void Send(string tekst) { /* ... */ }\npublic void Send(string tekst, int prioritet) { /* ... */ }\n```",
-    "hvaGjørDen": "Method overloading lar deg ha flere metoder med samme navn, men med ulike typer eller antall parametere."
+    "hvaGjørDen": "Method overloading lar deg ha flere metoder med samme navn, men med ulike typer eller antall parametere.",
+    "thinkOfIt": "Think of it like this:\n- Method overloading = one name, multiple versions for different inputs\n- Like a calculator's + button that works whether you press integers or decimals\n- C# picks the right version automatically based on what you pass"
   },
   {
     "id": 21,
@@ -354,7 +363,8 @@
     "explanation": "Objekter opprettes med `new` som kaller klassens constructor.",
     "shortExplanation": "new lager objekt.",
     "example": "Opprette objekt og liste:\n```csharp\nvar p = new Person(\"Ada\");\nvar liste = new List<int>();\n```",
-    "hvaGjørDen": "`new` oppretter et nytt objekt fra en klasse og kaller constructoren."
+    "hvaGjørDen": "`new` oppretter et nytt objekt fra en klasse og kaller constructoren.",
+    "thinkOfIt": "Think of it like this:\n- The class is the blueprint on paper\n- new is the factory that manufactures an actual object from that blueprint\n- You call new exactly once per object you want to create"
   },
   {
     "id": 22,
@@ -371,6 +381,7 @@
     "explanation": "En **constructor** initialiserer nye objekter (setter starttilstand). Den har samme navn som klassen og ingen returtype.",
     "shortExplanation": "Constructor = init.",
     "example": "Konstruktør setter starttilstand:\n```csharp\npublic class Person {\n    public string Navn { get; }\n    public Person(string navn) { Navn = navn; }\n}\nvar p = new Person(\"Ada\");\n```",
-    "hvaGjørDen": "En constructor er en spesiell metode uten returtype som kjøres automatisk når du lager et objekt med `new`."
+    "hvaGjørDen": "En constructor er en spesiell metode uten returtype som kjøres automatisk når du lager et objekt med `new`.",
+    "thinkOfIt": "Think of it like this:\n- A constructor is the setup wizard that runs the moment you write new ClassName()\n- It lets you set initial values right away, instead of setting them one by one after creation\n- Constructor name must match the class name exactly — that's how C# recognises it"
   }
 ]

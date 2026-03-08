@@ -14,7 +14,8 @@
     "shortExplanation": "Scope handler om synlighet og levetid for variabler.",
     "explanation": "Scope bestemmer hvor en variabel kan brukes: lokalt i en blokk/metode, eller som felt i en klasse. Feil scope kan føre til navnekollisjoner eller feil bruk.",
     "example": "Eksempel på lokalt scope vs felt:\n```csharp\nclass C {\n  private int felt = 10; // synlig i hele klassen\n  void M() {\n    int lokal = 5; // synlig kun i M\n    { int blokk = 2; } // synlig kun her\n  }\n}\n```",
-    "hvaGjørDen": "Scope (variabelomfang) bestemmer hvor i koden en variabel er synlig og kan brukes."
+    "hvaGjørDen": "Scope (variabelomfang) bestemmer hvor i koden en variabel er synlig og kan brukes.",
+    "thinkOfIt": "Think of it like this:\n- Scope = the visibility boundary of a variable\n- A variable declared inside { } only exists while the program is inside those { }\n- Once the closing } is reached, the variable disappears"
   },
   {
     "id": 2,
@@ -31,7 +32,8 @@
     "shortExplanation": "Lokale variabler er begrenset til sitt kodeblokk-scope.",
     "explanation": "En lokal variabel lever i den blokken den ble opprettet i. Den er ikke tilgjengelig utenfor blokken eller i andre metoder.",
     "example": "Blokkscope:\n```csharp\nvoid M() {\n  if (true) { int x = 1; }\n  // x er ikke synlig her\n}\n```",
-    "hvaGjørDen": "En lokal variabel er bare tilgjengelig innenfor blokken eller metoden den ble opprettet i."
+    "hvaGjørDen": "En lokal variabel er bare tilgjengelig innenfor blokken eller metoden den ble opprettet i.",
+    "thinkOfIt": "Think of it like this:\n- Local variable = a sticky note on your desk — only you (the method) can see it\n- The moment the method finishes, the sticky note is thrown away\n- If you need the value elsewhere, you must return it or store it as a field"
   },
   {
     "id": 3,
@@ -48,7 +50,8 @@
     "shortExplanation": "Refaktorering forbedrer design uten å endre hva koden gjør.",
     "explanation": "Mål: bedre navn, mindre duplisering, klare ansvar, enklere tester. Oppførselen skal være den samme før og etter.",
     "example": "Ekstraksjon av metode:\n```csharp\n// før\nvoid Process() { Validate(); /* lang logikk */ Log(); }\n// etter\nvoid Process() { Validate(); DoWork(); Log(); }\nvoid DoWork() { /* flyttet logikk */ }\n```",
-    "hvaGjørDen": "Refaktorering betyr at du gjør koden bedre å lese og vedlikeholde, uten å endre hva den faktisk gjør."
+    "hvaGjørDen": "Refaktorering betyr at du gjør koden bedre å lese og vedlikeholde, uten å endre hva den faktisk gjør.",
+    "thinkOfIt": "Think of it like this:\n- Refactoring = redecorating a room without moving to a new house\n- The program does exactly the same thing — you're only improving the structure\n- Goal: easier to read, easier to change, no duplicate code"
   },
   {
     "id": 4,
@@ -116,7 +119,8 @@
     "shortExplanation": "`class` brukes for å definere klasser.",
     "explanation": "Klasser beskriver struktur og oppførsel for objekter gjennom felt og metoder.",
     "example": "Definere klasse:\n```csharp\npublic class Person { public string Navn { get; set; } }\n```",
-    "hvaGjørDen": "Nøkkelordet `class` brukes til å definere en klasse i C#."
+    "hvaGjørDen": "Nøkkelordet `class` brukes til å definere en klasse i C#.",
+    "thinkOfIt": "Think of it like this:\n- class is the keyword that defines a new blueprint/type\n- Everything that defines the Dog type goes inside class Dog { }\n- Without class, there is no new type to create objects from"
   },
   {
     "id": 8,
@@ -218,7 +222,8 @@
     "shortExplanation": "Bruk properties for kontrollert tilgang.",
     "explanation": "Properties kapsler inn felt med `get`/`set` og kan validere/transformere verdier.",
     "example": "Egenskap over felt:\n```csharp\nclass Konto {\n  private decimal _saldo;\n  public decimal Saldo {\n    get => _saldo;\n    private set { if (value < 0) throw new ArgumentException(); _saldo = value; }\n  }\n}\n```",
-    "hvaGjørDen": "Et felt lagrer data direkte; en property gir kontrollert tilgang via `get` og `set`."
+    "hvaGjørDen": "Et felt lagrer data direkte; en property gir kontrollert tilgang via `get` og `set`.",
+    "thinkOfIt": "Think of it like this:\n- A field is a raw variable directly on the object — no protection\n- A property is a controlled access point (like a front door vs. a window)\n- Properties let you add rules: \"Age can never be negative\" — a field can't do that"
   },
   {
     "id": 14,

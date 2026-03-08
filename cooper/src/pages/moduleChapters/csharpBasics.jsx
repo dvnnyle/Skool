@@ -256,8 +256,24 @@ function CsharpBasics() {
 							{currentQuestion.shortExplanation && (
 								<p className="short-explanation" dangerouslySetInnerHTML={{ __html: formatExplanation(currentQuestion.shortExplanation) }} />
 							)}
-							<p className="explanation-text" dangerouslySetInnerHTML={{ __html: formatExplanation(currentQuestion.explanation) }} />
-						</div>
+							<p className="explanation-text" dangerouslySetInnerHTML={{ __html: formatExplanation(currentQuestion.explanation) }} />						{currentQuestion.example && (
+							<div className="example-box" style={{ marginTop: '0.5rem' }}>
+								<div className="explanation-header">
+									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+										<polyline points="16 18 22 12 16 6"></polyline>
+										<polyline points="8 6 2 12 8 18"></polyline>
+									</svg>
+									<span>Code example</span>
+								</div>
+								<div className="explanation-text" dangerouslySetInnerHTML={{ __html: formatExplanation(currentQuestion.example) }} />
+							</div>
+						)}
+						{currentQuestion.thinkOfIt && (
+							<div className="think-of-it-box">
+								<p className="think-of-it-label">💭 Think of it like this</p>
+								<div className="explanation-text" dangerouslySetInnerHTML={{ __html: formatExplanation(currentQuestion.thinkOfIt) }} />
+							</div>
+						)}						</div>
 					)}
 				</div>
 

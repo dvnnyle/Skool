@@ -61,7 +61,8 @@
     "answer": "var",
     "explanation": "`var` tells the compiler to infer the type from the assigned value.",
     "shortExplanation": "var = compiler infers the type automatically.",
-    "example": "```csharp\nvar name = \"Alice\"; // compiler knows: string\nvar age  = 25;      // compiler knows: int\n```"
+    "example": "```csharp\nvar name = \"Alice\"; // compiler knows: string\nvar age  = 25;      // compiler knows: int\n```",
+    "thinkOfIt": "Think of it like this:\n- You still have a specific type, the compiler just figures it out for you\n- var name = \"Alice\" → the compiler sees a string and sets the type automatically\n- var does NOT mean \"no type\" — it means \"infer the type\""
   },
   {
     "id": 5,
@@ -77,7 +78,8 @@
     "answer": "double",
     "explanation": "`double` holds decimal values with ~15 digits of precision.\n\n- `float` is 32-bit (less precise)\n- `int` holds whole numbers only",
     "shortExplanation": "double = 64-bit decimal number.",
-    "example": "```csharp\ndouble price = 9.99;  // 64-bit decimal\nfloat  temp  = 36.6f; // 32-bit decimal (less precise)\nint    count = 10;    // whole number only\n```"
+    "example": "```csharp\ndouble price = 9.99;  // 64-bit decimal\nfloat  temp  = 36.6f; // 32-bit decimal (less precise)\nint    count = 10;    // whole number only\n```",
+    "thinkOfIt": "Think of it like this:\n- int → for counting things (whole numbers only)\n- float → smaller decimal cup (less precise, less memory)\n- double → bigger decimal cup (more precise) → use this by default for decimals"
   },
   {
     "id": 6,
@@ -93,7 +95,8 @@
     "answer": "Converting a value from one type to another",
     "explanation": "Type casting converts a value to a different type.",
     "shortExplanation": "Type casting converts a value to another type.",
-    "example": "```csharp\ndouble pi = 3.14;\nint x = (int)pi;           // x = 3  (decimal cut off)\nConsole.WriteLine(x);      // 3\n```"
+    "example": "```csharp\ndouble pi = 3.14;\nint x = (int)pi;           // x = 3  (decimal cut off)\nConsole.WriteLine(x);      // 3\n```",
+    "thinkOfIt": "Think of it like this:\n- Pouring water between different-sized containers\n- double → int throws away the decimal part (3.7 becomes 3)\n- int → double is safe: nothing is lost"
   },
   {
     "id": 7,
@@ -205,7 +208,8 @@
     "answer": "break",
     "explanation": "`break` exits the switch block after a matching case runs, preventing it from running the cases below.\n\nWithout `break`, execution would fall into the next case.",
     "shortExplanation": "break ends a switch case.",
-    "example": "```csharp\nswitch (day)\n{\n    case 1: Console.WriteLine(\"Monday\");  break;\n    case 2: Console.WriteLine(\"Tuesday\"); break;\n    default: Console.WriteLine(\"Other\");  break;\n}\n```"
+    "example": "```csharp\nswitch (day)\n{\n    case 1: Console.WriteLine(\"Monday\");  break;\n    case 2: Console.WriteLine(\"Tuesday\"); break;\n    default: Console.WriteLine(\"Other\");  break;\n}\n```",
+    "thinkOfIt": "Think of it like this:\n- Without break, execution \"falls through\" to the next case automatically\n- break is the exit door that stops C# from running everything below the matching case"
   },
   {
     "id": 14,
@@ -253,7 +257,8 @@
     "answer": "Skips the rest of the current iteration and moves to the next",
     "explanation": "`continue` jumps back to the loop condition, skipping anything below it in the current loop body.\n\n`break` would exit the loop entirely — `continue` just skips one pass.",
     "shortExplanation": "continue skips to the next loop iteration.",
-    "example": "```csharp\nfor (int i = 0; i < 5; i++)\n{\n    if (i == 2) continue; // skip 2\n    Console.WriteLine(i);\n}\n// prints 0 1 3 4\n```"
+    "example": "```csharp\nfor (int i = 0; i < 5; i++)\n{\n    if (i == 2) continue; // skip 2\n    Console.WriteLine(i);\n}\n// prints 0 1 3 4\n```",
+    "thinkOfIt": "Think of it like this:\n- break = leave the loop entirely\n- continue = skip this one step and go back to the top of the loop\n- Like skipping a song on a playlist vs pressing stop"
   },
   {
     "id": 17,
@@ -269,6 +274,7 @@
     "answer": "nums[0]",
     "explanation": "Arrays are zero-indexed in C# — the first element is always at index `0`.",
     "shortExplanation": "Array indexes start at 0, so first = nums[0].",
-    "example": "```csharp\nint[] nums = { 10, 20, 30 };\nConsole.WriteLine(nums[0]); // 10  (first element)\nConsole.WriteLine(nums[2]); // 30  (third element)\n```"
+    "example": "```csharp\nint[] nums = { 10, 20, 30 };\nConsole.WriteLine(nums[0]); // 10  (first element)\nConsole.WriteLine(nums[2]); // 30  (third element)\n```",
+    "thinkOfIt": "Think of it like this:\n- Arrays start counting at 0, not 1\n- Think of the index as \"how many steps from the start\"\n- First element: 0 steps from start → index 0"
   }
 ]

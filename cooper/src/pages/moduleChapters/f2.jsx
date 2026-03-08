@@ -299,6 +299,12 @@ function F2() {
                   <div className="explanation-text" dangerouslySetInnerHTML={{ __html: formatExplanation(currentQuestion.example) }} />
                 </div>
               )}
+              {currentQuestion.thinkOfIt && (
+                <div className="think-of-it-box">
+                  <p className="think-of-it-label">💭 Think of it like this</p>
+                  <div className="explanation-text" dangerouslySetInnerHTML={{ __html: formatExplanation(currentQuestion.thinkOfIt) }} />
+                </div>
+              )}
             </div>
           )}
 
