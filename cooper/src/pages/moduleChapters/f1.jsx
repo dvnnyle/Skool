@@ -258,8 +258,12 @@ function F1() {
 								</svg>
 								<span>Explanation</span>
 							</div>
-							<div className="correct-answer">The correct answer is: {currentQuestion.options[currentQuestion.answerIndex]}</div>
-							{currentQuestion.shortExplanation && (
+							<div className="correct-answer">The correct answer is: {currentQuestion.options[currentQuestion.answerIndex]}</div>						{currentQuestion.hvaGjørDen && (
+							<div className="hva-gjor-den-box">
+								<span className="hva-gjor-den-label">💡 Kort fortalt</span>
+								<p>{currentQuestion.hvaGjørDen}</p>
+							</div>
+						)}							{currentQuestion.shortExplanation && (
 								<p className="short-explanation" dangerouslySetInnerHTML={{ __html: formatExplanation(currentQuestion.shortExplanation) }} />
 							)}
 							<p className="explanation-text" dangerouslySetInnerHTML={{ __html: formatExplanation(currentQuestion.explanation) }} />

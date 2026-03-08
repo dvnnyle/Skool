@@ -277,6 +277,12 @@ function F6() {
                 <span>Explanation</span>
               </div>
               <div className="correct-answer">The correct answer is: {currentQuestion.options[currentQuestion.answerIndex]}</div>
+              {currentQuestion.hvaGjørDen && (
+                <div className="hva-gjor-den-box">
+                  <span className="hva-gjor-den-label">💡 Kort fortalt</span>
+                  <p>{currentQuestion.hvaGjørDen}</p>
+                </div>
+              )}
               {currentQuestion.shortExplanation && (
                 <p className="short-explanation" dangerouslySetInnerHTML={{ __html: formatExplanation(currentQuestion.shortExplanation) }} />
               )}

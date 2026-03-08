@@ -238,6 +238,31 @@
 	text-align: left;
 }
 
+.hva-gjor-den-box {
+	margin: 0 0 0.75rem 0;
+	padding: 0.6rem 1rem;
+	background: rgba(251, 191, 36, 0.1);
+	border-left: 3px solid #f59e0b;
+	border-radius: 4px;
+}
+
+.hva-gjor-den-label {
+	display: block;
+	font-size: 0.72rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	color: #f59e0b;
+	margin-bottom: 0.25rem;
+}
+
+.hva-gjor-den-box p {
+	margin: 0;
+	font-size: 0.95rem;
+	color: #fde68a;
+	line-height: 1.5;
+}
+
 .short-explanation {
 	margin: 0 0 0.75rem 0;
 	padding: 0.01rem 1rem;
