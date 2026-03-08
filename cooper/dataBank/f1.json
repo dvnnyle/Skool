@@ -12,9 +12,9 @@
     "answerIndex": 1,
     "answer": "Å organisere kode rundt objekter",
     "explanation": "OOP organiserer programmer rundt objekter som kombinerer data og oppførsel.\n\nKort sagt:\n- **Objekter** = data (tilstand) + metoder (oppførsel)\n- **Klasser** beskriver hvordan objekter ser ut og oppfører seg\n- **Modularitet** gjør det enklere å teste, vedlikeholde og gjenbruke kode",
-    "shortExplanation": "OOP organiserer kode rundt objekter."
-  ,
-    "example": "Et objekt med både data og metoder:\n```csharp\npublic class Konto {\n    public string Eier { get; set; }\n    private decimal saldo;\n    public void SettInn(decimal beløp) { saldo += beløp; }\n    public decimal HentSaldo() => saldo;\n}\nvar k = new Konto { Eier = \"Ada\" };\nk.SettInn(100m);\nConsole.WriteLine(k.HentSaldo()); // 100\n```"
+    "shortExplanation": "OOP organiserer kode rundt objekter.",
+    "example": "Et objekt med både data og metoder:\n```csharp\npublic class Konto {\n    public string Eier { get; set; }\n    private decimal saldo;\n    public void SettInn(decimal beløp) { saldo += beløp; }\n    public decimal HentSaldo() => saldo;\n}\nvar k = new Konto { Eier = \"Ada\" };\nk.SettInn(100m);\nConsole.WriteLine(k.HentSaldo()); // 100\n```",
+    "hvaGjørDen": "OOP betyr at vi bygger programmer av «objekter» – egne biter med data og handlinger, akkurat som ting i virkeligheten."
   },
   {
     "id": 2,
@@ -29,9 +29,9 @@
     "answerIndex": 2,
     "answer": "Attributter og metoder",
     "explanation": "Objekter inneholder både data (**attributter/egenskaper**) og funksjonalitet (**metoder**).\n\nBegreper:\n- **Attributter**/egenskaper: verdier som beskriver objektets tilstand\n- **Metoder**: funksjoner som utfører oppgaver/oppførsel",
-    "shortExplanation": "Objekter har data og metoder."
-  ,
-    "example": "Attributter beskriver tilstand, metoder oppførsel:\n```csharp\npublic class Person {\n    public string Navn { get; set; }\n    public int Alder { get; set; }\n    public string Presenter() => $\"Hei, jeg heter {Navn} og er {Alder} år.\";\n}\nvar p = new Person { Navn = \"Jonas\", Alder = 20 };\nConsole.WriteLine(p.Presenter());\n```"
+    "shortExplanation": "Objekter har data og metoder.",
+    "example": "Attributter beskriver tilstand, metoder oppførsel:\n```csharp\npublic class Person {\n    public string Navn { get; set; }\n    public int Alder { get; set; }\n    public string Presenter() => $\"Hei, jeg heter {Navn} og er {Alder} år.\";\n}\nvar p = new Person { Navn = \"Jonas\", Alder = 20 };\nConsole.WriteLine(p.Presenter());\n```",
+    "hvaGjørDen": "Et objekt er en «ting» i koden med egne data (attributter) og oppgaver det kan utføre (metoder)."
   },
   {
     "id": 3,
@@ -46,9 +46,9 @@
     "answerIndex": 1,
     "answer": "Et objekt opprettet fra en klasse",
     "explanation": "En **instans** er et konkret objekt opprettet fra en klasse ved hjelp av `new`.",
-    "shortExplanation": "En instans er et objekt."
-  ,
-    "example": "Opprette instanser med new:\n```csharp\npublic class Bil { public string Modell { get; set; } }\nvar bil1 = new Bil { Modell = \"Tesla Model 3\" };\nvar bil2 = new Bil { Modell = \"Volvo XC40\" };\n```"
+    "shortExplanation": "En instans er et objekt.",
+    "example": "Opprette instanser med new:\n```csharp\npublic class Bil { public string Modell { get; set; } }\nvar bil1 = new Bil { Modell = \"Tesla Model 3\" };\nvar bil2 = new Bil { Modell = \"Volvo XC40\" };\n```",
+    "hvaGjørDen": "En instans er et ferdig objekt laget fra en klasse – som en bil bygget etter en tegning."
   },
   {
     "id": 4,
@@ -63,9 +63,9 @@
     "answerIndex": 1,
     "answer": "Å skjule implementasjonsdetaljer",
     "explanation": "**Innkapsling** skjuler og beskytter interne detaljer ved å kontrollere tilgang til data gjennom egenskaper/metoder. Målet er å hindre feil bruk og ivareta konsistens.\n\nNyttige nøkkelord:\n- `private` for interne felt\n- `public` for kontrollert tilgang via metoder/egenskaper",
-    "shortExplanation": "Innkapsling skjuler detaljer."
-  ,
-    "example": "Kontrollert tilgang med egenskaper:\n```csharp\npublic class Konto {\n    private decimal saldo;\n    public decimal Saldo {\n        get => saldo;\n        private set {\n            if (value < 0) throw new ArgumentException(\"Saldo kan ikke være negativ\");\n            saldo = value;\n        }\n    }\n    public void SettInn(decimal beløp) => Saldo += beløp;\n}\n```"
+    "shortExplanation": "Innkapsling skjuler detaljer.",
+    "example": "Kontrollert tilgang med egenskaper:\n```csharp\npublic class Konto {\n    private decimal saldo;\n    public decimal Saldo {\n        get => saldo;\n        private set {\n            if (value < 0) throw new ArgumentException(\"Saldo kan ikke være negativ\");\n            saldo = value;\n        }\n    }\n    public void SettInn(decimal beløp) => Saldo += beløp;\n}\n```",
+    "hvaGjørDen": "Innkapsling betyr at vi gjemmer innmaten i en klasse og bare viser det vi ønsker at andre skal se."
   },
   {
     "id": 5,
@@ -80,9 +80,9 @@
     "answerIndex": 1,
     "answer": "Når en klasse arver fra en annen",
     "explanation": "**Arv** lar en klasse (subklasse) gjenbruke og utvide egenskaper/metoder fra en annen klasse (superklasse). Dette fremmer gjenbruk og struktur.",
-    "shortExplanation": "Arv betyr gjenbruk av kode."
-  ,
-    "example": "Subklasser arver fra superklasser:\n```csharp\npublic class Dyr { public virtual string Lyd() => \"(stille)\"; }\npublic class Hund : Dyr { public override string Lyd() => \"Voff!\"; }\nvar d = new Hund();\nConsole.WriteLine(d.Lyd()); // Voff!\n```"
+    "shortExplanation": "Arv betyr gjenbruk av kode.",
+    "example": "Subklasser arver fra superklasser:\n```csharp\npublic class Dyr { public virtual string Lyd() => \"(stille)\"; }\npublic class Hund : Dyr { public override string Lyd() => \"Voff!\"; }\nvar d = new Hund();\nConsole.WriteLine(d.Lyd()); // Voff!\n```",
+    "hvaGjørDen": "Arv lar en klasse ta i bruk og utvide kode fra en annen klasse, slik at du slipper å skrive det samme om igjen."
   },
   {
     "id": 6,
@@ -97,9 +97,9 @@
     "answerIndex": 0,
     "answer": "Én metode, flere former",
     "explanation": "**Polymorfisme** betyr at samme metode kan ha ulik oppførsel avhengig av objektets konkrete type. Oftest via `virtual`/`override` og kall gjennom en felles referanse.",
-    "shortExplanation": "Polymorfisme = mange former."
-  ,
-    "example": "Samme metode, ulik oppførsel:\n```csharp\npublic class Dyr { public virtual string Lyd() => \"(stille)\"; }\npublic class Hund : Dyr { public override string Lyd() => \"Voff!\"; }\npublic class Katt : Dyr { public override string Lyd() => \"Mjau!\"; }\nDyr[] dyr = { new Hund(), new Katt() };\nforeach (var d in dyr) Console.WriteLine(d.Lyd());\n```"
+    "shortExplanation": "Polymorfisme = mange former.",
+    "example": "Samme metode, ulik oppførsel:\n```csharp\npublic class Dyr { public virtual string Lyd() => \"(stille)\"; }\npublic class Hund : Dyr { public override string Lyd() => \"Voff!\"; }\npublic class Katt : Dyr { public override string Lyd() => \"Mjau!\"; }\nDyr[] dyr = { new Hund(), new Katt() };\nforeach (var d in dyr) Console.WriteLine(d.Lyd());\n```",
+    "hvaGjørDen": "Polymorfisme betyr at samme metode kan oppføre seg ulikt avhengig av hvilken type objekt du bruker den på."
   },
   {
     "id": 7,
@@ -114,9 +114,9 @@
     "answerIndex": 0,
     "answer": "Å skjule kompleksitet",
     "explanation": "**Abstraksjon** viser kun nødvendig funksjonalitet og skjuler detaljer for brukeren. Man kan definere **abstrakte klasser** eller **interfacer** for felles kontrakter.",
-    "shortExplanation": "Abstraksjon skjuler detaljer."
-  ,
-    "example": "Bruke interface for å skjule implementasjon:\n```csharp\npublic interface IBetaling { void Betal(decimal beløp); }\npublic class KortBetaling : IBetaling { public void Betal(decimal beløp) { /* ... */ } }\n```"
+    "shortExplanation": "Abstraksjon skjuler detaljer.",
+    "example": "Bruke interface for å skjule implementasjon:\n```csharp\npublic interface IBetaling { void Betal(decimal beløp); }\npublic class KortBetaling : IBetaling { public void Betal(decimal beløp) { /* ... */ } }\n```",
+    "hvaGjørDen": "Abstraksjon betyr at vi skjuler kompliserte detaljer og bare viser det brukeren trenger å vite."
   },
   {
     "id": 8,
@@ -131,9 +131,9 @@
     "answerIndex": 2,
     "answer": "string",
     "explanation": "`string` brukes til å lagre tekst i C#. Strenger er immutable (endres ved å lage ny verdi).",
-    "shortExplanation": "string = tekst."
-  ,
-    "example": "Streng og interpolering:\n```csharp\nstring navn = \"Ada\";\nstring hilsen = $\"Hei, {navn}!\";\nConsole.WriteLine(hilsen);\n```"
+    "shortExplanation": "string = tekst.",
+    "example": "Streng og interpolering:\n```csharp\nstring navn = \"Ada\";\nstring hilsen = $\"Hei, {navn}!\";\nConsole.WriteLine(hilsen);\n```",
+    "hvaGjørDen": "`string` er datatypen du bruker til å lagre tekst – alt fra navn til hele setninger."
   },
   {
     "id": 9,
@@ -148,9 +148,9 @@
     "answerIndex": 1,
     "answer": "bool",
     "explanation": "`bool` har verdiene `true` eller `false`. Brukes ofte i betingelser og logiske uttrykk.",
-    "shortExplanation": "bool = true/false."
-  ,
-    "example": "Betinget logikk med bool:\n```csharp\nbool erVoksen = alder >= 18;\nif (erVoksen) { Console.WriteLine(\"Velkommen\"); }\n```"
+    "shortExplanation": "bool = true/false.",
+    "example": "Betinget logikk med bool:\n```csharp\nbool erVoksen = alder >= 18;\nif (erVoksen) { Console.WriteLine(\"Velkommen\"); }\n```",
+    "hvaGjørDen": "`bool` er en datatype som bare kan ha to verdier: `true` (sant) eller `false` (usant)."
   },
   {
     "id": 10,
@@ -165,9 +165,9 @@
     "answerIndex": 1,
     "answer": "Lar kompilatoren utlede datatypen",
     "explanation": "`var` lar kompilatoren **utlede** (infernere) den statiske datatypen fra initialiseringen. Det er fortsatt sterkt typet. Bruk eksplisitt type i offentlige API-er for klarhet; `var` er nyttig i lokal, lesbar kode.",
-    "shortExplanation": "var = automatisk datatype."
-  ,
-    "example": "Typeinference i praksis:\n```csharp\nvar x = 5;            // int\nvar tekst = \"Hei\";   // string\nvar liste = new List<int>(); // List<int>\n```"
+    "shortExplanation": "var = automatisk datatype.",
+    "example": "Typeinference i praksis:\n```csharp\nvar x = 5;            // int\nvar tekst = \"Hei\";   // string\nvar liste = new List<int>(); // List<int>\n```",
+    "hvaGjørDen": "`var` lar C# finne ut datatypen selv, basert på verdien du gir variabelen."
   },
   {
     "id": 11,
@@ -182,9 +182,9 @@
     "answerIndex": 2,
     "answer": "En beholder for data",
     "explanation": "En **variabel** lagrer data i minnet med et navn og en type. Verdien kan endres over tid.",
-    "shortExplanation": "Variabel = lagring."
-  ,
-    "example": "Tilordning og endring:\n```csharp\nint antall = 3;\nantall = antall + 2; // 5\n```"
+    "shortExplanation": "Variabel = lagring.",
+    "example": "Tilordning og endring:\n```csharp\nint antall = 3;\nantall = antall + 2; // 5\n```",
+    "hvaGjørDen": "En variabel er en navngitt boks i minnet der du lagrer en verdi som kan endres."
   },
   {
     "id": 12,
@@ -199,9 +199,9 @@
     "answerIndex": 2,
     "answer": "alder_2",
     "explanation": "Gyldige variabelnavn kan inneholde bokstaver, tall og `_`, men kan ikke starte med tall. Unngå reserverte ord (som `int`).",
-    "shortExplanation": "alder_2 er gyldig."
-  ,
-    "example": "Gyldige og ugyldige navn:\n```csharp\nint alder_2 = 20;  // gyldig\nint _poeng = 10;   // gyldig\n// int 2alder = 30; // ugyldig\n```"
+    "shortExplanation": "alder_2 er gyldig.",
+    "example": "Gyldige og ugyldige navn:\n```csharp\nint alder_2 = 20;  // gyldig\nint _poeng = 10;   // gyldig\n// int 2alder = 30; // ugyldig\n```",
+    "hvaGjørDen": "Gyldige variabelnavn kan inneholde bokstaver, tall og `_`, men kan ikke starte med et tall."
   },
   {
     "id": 13,
@@ -216,9 +216,9 @@
     "answerIndex": 1,
     "answer": "==",
     "explanation": "`==` brukes for **likhetssammenligning** av verdier (for mange innebygde typer, inkl. `string`). Husk at `=` er **tilordning**.",
-    "shortExplanation": "== betyr lik."
-  ,
-    "example": "Likhet vs tilordning:\n```csharp\nint a = 5, b = 5;\nbool like = (a == b); // true\nstring s1 = \"abc\", s2 = \"abc\";\nbool likeTekst = (s1 == s2); // true\n```"
+    "shortExplanation": "== betyr lik.",
+    "example": "Likhet vs tilordning:\n```csharp\nint a = 5, b = 5;\nbool like = (a == b); // true\nstring s1 = \"abc\", s2 = \"abc\";\nbool likeTekst = (s1 == s2); // true\n```",
+    "hvaGjørDen": "`==` sjekker om to verdier er like. Ikke forveksle med `=` som setter en verdi."
   },
   {
     "id": 14,
@@ -233,9 +233,9 @@
     "answerIndex": 2,
     "answer": "bool",
     "explanation": "Logiske operatorer (`&&`, `||`, `!`) returnerer `bool`.",
-    "shortExplanation": "Returnerer bool."
-  ,
-    "example": "&&, ||, ! i bruk:\n```csharp\nbool ok = (alder >= 18) && (billett == true);\nbool gratis = (alder < 3) || (alder > 67);\nbool ikkeTom = !string.IsNullOrWhiteSpace(navn);\n```"
+    "shortExplanation": "Returnerer bool.",
+    "example": "&&, ||, ! i bruk:\n```csharp\nbool ok = (alder >= 18) && (billett == true);\nbool gratis = (alder < 3) || (alder > 67);\nbool ikkeTom = !string.IsNullOrWhiteSpace(navn);\n```",
+    "hvaGjørDen": "Logiske operatorer som `&&` (og) og `||` (eller) returnerer alltid `true` eller `false`."
   },
   {
     "id": 15,
@@ -250,9 +250,9 @@
     "answerIndex": 1,
     "answer": "For betinget kjøring",
     "explanation": "`if` kjører kode **betinget** basert på et `bool`-uttrykk.",
-    "shortExplanation": "if = betingelse."
-  ,
-    "example": "If/else eksempel:\n```csharp\nif (score >= 10) {\n    Console.WriteLine(\"Level up!\");\n} else {\n    Console.WriteLine(\"Keep going!\");\n}\n```"
+    "shortExplanation": "if = betingelse.",
+    "example": "If/else eksempel:\n```csharp\nif (score >= 10) {\n    Console.WriteLine(\"Level up!\");\n} else {\n    Console.WriteLine(\"Keep going!\");\n}\n```",
+    "hvaGjørDen": "`if` kjører en kodeblokk bare dersom betingelsen er sann."
   },
   {
     "id": 16,
@@ -267,9 +267,9 @@
     "answerIndex": 1,
     "answer": "Når man sjekker mange verdier",
     "explanation": "`switch` er effektiv når du skal håndtere **mange faste** verdier/tilfeller i stedet for mange `if/else if`.",
-    "shortExplanation": "switch = mange valg."
-  ,
-    "example": "switch på dag:\n```csharp\nstring dag = \"man\";\nswitch (dag) {\n    case \"man\": Console.WriteLine(\"Mandag\"); break;\n    case \"tir\": Console.WriteLine(\"Tirsdag\"); break;\n    default: Console.WriteLine(\"Ukjent dag\"); break;\n}\n```"
+    "shortExplanation": "switch = mange valg.",
+    "example": "switch på dag:\n```csharp\nstring dag = \"man\";\nswitch (dag) {\n    case \"man\": Console.WriteLine(\"Mandag\"); break;\n    case \"tir\": Console.WriteLine(\"Tirsdag\"); break;\n    default: Console.WriteLine(\"Ukjent dag\"); break;\n}\n```",
+    "hvaGjørDen": "`switch` er et ryddigere alternativ til mange `if/else` når du sjekker mange mulige verdier."
   },
   {
     "id": 17,
@@ -284,9 +284,9 @@
     "answerIndex": 2,
     "answer": "do-while",
     "explanation": "`do-while` løkken evaluerer betingelsen **etter** første gjennomløp og kjøres derfor minst én gang.",
-    "shortExplanation": "do-while alltid én gang."
-  ,
-    "example": "Minst én iterasjon:\n```csharp\nint i = 0;\ndo { Console.WriteLine(i); i++; } while (i < 1);\n```"
+    "shortExplanation": "do-while alltid én gang.",
+    "example": "Minst én iterasjon:\n```csharp\nint i = 0;\ndo { Console.WriteLine(i); i++; } while (i < 1);\n```",
+    "hvaGjørDen": "`do-while` er en løkke som alltid kjøres minst én gang, uansett betingelse."
   },
   {
     "id": 18,
@@ -301,9 +301,9 @@
     "answerIndex": 0,
     "answer": "Når antall repetisjoner er kjent",
     "explanation": "`for` brukes når du **vet antallet** repetisjoner eller vil styre indeks.",
-    "shortExplanation": "for = kjent antall."
-  ,
-    "example": "For-løkke med tre iterasjoner:\n```csharp\nfor (int i = 0; i < 3; i++) {\n    Console.WriteLine(i);\n}\n```"
+    "shortExplanation": "for = kjent antall.",
+    "example": "For-løkke med tre iterasjoner:\n```csharp\nfor (int i = 0; i < 3; i++) {\n    Console.WriteLine(i);\n}\n```",
+    "hvaGjørDen": "`for`-løkken brukes når du på forhånd vet nøyaktig hvor mange ganger koden skal kjøres."
   },
   {
     "id": 19,
@@ -318,9 +318,9 @@
     "answerIndex": 1,
     "answer": "Metoden returnerer ingenting",
     "explanation": "`void` betyr at metoden **ikke** returnerer en verdi. Den kan likevel ha parametere og utføre arbeid.",
-    "shortExplanation": "void = ingen retur."
-  ,
-    "example": "Metode uten retur:\n```csharp\nvoid Logg(string melding) { Console.WriteLine(melding); }\n```"
+    "shortExplanation": "void = ingen retur.",
+    "example": "Metode uten retur:\n```csharp\nvoid Logg(string melding) { Console.WriteLine(melding); }\n```",
+    "hvaGjørDen": "`void` betyr at metoden ikke gir tilbake noen verdi – den bare gjør jobben sin."
   },
   {
     "id": 20,
@@ -335,9 +335,9 @@
     "answerIndex": 1,
     "answer": "Samme metode med ulike parametere",
     "explanation": "**Metodeoverbelastning**: flere metoder med **samme navn** men **ulike parametere** (type/antall/rekkefølge).",
-    "shortExplanation": "Samme navn, ulike parametere."
-  ,
-    "example": "Overbelastede metoder:\n```csharp\npublic void Send(string tekst) { /* ... */ }\npublic void Send(string tekst, int prioritet) { /* ... */ }\n```"
+    "shortExplanation": "Samme navn, ulike parametere.",
+    "example": "Overbelastede metoder:\n```csharp\npublic void Send(string tekst) { /* ... */ }\npublic void Send(string tekst, int prioritet) { /* ... */ }\n```",
+    "hvaGjørDen": "Metodeoverbelastning lar deg ha flere metoder med samme navn, men med ulike typer eller antall parametere."
   },
   {
     "id": 21,
@@ -352,9 +352,9 @@
     "answerIndex": 1,
     "answer": "Ved bruk av new",
     "explanation": "Objekter opprettes med `new` som kaller klassens konstruktør.",
-    "shortExplanation": "new lager objekt."
-  ,
-    "example": "Opprette objekt og liste:\n```csharp\nvar p = new Person(\"Ada\");\nvar liste = new List<int>();\n```"
+    "shortExplanation": "new lager objekt.",
+    "example": "Opprette objekt og liste:\n```csharp\nvar p = new Person(\"Ada\");\nvar liste = new List<int>();\n```",
+    "hvaGjørDen": "`new` oppretter et nytt objekt fra en klasse og kaller konstruktøren."
   },
   {
     "id": 22,
@@ -369,8 +369,8 @@
     "answerIndex": 1,
     "answer": "En metode som initialiserer objekter",
     "explanation": "En **konstruktør** initialiserer nye objekter (setter starttilstand). Den har samme navn som klassen og ingen returtype.",
-    "shortExplanation": "Konstruktør = init."
-  ,
-    "example": "Konstruktør setter starttilstand:\n```csharp\npublic class Person {\n    public string Navn { get; }\n    public Person(string navn) { Navn = navn; }\n}\nvar p = new Person(\"Ada\");\n```"
+    "shortExplanation": "Konstruktør = init.",
+    "example": "Konstruktør setter starttilstand:\n```csharp\npublic class Person {\n    public string Navn { get; }\n    public Person(string navn) { Navn = navn; }\n}\nvar p = new Person(\"Ada\");\n```",
+    "hvaGjørDen": "En konstruktør er en spesiell metode uten returtype som kjøres automatisk når du lager et objekt med `new`."
   }
 ]

@@ -13,7 +13,8 @@
     "answer": "En mekanisme der en klasse arver medlemmer fra en annen klasse",
     "shortExplanation": "Arv lar en sub-klasse gjenbruke og utvide en super-klasse.",
     "explanation": "- Sub-klassen arver felt og metoder fra super-klassen\n- Fremmer gjenbruk og polymorfisme",
-    "example": "```csharp\nclass Animal { public void Eat() => Console.WriteLine(\"Eating\"); }\nclass Dog : Animal { }\n```"
+    "example": "```csharp\nclass Animal { public void Eat() => Console.WriteLine(\"Eating\"); }\nclass Dog : Animal { }\n```",
+    "hvaGjørDen": "Arv lar en klasse ta i bruk felt og metoder fra en annen klasse, uten å skrive dem om igjen."
   },
   {
     "id": 2,
@@ -29,7 +30,8 @@
     "answer": "Super-klasse og sub-klasse",
     "shortExplanation": "Base/super-klasse → kilde; sub/avledet → arvende klasse.",
     "explanation": "- C#: base class (super), derived class (sub)",
-    "example": "```csharp\nclass Vehicle { }\nclass Car : Vehicle { }\n```"
+    "example": "```csharp\nclass Vehicle { }\nclass Car : Vehicle { }\n```",
+    "hvaGjørDen": "Klassen det arves fra kalles superklasse (basisklasse); klassen som arver kalles subklasse."
   },
   {
     "id": 3,
@@ -45,7 +47,8 @@
     "answer": "class Sub : Base",
     "shortExplanation": ": brukes for å angi base-klassen.",
     "explanation": "- Syntaks: class Derived : Base\n- Flere baser: ikke for klasser, men flere interfaces",
-    "example": "```csharp\nclass Bird : Animal { }\n```"
+    "example": "```csharp\nclass Bird : Animal { }\n```",
+    "hvaGjørDen": "I C# brukes `:` for å arve – `class Hund : Dyr` betyr at `Hund` arver alt fra `Dyr`."
   },
   {
     "id": 4,
@@ -61,7 +64,8 @@
     "answer": "Nei, kun enkel arv for klasser",
     "shortExplanation": "C# støtter enkel arv for klasser; flere interfaces er mulig.",
     "explanation": "- Multiple inheritance for klasser er ikke tillatt\n- Implementer flere interfaces for liknende effekt",
-    "example": "```csharp\nclass MyClass : Base, IDisposable, IComparable { /* ok */ }\n```"
+    "example": "```csharp\nclass MyClass : Base, IDisposable, IComparable { /* ok */ }\n```",
+    "hvaGjørDen": "C# støtter enkel arv for klasser – én klasse kan bare arve fra én annen klasse."
   },
   {
     "id": 5,
@@ -77,7 +81,8 @@
     "answer": "protected",
     "shortExplanation": "protected gir tilgang i klassen og avledede klasser.",
     "explanation": "- protected eksponerer for arv, men skjuler for ekstern bruk",
-    "example": "```csharp\nclass Base { protected int id; }\nclass Sub : Base { void Set() { id = 1; } }\n```"
+    "example": "```csharp\nclass Base { protected int id; }\nclass Sub : Base { void Set() { id = 1; } }\n```",
+    "hvaGjørDen": "`protected` gir subklasser tilgang til et felt, men skjuler det for all kode utenfor."
   },
   {
     "id": 6,
@@ -93,7 +98,8 @@
     "answer": "protected internal: i assembly eller sub-klasser; private protected: kun i klassen og sub-klasser i samme assembly",
     "shortExplanation": "protected internal er mer åpen; private protected er mest restriktiv kombinert.",
     "explanation": "- Kombinasjoner styrer synlighet ved arv og assemblies",
-    "example": "```csharp\nclass B { protected internal int X; private protected int Y; }\n```"
+    "example": "```csharp\nclass B { protected internal int X; private protected int Y; }\n```",
+    "hvaGjørDen": "`protected internal` gir tilgang i samme prosjekt ELLER i subklasser. `private protected` krever begge deler."
   },
   {
     "id": 7,
@@ -109,7 +115,8 @@
     "answer": "class Dog : Animal",
     "shortExplanation": "C# bruker : for arv.",
     "explanation": "- Java: extends; C#: :",
-    "example": "```csharp\nclass Dog : Animal { }\n```"
+    "example": "```csharp\nclass Dog : Animal { }\n```",
+    "hvaGjørDen": "`class Hund : Dyr` er riktig C#-syntaks for arv – Java bruker `extends`, C# bruker `:`."
   },
   {
     "id": 8,
@@ -125,7 +132,8 @@
     "answer": "Metoden i base må være virtual, abstract eller override",
     "shortExplanation": "Bare virtuelle/abstrakte kan overstyres i C#.",
     "explanation": "- Markér base-metoden med virtual eller abstract\n- Derived bruker override",
-    "example": "```csharp\nclass Base { public virtual void Speak() { } }\nclass Sub : Base { public override void Speak() { } }\n```"
+    "example": "```csharp\nclass Base { public virtual void Speak() { } }\nclass Sub : Base { public override void Speak() { } }\n```",
+    "hvaGjørDen": "For å overstyre en metode i en subklasse, må basisklassemetoden merkes `virtual` eller `abstract`."
   },
   {
     "id": 9,
@@ -141,7 +149,8 @@
     "answer": "Overstyrer en virtuell/abstrakt metode fra base",
     "shortExplanation": "override implementerer ny oppførsel for base-metoden.",
     "explanation": "- Sikrer polymorfisk oppførsel via base-referanser",
-    "example": "```csharp\npublic override string ToString() => \"...\";\n```"
+    "example": "```csharp\npublic override string ToString() => \"...\";\n```",
+    "hvaGjørDen": "`override` lar deg skrive en ny versjon av en metode fra basisklassen med annen oppførsel."
   },
   {
     "id": 10,
@@ -157,7 +166,8 @@
     "answer": "Til å referere til base-klassens medlemmer eller konstruktør",
     "shortExplanation": "base lar deg kalle base-implementasjon og konstruktør.",
     "explanation": "- Bruk base.Something() eller base(...) i ctor",
-    "example": "```csharp\nclass Sub : Base {\n    public Sub() : base(42) { }\n    public override void Speak() { base.Speak(); }\n}\n```"
+    "example": "```csharp\nclass Sub : Base {\n    public Sub() : base(42) { }\n    public override void Speak() { base.Speak(); }\n}\n```",
+    "hvaGjørDen": "`base` brukes til å kalle metoder eller konstruktøren fra basisklassen."
   },
   {
     "id": 11,
@@ -173,7 +183,8 @@
     "answer": "Skjuler (hider) en base-metode",
     "shortExplanation": "new skjuler; override overstyrer.",
     "explanation": "- new Method() → skjuling; base-kall avhenger av referansetypen",
-    "example": "```csharp\nclass Base { public void Print() { } }\nclass Sub : Base { public new void Print() { } }\n```"
+    "example": "```csharp\nclass Base { public void Print() { } }\nclass Sub : Base { public new void Print() { } }\n```",
+    "hvaGjørDen": "`new` foran en metode skjuler basisklassens metode, i stedet for å overstyre den."
   },
   {
     "id": 12,
@@ -189,7 +200,8 @@
     "answer": "Forhindrer videre arv eller override",
     "shortExplanation": "sealed class → kan ikke arves; sealed override → kan ikke overstyres videre.",
     "explanation": "- Bruk for å låse hierarki",
-    "example": "```csharp\nsealed class Final { }\nclass A { public virtual void M() {} }\nclass B : A { public sealed override void M() {} }\n```"
+    "example": "```csharp\nsealed class Final { }\nclass A { public virtual void M() {} }\nclass B : A { public sealed override void M() {} }\n```",
+    "hvaGjørDen": "`sealed` hindrer at en klasse arves videre, eller at en metode overstyres i subklasser."
   },
   {
     "id": 13,
@@ -205,7 +217,8 @@
     "answer": "Kan ikke instansieres og kan inneholde abstrakte medlemmer",
     "shortExplanation": "Abstrakt klasse definerer kontrakt; avledede klasser må implementere abstrakte medlemmer.",
     "explanation": "- Brukes for felles base med delvis implementasjon",
-    "example": "```csharp\nabstract class Shape { public abstract double Area(); }\nclass Circle : Shape { public override double Area() => 0; }\n```"
+    "example": "```csharp\nabstract class Shape { public abstract double Area(); }\nclass Circle : Shape { public override double Area() => 0; }\n```",
+    "hvaGjørDen": "En abstrakt klasse kan ikke lages direkte – den er en mal som avledede klasser bygger videre på."
   },
   {
     "id": 14,
@@ -221,7 +234,8 @@
     "answer": "virtual/override og base-referanser",
     "shortExplanation": "Virtuelle metoder med override gir dynamisk dispatch via basereferanser.",
     "explanation": "- Kall bestemmes av objektets runtime-type",
-    "example": "```csharp\nBase b = new Sub();\nb.Speak(); // kaller Sub.Speak()\n```"
+    "example": "```csharp\nBase b = new Sub();\nb.Speak(); // kaller Sub.Speak()\n```",
+    "hvaGjørDen": "Polymorfisme virker ved at `virtual`/`override`-metoder velger riktig versjon ved kjøretid."
   },
   {
     "id": 15,
@@ -237,7 +251,8 @@
     "answer": "Den avledede implementasjonen kalles ved runtime",
     "shortExplanation": "Dynamisk dispatch opprettholder riktig atferd basert på runtime-type.",
     "explanation": "- Polymorfisme: metodevalg ved runtime",
-    "example": "```csharp\nBase b = new Sub();\nb.Speak(); // Sub.Speak()\n```"
+    "example": "```csharp\nBase b = new Sub();\nb.Speak(); // Sub.Speak()\n```",
+    "hvaGjørDen": "Når en basisreferanse peker på en subklasse, er det subklassens metode som kalles."
   },
   {
     "id": 16,
@@ -253,7 +268,8 @@
     "answer": "Base-konstruktør kjører før avledet",
     "shortExplanation": "base() kjører først; sikrer korrekt initiering av base-delen.",
     "explanation": "- : base(args) kan spesifisere hvilke ctor som kalles",
-    "example": "```csharp\nclass B { public B(){ Console.WriteLine(\"B\"); } }\nclass S : B { public S(){ Console.WriteLine(\"S\"); } }\n// Output: B, S\n```"
+    "example": "```csharp\nclass B { public B(){ Console.WriteLine(\"B\"); } }\nclass S : B { public S(){ Console.WriteLine(\"S\"); } }\n// Output: B, S\n```",
+    "hvaGjørDen": "Basisklassens konstruktør kjøres alltid FRIST, deretter subklassens – dette sikrer riktig oppsett."
   },
   {
     "id": 17,
@@ -269,7 +285,8 @@
     "answer": "Abstrakt klasse kan gi delvis implementasjon; interface er primært kontrakt",
     "shortExplanation": "Abstrakt klasse: felles baselogikk; interface: formell kontrakt (C# har default interface members).",
     "explanation": "- Klasse kan arve én abstrakt klasse, men implementere flere interfaces",
-    "example": "```csharp\nabstract class A { public virtual void M(){} }\ninterface I { void N(); }\n```"
+    "example": "```csharp\nabstract class A { public virtual void M(){} }\ninterface I { void N(); }\n```",
+    "hvaGjørDen": "En abstrakt klasse kan ha kode og felt; et interface er en ren kontrakt uten implementasjon."
   },
   {
     "id": 18,
@@ -285,6 +302,7 @@
     "answer": "Nei, private er kun for klassen selv",
     "shortExplanation": "private skjuler for alle, inkludert avledede; bruk protected for arv.",
     "explanation": "- Tilgang via public/protected egenskaper/metoder",
-    "example": "```csharp\nclass B { private int x; protected int y; }\nclass S : B { void M(){ /* x ikke tilgjengelig; y er */ } }\n```"
+    "example": "```csharp\nclass B { private int x; protected int y; }\nclass S : B { void M(){ /* x ikke tilgjengelig; y er */ } }\n```",
+    "hvaGjørDen": "Subklasser kan ikke se `private`-felt i basisklassen – bruk `protected` for å dele med arv."
   }
 ]

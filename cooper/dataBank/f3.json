@@ -1,248 +1,274 @@
 [
-	{
-		"id": 1,
-		"section": "F3: Encapsulation & Constructors",
-		"question": "Hva beskriver best innkapsling (encapsulation) i OOP?",
-		"options": [
-			"Å samle data og logikk i en klasse og kontrollere tilgang",
-			"Å gjøre alle felt public for enkel tilgang",
-			"Å lagre data i globale variabler",
-			"Å bruke statiske metoder kun"
-		],
-		"answerIndex": 0,
-		"answer": "Å samle data og logikk i en klasse og kontrollere tilgang",
-		"shortExplanation": "Innkapsling samler data/metoder og begrenser tilgang for å beskytte integritet.",
-		"explanation": "Innkapsling er et av de fire grunnprinsippene i OOP.\n\nKjerneidéen:\n- Pakk data og logikk inn i en klasse\n- Kontroller hva omverdenen kan se og endre\n\nTenk på en bankkonto:\n- Du kan sette inn penger via en metode (SetInn)\n- Du kan ikke direkte sette saldo til et negativt tall\n- Kontoens interne felt er beskyttet\n\nFordelene:\n- Hindrer uautoriserte eller feilaktige endringer av data\n- Gjør koden lettere å vedlikeholde og teste",
-		"example": "```csharp\npublic class BankAccount\n{\n    private decimal balance; // skjult felt\n\n    public decimal Balance\n    {\n        get => balance;\n        set { if (value >= 0) balance = value; }\n    }\n\n    public void Deposit(decimal amount)\n    {\n        if (amount > 0) balance += amount;\n    }\n}\n```"
-	},
-	{
-		"id": 2,
-		"section": "Access Modifiers",
-		"question": "Hvilken tilgangsmodifikator begrenser tilgang til kun innenfor klassen?",
-		"options": ["public", "protected", "internal", "private"],
-		"answerIndex": 3,
-		"answer": "private",
-		"shortExplanation": "`private` gjør et medlem kun tilgjengelig innenfor sin egen klasse.",
-		"explanation": "private er den mest restriktive tilgangsmodifikatoren i C#.\n\nHva det betyr:\n- Kun koden innenfor samme klasse kan lese eller endre dette medlemmet\n- Ingen andre klasser, ikke engang sub-klasser, har tilgang\n\nHvorfor bruke private:\n- Beskytt intern tilstand mot feil bruk\n- Du kan endre den interne implementasjonen uten at andre klasser løsner\n\nBest practice: alle felt bør være private som standard – bruk egenskaper for tilgang.",
-		"example": "```csharp\npublic class Bruker\n{\n    private string passord;  // kun klassen selv kan bruke dette\n    private int forsøk = 0;\n\n    public bool Logg Inn(string input)\n    {\n        forsøk++;\n        return input == passord; // OK – vi er innenfor klassen\n    }\n}\n```"
-	},
-	{
-		"id": 3,
-		"section": "Access Modifiers",
-		"question": "Hva betyr protected i C#?",
-		"options": [
-			"Tilgjengelig kun i samme klasse",
-			"Tilgjengelig i hele prosjektet",
-			"Tilgjengelig overalt",
-			"Tilgjengelig i klassen og avledede klasser"
-		],
-		"answerIndex": 3,
-		"answer": "Tilgjengelig i klassen og avledede klasser",
-		"shortExplanation": "`protected` gir tilgang i basisklasse og avledede klasser.",
-		"explanation": "protected er tilgangsmodifikatoren for arv.\n\nHva det betyr:\n- Tilgjengelig i klassen selv\n- Tilgjengelig i alle klasser som arver fra den (sub-klasser)\n- Ikke tilgjengelig for ekstern kode\n\nNår benytte protected:\n- Når en baseklasse ønsker å eksponere noe for sine avledede klasser\n- Men ikke for alle andre\n\nTenk på det som felles arv innad i en familie – bare familiemedlemmer får tilgang.",
-		"example": "```csharp\npublic class Kjøretøy\n{\n    protected int motorEffekt; // kun synlig for Kjøretøy og sub-klasser\n}\n\npublic class Bil : Kjøretøy\n{\n    public void VisYtelse()\n    {\n        Console.WriteLine(motorEffekt); // OK – Bil arver fra Kjøretøy\n    }\n}\n```"
-	},
-	{
-		"id": 4,
-		"section": "Access Modifiers",
-		"question": "Hva beskriver best internal i C#?",
-		"options": [
-			"Tilgjengelig i samme samling/prosjekt",
-			"Tilgjengelig kun i samme klasse",
-			"Tilgjengelig for avledede klasser i andre prosjekter",
-			"Tilgjengelig globalt"
-		],
-		"answerIndex": 0,
-		"answer": "Tilgjengelig i samme samling/prosjekt",
-		"shortExplanation": "`internal` begrenser tilgang til innenfor samme prosjekt/assembly.",
-		"explanation": "internal er tilgangsmodifikatoren for prosjektavgrensning.\n\nHva det betyr:\n- Koden er tilgjengelig innenfor samme prosjekt (assembly)\n- Ikke eksponert til andre prosjekter som refererer til dette\n\nBrukseksempel:\n- Hjelpe-klasser og verktøy som kun gir mening innenfor prosjektet\n- API-kode som ikke skal være offentlig\n\nStandard tilgang for klasser er internal hvis ingen modifikator oppgis.",
-		"example": "```csharp\ninternal class DatabaseHjelper\n{\n    internal void KobleTil() { /* ... */ }\n}\n// Tilgjengelig i hele prosjektet,\n// men ikke fra andre prosjekter som bruker dette som bibliotek\n```"
-	},
-	{
-		"id": 5,
-		"section": "Access Modifiers",
-		"question": "Hvilken kombinasjon gir tilgang i både samme assembly og avledede klasser?",
-		"options": [
-			"private protected",
-			"internal protected",
-			"public protected",
-			"protected internal"
-		],
-		"answerIndex": 3,
-		"answer": "protected internal",
-		"shortExplanation": "`protected internal` gir tilgang i samme assembly eller avledede klasser.",
-		"explanation": "protected internal kombinerer to modifikatorer:\n\n- protected: tilgjengelig i avledede klasser (uansett assembly)\n- internal: tilgjengelig innenfor samme assembly\n\nResultat: tilgang når én av de to betingelsene er oppfylt (OR-logikk)\n\nBrukseksempel:\n- En bibliotek-klasse som ønsker å eksponere noe både internt og for arvende klasser i andre prosjekter",
-		"example": "```csharp\npublic class Base\n{\n    protected internal int Verdi; // tilgjengelig i:\n    // 1. Alle klasser i samme prosjekt\n    // 2. Sub-klasser i andre prosjekter\n}\n```"
-	},
-	{
-		"id": 6,
-		"section": "Access Modifiers",
-		"question": "Hva betyr private protected?",
-		"options": [
-			"Tilgjengelig overalt",
-			"Tilgjengelig i samme assembly og avledede klasser",
-			"Tilgjengelig i samme klasse og avledede klasser i samme assembly",
-			"Tilgjengelig kun i avledede klasser i andre assemblies"
-		],
-		"answerIndex": 2,
-		"answer": "Tilgjengelig i samme klasse og avledede klasser i samme assembly",
-		"shortExplanation": "`private protected` er den mest restriktive kombinasjonen – kun klassen selv og sub-klasser i samme assembly.",
-		"explanation": "private protected er den strengeste kombinerte modifikatoren.\n\nTilgang gis kun når BEGGE betingelser er oppfylt (AND-logikk):\n- Klassen må være i samme assembly\n- OG klassen må være en avledet klasse\n\nI motsetning til protected internal (OR):\n- protected internal: enten same assembly, eller sub-klasse\n- private protected: må være både i same assembly og sub-klasse",
-		"example": "```csharp\npublic class Base\n{\n    private protected int HemmeligVerdi; // KUN tilgjengelig for:\n    // Sub-klasser som er i SAMME ASSEMBLY\n}\n\n// I samme assembly: fungerer\nclass Sub : Base { void Bruk() { HemmeligVerdi = 1; } }\n```"
-	},
-	{
-		"id": 7,
-		"section": "Fields vs Properties",
-		"question": "Hva er hovedforskjellen mellom et felt og en egenskap?",
-		"options": [
-			"Felt lagrer data; egenskaper kontrollerer tilgang til data",
-			"Felt er alltid public; egenskaper er alltid private",
-			"Egenskaper kan ikke ha logikk",
-			"Felt kan ha get/set"
-		],
-		"answerIndex": 0,
-		"answer": "Felt lagrer data; egenskaper kontrollerer tilgang til data",
-		"shortExplanation": "Felt lagrer data; egenskaper kontrollerer tilgang til data via get/set.",
-		"explanation": "Felt og egenskaper ser like ut når du bruker dem, men er fundamentalt forskjellige:\n\nFelt (direkte):  \n- public string navn; \n- Rask og enkel, men ingen kontroll\n- Alle kan sette hva de vil\n\nEgenskap (property):\n- public string Navn { get; set; }\n- Kan ha logikk i get (les) og set (skriv)\n- Kan validere, transformere eller beregne verdier\n\nBest practice: felt bør være private, egenskaper bør være public.",
-		"example": "```csharp\npublic class BankAccount\n{\n    private decimal balance; // privat felt\n\n    public decimal Balance   // egenskap med kontroll\n    {\n        get => balance;\n        set => balance = value;\n    }\n}\n```"
-	},
-	{
-		"id": 8,
-		"section": "Properties",
-		"question": "Hvor implementeres validering for å hindre negativ balance?",
-		"options": [
-			"I en public feltvariabel",
-			"I konstruktørens navn",
-			"I setteren til egenskapen",
-			"I en global variabel"
-		],
-		"answerIndex": 2,
-		"answer": "I setteren til egenskapen",
-		"shortExplanation": "Setteren er stedet for valideringslogikk som hindrer ugyldig tilstand.",
-		"explanation": "Setteren (set-blokken) kjøres når man prøver å tildele en verdi til egenskapen.\n\nHvorfor validere i setter:\n- Du kontrollerer at verdien er gyldig før den lagres\n- Objektet kan aldri komme i en ug yldig tilstand\n- Feil oppdages tidlig med tydelig feilmelding\n\nI eksempelet:\n- En bankkonto kan ikke ha negativ saldo\n- Setteren sjekker dette og avviser ugyldige verdier",
-		"example": "```csharp\npublic decimal Balance\n{\n    get => balance;\n    set\n    {\n        if (value >= 0)\n            balance = value;\n        else\n            Console.WriteLine(\"Feil: Saldo kan ikke være negativ\");\n    }\n}\n\n// Bruk:\nkonto.Balance = 500;  // OK\nkonto.Balance = -100; // \"Feil: Saldo kan ikke være negativ\"\n```"
-	},
-	{
-		"id": 9,
-		"section": "Properties",
-		"question": "Hva kjennetegner auto-implementerte egenskaper?",
-		"options": [
-			"De krever et manuelt privat felt",
-			"De har ingen get/set",
-			"Kompilatoren genererer et backing-felt automatisk",
-			"De kan ikke være public"
-		],
-		"answerIndex": 2,
-		"answer": "Kompilatoren genererer et backing-felt automatisk",
-		"shortExplanation": "Auto-egenskaper bruker kort syntaks – kompilatoren genererer backing-feltet automatisk.",
-		"explanation": "Auto-implementerte egenskaper er stenografien for enkle get/set-egenskaper uten valideringslogikk.\n\nNormal egenskap:\n- Du lager et privat felt manuelt\n- Du skriver get og set som returnerer/setter feltet\n\nAuto-egenskap:\n- Du skriver bare { get; set; }\n- Kompilatoren lager backing-feltet automatisk i bakgrunnen\n\nBruk auto-egenskaper når du ikke trenger ekstra logikk i get/set.",
-		"example": "```csharp\n// Manuell egenskap (mest kontroll)\nprivate string _navn;\npublic string Navn { get => _navn; set => _navn = value; }\n\n// Auto-egenskap (enklere, samme effekt)\npublic string Navn { get; set; }\n\n// Auto-egenskap med kun get (read-only)\npublic string Id { get; } = Guid.NewGuid().ToString();\n```"
-	},
-	{
-		"id": 10,
-		"section": "Get/Set vs Properties",
-		"question": "Hvorfor foretrekkes egenskaper fremfor tradisjonelle Get/Set-metoder?",
-		"options": [
-			"Metoder kan ikke kalles",
-			"Egenskaper er tregere",
-			"Metoder er alltid public",
-			"Egenskaper gir mer idiomatisk, konsis og kontrollert tilgang"
-		],
-		"answerIndex": 3,
-		"answer": "Egenskaper gir mer idiomatisk, konsis og kontrollert tilgang",
-		"shortExplanation": "Properties gir enkel syntaks, validering og bedre API-design enn getter/setter-metoder.",
-		"explanation": "I Java er det vanlig med GetNavn() og SetNavn() metoder. C# løser dette mer elegant med properties.\n\nFordelene med C#-egenskaper over tradisjonelle metoder:\n- Mer lesbar kode: konto.Saldo = 500 i stedet for konto.SetSaldo(500)\n- Kan ha validering inne i set-blokken\n- Kan gjøres read-only med kun get\n- Passer naturlig inn i C#-følelse og språkmønstre",
-		"example": "```csharp\n// Java-stil (unngå i C#)\npublic void SetBalance(decimal b) => balance = b;\npublic decimal GetBalance() => balance;\n\n// C#-stil (foretrekkes)\npublic decimal Balance\n{\n    get => balance;\n    set { if (value >= 0) balance = value; }\n}\n\n// Bruk:\nkonto.Balance = 1000;           // setter\nConsole.WriteLine(konto.Balance); // getter\n```"
-	},
-	{
-		"id": 11,
-		"section": "Constructors",
-		"question": "Hva er riktig om konstruktører i C#?",
-		"options": [
-			"De må ha samme navn som klassen og ingen returtype",
-			"De har returtypen void",
-			"De kan ikke initialisere felt",
-			"De kalles ikke automatisk"
-		],
-		"answerIndex": 0,
-		"answer": "De må ha samme navn som klassen og ingen returtype",
-		"shortExplanation": "Konstruktører matcher klassenavn, har ingen returtype og kalles ved `new`.",
-		"explanation": "En konstruktør er en spesiell metode med klare regler:\n\nKjennetegn:\n- Har alltid samme navn som klassen\n- Har ingen returtype (ikke engang void)\n- Kalles automatisk når du bruker new\n\nFormålet:\n- Sette opp objektet i en gyldig starttilstand\n- Motta startverdier som input\n\nHvis du ikke lager en konstruktør, lager C# en tom standardkonstruktør for deg automatisk.",
-		"example": "```csharp\npublic class BankAccount\n{\n    private decimal balance;\n\n    // Konstruktør: kjøres automatisk ved new BankAccount()\n    public BankAccount()\n    {\n        balance = 0m; // sett gyldig startverdi\n    }\n\n    public BankAccount(decimal startSaldo)\n    {\n        balance = startSaldo;\n    }\n}\n```"
-	},
-	{
-		"id": 12,
-		"section": "Constructor Overloading",
-		"question": "Hva gir konstruktør overbelastning (overloading)?",
-		"options": [
-			"Kun én måte å opprette objektet",
-			"Flere konstruktører med ulike parametre for fleksibilitet",
-			"Automatisk generering av egenskaper",
-			"Arv uten parametere"
-		],
-		"answerIndex": 1,
-		"answer": "Flere konstruktører med ulike parametre for fleksibilitet",
-		"shortExplanation": "Overloading lar deg opprette objekter på forskjellige måter – med ulike startverdier.",
-		"explanation": "Konstruktør-overloading betyr å ha flere konstruktører i samme klasse med ulike signaturer.\n\nHvorfor er det nyttig:\n- Gir fleksibilitet i hvordan objektet opprettes\n- Noen ganger kjenner du startverdiene, andre ganger ikke\n\nBruk this() for å kalle en annen konstruktør i samme klasse og unngå duplisert kode.",
-		"example": "```csharp\npublic class BankAccount\n{\n    private decimal balance;\n    private string eier;\n\n    public BankAccount()\n    {\n        balance = 0m;\n        eier = \"Ukjent\";\n    }\n\n    public BankAccount(string navn, decimal startSaldo)\n    {\n        eier = navn;\n        balance = startSaldo;\n    }\n}\n\nvar konto1 = new BankAccount();                 // standard\nvar konto2 = new BankAccount(\"Ada\", 1000m); // med verdier\n```"
-	},
-	{
-		"id": 13,
-		"section": "Constructors",
-		"question": "Hva gjør en parameterløs (standard) konstruktør typisk?",
-		"options": [
-			"Setter tilfeldige verdier",
-			"Lar deg ikke opprette objektet",
-			"Initialiserer med standardverdier",
-			"Eksponerer alle felt"
-		],
-		"answerIndex": 2,
-		"answer": "Initialiserer med standardverdier",
-		"shortExplanation": "Standardkonstruktøren sørger for at objektet alltid har fornuftige startverdier.",
-		"explanation": "En standardkonstruktør er en konstruktør uten parametere.\n\nHva den typisk gjør:\n- Setter alle felt til sikre, fornuftige standardverdier\n- Sikrer at objektet er i gyldig tilstand fra første stund\n- Hindrer at felt er null eller 0 ved et uhell\n\nHvis du ikke definerer noen konstruktør selv, lager C# en tom en automatisk. Men når du definerer en parameterisert konstruktør, forsvinner den automatiske.",
-		"example": "```csharp\npublic class Bil\n{\n    public string Merke;\n    public int Hastighet;\n    public bool MotorPå;\n\n    public Bil() // standardkonstruktør\n    {\n        Merke = \"Ukjent\";\n        Hastighet = 0;\n        MotorPå = false;\n    }\n}\n\nvar b = new Bil(); // Merke = \"Ukjent\", Hastighet = 0\n```"
-	},
-	{
-		"id": 14,
-		"section": "Constructors",
-		"question": "Hvordan oppretter du et BankAccount-objekt med startverdi 1000?",
-		"options": [
-			"new BankAccount()",
-			"new BankAccount(1000m)",
-			"BankAccount.Create(1000)",
-			"BankAccount.New()"
-		],
-		"answerIndex": 1,
-		"answer": "new BankAccount(1000m)",
-		"shortExplanation": "Parametrisert konstruktør tar inn startverdier når objektet opprettes.",
-		"explanation": "En parameterisert konstruktør gjør det mulig å konfigurere objektet når det opprettes.\n\nFordelene:\n- Slipper å sette verdier manuelt etter opprettelse\n- Lettere å sikre at alle nødvendige verdier er satt fra start\n- Koden blir mer kortfattet og lesbar\n\nnew BankAccount(1000m) oppretter en konto med 1000 kr fra starten – mye bedre enn å lage en tom konto og så sette saldo etterpaa.",
-		"example": "```csharp\npublic class BankAccount\n{\n    private decimal balance;\n\n    public BankAccount(decimal startSaldo)\n    {\n        balance = startSaldo;\n    }\n}\n\nvar konto = new BankAccount(1000m);\nConsole.WriteLine(konto.Balance); // 1000\n```"
-	},
-	{
-		"id": 15,
-		"section": "Access Modifiers",
-		"question": "Hva er standard tilgang for et felt hvis ingen modifikator oppgis i en klasse?",
-		"options": ["public", "private", "internal", "protected"],
-		"answerIndex": 1,
-		"answer": "private",
-		"shortExplanation": "Klassemedlemmer er private som standard – typer er internal.",
-		"explanation": "I C# finnes det standardtilganger når ingen modifikator er angitt:\n\nInnenfor en klasse (felt, metoder, egenskaper):\n- Standard: private\n- Ingen utenfor klassen får tilgang\n\nKlasse-nivå (selve klassen):\n- Standard: internal\n- Tilgjengelig i hele prosjektet, men ikke utenfor assembly\n\nDette betyr at du må eksplisitt bruke public når du ønsker å eksponere noe.",
-		"example": "```csharp\nclass Eksempel\n{\n    int x;              // private (standard)\n    void Hjelp() {}     // private (standard)\n    string Navn;        // private (standard)\n}\n\nclass Offentlig { }     // internal (standard)\npublic class Synlig { } // public – må spesifiseres eksplisitt\n```"
-	},
-	{
-		"id": 16,
-		"section": "Encapsulation Benefits",
-		"question": "Hvorfor er innkapsling viktig?",
-		"options": [
-			"For å eksponere alle interne detaljer",
-			"For å beskytte data og gjøre vedlikehold enklere",
-			"For å gjøre kode mer kompleks",
-			"For å deaktivere validering"
-		],
-		"answerIndex": 1,
-		"answer": "For å beskytte data og gjøre vedlikehold enklere",
-		"shortExplanation": "Innkapsling gir dataintegritet, sikkerhet og kode som er lettere å vedlikeholde.",
-		"explanation": "Innkapsling har mange fordeler som gjør koden mer robust:\n\n1. Dataintegritet:\n   - Hindrer at objektet kommer i ugyldig tilstand\n   - Setter gjør validering før endring\n\n2. Skjuler kompleksitet:\n   - Brukere av klassen trenger ikke vite hvordan dataene lagres\n   - Du kan endre internt uten å bryte ekstern kode\n\n3. Lettere å vedlikeholde:\n   - Endringer i intern implementasjon påvirker ikke andre klasser",
-		"example": "```csharp\npublic class Profil\n{\n    private string epost;\n\n    public string Epost\n    {\n        get => epost;\n        set\n        {\n            if (value.Contains(\"@\"))\n                epost = value;\n            else\n                throw new ArgumentException(\"Ugyldig e-postadresse\");\n        }\n    }\n}\n\nvar p = new Profil();\np.Epost = \"ada@example.com\";  // OK\np.Epost = \"ugyldig tekst\";    // kaster unntak\n```"
-	}
+  {
+    "id": 1,
+    "section": "F3: Encapsulation & Constructors",
+    "question": "Hva beskriver best innkapsling (encapsulation) i OOP?",
+    "options": [
+      "Å samle data og logikk i en klasse og kontrollere tilgang",
+      "Å gjøre alle felt public for enkel tilgang",
+      "Å lagre data i globale variabler",
+      "Å bruke statiske metoder kun"
+    ],
+    "answerIndex": 0,
+    "answer": "Å samle data og logikk i en klasse og kontrollere tilgang",
+    "shortExplanation": "Innkapsling samler data/metoder og begrenser tilgang for å beskytte integritet.",
+    "explanation": "Innkapsling er et av de fire grunnprinsippene i OOP.\n\nKjerneidéen:\n- Pakk data og logikk inn i en klasse\n- Kontroller hva omverdenen kan se og endre\n\nTenk på en bankkonto:\n- Du kan sette inn penger via en metode (SetInn)\n- Du kan ikke direkte sette saldo til et negativt tall\n- Kontoens interne felt er beskyttet\n\nFordelene:\n- Hindrer uautoriserte eller feilaktige endringer av data\n- Gjør koden lettere å vedlikeholde og teste",
+    "example": "```csharp\npublic class BankAccount\n{\n    private decimal balance; // skjult felt\n\n    public decimal Balance\n    {\n        get => balance;\n        set { if (value >= 0) balance = value; }\n    }\n\n    public void Deposit(decimal amount)\n    {\n        if (amount > 0) balance += amount;\n    }\n}\n```",
+    "hvaGjørDen": "Innkapsling betyr å pakke data og logikk inn i en klasse og bestemme hva som er synlig utenfra."
+  },
+  {
+    "id": 2,
+    "section": "Access Modifiers",
+    "question": "Hvilken tilgangsmodifikator begrenser tilgang til kun innenfor klassen?",
+    "options": [
+      "public",
+      "protected",
+      "internal",
+      "private"
+    ],
+    "answerIndex": 3,
+    "answer": "private",
+    "shortExplanation": "`private` gjør et medlem kun tilgjengelig innenfor sin egen klasse.",
+    "explanation": "private er den mest restriktive tilgangsmodifikatoren i C#.\n\nHva det betyr:\n- Kun koden innenfor samme klasse kan lese eller endre dette medlemmet\n- Ingen andre klasser, ikke engang sub-klasser, har tilgang\n\nHvorfor bruke private:\n- Beskytt intern tilstand mot feil bruk\n- Du kan endre den interne implementasjonen uten at andre klasser løsner\n\nBest practice: alle felt bør være private som standard – bruk egenskaper for tilgang.",
+    "example": "```csharp\npublic class Bruker\n{\n    private string passord;  // kun klassen selv kan bruke dette\n    private int forsøk = 0;\n\n    public bool Logg Inn(string input)\n    {\n        forsøk++;\n        return input == passord; // OK – vi er innenfor klassen\n    }\n}\n```",
+    "hvaGjørDen": "`private` betyr at et felt eller en metode bare kan brukes inne i selve klassen – ingen utenfor kan se det."
+  },
+  {
+    "id": 3,
+    "section": "Access Modifiers",
+    "question": "Hva betyr protected i C#?",
+    "options": [
+      "Tilgjengelig kun i samme klasse",
+      "Tilgjengelig i hele prosjektet",
+      "Tilgjengelig overalt",
+      "Tilgjengelig i klassen og avledede klasser"
+    ],
+    "answerIndex": 3,
+    "answer": "Tilgjengelig i klassen og avledede klasser",
+    "shortExplanation": "`protected` gir tilgang i basisklasse og avledede klasser.",
+    "explanation": "protected er tilgangsmodifikatoren for arv.\n\nHva det betyr:\n- Tilgjengelig i klassen selv\n- Tilgjengelig i alle klasser som arver fra den (sub-klasser)\n- Ikke tilgjengelig for ekstern kode\n\nNår benytte protected:\n- Når en baseklasse ønsker å eksponere noe for sine avledede klasser\n- Men ikke for alle andre\n\nTenk på det som felles arv innad i en familie – bare familiemedlemmer får tilgang.",
+    "example": "```csharp\npublic class Kjøretøy\n{\n    protected int motorEffekt; // kun synlig for Kjøretøy og sub-klasser\n}\n\npublic class Bil : Kjøretøy\n{\n    public void VisYtelse()\n    {\n        Console.WriteLine(motorEffekt); // OK – Bil arver fra Kjøretøy\n    }\n}\n```",
+    "hvaGjørDen": "`protected` gjør at et felt er tilgjengelig i klassen og i alle klasser som arver fra den."
+  },
+  {
+    "id": 4,
+    "section": "Access Modifiers",
+    "question": "Hva beskriver best internal i C#?",
+    "options": [
+      "Tilgjengelig i samme samling/prosjekt",
+      "Tilgjengelig kun i samme klasse",
+      "Tilgjengelig for avledede klasser i andre prosjekter",
+      "Tilgjengelig globalt"
+    ],
+    "answerIndex": 0,
+    "answer": "Tilgjengelig i samme samling/prosjekt",
+    "shortExplanation": "`internal` begrenser tilgang til innenfor samme prosjekt/assembly.",
+    "explanation": "internal er tilgangsmodifikatoren for prosjektavgrensning.\n\nHva det betyr:\n- Koden er tilgjengelig innenfor samme prosjekt (assembly)\n- Ikke eksponert til andre prosjekter som refererer til dette\n\nBrukseksempel:\n- Hjelpe-klasser og verktøy som kun gir mening innenfor prosjektet\n- API-kode som ikke skal være offentlig\n\nStandard tilgang for klasser er internal hvis ingen modifikator oppgis.",
+    "example": "```csharp\ninternal class DatabaseHjelper\n{\n    internal void KobleTil() { /* ... */ }\n}\n// Tilgjengelig i hele prosjektet,\n// men ikke fra andre prosjekter som bruker dette som bibliotek\n```",
+    "hvaGjørDen": "`internal` betyr at kode er tilgjengelig i hele prosjektet, men ikke fra andre prosjekter."
+  },
+  {
+    "id": 5,
+    "section": "Access Modifiers",
+    "question": "Hvilken kombinasjon gir tilgang i både samme assembly og avledede klasser?",
+    "options": [
+      "private protected",
+      "internal protected",
+      "public protected",
+      "protected internal"
+    ],
+    "answerIndex": 3,
+    "answer": "protected internal",
+    "shortExplanation": "`protected internal` gir tilgang i samme assembly eller avledede klasser.",
+    "explanation": "protected internal kombinerer to modifikatorer:\n\n- protected: tilgjengelig i avledede klasser (uansett assembly)\n- internal: tilgjengelig innenfor samme assembly\n\nResultat: tilgang når én av de to betingelsene er oppfylt (OR-logikk)\n\nBrukseksempel:\n- En bibliotek-klasse som ønsker å eksponere noe både internt og for arvende klasser i andre prosjekter",
+    "example": "```csharp\npublic class Base\n{\n    protected internal int Verdi; // tilgjengelig i:\n    // 1. Alle klasser i samme prosjekt\n    // 2. Sub-klasser i andre prosjekter\n}\n```",
+    "hvaGjørDen": "`protected internal` gir tilgang i samme prosjekt, ELLER i avledede klasser – ett av de holder."
+  },
+  {
+    "id": 6,
+    "section": "Access Modifiers",
+    "question": "Hva betyr private protected?",
+    "options": [
+      "Tilgjengelig overalt",
+      "Tilgjengelig i samme assembly og avledede klasser",
+      "Tilgjengelig i samme klasse og avledede klasser i samme assembly",
+      "Tilgjengelig kun i avledede klasser i andre assemblies"
+    ],
+    "answerIndex": 2,
+    "answer": "Tilgjengelig i samme klasse og avledede klasser i samme assembly",
+    "shortExplanation": "`private protected` er den mest restriktive kombinasjonen – kun klassen selv og sub-klasser i samme assembly.",
+    "explanation": "private protected er den strengeste kombinerte modifikatoren.\n\nTilgang gis kun når BEGGE betingelser er oppfylt (AND-logikk):\n- Klassen må være i samme assembly\n- OG klassen må være en avledet klasse\n\nI motsetning til protected internal (OR):\n- protected internal: enten same assembly, eller sub-klasse\n- private protected: må være både i same assembly og sub-klasse",
+    "example": "```csharp\npublic class Base\n{\n    private protected int HemmeligVerdi; // KUN tilgjengelig for:\n    // Sub-klasser som er i SAMME ASSEMBLY\n}\n\n// I samme assembly: fungerer\nclass Sub : Base { void Bruk() { HemmeligVerdi = 1; } }\n```",
+    "hvaGjørDen": "`private protected` er den strengeste kombinasjonen: kun for avledede klasser i SAMME prosjekt."
+  },
+  {
+    "id": 7,
+    "section": "Fields vs Properties",
+    "question": "Hva er hovedforskjellen mellom et felt og en egenskap?",
+    "options": [
+      "Felt lagrer data; egenskaper kontrollerer tilgang til data",
+      "Felt er alltid public; egenskaper er alltid private",
+      "Egenskaper kan ikke ha logikk",
+      "Felt kan ha get/set"
+    ],
+    "answerIndex": 0,
+    "answer": "Felt lagrer data; egenskaper kontrollerer tilgang til data",
+    "shortExplanation": "Felt lagrer data; egenskaper kontrollerer tilgang til data via get/set.",
+    "explanation": "Felt og egenskaper ser like ut når du bruker dem, men er fundamentalt forskjellige:\n\nFelt (direkte):  \n- public string navn; \n- Rask og enkel, men ingen kontroll\n- Alle kan sette hva de vil\n\nEgenskap (property):\n- public string Navn { get; set; }\n- Kan ha logikk i get (les) og set (skriv)\n- Kan validere, transformere eller beregne verdier\n\nBest practice: felt bør være private, egenskaper bør være public.",
+    "example": "```csharp\npublic class BankAccount\n{\n    private decimal balance; // privat felt\n\n    public decimal Balance   // egenskap med kontroll\n    {\n        get => balance;\n        set => balance = value;\n    }\n}\n```",
+    "hvaGjørDen": "Felt lagrer data direkte; properties lar deg kontrollere og validere verdiene via `get` og `set`."
+  },
+  {
+    "id": 8,
+    "section": "Properties",
+    "question": "Hvor implementeres validering for å hindre negativ balance?",
+    "options": [
+      "I en public feltvariabel",
+      "I konstruktørens navn",
+      "I setteren til egenskapen",
+      "I en global variabel"
+    ],
+    "answerIndex": 2,
+    "answer": "I setteren til egenskapen",
+    "shortExplanation": "Setteren er stedet for valideringslogikk som hindrer ugyldig tilstand.",
+    "explanation": "Setteren (set-blokken) kjøres når man prøver å tildele en verdi til egenskapen.\n\nHvorfor validere i setter:\n- Du kontrollerer at verdien er gyldig før den lagres\n- Objektet kan aldri komme i en ug yldig tilstand\n- Feil oppdages tidlig med tydelig feilmelding\n\nI eksempelet:\n- En bankkonto kan ikke ha negativ saldo\n- Setteren sjekker dette og avviser ugyldige verdier",
+    "example": "```csharp\npublic decimal Balance\n{\n    get => balance;\n    set\n    {\n        if (value >= 0)\n            balance = value;\n        else\n            Console.WriteLine(\"Feil: Saldo kan ikke være negativ\");\n    }\n}\n\n// Bruk:\nkonto.Balance = 500;  // OK\nkonto.Balance = -100; // \"Feil: Saldo kan ikke være negativ\"\n```",
+    "hvaGjørDen": "Setteren til en property er stedet du sjekker om en verdi er gyldig før du lagrer den."
+  },
+  {
+    "id": 9,
+    "section": "Properties",
+    "question": "Hva kjennetegner auto-implementerte egenskaper?",
+    "options": [
+      "De krever et manuelt privat felt",
+      "De har ingen get/set",
+      "Kompilatoren genererer et backing-felt automatisk",
+      "De kan ikke være public"
+    ],
+    "answerIndex": 2,
+    "answer": "Kompilatoren genererer et backing-felt automatisk",
+    "shortExplanation": "Auto-egenskaper bruker kort syntaks – kompilatoren genererer backing-feltet automatisk.",
+    "explanation": "Auto-implementerte egenskaper er stenografien for enkle get/set-egenskaper uten valideringslogikk.\n\nNormal egenskap:\n- Du lager et privat felt manuelt\n- Du skriver get og set som returnerer/setter feltet\n\nAuto-egenskap:\n- Du skriver bare { get; set; }\n- Kompilatoren lager backing-feltet automatisk i bakgrunnen\n\nBruk auto-egenskaper når du ikke trenger ekstra logikk i get/set.",
+    "example": "```csharp\n// Manuell egenskap (mest kontroll)\nprivate string _navn;\npublic string Navn { get => _navn; set => _navn = value; }\n\n// Auto-egenskap (enklere, samme effekt)\npublic string Navn { get; set; }\n\n// Auto-egenskap med kun get (read-only)\npublic string Id { get; } = Guid.NewGuid().ToString();\n```",
+    "hvaGjørDen": "Auto-egenskaper (`{ get; set; }`) er en kortform der C# lager backing-feltet automatisk."
+  },
+  {
+    "id": 10,
+    "section": "Get/Set vs Properties",
+    "question": "Hvorfor foretrekkes egenskaper fremfor tradisjonelle Get/Set-metoder?",
+    "options": [
+      "Metoder kan ikke kalles",
+      "Egenskaper er tregere",
+      "Metoder er alltid public",
+      "Egenskaper gir mer idiomatisk, konsis og kontrollert tilgang"
+    ],
+    "answerIndex": 3,
+    "answer": "Egenskaper gir mer idiomatisk, konsis og kontrollert tilgang",
+    "shortExplanation": "Properties gir enkel syntaks, validering og bedre API-design enn getter/setter-metoder.",
+    "explanation": "I Java er det vanlig med GetNavn() og SetNavn() metoder. C# løser dette mer elegant med properties.\n\nFordelene med C#-egenskaper over tradisjonelle metoder:\n- Mer lesbar kode: konto.Saldo = 500 i stedet for konto.SetSaldo(500)\n- Kan ha validering inne i set-blokken\n- Kan gjøres read-only med kun get\n- Passer naturlig inn i C#-følelse og språkmønstre",
+    "example": "```csharp\n// Java-stil (unngå i C#)\npublic void SetBalance(decimal b) => balance = b;\npublic decimal GetBalance() => balance;\n\n// C#-stil (foretrekkes)\npublic decimal Balance\n{\n    get => balance;\n    set { if (value >= 0) balance = value; }\n}\n\n// Bruk:\nkonto.Balance = 1000;           // setter\nConsole.WriteLine(konto.Balance); // getter\n```",
+    "hvaGjørDen": "Properties i C# gir renere kode enn Java-stil getter/setter-metoder, med innebygd validering."
+  },
+  {
+    "id": 11,
+    "section": "Constructors",
+    "question": "Hva er riktig om konstruktører i C#?",
+    "options": [
+      "De må ha samme navn som klassen og ingen returtype",
+      "De har returtypen void",
+      "De kan ikke initialisere felt",
+      "De kalles ikke automatisk"
+    ],
+    "answerIndex": 0,
+    "answer": "De må ha samme navn som klassen og ingen returtype",
+    "shortExplanation": "Konstruktører matcher klassenavn, har ingen returtype og kalles ved `new`.",
+    "explanation": "En konstruktør er en spesiell metode med klare regler:\n\nKjennetegn:\n- Har alltid samme navn som klassen\n- Har ingen returtype (ikke engang void)\n- Kalles automatisk når du bruker new\n\nFormålet:\n- Sette opp objektet i en gyldig starttilstand\n- Motta startverdier som input\n\nHvis du ikke lager en konstruktør, lager C# en tom standardkonstruktør for deg automatisk.",
+    "example": "```csharp\npublic class BankAccount\n{\n    private decimal balance;\n\n    // Konstruktør: kjøres automatisk ved new BankAccount()\n    public BankAccount()\n    {\n        balance = 0m; // sett gyldig startverdi\n    }\n\n    public BankAccount(decimal startSaldo)\n    {\n        balance = startSaldo;\n    }\n}\n```",
+    "hvaGjørDen": "En konstruktør er en spesiell metode uten returtype som kjøres automatisk ved `new`."
+  },
+  {
+    "id": 12,
+    "section": "Constructor Overloading",
+    "question": "Hva gir konstruktør overbelastning (overloading)?",
+    "options": [
+      "Kun én måte å opprette objektet",
+      "Flere konstruktører med ulike parametre for fleksibilitet",
+      "Automatisk generering av egenskaper",
+      "Arv uten parametere"
+    ],
+    "answerIndex": 1,
+    "answer": "Flere konstruktører med ulike parametre for fleksibilitet",
+    "shortExplanation": "Overloading lar deg opprette objekter på forskjellige måter – med ulike startverdier.",
+    "explanation": "Konstruktør-overloading betyr å ha flere konstruktører i samme klasse med ulike signaturer.\n\nHvorfor er det nyttig:\n- Gir fleksibilitet i hvordan objektet opprettes\n- Noen ganger kjenner du startverdiene, andre ganger ikke\n\nBruk this() for å kalle en annen konstruktør i samme klasse og unngå duplisert kode.",
+    "example": "```csharp\npublic class BankAccount\n{\n    private decimal balance;\n    private string eier;\n\n    public BankAccount()\n    {\n        balance = 0m;\n        eier = \"Ukjent\";\n    }\n\n    public BankAccount(string navn, decimal startSaldo)\n    {\n        eier = navn;\n        balance = startSaldo;\n    }\n}\n\nvar konto1 = new BankAccount();                 // standard\nvar konto2 = new BankAccount(\"Ada\", 1000m); // med verdier\n```",
+    "hvaGjørDen": "Konstruktør-overloading betyr at du kan lage objektet på ulike måter med forskjellige startverdier."
+  },
+  {
+    "id": 13,
+    "section": "Constructors",
+    "question": "Hva gjør en parameterløs (standard) konstruktør typisk?",
+    "options": [
+      "Setter tilfeldige verdier",
+      "Lar deg ikke opprette objektet",
+      "Initialiserer med standardverdier",
+      "Eksponerer alle felt"
+    ],
+    "answerIndex": 2,
+    "answer": "Initialiserer med standardverdier",
+    "shortExplanation": "Standardkonstruktøren sørger for at objektet alltid har fornuftige startverdier.",
+    "explanation": "En standardkonstruktør er en konstruktør uten parametere.\n\nHva den typisk gjør:\n- Setter alle felt til sikre, fornuftige standardverdier\n- Sikrer at objektet er i gyldig tilstand fra første stund\n- Hindrer at felt er null eller 0 ved et uhell\n\nHvis du ikke definerer noen konstruktør selv, lager C# en tom en automatisk. Men når du definerer en parameterisert konstruktør, forsvinner den automatiske.",
+    "example": "```csharp\npublic class Bil\n{\n    public string Merke;\n    public int Hastighet;\n    public bool MotorPå;\n\n    public Bil() // standardkonstruktør\n    {\n        Merke = \"Ukjent\";\n        Hastighet = 0;\n        MotorPå = false;\n    }\n}\n\nvar b = new Bil(); // Merke = \"Ukjent\", Hastighet = 0\n```",
+    "hvaGjørDen": "En standardkonstruktør (uten parametere) sørger for at objektet alltid starter med fornuftige verdier."
+  },
+  {
+    "id": 14,
+    "section": "Constructors",
+    "question": "Hvordan oppretter du et BankAccount-objekt med startverdi 1000?",
+    "options": [
+      "new BankAccount()",
+      "new BankAccount(1000m)",
+      "BankAccount.Create(1000)",
+      "BankAccount.New()"
+    ],
+    "answerIndex": 1,
+    "answer": "new BankAccount(1000m)",
+    "shortExplanation": "Parametrisert konstruktør tar inn startverdier når objektet opprettes.",
+    "explanation": "En parameterisert konstruktør gjør det mulig å konfigurere objektet når det opprettes.\n\nFordelene:\n- Slipper å sette verdier manuelt etter opprettelse\n- Lettere å sikre at alle nødvendige verdier er satt fra start\n- Koden blir mer kortfattet og lesbar\n\nnew BankAccount(1000m) oppretter en konto med 1000 kr fra starten – mye bedre enn å lage en tom konto og så sette saldo etterpaa.",
+    "example": "```csharp\npublic class BankAccount\n{\n    private decimal balance;\n\n    public BankAccount(decimal startSaldo)\n    {\n        balance = startSaldo;\n    }\n}\n\nvar konto = new BankAccount(1000m);\nConsole.WriteLine(konto.Balance); // 1000\n```",
+    "hvaGjørDen": "En parameterisert konstruktør lar deg sende inn startverdier direkte når du lager objektet."
+  },
+  {
+    "id": 15,
+    "section": "Access Modifiers",
+    "question": "Hva er standard tilgang for et felt hvis ingen modifikator oppgis i en klasse?",
+    "options": [
+      "public",
+      "private",
+      "internal",
+      "protected"
+    ],
+    "answerIndex": 1,
+    "answer": "private",
+    "shortExplanation": "Klassemedlemmer er private som standard – typer er internal.",
+    "explanation": "I C# finnes det standardtilganger når ingen modifikator er angitt:\n\nInnenfor en klasse (felt, metoder, egenskaper):\n- Standard: private\n- Ingen utenfor klassen får tilgang\n\nKlasse-nivå (selve klassen):\n- Standard: internal\n- Tilgjengelig i hele prosjektet, men ikke utenfor assembly\n\nDette betyr at du må eksplisitt bruke public når du ønsker å eksponere noe.",
+    "example": "```csharp\nclass Eksempel\n{\n    int x;              // private (standard)\n    void Hjelp() {}     // private (standard)\n    string Navn;        // private (standard)\n}\n\nclass Offentlig { }     // internal (standard)\npublic class Synlig { } // public – må spesifiseres eksplisitt\n```",
+    "hvaGjørDen": "Felt og metoder i en klasse er `private` som standard om ingen tilgangsmodifikator er skrevet."
+  },
+  {
+    "id": 16,
+    "section": "Encapsulation Benefits",
+    "question": "Hvorfor er innkapsling viktig?",
+    "options": [
+      "For å eksponere alle interne detaljer",
+      "For å beskytte data og gjøre vedlikehold enklere",
+      "For å gjøre kode mer kompleks",
+      "For å deaktivere validering"
+    ],
+    "answerIndex": 1,
+    "answer": "For å beskytte data og gjøre vedlikehold enklere",
+    "shortExplanation": "Innkapsling gir dataintegritet, sikkerhet og kode som er lettere å vedlikeholde.",
+    "explanation": "Innkapsling har mange fordeler som gjør koden mer robust:\n\n1. Dataintegritet:\n   - Hindrer at objektet kommer i ugyldig tilstand\n   - Setter gjør validering før endring\n\n2. Skjuler kompleksitet:\n   - Brukere av klassen trenger ikke vite hvordan dataene lagres\n   - Du kan endre internt uten å bryte ekstern kode\n\n3. Lettere å vedlikeholde:\n   - Endringer i intern implementasjon påvirker ikke andre klasser",
+    "example": "```csharp\npublic class Profil\n{\n    private string epost;\n\n    public string Epost\n    {\n        get => epost;\n        set\n        {\n            if (value.Contains(\"@\"))\n                epost = value;\n            else\n                throw new ArgumentException(\"Ugyldig e-postadresse\");\n        }\n    }\n}\n\nvar p = new Profil();\np.Epost = \"ada@example.com\";  // OK\np.Epost = \"ugyldig tekst\";    // kaster unntak\n```",
+    "hvaGjørDen": "Innkapsling beskytter dataene mot feil bruk og gjør koden enklere å vedlikeholde over tid."
+  }
 ]
