@@ -337,11 +337,11 @@ function Home() {
       <aside className="table-of-contents">
         <h3>List</h3>
         <nav className="toc-nav">
+          <a href="#unisystem" className="toc-link">UniSystem</a>
           <a href="#lectures" className="toc-link">Lectures</a>
           <a href="#learning-path" className="toc-link">Learning Path</a>
           <a href="#match-pairs" className="toc-link">Match Pairs</a>
           <a href="#csharp-basics" className="toc-link">C# Basics</a>
-          <a href="#unisystem" className="toc-link">UniSystem</a>
         </nav>
       </aside>
 
@@ -473,6 +473,59 @@ function Home() {
           </div>
         </div>
 
+        <div className="chapter-list" id="unisystem">
+          <div className="chapter-divider">
+            <span>UniSystem</span>
+          </div>
+          <div className="chapters-grid">
+            <Link to="/unisystem" className="chapter-button">
+              <h3>🏫 UniSystem Kode</h3>
+              <p>Annotert C# kildekode — Student, Ansatt, Kurs, Bok, Lån og mer</p>
+              <span className="question-count">8 filer</span>
+            </Link>
+            <Link to="/uni-student" className="chapter-button">
+              <h3>👤 Student.cs</h3>
+              <p>Namespace, class, public fields, constructor, objekter</p>
+              <span className="question-count">15 questions</span>
+            </Link>
+            <Link to="/uni-ansatt" className="chapter-button">
+              <h3>🧑‍💼 Ansatt.cs</h3>
+              <p>Klasse med 3 felter, konstruktør, sammenligning med Student</p>
+              <span className="question-count">15 questions</span>
+            </Link>
+            <Link to="/uni-bok" className="chapter-button">
+              <h3>📖 Bok.cs</h3>
+              <p>Mixed types, 5-param constructor, TilgjengeligeEksemplarer</p>
+              <span className="question-count">15 questions</span>
+            </Link>
+            <Link to="/uni-kurs" className="chapter-button">
+              <h3>📚 Kurs.cs</h3>
+              <p>List&lt;Student&gt;, generics, composition, using System.Collections</p>
+              <span className="question-count">15 questions</span>
+            </Link>
+            <Link to="/uni-lan" className="chapter-button">
+              <h3>🔖 Lån.cs</h3>
+              <p>4 string fields, BrukerType, data vs service class</p>
+              <span className="question-count">15 questions</span>
+            </Link>
+            <Link to="/uni-kurs-system" className="chapter-button">
+              <h3>⚙️ KursSystem.cs</h3>
+              <p>const, List&lt;Kurs&gt;, foreach, Find(), lambda, Remove()</p>
+              <span className="question-count">15 questions</span>
+            </Link>
+            <Link to="/uni-bibliotek-system" className="chapter-button">
+              <h3>🏛️ BibliotekSystem.cs</h3>
+              <p>To lister, nullable Lån?, break, nested foreach, &amp;&amp;</p>
+              <span className="question-count">15 questions</span>
+            </Link>
+            <Link to="/uni-program" className="chapter-button">
+              <h3>▶️ Program.cs</h3>
+              <p>static void Main, while(running), int.Parse, #nullable disable</p>
+              <span className="question-count">15 questions</span>
+            </Link>
+          </div>
+        </div>
+
         <div className="chapter-list" id="lectures">
           <div className="chapter-divider">
             <span>Lectures</span>
@@ -585,59 +638,6 @@ function Home() {
             <Link to="/csharp-basics" className="chapter-button">
               <h3>🟢 Beginner P1</h3>
               <p>Variables, types, output, methods, loops, classes</p>
-              <span className="question-count">15 questions</span>
-            </Link>
-          </div>
-        </div>
-
-        <div className="chapter-list" id="unisystem">
-          <div className="chapter-divider">
-            <span>UniSystem</span>
-          </div>
-          <div className="chapters-grid">
-            <Link to="/unisystem" className="chapter-button">
-              <h3>🏫 UniSystem Kode</h3>
-              <p>Annotert C# kildekode — Student, Ansatt, Kurs, Bok, Lån og mer</p>
-              <span className="question-count">8 filer</span>
-            </Link>
-            <Link to="/uni-student" className="chapter-button">
-              <h3>👤 Student.cs</h3>
-              <p>Namespace, class, public fields, constructor, objekter</p>
-              <span className="question-count">15 questions</span>
-            </Link>
-            <Link to="/uni-ansatt" className="chapter-button">
-              <h3>🧑‍💼 Ansatt.cs</h3>
-              <p>Klasse med 3 felter, konstruktør, sammenligning med Student</p>
-              <span className="question-count">15 questions</span>
-            </Link>
-            <Link to="/uni-bok" className="chapter-button">
-              <h3>📖 Bok.cs</h3>
-              <p>Mixed types, 5-param constructor, TilgjengeligeEksemplarer</p>
-              <span className="question-count">15 questions</span>
-            </Link>
-            <Link to="/uni-kurs" className="chapter-button">
-              <h3>📚 Kurs.cs</h3>
-              <p>List&lt;Student&gt;, generics, composition, using System.Collections</p>
-              <span className="question-count">15 questions</span>
-            </Link>
-            <Link to="/uni-lan" className="chapter-button">
-              <h3>🔖 Lån.cs</h3>
-              <p>4 string fields, BrukerType, data vs service class</p>
-              <span className="question-count">15 questions</span>
-            </Link>
-            <Link to="/uni-kurs-system" className="chapter-button">
-              <h3>⚙️ KursSystem.cs</h3>
-              <p>const, List&lt;Kurs&gt;, foreach, Find(), lambda, Remove()</p>
-              <span className="question-count">15 questions</span>
-            </Link>
-            <Link to="/uni-bibliotek-system" className="chapter-button">
-              <h3>🏛️ BibliotekSystem.cs</h3>
-              <p>To lister, nullable Lån?, break, nested foreach, &amp;&amp;</p>
-              <span className="question-count">15 questions</span>
-            </Link>
-            <Link to="/uni-program" className="chapter-button">
-              <h3>▶️ Program.cs</h3>
-              <p>static void Main, while(running), int.Parse, #nullable disable</p>
               <span className="question-count">15 questions</span>
             </Link>
           </div>
