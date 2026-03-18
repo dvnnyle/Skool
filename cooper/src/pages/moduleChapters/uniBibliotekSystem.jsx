@@ -42,11 +42,11 @@ function UniBibliotekSystem() {
 		} else {
 			const finalScore = score + (currentQuestion.answerIndex === selectedAnswer ? 1 : 0)
 			const totalAnswered = questionsData.length
-			const existingData = localStorage.getItem('quiz_UniBibliotekSystem')
+			const existingData = localStorage.getItem('quiz_uniBibliotekSystem')
 			const previousData = existingData ? JSON.parse(existingData) : { bestScore: 0, attempts: 0, attemptHistory: [], totalQuestionsAnswered: 0 }
 			const newAttempt = { score: finalScore, questionsAnswered: totalAnswered, date: new Date().toISOString() }
 			const attemptHistory = [...(previousData.attemptHistory || []), newAttempt]
-			localStorage.setItem('quiz_UniBibliotekSystem', JSON.stringify({
+			localStorage.setItem('quiz_uniBibliotekSystem', JSON.stringify({
 				lastScore: finalScore, questionsAnswered: totalAnswered, completed: totalAnswered,
 				total: questionsData.length, bestScore: Math.max(finalScore, previousData.bestScore || 0),
 				attempts: attemptHistory.length, totalQuestionsAnswered: (previousData.totalQuestionsAnswered || 0) + totalAnswered,
