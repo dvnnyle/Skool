@@ -9,6 +9,23 @@ import Footer from './widget/footer'
 
 const ROADS = [
   {
+    id: 'road6', label: 'Road 6', subtitle: 'UniSystem Project',
+    stages: [
+      { name: 'Model Classes', icon: '🏛️', color: '#06b6d4', steps: [
+        { key: 'uniStudent', to: '/uni-student', title: 'Student.cs' },
+        { key: 'uniAnsatt', to: '/uni-ansatt', title: 'Ansatt.cs' },
+        { key: 'uniBok', to: '/uni-bok', title: 'Bok.cs' },
+        { key: 'uniKurs', to: '/uni-kurs', title: 'Kurs.cs' },
+        { key: 'uniLan', to: '/uni-lan', title: 'Lån.cs' },
+      ]},
+      { name: 'Service Classes', icon: '⚙️', color: '#8b5cf6', steps: [
+        { key: 'uniKursSystem', to: '/uni-kurs-system', title: 'KursSystem.cs' },
+        { key: 'uniBibliotekSystem', to: '/uni-bibliotek-system', title: 'BibliotekSystem.cs' },
+        { key: 'uniProgram', to: '/uni-program', title: 'Program.cs' },
+      ]},
+    ]
+  },
+  {
     id: 'road1', label: 'Road 1', subtitle: 'C# Foundations',
     stages: [
       { name: 'Foundations', icon: '🌱', color: '#10b981', steps: [
@@ -95,23 +112,6 @@ const ROADS = [
         { key: 'csharpLevel1', to: '/csharp-level1', title: 'Level 1' },
         { key: 'csharpLevel2', to: '/csharp-level2', title: 'Level 2' },
         { key: 'csharpLevel3', to: '/csharp-level3', title: 'Level 3' },
-      ]},
-    ]
-  },
-  {
-    id: 'road6', label: 'Road 6', subtitle: 'UniSystem Project',
-    stages: [
-      { name: 'Model Classes', icon: '🏛️', color: '#06b6d4', steps: [
-        { key: 'uniStudent', to: '/uni-student', title: 'Student.cs' },
-        { key: 'uniAnsatt', to: '/uni-ansatt', title: 'Ansatt.cs' },
-        { key: 'uniBok', to: '/uni-bok', title: 'Bok.cs' },
-        { key: 'uniKurs', to: '/uni-kurs', title: 'Kurs.cs' },
-        { key: 'uniLan', to: '/uni-lan', title: 'Lån.cs' },
-      ]},
-      { name: 'Service Classes', icon: '⚙️', color: '#8b5cf6', steps: [
-        { key: 'uniKursSystem', to: '/uni-kurs-system', title: 'KursSystem.cs' },
-        { key: 'uniBibliotekSystem', to: '/uni-bibliotek-system', title: 'BibliotekSystem.cs' },
-        { key: 'uniProgram', to: '/uni-program', title: 'Program.cs' },
       ]},
     ]
   },
