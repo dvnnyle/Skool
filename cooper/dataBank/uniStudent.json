@@ -1,0 +1,140 @@
+[
+  {
+    "id": 1,
+    "section": "Namespace",
+    "question": "Which namespace is `Student` declared in?",
+    "options": ["UniSystem", "UniSystem.Student", "UniSystem.aMain", "System"],
+    "answerIndex": 2,
+    "explanation": "The file starts with `namespace UniSystem.aMain`, placing `Student` inside that namespace.\n\nNamespaces organize classes into groups — `aMain` contains the main model classes (Student, Ansatt, Bok, etc.).",
+    "example": "```csharp\nnamespace UniSystem.aMain\n{\n    public class Student { ... }\n}\n```",
+    "thinkOfIt": "Think of it like this:\nThe namespace is the \"address\" of a class.\n- `UniSystem` = the building\n- `aMain` = the room inside the building"
+  },
+  {
+    "id": 2,
+    "section": "Class Declaration",
+    "question": "What keyword declares the `Student` type in `Student.cs`?",
+    "options": ["struct", "interface", "record", "class"],
+    "answerIndex": 3,
+    "explanation": "`class` defines a reference type with fields and methods. In C#:\n- `class` = reference type (heap, can be null)\n- `struct` = value type (stack, copied by value)\n- `interface` = contract with no implementation\n- `record` = immutable data class (C# 9+)",
+    "example": "```csharp\npublic class Student\n{\n    // fields and constructor here\n}\n```"
+  },
+  {
+    "id": 3,
+    "section": "Access Modifiers",
+    "question": "`public class Student` — what does `public` mean here?",
+    "options": ["Only accessible inside the project", "Only accessible inside the aMain namespace", "Accessible from any code that uses this namespace", "Only accessible by subclasses"],
+    "answerIndex": 2,
+    "explanation": "`public` means the class can be used from anywhere — other namespaces, other projects that reference this one.\n\nIf it were `internal` it would only be accessible within the same assembly.",
+    "thinkOfIt": "Think of it like this:\n- `public` = front door, anyone from outside can use it\n- `internal` = staff-only entrance\n- `private` = can't be applied to top-level classes"
+  },
+  {
+    "id": 4,
+    "section": "Fields",
+    "question": "What is the data type of `StudentID` in `Student.cs`?",
+    "options": ["int", "char", "double", "string"],
+    "answerIndex": 3,
+    "explanation": "`public string StudentID;` declares a `string` field.\n\n`string` stores text (sequences of characters). It is the right type for IDs, names, and email addresses.",
+    "example": "```csharp\npublic string StudentID;   // e.g. \"S01\"\npublic string Navn;        // e.g. \"Jonas\"\npublic string Epost;       // e.g. \"j@uni.no\"\n```"
+  },
+  {
+    "id": 5,
+    "section": "Constructor",
+    "question": "What is the purpose of `Student(string id, string navn, string epost)`?",
+    "options": ["Delete a student from the system", "Read student data from a file", "Initialize the object's fields when it is created", "Print the student's info to the console"],
+    "answerIndex": 2,
+    "explanation": "A constructor runs automatically when you write `new Student(...)`. It initializes the object by assigning parameter values to the class fields.",
+    "example": "```csharp\npublic Student(string id, string navn, string epost)\n{\n    StudentID = id;\n    Navn = navn;\n    Epost = epost;\n}\n```",
+    "thinkOfIt": "Think of it like this:\nA constructor is like a registration form — you fill in the blanks (parameters) and the form fields (class fields) get the values."
+  },
+  {
+    "id": 6,
+    "section": "Constructor",
+    "question": "Inside the constructor, `StudentID = id;` does what?",
+    "options": ["Creates a new local variable named StudentID", "Compares StudentID to id", "Assigns the constructor parameter to the class field", "Prints the student ID to console"],
+    "answerIndex": 2,
+    "explanation": "`StudentID` is the class field (left side). `id` is the constructor parameter (right side). The assignment copies the parameter value into the field, so the object stores it.",
+    "example": "```csharp\npublic Student(string id, string navn, string epost)\n{\n    StudentID = id;   // field = parameter\n    Navn = navn;\n    Epost = epost;\n}\n```"
+  },
+  {
+    "id": 7,
+    "section": "Object Creation",
+    "question": "How do you create a new `Student` object in C#?",
+    "options": ["Student s = Student()", "Student(\"S1\", \"Ana\", \"a@b.no\")", "new Student(\"S1\", \"Ana\", \"a@b.no\")", "Create Student(\"S1\")"],
+    "answerIndex": 2,
+    "explanation": "Use the `new` keyword followed by the class name and the constructor arguments. This allocates the object and calls the constructor.",
+    "example": "```csharp\nStudent s = new Student(\"S1\", \"Ana\", \"a@b.no\");\nConsole.WriteLine(s.Navn); // \"Ana\"\n```",
+    "thinkOfIt": "Think of it like this:\n`new` = \"manufacture one instance of this blueprint\""
+  },
+  {
+    "id": 8,
+    "section": "Constructor",
+    "question": "How many parameters does the `Student` constructor accept?",
+    "options": ["1", "2", "3", "4"],
+    "answerIndex": 2,
+    "explanation": "The signature is `Student(string id, string navn, string epost)` — three parameters: `id`, `navn`, and `epost`.",
+    "example": "```csharp\n// Exactly 3 arguments required:\nStudent s = new Student(\"S01\", \"Jonas\", \"j@uni.no\");\n```"
+  },
+  {
+    "id": 9,
+    "section": "Object Access",
+    "question": "After `Student s = new Student(\"S01\", \"Jonas\", \"j@uni.no\")`, what is `s.Navn`?",
+    "options": ["\"S01\"", "\"Jonas\"", "\"j@uni.no\"", "null"],
+    "answerIndex": 1,
+    "explanation": "The constructor assigns `Navn = navn`. The second argument is `\"Jonas\"`, so `Navn` gets the value `\"Jonas\"`.",
+    "example": "```csharp\nStudent s = new Student(\"S01\", \"Jonas\", \"j@uni.no\");\nConsole.WriteLine(s.StudentID); // \"S01\"\nConsole.WriteLine(s.Navn);      // \"Jonas\"\nConsole.WriteLine(s.Epost);     // \"j@uni.no\"\n```"
+  },
+  {
+    "id": 10,
+    "section": "Access Modifiers",
+    "question": "What does `public` on a field like `public string Navn` allow?",
+    "options": ["It can only be read from outside", "It can only be set once", "It can be accessed and changed from outside the class", "It is shared by all Student instances"],
+    "answerIndex": 2,
+    "explanation": "`public` fields are readable and writeable from anywhere — other classes, other namespaces, etc.\n\nThis is different from `private` (access restricted to the class) or `readonly` (can only be set in constructor).",
+    "example": "```csharp\nStudent s = new Student(\"S1\", \"Ana\", \"a@b.no\");\ns.Navn = \"Anna\"; // OK — public field\n```"
+  },
+  {
+    "id": 11,
+    "section": "Class Basics",
+    "question": "A constructor must have the same name as...?",
+    "options": ["The namespace", "The file name", "The class", "The first field"],
+    "answerIndex": 2,
+    "explanation": "Constructors are named exactly like the class. `Student` uses `public Student(...)` as its constructor. This is how C# recognizes it as a constructor (no return type either).",
+    "example": "```csharp\npublic class Student\n{\n    public Student(...)  // same name as class, no return type\n    {\n    }\n}\n```"
+  },
+  {
+    "id": 12,
+    "section": "Access Modifiers",
+    "question": "If `StudentID` was declared `private string StudentID`, what changes?",
+    "options": ["Nothing — private and public behave the same", "The field can't be accessed outside the Student class", "The constructor would stop compiling", "The field becomes read-only"],
+    "answerIndex": 1,
+    "explanation": "`private` restricts access to inside the class only. Code in `KursSystem.cs` doing `student.StudentID` would cause a **compile error** if the field were private.",
+    "thinkOfIt": "Think of it like this:\n- `public` = readable by everyone\n- `private` = only the class itself can see it, like a private diary"
+  },
+  {
+    "id": 13,
+    "section": "Fields",
+    "question": "If `Epost` is never assigned a value, what is its default in C#?",
+    "options": ["\"\"", "0", "null", "\"Epost\""],
+    "answerIndex": 2,
+    "explanation": "`string` is a reference type. Uninitialized reference fields default to `null` in C#. That's why constructors are important — they ensure fields have real values.",
+    "example": "```csharp\n// Without constructor assignment:\nStudent s = new Student();\n// s.Epost == null (if not assigned)\n```"
+  },
+  {
+    "id": 14,
+    "section": "Object Creation",
+    "question": "Which keyword is required to create a new object in C#?",
+    "options": ["create", "instance", "make", "new"],
+    "answerIndex": 3,
+    "explanation": "`new` allocates memory for the object and runs its constructor. You cannot instantiate a class without it.",
+    "example": "```csharp\nStudent s = new Student(\"S1\", \"Ana\", \"a@b.no\");\n//         ^^^ required\n```"
+  },
+  {
+    "id": 15,
+    "section": "OOP Concepts",
+    "question": "In OOP terms, `Student` in `Student.cs` is a...?",
+    "options": ["Variable", "Method", "Class / blueprint", "Interface"],
+    "answerIndex": 2,
+    "explanation": "`Student` is a **class** — a blueprint or template. Actual data lives in **objects** (instances), like `new Student(\"S01\", \"Jonas\", \"j@uni.no\")`.\n\nThe class defines structure; each object holds its own data.",
+    "thinkOfIt": "Think of it like this:\n- Class = cookie cutter (the mold)\n- Object = the actual cookie (an instance with real values)"
+  }
+]

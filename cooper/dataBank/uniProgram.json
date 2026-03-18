@@ -1,0 +1,217 @@
+[
+  {
+    "id": 1,
+    "section": "Entry Point",
+    "question": "In `Program.cs`, the program starts in `static void Main()`. What does `static` mean here?",
+    "options": [
+      "The method can only be called once",
+      "The method belongs to the class itself, not to an instance",
+      "The method cannot be changed",
+      "The method returns a static value"
+    ],
+    "answerIndex": 1,
+    "explanation": "`static` means the method belongs to the class, not to an object. `Main()` is called by the .NET runtime before any objects exist — so it must be `static`.",
+    "example": "```csharp\nclass Program\n{\n    static void Main()\n    {\n        // program starts here\n    }\n}\n```",
+    "thinkOfIt": "Think of it like this:\n`static void Main()` = the front door of the entire program. The runtime knocks on it to begin."
+  },
+  {
+    "id": 2,
+    "section": "Directive",
+    "question": "`#nullable disable` at the top of `Program.cs` does what?",
+    "options": [
+      "Prevents the use of null anywhere in the file",
+      "Removes all null checks from the runtime",
+      "Disables compile-time nullable reference warnings for this file",
+      "Disables the nullable type syntax like Lån?"
+    ],
+    "answerIndex": 2,
+    "explanation": "`#nullable disable` turns off the C# 8+ nullable reference type analysis for this file, suppressing warnings like \"possible null reference\". It's a quick way to avoid having to annotate everything with `?`.",
+    "thinkOfIt": "Think of it like this:\nLike turning off spell-check — the code still runs, but the compiler stops warning about potential null issues."
+  },
+  {
+    "id": 3,
+    "section": "Control Flow",
+    "question": "The main loop uses `while (running)`. When does the loop stop?",
+    "options": [
+      "After 10 iterations",
+      "When `running = false` is set (option 0 in the menu)",
+      "When an exception is thrown",
+      "After the user enters any input"
+    ],
+    "answerIndex": 1,
+    "explanation": "`bool running = true` starts the loop. When the user picks option `\"0\"`, `running = false` is set, causing the `while` condition to fail and the loop to exit.",
+    "example": "```csharp\nbool running = true;\nwhile (running)\n{\n    // show menu...\n    if (valg == \"0\")\n        running = false; // loop will exit\n}\n```",
+    "thinkOfIt": "Think of it like this:\n`running` is a switch. As long as it's `true`, the menu keeps repeating."
+  },
+  {
+    "id": 4,
+    "section": "Input Parsing",
+    "question": "`int studiepoeng = int.Parse(Console.ReadLine())` — what does `int.Parse()` do?",
+    "options": [
+      "Reads the next integer from a file",
+      "Converts a string from the console into an int",
+      "Rounds a decimal number to int",
+      "Generates a random int"
+    ],
+    "answerIndex": 1,
+    "explanation": "`Console.ReadLine()` returns a `string`. `int.Parse()` converts that string to an `int`. If the user types `\"20\"`, you get the integer `20`.",
+    "example": "```csharp\nConsole.Write(\"Antall plasser: \");\nint maksPlasser = int.Parse(Console.ReadLine());\n// User types \"30\" → maksPlasser == 30\n```",
+    "thinkOfIt": "Think of it like this:\n`ReadLine()` reads raw text. `int.Parse()` \"translates\" that text into a number the program can calculate with."
+  },
+  {
+    "id": 5,
+    "section": "Control Flow",
+    "question": "The menu comparison uses `if (valg == \"1\")`. Why is this a string comparison instead of `int valg == 1`?",
+    "options": [
+      "int doesn't work with ==",
+      "Console.ReadLine() returns a string — comparing as string avoids parsing",
+      "It's faster to compare strings",
+      "String comparison is required by the while loop"
+    ],
+    "answerIndex": 1,
+    "explanation": "`Console.ReadLine()` always returns a `string`. Comparing `valg == \"1\"` works directly. To use `int valg == 1` you'd need `int.Parse(valg)` first, adding an extra step.",
+    "example": "```csharp\nstring valg = Console.ReadLine();\nif (valg == \"1\") { /* Opprett kurs */ }\nelse if (valg == \"0\") { running = false; }\n```"
+  },
+  {
+    "id": 6,
+    "section": "Object Creation",
+    "question": "In `Program.cs`, `Kurs nyttKurs = new Kurs(kurskode, kursnavn, studiepoeng, maksPlasser)` — where does this object go next?",
+    "options": [
+      "It's saved to a database",
+      "It's passed to kursSystem.OpprettKurs(nyttKurs) which adds it to KursListe",
+      "It's printed to the console",
+      "It disappears after the if-block ends"
+    ],
+    "answerIndex": 1,
+    "explanation": "The object is immediately passed to `kursSystem.OpprettKurs(nyttKurs)`, which calls `KursListe.Add(kurs)` to register it in the system.",
+    "example": "```csharp\nKurs nyttKurs = new Kurs(kurskode, kursnavn, studiepoeng, maksPlasser);\nkursSystem.OpprettKurs(nyttKurs); // stored in KursListe\n```"
+  },
+  {
+    "id": 7,
+    "section": "Control Flow",
+    "question": "In the `valg == \"5\"` block (lån ut bok), `continue` is used after \"Ugyldig brukertype\". What does `continue` do?",
+    "options": [
+      "Exits the while loop entirely",
+      "Exits the current if-block and skips to the next iteration of the while loop",
+      "Jumps to the last else block",
+      "Breaks out of the foreach"
+    ],
+    "answerIndex": 1,
+    "explanation": "`continue` skips the rest of the current loop body and jumps back to the top of the `while` loop. This is used here to show the menu again without calling `LånUtBok()` with invalid data.",
+    "example": "```csharp\nelse {\n    Console.WriteLine(\"Ugyldig brukertype\");\n    continue; // go back to top of while loop\n}\nbibliotekSystem.LånUtBok(...); // only reached if valid type\n```",
+    "thinkOfIt": "Think of it like this:\n`continue` = \"skip the rest of this round and start the loop again\""
+  },
+  {
+    "id": 8,
+    "section": "Using Directives",
+    "question": "`Program.cs` has `using UniSystem.aMain` AND `using UniSystem.aSystemer`. Why both?",
+    "options": [
+      "aMain is needed for Kurs, Student, Bok objects; aSystemer is needed for KursSystem and BibliotekSystem",
+      "Both are the same namespace, just aliases",
+      "aMain is needed for Console; aSystemer is for file access",
+      "Only one is actually used"
+    ],
+    "answerIndex": 0,
+    "explanation": "- `using UniSystem.aMain` → lets the program use `Kurs`, `Student`, `Bok`, `Lån`, `Ansatt` model classes\n- `using UniSystem.aSystemer` → lets the program use `KursSystem` and `BibliotekSystem`",
+    "example": "```csharp\nusing UniSystem.aMain;      // Kurs, Student, Bok, Lån, Ansatt\nusing UniSystem.aSystemer;  // KursSystem, BibliotekSystem\n\nKursSystem kursSystem = new KursSystem();\nBibliotekSystem bibliotekSystem = new BibliotekSystem();\n```"
+  },
+  {
+    "id": 9,
+    "section": "Object Creation",
+    "question": "`KursSystem kursSystem = new KursSystem()` — this creates a KursSystem with no arguments. Why?",
+    "options": [
+      "KursSystem has no constructor (error)",
+      "KursSystem uses a default (parameterless) constructor; fields are initialized at declaration",
+      "Arguments are passed later via a setup method",
+      "C# always allows zero arguments"
+    ],
+    "answerIndex": 1,
+    "explanation": "`KursSystem` doesn't define a constructor, so C# provides a default parameterless one. Its `KursListe` field initializes itself to `new List<Kurs>()` at declaration — so the object is ready with no arguments.",
+    "example": "```csharp\n// KursSystem has: public List<Kurs> KursListe = new List<Kurs>();\n// No explicit constructor needed:\nKursSystem kursSystem = new KursSystem();\n// kursSystem.KursListe is already an empty list!\n```"
+  },
+  {
+    "id": 10,
+    "section": "Control Flow",
+    "question": "The menu uses `if/else if/else if/...` instead of `switch`. What would changing to `switch` require?",
+    "options": [
+      "Nothing — they are identical",
+      "The valg variable would need to be int instead of string",
+      "switch works directly on string — it would be a valid refactor",
+      "switch requires a break after each case"
+    ],
+    "answerIndex": 3,
+    "explanation": "In C#, `switch` works with `string`. Each `case` needs a `break` (or `return`) to prevent fallthrough. It would be a valid refactor — often cleaner for many `if/else if` chains.",
+    "example": "```csharp\nswitch (valg)\n{\n    case \"1\":\n        // opprett kurs\n        break;\n    case \"0\":\n        running = false;\n        break;\n    default:\n        Console.WriteLine(\"Ugyldig valg\");\n        break;\n}\n```"
+  },
+  {
+    "id": 11,
+    "section": "Constants",
+    "question": "In `Program.cs`, ANSI color codes (`GREEN`, `RED`, etc.) are declared as `const string`. Why not use regular `string` variables?",
+    "options": [
+      "const strings are faster to print",
+      "const prevents accidental modification — color codes should never change",
+      "Regular strings don't support \\u escape codes",
+      "const is required for all variables in Main()"
+    ],
+    "answerIndex": 1,
+    "explanation": "`const` communicates intent: \"this value never changes\". It also allows the compiler to inline the value, and prevents bugs from accidental reassignment.",
+    "example": "```csharp\nconst string GREEN = \"\\u001b[32m\"; // can't be reassigned\n// GREEN = \"something\"; // ❌ compile error\n```"
+  },
+  {
+    "id": 12,
+    "section": "Input Parsing",
+    "question": "What happens if the user types `\"abc\"` when `int.Parse(Console.ReadLine())` expects a number like for `studiepoeng`?",
+    "options": [
+      "Returns 0",
+      "Ignores the input and asks again",
+      "Throws a FormatException and crashes",
+      "Converts 'a' to its ASCII value"
+    ],
+    "answerIndex": 2,
+    "explanation": "`int.Parse()` throws a `FormatException` if the input is not a valid integer. The program would crash. Safe alternatives include `int.TryParse()` with validation.",
+    "example": "```csharp\n// UNSAFE (current code):\nint studiepoeng = int.Parse(Console.ReadLine());\n\n// SAFER:\nif (int.TryParse(Console.ReadLine(), out int studiepoeng))\n    // valid\nelse\n    Console.WriteLine(\"Ugyldig tall\");\n```",
+    "thinkOfIt": "Think of it like this:\n`int.Parse()` is strict — non-numbers explode it.\n`int.TryParse()` is gentle — it just says \"that wasn't a number, false\"."
+  },
+  {
+    "id": 13,
+    "section": "Object Creation",
+    "question": "In the menu, `Student student = new Student(id, navn, epost)` is created. Where does it go next?",
+    "options": [
+      "It's stored directly in a list in Program.cs",
+      "It's passed to kursSystem.MeldStudentPåKurs(student, kode)",
+      "It's printed to the console",
+      "It's saved to KursListe"
+    ],
+    "answerIndex": 1,
+    "explanation": "The `Student` object is passed to `kursSystem.MeldStudentPåKurs(student, kode)`, which adds it to the course's `Studenter` list if there's room.",
+    "example": "```csharp\nStudent student = new Student(id, navn, epost);\nkursSystem.MeldStudentPåKurs(student, kode);\n```"
+  },
+  {
+    "id": 14,
+    "section": "Program Flow",
+    "question": "The comment in `Program.cs` says `// MAA STARTE FRA TOPPEN OG NED, NÅR DU KJØRER`. What does this warn about?",
+    "options": [
+      "The code must be read top-to-bottom",
+      "Operations depend on data setup done earlier — e.g., you can't loan a book that hasn't been registered",
+      "The program only works on Windows",
+      "Menu options must be tried in order 1-6"
+    ],
+    "answerIndex": 1,
+    "explanation": "The system is in-memory only (no database). If you restart the program, all data resets. You need to register courses/books before you can enroll students or loan books.",
+    "thinkOfIt": "Think of it like this:\nAll data lives in RAM. When the program stops, it's gone.\nYou must always start fresh: create courses → add students → loan books."
+  },
+  {
+    "id": 15,
+    "section": "Program Structure",
+    "question": "Why does `Program.cs` create BOTH `kursSystem` and `bibliotekSystem` at startup?",
+    "options": [
+      "They both need to share the same data",
+      "The program manages two separate systems — courses and the library",
+      "One is a backup of the other",
+      "Only bibliotekSystem is used"
+    ],
+    "answerIndex": 1,
+    "explanation": "The program manages two independent subsystems:\n- `KursSystem` → course registration and student enrollment\n- `BibliotekSystem` → library book lending\n\nBoth are created at startup and kept alive for the duration of the program.",
+    "example": "```csharp\nKursSystem kursSystem = new KursSystem();\nBibliotekSystem bibliotekSystem = new BibliotekSystem();\n// Both alive for the entire while(running) loop\n```"
+  }
+]

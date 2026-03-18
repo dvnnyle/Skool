@@ -98,6 +98,23 @@ const ROADS = [
       ]},
     ]
   },
+  {
+    id: 'road6', label: 'Road 6', subtitle: 'UniSystem Project',
+    stages: [
+      { name: 'Model Classes', icon: '🏛️', color: '#06b6d4', steps: [
+        { key: 'uniStudent', to: '/uni-student', title: 'Student.cs' },
+        { key: 'uniAnsatt', to: '/uni-ansatt', title: 'Ansatt.cs' },
+        { key: 'uniBok', to: '/uni-bok', title: 'Bok.cs' },
+        { key: 'uniKurs', to: '/uni-kurs', title: 'Kurs.cs' },
+        { key: 'uniLan', to: '/uni-lan', title: 'Lån.cs' },
+      ]},
+      { name: 'Service Classes', icon: '⚙️', color: '#8b5cf6', steps: [
+        { key: 'uniKursSystem', to: '/uni-kurs-system', title: 'KursSystem.cs' },
+        { key: 'uniBibliotekSystem', to: '/uni-bibliotek-system', title: 'BibliotekSystem.cs' },
+        { key: 'uniProgram', to: '/uni-program', title: 'Program.cs' },
+      ]},
+    ]
+  },
 ]
 
 function Home() {
@@ -129,6 +146,14 @@ function Home() {
       { id: 'matchpairstrings', total: 12 },
       { id: 'matchpairoperators', total: 14 },
       { id: 'matchpairoop', total: 14 },
+      { id: 'uniStudent', total: 15 },
+      { id: 'uniAnsatt', total: 15 },
+      { id: 'uniBok', total: 15 },
+      { id: 'uniKurs', total: 15 },
+      { id: 'uniLan', total: 15 },
+      { id: 'uniKursSystem', total: 15 },
+      { id: 'uniBibliotekSystem', total: 15 },
+      { id: 'uniProgram', total: 15 },
     ]
     
     let totalCompleted = 0

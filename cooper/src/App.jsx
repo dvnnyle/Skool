@@ -20,6 +20,14 @@ import MatchPairStrings from './pages/moduleChapters/matchPairStrings'
 import MatchPairOperators from './pages/moduleChapters/matchPairOperators'
 import MatchPairOOP from './pages/moduleChapters/matchPairOOP'
 import UniSystemCode from './pages/UniSystemCode'
+import UniStudent from './pages/moduleChapters/uniStudent'
+import UniAnsatt from './pages/moduleChapters/uniAnsatt'
+import UniBok from './pages/moduleChapters/uniBok'
+import UniKurs from './pages/moduleChapters/uniKurs'
+import UniLan from './pages/moduleChapters/uniLan'
+import UniKursSystem from './pages/moduleChapters/uniKursSystem'
+import UniBibliotekSystem from './pages/moduleChapters/uniBibliotekSystem'
+import UniProgram from './pages/moduleChapters/uniProgram'
 
 function AnimatedRoutes() {
   const location = useLocation()
@@ -46,6 +54,14 @@ function AnimatedRoutes() {
         <Route path="/match-pair-operators" element={<MatchPairOperators key="match-pair-operators" />} />
         <Route path="/match-pair-oop" element={<MatchPairOOP key="match-pair-oop" />} />
         <Route path="/unisystem" element={<UniSystemCode key="unisystem" />} />
+        <Route path="/uni-student" element={<UniStudent key="uni-student" />} />
+        <Route path="/uni-ansatt" element={<UniAnsatt key="uni-ansatt" />} />
+        <Route path="/uni-bok" element={<UniBok key="uni-bok" />} />
+        <Route path="/uni-kurs" element={<UniKurs key="uni-kurs" />} />
+        <Route path="/uni-lan" element={<UniLan key="uni-lan" />} />
+        <Route path="/uni-kurs-system" element={<UniKursSystem key="uni-kurs-system" />} />
+        <Route path="/uni-bibliotek-system" element={<UniBibliotekSystem key="uni-bibliotek-system" />} />
+        <Route path="/uni-program" element={<UniProgram key="uni-program" />} />
       </Routes>
     </AnimatePresence>
   )

@@ -1,0 +1,212 @@
+[
+  {
+    "id": 1,
+    "section": "Constants",
+    "question": "In `KursSystem.cs`, `private const string RESET = \"\\u001b[0m\"` — what does `const` mean?",
+    "options": [
+      "The variable can be changed at runtime",
+      "The variable is accessible from outside the class",
+      "The value is fixed at compile time and cannot change",
+      "The variable is only accessible inside methods"
+    ],
+    "answerIndex": 2,
+    "explanation": "`const` declares a compile-time constant. It cannot be assigned a new value at runtime. `private const string RESET = ...` is a good pattern for ANSI color codes that should never change.",
+    "example": "```csharp\nprivate const string RESET = \"\\u001b[0m\";\nprivate const string GREEN = \"\\u001b[32m\";\n// Cannot do:\n// RESET = \"other\"; // ❌ compile error\n```",
+    "thinkOfIt": "Think of it like this:\n`const` = carved in stone at compile time. Once defined, it can never change."
+  },
+  {
+    "id": 2,
+    "section": "Constants",
+    "question": "The ANSI color constants are declared `private`. What does this mean for code in `Program.cs`?",
+    "options": [
+      "Program.cs can read them directly",
+      "Program.cs cannot access them — they're internal to KursSystem",
+      "Program.cs gets a compile warning",
+      "The constants are null from outside"
+    ],
+    "answerIndex": 1,
+    "explanation": "`private` restricts access to within the `KursSystem` class. `Program.cs` has its own color constants — both classes manage their own.",
+    "thinkOfIt": "Think of it like this:\n`private` = the class keeps its own tools in a locked drawer — other classes use their own"
+  },
+  {
+    "id": 3,
+    "section": "Collections",
+    "question": "In `KursSystem`, what does `public List<Kurs> KursListe = new List<Kurs>()` declare?",
+    "options": [
+      "An array of exactly one Kurs",
+      "A resizable list that holds Kurs objects",
+      "A dictionary mapping course codes to Kurs objects",
+      "A single Kurs object"
+    ],
+    "answerIndex": 1,
+    "explanation": "`List<Kurs>` is a dynamic list that can hold any number of `Kurs` objects. It starts empty (`new List<Kurs>()`) and grows as courses are added via `.Add()`.",
+    "example": "```csharp\npublic List<Kurs> KursListe = new List<Kurs>();\n\n// Add a course:\nKursListe.Add(nyKurs);\n// Check count:\nKursListe.Count\n```",
+    "thinkOfIt": "Think of it like this:\n`List<Kurs>` = a dynamic filing cabinet where you can add/remove Kurs folders"
+  },
+  {
+    "id": 4,
+    "section": "Methods",
+    "question": "In `VisAlleKurs()`, what does `if (KursListe.Count == 0)` check?",
+    "options": [
+      "If all courses are full",
+      "If there are no courses registered yet",
+      "If the course list has been deleted",
+      "If Count is less than 0"
+    ],
+    "answerIndex": 1,
+    "explanation": "`.Count` returns the number of items in the list. `Count == 0` means the list is empty — no courses have been added yet. This triggers an early `return` with a message.",
+    "example": "```csharp\nif (KursListe.Count == 0)\n{\n    Console.WriteLine(\"Ingen kurs registrert\");\n    return; // exit method early\n}\n```"
+  },
+  {
+    "id": 5,
+    "section": "Loops",
+    "question": "In `VisAlleKurs()`, `foreach (Kurs kurs in KursListe)` does what?",
+    "options": [
+      "Loops through a fixed number of times",
+      "Loops once for each Kurs object in KursListe",
+      "Loops while KursListe is not null",
+      "Creates a copy of KursListe"
+    ],
+    "answerIndex": 1,
+    "explanation": "`foreach` iterates over every element in the collection. For each loop iteration, `kurs` holds the current `Kurs` object — you can access `kurs.Kode`, `kurs.Navn`, etc.",
+    "example": "```csharp\nforeach (Kurs kurs in KursListe)\n{\n    Console.WriteLine($\"Kode: {kurs.Kode}\");\n    Console.WriteLine($\"Navn: {kurs.Navn}\");\n}\n```",
+    "thinkOfIt": "Think of it like this:\n`foreach` = \"go through every item in the list, one by one\""
+  },
+  {
+    "id": 6,
+    "section": "Methods",
+    "question": "In `MeldStudentPåKurs()`, `kurs.LedigePlasser--` does what?",
+    "options": [
+      "Deletes a student from the course",
+      "Resets LedigePlasser to 0",
+      "Decreases LedigePlasser by 1",
+      "Checks if there are available spots"
+    ],
+    "answerIndex": 2,
+    "explanation": "`--` is the decrement operator — it subtracts 1 from the variable. After a student enrolls, one spot is taken.",
+    "example": "```csharp\nkurs.LedigePlasser--;\n// Same as: kurs.LedigePlasser = kurs.LedigePlasser - 1;\n```",
+    "thinkOfIt": "Think of it like this:\nEvery time a student sits down, one fewer empty seat remains."
+  },
+  {
+    "id": 7,
+    "section": "Methods",
+    "question": "In `MeldStudentAvKurs()`, `kurs.LedigePlasser++` does what?",
+    "options": [
+      "Doubles the available spots",
+      "Increases LedigePlasser by 1",
+      "Resets LedigePlasser to MaksPlasser",
+      "Has no effect"
+    ],
+    "answerIndex": 1,
+    "explanation": "`++` is the increment operator — adds 1. When a student withdraws, a spot opens up again.",
+    "example": "```csharp\nkurs.LedigePlasser++;\n// Same as: kurs.LedigePlasser = kurs.LedigePlasser + 1;\n```"
+  },
+  {
+    "id": 8,
+    "section": "Lambda / LINQ",
+    "question": "In `MeldStudentAvKurs()`, `kurs.Studenter.Find(s => s.StudentID == studentID)` does what?",
+    "options": [
+      "Returns all students with that ID",
+      "Returns the first Student whose StudentID matches, or null",
+      "Removes the student from the list",
+      "Counts how many students have that ID"
+    ],
+    "answerIndex": 1,
+    "explanation": "`.Find()` searches a list and returns the **first item** that matches the condition (the lambda). If no match is found, it returns `null`.\n\nThe lambda `s => s.StudentID == studentID` means: \"for each s, check if its StudentID equals studentID\".",
+    "example": "```csharp\nStudent funnet = kurs.Studenter.Find(s => s.StudentID == studentID);\nif (funnet != null) { /* found */ }\n```",
+    "thinkOfIt": "Think of it like this:\n`Find(s => ...)` = \"search through the list and bring me the first item where this is true\""
+  },
+  {
+    "id": 9,
+    "section": "Lambda / LINQ",
+    "question": "In the lambda `s => s.StudentID == studentID`, what is `s`?",
+    "options": [
+      "A string variable",
+      "The index of the current item",
+      "Each Student object as Find iterates through the list",
+      "The KursSystem object"
+    ],
+    "answerIndex": 2,
+    "explanation": "In `List<Student>.Find(s => ...)`, `s` is the **current Student** being examined on each iteration. The lambda is evaluated once per student until one matches.",
+    "example": "```csharp\nStudent funnet = kurs.Studenter.Find(s => s.StudentID == studentID);\n//                                ^\n//                    s = each Student in the list\n```"
+  },
+  {
+    "id": 10,
+    "section": "Methods",
+    "question": "In `MeldStudentAvKurs()`, after finding `funnet` with `.Find()`, what does `kurs.Studenter.Remove(funnet)` do?",
+    "options": [
+      "Decreases the list capacity",
+      "Deletes the entire Studenter list",
+      "Removes that specific Student object from the list",
+      "Clears all students from the course"
+    ],
+    "answerIndex": 2,
+    "explanation": "`.Remove(item)` removes the specific object from the list. `funnet` is the reference to the student that was found — only that student is removed.",
+    "example": "```csharp\nStudent funnet = kurs.Studenter.Find(s => s.StudentID == studentID);\nif (funnet != null)\n{\n    kurs.Studenter.Remove(funnet); // removes just that student\n    kurs.LedigePlasser++;\n}\n```"
+  },
+  {
+    "id": 11,
+    "section": "Methods",
+    "question": "In `MeldStudentPåKurs()`, the condition `kurs.Studenter.Count < kurs.MaksPlasser` checks what?",
+    "options": [
+      "If the course even exists",
+      "If the currently enrolled students are fewer than the max capacity",
+      "If the student is already enrolled",
+      "If the student's ID is valid"
+    ],
+    "answerIndex": 1,
+    "explanation": "This guard prevents over-enrollment. If `Count < MaksPlasser`, there's room. If equal, the course is full and the student cannot be added.",
+    "example": "```csharp\nif (kurs.Studenter.Count < kurs.MaksPlasser)\n{\n    kurs.Studenter.Add(student);\n    kurs.LedigePlasser--;\n}\nelse\n{\n    Console.WriteLine(\"Kurs fullt\");\n}\n```"
+  },
+  {
+    "id": 12,
+    "section": "String Interpolation",
+    "question": "In `KursSystem`, `$\"\\n{GREEN}{student.Navn} ble meldt på kurset...{RESET}\"` — what character starts an interpolated string?",
+    "options": ["@", "#", "$", "&"],
+    "answerIndex": 2,
+    "explanation": "In C#, `$` before the opening quote enables string interpolation. Expressions inside `{}` are evaluated and inserted into the string.",
+    "example": "```csharp\nstring name = \"Jonas\";\nConsole.WriteLine($\"Hei, {name}!\"); // \"Hei, Jonas!\"\n// {GREEN} and {RESET} insert the ANSI codes\n```"
+  },
+  {
+    "id": 13,
+    "section": "Methods",
+    "question": "In `MeldStudentPåKurs()`, after finding the right course (inside the foreach), the code calls `return`. Why?",
+    "options": [
+      "To return the Kurs object",
+      "To stop after enrolling/failing — no need to keep searching",
+      "Because the method is required to return a value",
+      "Because foreach requires a return"
+    ],
+    "answerIndex": 1,
+    "explanation": "Once the matching course is found and handled, there's no point iterating the rest of the list. `return` exits the method immediately — an optimization pattern.",
+    "example": "```csharp\nforeach (Kurs kurs in KursListe)\n{\n    if (kurs.Kode == kursKode)\n    {\n        // handle enrollment\n        return; // done — stop searching\n    }\n}\nConsole.WriteLine(\"Kurs ikke funnet\");\n```"
+  },
+  {
+    "id": 14,
+    "section": "Collections",
+    "question": "What does `KursListe.Add(kurs)` do in `OpprettKurs()`?",
+    "options": [
+      "Creates a new Kurs object",
+      "Appends the kurs object to the end of the KursListe",
+      "Replaces an existing course with the same code",
+      "Returns the number of courses"
+    ],
+    "answerIndex": 1,
+    "explanation": "`.Add(item)` appends the item to the end of the `List<T>`. `KursListe.Add(kurs)` registers the newly created course in the system.",
+    "example": "```csharp\npublic void OpprettKurs(Kurs kurs)\n{\n    KursListe.Add(kurs); // stored in the list\n}\n```"
+  },
+  {
+    "id": 15,
+    "section": "Class Design",
+    "question": "`KursSystem` is in `UniSystem.aSystemer`. What is the role of classes in `aSystemer` vs `aMain`?",
+    "options": [
+      "aSystemer has data; aMain has logic",
+      "aMain has model/data classes; aSystemer has service/logic classes that operate on the data",
+      "They are interchangeable",
+      "aSystemer classes inherit from aMain classes"
+    ],
+    "answerIndex": 1,
+    "explanation": "- **`aMain`** = model layer: simple data classes (Student, Kurs, Bok, Lån, Ansatt)\n- **`aSystemer`** = service layer: logic classes (KursSystem, BibliotekSystem) that operate on the model data",
+    "thinkOfIt": "Think of it like this:\n- `aMain` classes = the nouns (things that exist)\n- `aSystemer` classes = the verbs (things that happen)"
+  }
+]

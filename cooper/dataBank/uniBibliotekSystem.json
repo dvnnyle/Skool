@@ -1,0 +1,216 @@
+[
+  {
+    "id": 1,
+    "section": "Collections",
+    "question": "`BibliotekSystem` has `public List<Bok> BokListe` AND `public List<Lån> LånListe`. Why two separate lists?",
+    "options": [
+      "One is for students, one is for employees",
+      "BokListe tracks all books; LånListe tracks active loans (who has what)",
+      "They are duplicates — only BokListe is used",
+      "LånListe is a backup of BokListe"
+    ],
+    "answerIndex": 1,
+    "explanation": "- `BokListe` = the library catalog (all books the library owns)\n- `LånListe` = all active loans (a checkout record linking a borrower to a book)\n\nThey serve different purposes and are managed separately.",
+    "thinkOfIt": "Think of it like this:\n- `BokListe` = the shelves with all books\n- `LånListe` = the stack of checkout receipts"
+  },
+  {
+    "id": 2,
+    "section": "Methods",
+    "question": "In `LånUtBok()`, the nested `if (bok.TilgjengeligeEksemplarer > 0)` checks what?",
+    "options": [
+      "If the book exists in the system",
+      "If the borrower has overdue books",
+      "If at least one copy of the book is available to borrow",
+      "If the book has ever been borrowed before"
+    ],
+    "answerIndex": 2,
+    "explanation": "`TilgjengeligeEksemplarer > 0` means at least one copy is on the shelf. If it's 0, all copies are out and the loan is rejected.",
+    "example": "```csharp\nif (bok.TilgjengeligeEksemplarer > 0)\n{\n    // loan it out\n    bok.TilgjengeligeEksemplarer--;\n}\nelse\n{\n    Console.WriteLine(\"Ingen eksemplarer tilgjengelig!\");\n}\n```"
+  },
+  {
+    "id": 3,
+    "section": "Methods",
+    "question": "In `LånUtBok()`, `bok.TilgjengeligeEksemplarer--` does what?",
+    "options": [
+      "Deletes the book from BokListe",
+      "Increases the available count by 1",
+      "Decreases the available count by 1",
+      "Resets the count to 0"
+    ],
+    "answerIndex": 2,
+    "explanation": "`--` is the decrement operator. After a book is loaned out, one fewer copy is available on the shelf.",
+    "example": "```csharp\nbok.TilgjengeligeEksemplarer--;\n// If it was 3, it's now 2\n```",
+    "thinkOfIt": "Think of it like this:\nWhen a copy leaves the shelf, the shelf count drops by 1."
+  },
+  {
+    "id": 4,
+    "section": "Methods",
+    "question": "In `LeverInnBok()`, `Lån? funnetLån = null` — what does the `?` after `Lån` mean?",
+    "options": [
+      "It's a syntax error",
+      "The variable is a question about a loan",
+      "The variable can hold a Lån object OR null (nullable reference type)",
+      "It reads the loan from a database"
+    ],
+    "answerIndex": 2,
+    "explanation": "`Lån?` is a **nullable reference type** (C# 8+). The `?` means the variable can be either a valid `Lån` or `null`. This makes the intent explicit — you start with `null` and find the loan if it exists.",
+    "example": "```csharp\nLån? funnetLån = null;\n// Search for the loan...\nif (funnetLån != null)\n{\n    // found it — process return\n}\n```",
+    "thinkOfIt": "Think of it like this:\n`Lån?` = maybe a loan, maybe nothing\nThe `?` is a reminder that null is a valid state here."
+  },
+  {
+    "id": 5,
+    "section": "Methods",
+    "question": "In `LeverInnBok()`, `break` inside the foreach loop does what?",
+    "options": [
+      "Returns from the method",
+      "Skips the current iteration",
+      "Exits the foreach loop immediately",
+      "Jumps to the next foreach"
+    ],
+    "answerIndex": 2,
+    "explanation": "`break` exits the nearest enclosing loop. Once the matching loan is found and assigned to `funnetLån`, there's no need to keep searching — `break` stops the loop.",
+    "example": "```csharp\nforeach (Lån lån in LånListe)\n{\n    if (lån.BokID == bokID && lån.BrukerID == brukerID)\n    {\n        funnetLån = lån;\n        break; // stop searching\n    }\n}\n```",
+    "thinkOfIt": "Think of it like this:\n`break` = \"I found what I was looking for — stop searching\""
+  },
+  {
+    "id": 6,
+    "section": "Methods",
+    "question": "In `LeverInnBok()`, why check BOTH `lån.BokID == bokID && lån.BrukerID == brukerID`?",
+    "options": [
+      "The && is required syntax for if-statements",
+      "To ensure you find the loan belonging to that specific person for that specific book",
+      "BokID alone is enough to find the loan",
+      "BrukerID alone is enough"
+    ],
+    "answerIndex": 1,
+    "explanation": "The same book may be borrowed by multiple people (if there are multiple copies). Checking both the book ID and the borrower ID ensures you find the exact loan record for this specific person returning this specific book.",
+    "example": "```csharp\nif (lån.BokID == bokID && lån.BrukerID == brukerID)\n//       book match         borrower match\n```",
+    "thinkOfIt": "Think of it like this:\nIf 3 people borrowed the same book, checking only the book ID would match ALL 3.\nYou need both: which book AND whose loan."
+  },
+  {
+    "id": 7,
+    "section": "Methods",
+    "question": "In `LeverInnBok()`, `LånListe.Remove(funnetLån)` does what?",
+    "options": [
+      "Deletes the loan permanently from the database",
+      "Removes that specific Lån object from the in-memory LånListe",
+      "Marks the loan as returned (sets a flag)",
+      "Removes the book from BokListe"
+    ],
+    "answerIndex": 1,
+    "explanation": "`.Remove()` removes the given object from the list. Since `LånListe` is in-memory (no database), removing the `Lån` object means the loan is cleared.",
+    "example": "```csharp\nLånListe.Remove(funnetLån); // loan record removed\n// Then update book availability:\nbok.TilgjengeligeEksemplarer++;\n```"
+  },
+  {
+    "id": 8,
+    "section": "Methods",
+    "question": "After returning a book in `LeverInnBok()`, `bok.TilgjengeligeEksemplarer++` does what?",
+    "options": [
+      "Adds a new copy to the library",
+      "Resets the count to total copies",
+      "Increases available copies by 1",
+      "Decreases available copies by 1"
+    ],
+    "answerIndex": 2,
+    "explanation": "`++` increments by 1. When a book is returned, it goes back on the shelf — so available copies increase by 1.",
+    "example": "```csharp\nbok.TilgjengeligeEksemplarer++;\n// If it was 1, it's now 2\n```"
+  },
+  {
+    "id": 9,
+    "section": "Methods",
+    "question": "`LånUtBok()` takes 4 parameters. Which ones describe the borrower?",
+    "options": [
+      "Only bokID",
+      "bokID and brukerID",
+      "brukerID, brukerNavn, and brukerType",
+      "All 4 parameters"
+    ],
+    "answerIndex": 2,
+    "explanation": "- `bokID` = which book is being borrowed\n- `brukerID` = borrower's ID (student or employee)\n- `brukerNavn` = borrower's name\n- `brukerType` = whether they are a \"Student\" or \"Ansatt\"\n\nThe last three describe the borrower.",
+    "example": "```csharp\npublic void LånUtBok(string bokID, string brukerID, string brukerNavn, string brukerType)\n//                  ^ which book       ^ who borrows (3 fields)\n```"
+  },
+  {
+    "id": 10,
+    "section": "Collections",
+    "question": "After a successful `LånUtBok()`, what happens to `LånListe`?",
+    "options": [
+      "LånListe is cleared",
+      "A new Lån object is added to LånListe",
+      "The LånListe is sorted",
+      "Nothing — the system only updates BokListe"
+    ],
+    "answerIndex": 1,
+    "explanation": "`Lån nyttLån = new Lån(...); LånListe.Add(nyttLån);` — a new loan record is created and appended to the list.",
+    "example": "```csharp\nLån nyttLån = new Lån(bokID, brukerID, brukerNavn, brukerType);\nLånListe.Add(nyttLån);\n```"
+  },
+  {
+    "id": 11,
+    "section": "Methods",
+    "question": "In `LånUtBok()`, `return;` is called after handling a book (found or not available). Why?",
+    "options": [
+      "To return the book object",
+      "To exit the method after finding the matching book — no need to keep looping",
+      "Because the method has a return type",
+      "To jump out of the if-statement"
+    ],
+    "answerIndex": 1,
+    "explanation": "Once the book is found and processed (loaned out or rejected), `return` exits the method. This prevents falling through to the \"not found\" message at the bottom.",
+    "example": "```csharp\nforeach (Bok bok in BokListe)\n{\n    if (bok.ID == bokID)\n    {\n        // handle loan\n        return; // done — book was found\n    }\n}\nConsole.WriteLine(\"Bok ikke funnet\"); // only reaches here if not found\n```"
+  },
+  {
+    "id": 12,
+    "section": "Namespace",
+    "question": "`BibliotekSystem.cs` starts with `using UniSystem.aMain`. Why?",
+    "options": [
+      "To use Console.WriteLine",
+      "To import System.Collections.Generic",
+      "To access Bok and Lån model classes from the aMain namespace",
+      "To enable string interpolation"
+    ],
+    "answerIndex": 2,
+    "explanation": "`Bok` and `Lån` are in `UniSystem.aMain`. Without `using UniSystem.aMain`, writing `Bok` or `Lån` in `BibliotekSystem.cs` would cause a compile error.",
+    "example": "```csharp\nusing UniSystem.aMain;\n// Now we can use:\npublic List<Bok> BokListe = new List<Bok>();\npublic List<Lån> LånListe = new List<Lån>();\n```"
+  },
+  {
+    "id": 13,
+    "section": "Constants",
+    "question": "The ANSI color constants `GREEN`, `RED`, etc. in `BibliotekSystem` are `private const`. What kind of output do they create?",
+    "options": [
+      "They format HTML pages",
+      "They apply colored text in the terminal/console",
+      "They set the background color of the app window",
+      "They format log files"
+    ],
+    "answerIndex": 1,
+    "explanation": "ANSI escape codes like `\\u001b[32m` are special character sequences that most terminals interpret as color/formatting. `GREEN` makes text appear green in the console, `RESET` returns to default.",
+    "example": "```csharp\nConsole.WriteLine($\"{GREEN}Success!{RESET}\");\n// Prints \"Success!\" in green text\n```"
+  },
+  {
+    "id": 14,
+    "section": "Methods",
+    "question": "`LeverInnBok()` uses a `foreach` to search LånListe, then another `foreach` to find the book. What if the loan is found but the book is not in BokListe?",
+    "options": [
+      "An exception is thrown",
+      "The method returns silently — the loan is removed but available count is not updated",
+      "The method prevents loan removal if book not found",
+      "C# automatically adds the book back"
+    ],
+    "answerIndex": 1,
+    "explanation": "The code removes `funnetLån` from `LånListe`, then searches `BokListe` separately. If the book isn't found (edge case), the increment doesn't happen and the method ends quietly. This could be a bug in a production system.",
+    "example": "```csharp\nLånListe.Remove(funnetLån); // removed regardless\nforeach (Bok bok in BokListe) // try to update count\n{\n    if (bok.ID == bokID)\n    {\n        bok.TilgjengeligeEksemplarer++;\n        return;\n    }\n}\n// If book not found: silent end\n```"
+  },
+  {
+    "id": 15,
+    "section": "Class Design",
+    "question": "`BibliotekSystem` manages both `BokListe` AND `LånListe`. What design principle does this follow?",
+    "options": [
+      "Separation of concerns — each class handles one thing",
+      "Single responsibility is violated — this class does too much",
+      "The class groups related library operations together (cohesion)",
+      "The class should be split into two"
+    ],
+    "answerIndex": 2,
+    "explanation": "All book and loan operations belong to the library domain — so grouping them in `BibliotekSystem` is **high cohesion** (related things together). In a larger system, you might split them, but for this project it makes sense.",
+    "thinkOfIt": "Think of it like this:\nThe librarian handles books AND loans — it's all part of the same job.\n`BibliotekSystem` is the librarian."
+  }
+]

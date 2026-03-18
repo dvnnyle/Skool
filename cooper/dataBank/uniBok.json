@@ -1,0 +1,171 @@
+[
+  {
+    "id": 1,
+    "section": "Fields",
+    "question": "How many fields does the `Bok` class have?",
+    "options": ["3", "4", "5", "6"],
+    "answerIndex": 3,
+    "explanation": "`Bok` has 6 fields: `ID`, `Tittel`, `Forfatter`, `År`, `AntallEksemplarer`, and `TilgjengeligeEksemplarer`.",
+    "example": "```csharp\npublic string ID;\npublic string Tittel;\npublic string Forfatter;\npublic int År;\npublic int AntallEksemplarer;\npublic int TilgjengeligeEksemplarer;\n```"
+  },
+  {
+    "id": 2,
+    "section": "Fields",
+    "question": "What type is the `År` field in `Bok.cs`?",
+    "options": ["string", "double", "int", "DateTime"],
+    "answerIndex": 2,
+    "explanation": "`År` (year) is declared as `int` since it's a whole number. Using `int` instead of `string` allows numeric comparisons and prevents invalid values like `\"twothousand\"`.",
+    "example": "```csharp\npublic int År;          // e.g. 2020\npublic int AntallEksemplarer;  // e.g. 3\n```"
+  },
+  {
+    "id": 3,
+    "section": "Constructor",
+    "question": "How many parameters does the `Bok` constructor take?",
+    "options": ["4", "5", "6", "7"],
+    "answerIndex": 1,
+    "explanation": "The constructor is `Bok(string id, string tittel, string forfatter, int år, int antallEksemplarer)` — 5 parameters. `TilgjengeligeEksemplarer` is derived, not passed in.",
+    "example": "```csharp\nBok b = new Bok(\"B01\", \"Python\", \"Lutz\", 2020, 3);\n//        id   tittel  forfatter  år  antall\n```"
+  },
+  {
+    "id": 4,
+    "section": "Constructor",
+    "question": "In the `Bok` constructor, `TilgjengeligeEksemplarer = antallEksemplarer;` — why is this done?",
+    "options": [
+      "To remember how many books were originally added",
+      "To set the available copies equal to total copies at start",
+      "To prevent the field from being null",
+      "It is a mistake in the code"
+    ],
+    "answerIndex": 1,
+    "explanation": "When a book is first registered, ALL copies are available. So `TilgjengeligeEksemplarer` starts equal to `AntallEksemplarer`.\n\nAs books are borrowed, `TilgjengeligeEksemplarer` decreases; as they're returned, it increases.",
+    "thinkOfIt": "Think of it like this:\n- `AntallEksemplarer` = total copies (never changes)\n- `TilgjengeligeEksemplarer` = shelf copies (changes as books are borrowed/returned)"
+  },
+  {
+    "id": 5,
+    "section": "Object Creation",
+    "question": "After `Bok b = new Bok(\"B01\", \"C#\", \"Skeet\", 2019, 4)`, what is `b.TilgjengeligeEksemplarer`?",
+    "options": ["0", "1", "4", "null"],
+    "answerIndex": 2,
+    "explanation": "The constructor sets `TilgjengeligeEksemplarer = antallEksemplarer`. `antallEksemplarer` was `4`, so `b.TilgjengeligeEksemplarer` is `4` right after creation.",
+    "example": "```csharp\nBok b = new Bok(\"B01\", \"C#\", \"Skeet\", 2019, 4);\nConsole.WriteLine(b.AntallEksemplarer);       // 4\nConsole.WriteLine(b.TilgjengeligeEksemplarer); // 4\n```"
+  },
+  {
+    "id": 6,
+    "section": "Fields",
+    "question": "Why does `Bok` have two separate fields — `AntallEksemplarer` AND `TilgjengeligeEksemplarer`?",
+    "options": [
+      "Mistake — they do the same thing",
+      "AntallEksemplarer tracks borrowed, TilgjengeligeEksemplarer tracks total",
+      "AntallEksemplarer is the total (never changes), TilgjengeligeEksemplarer tracks what is currently on the shelf",
+      "One is for students, one is for employees"
+    ],
+    "answerIndex": 2,
+    "explanation": "`AntallEksemplarer` = how many copies the library owns (permanent).\n`TilgjengeligeEksemplarer` = how many are currently not borrowed (dynamic).\n\nThis lets the system know both the total and the current available count.",
+    "thinkOfIt": "Think of a library shelf:\n- Total copies = 5 (bought 5 books)\n- Available = 3 (2 are currently borrowed)\nYou need both numbers."
+  },
+  {
+    "id": 7,
+    "section": "Constructor",
+    "question": "Which call creates a `Bok` with 2 copies whose year is stored as `int`?",
+    "options": [
+      "new Bok(\"B1\", \"Art\", \"A\", \"2020\", 2)",
+      "new Bok(\"B1\", \"Art\", \"A\", 2020, 2)",
+      "new Bok(\"B1\", \"Art\", \"A\", 2020.0, 2)",
+      "Bok.Create(\"B1\", \"Art\", \"A\", 2020, 2)"
+    ],
+    "answerIndex": 1,
+    "explanation": "`År` is declared as `int`, so you pass an integer literal — not a string like `\"2020\"`. The call `new Bok(\"B1\", \"Art\", \"A\", 2020, 2)` is correct.",
+    "example": "```csharp\n//                           ^^^^  int literal (no quotes)\nBok b = new Bok(\"B1\", \"Art\", \"A\", 2020, 2);\n```"
+  },
+  {
+    "id": 8,
+    "section": "Namespace",
+    "question": "What namespace is `Bok.cs` part of?",
+    "options": ["UniSystem", "UniSystem.aSystemer", "UniSystem.aMain", "System.Books"],
+    "answerIndex": 2,
+    "explanation": "All model classes (Bok, Student, Ansatt, Kurs, Lån) live in `UniSystem.aMain` — the main data layer of the project.",
+    "example": "```csharp\nnamespace UniSystem.aMain\n{\n    public class Bok { ... }\n}\n```"
+  },
+  {
+    "id": 9,
+    "section": "Object Creation",
+    "question": "After `Bok b = new Bok(\"B02\", \"Java\", \"Gosling\", 2018, 2)`, what is `b.Tittel`?",
+    "options": ["\"B02\"", "\"Java\"", "\"Gosling\"", "2018"],
+    "answerIndex": 1,
+    "explanation": "The second constructor parameter is `tittel`, assigned to `Tittel`. The second argument is `\"Java\"`, so `b.Tittel == \"Java\"`.",
+    "example": "```csharp\nBok b = new Bok(\"B02\", \"Java\", \"Gosling\", 2018, 2);\nConsole.WriteLine(b.Tittel); // \"Java\"\n```"
+  },
+  {
+    "id": 10,
+    "section": "Fields",
+    "question": "Which field types does `Bok` use?",
+    "options": ["Only string", "Only int", "Only double", "Both string and int"],
+    "answerIndex": 3,
+    "explanation": "- `string`: `ID`, `Tittel`, `Forfatter`\n- `int`: `År`, `AntallEksemplarer`, `TilgjengeligeEksemplarer`\n\nUsing the right type for each value (text vs whole number) is important in C#."
+  },
+  {
+    "id": 11,
+    "section": "Constructor",
+    "question": "`TilgjengeligeEksemplarer` is NOT a constructor parameter. How does it get its initial value?",
+    "options": [
+      "It starts at 0",
+      "It is set to null",
+      "It is assigned inside the constructor body from `antallEksemplarer`",
+      "It reads from a database"
+    ],
+    "answerIndex": 2,
+    "explanation": "Inside the constructor: `TilgjengeligeEksemplarer = antallEksemplarer;`. Even though it's not a parameter, it's initialized using a parameter's value.",
+    "example": "```csharp\npublic Bok(string id, ..., int antallEksemplarer)\n{\n    ...\n    AntallEksemplarer = antallEksemplarer;\n    TilgjengeligeEksemplarer = antallEksemplarer; // derived!\n}\n```"
+  },
+  {
+    "id": 12,
+    "section": "Fields",
+    "question": "If `b.AntallEksemplarer = 3` and 2 books are borrowed, what should `b.TilgjengeligeEksemplarer` be?",
+    "options": ["3", "2", "1", "0"],
+    "answerIndex": 2,
+    "explanation": "`TilgjengeligeEksemplarer` is decreased by 1 each time a book is borrowed (see `BibliotekSystem.cs`). Starting at 3, after 2 loans it becomes 3 - 2 = 1.",
+    "thinkOfIt": "Think of it like this:\nTotal copies = 3 (always)\nAvailable = 3 minus how many are borrowed"
+  },
+  {
+    "id": 13,
+    "section": "Access Modifiers",
+    "question": "All `Bok` fields are `public`. What does this mean for `BibliotekSystem.cs`?",
+    "options": [
+      "BibliotekSystem cannot read or change Bok fields",
+      "BibliotekSystem can directly read and modify Bok fields",
+      "BibliotekSystem must use methods to access Bok data",
+      "Public fields cause a compile error in other classes"
+    ],
+    "answerIndex": 1,
+    "explanation": "Because all fields are `public`, `BibliotekSystem` can do things like `bok.TilgjengeligeEksemplarer--` directly — no getter/setter methods needed.",
+    "example": "```csharp\n// In BibliotekSystem.cs:\nbok.TilgjengeligeEksemplarer--; // works because field is public\n```"
+  },
+  {
+    "id": 14,
+    "section": "Constructor",
+    "question": "What compile error occurs with `new Bok(\"B1\", \"C#\", \"Author\", \"2020\", 3)`?",
+    "options": [
+      "No error — string converts to int automatically",
+      "Error: cannot convert string to int (for the `år` parameter)",
+      "Error: too many arguments",
+      "Error: Bok class not found"
+    ],
+    "answerIndex": 1,
+    "explanation": "The `år` parameter is `int`. Passing `\"2020\"` (a string) causes a compile error: **cannot convert type 'string' to 'int'**. You must pass `2020` (no quotes).",
+    "example": "```csharp\nnew Bok(\"B1\", \"C#\", \"Author\", \"2020\", 3); // ❌ compile error\nnew Bok(\"B1\", \"C#\", \"Author\",  2020,  3); // ✅ correct\n```"
+  },
+  {
+    "id": 15,
+    "section": "OOP Concepts",
+    "question": "What real-world concept does the `Bok` class model?",
+    "options": [
+      "A student borrowing a book",
+      "A library register entry for a book title",
+      "A single copy of a book",
+      "A book category"
+    ],
+    "answerIndex": 1,
+    "explanation": "`Bok` represents a **book title** in the library — with its ID, title, author, year, and copy counts. The `Lån` class tracks who has borrowed it.",
+    "thinkOfIt": "Think of it like this:\n- `Bok` = a row in the library catalog (title + how many copies)\n- `Lån` = a borrowing receipt (who has which copy)"
+  }
+]

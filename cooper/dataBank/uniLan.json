@@ -1,0 +1,187 @@
+[
+  {
+    "id": 1,
+    "section": "Class Purpose",
+    "question": "What real-world concept does the `Lån` class represent?",
+    "options": [
+      "A book in the library",
+      "A record that a specific person has borrowed a specific book",
+      "A student's course enrollment",
+      "An employee's work contract"
+    ],
+    "answerIndex": 1,
+    "explanation": "`Lån` (Norwegian for \"loan\") represents a borrowing event — linking a `BokID` (which book) to a `BrukerID` (who borrowed it), along with their name and type.",
+    "thinkOfIt": "Think of it like a receipt:\n\"Book B01 was borrowed by student S01 (Jonas).\"\nThe Lån object IS that receipt."
+  },
+  {
+    "id": 2,
+    "section": "Fields",
+    "question": "How many fields does the `Lån` class have?",
+    "options": ["2", "3", "4", "5"],
+    "answerIndex": 2,
+    "explanation": "`Lån` has 4 fields: `BokID`, `BrukerID`, `BrukerNavn`, and `BrukerType`.",
+    "example": "```csharp\npublic string BokID;\npublic string BrukerID;   // StudentID or AnsattID\npublic string BrukerNavn;\npublic string BrukerType; // \"Student\" eller \"Ansatt\"\n```"
+  },
+  {
+    "id": 3,
+    "section": "Fields",
+    "question": "What type are ALL fields in `Lån.cs`?",
+    "options": ["int", "bool", "string", "object"],
+    "answerIndex": 2,
+    "explanation": "All four fields — `BokID`, `BrukerID`, `BrukerNavn`, `BrukerType` — are `string`. This keeps things simple: all are text identifiers or labels.",
+    "example": "```csharp\npublic string BokID;      // e.g. \"B01\"\npublic string BrukerID;   // e.g. \"S01\" or \"A02\"\npublic string BrukerNavn; // e.g. \"Jonas\"\npublic string BrukerType; // e.g. \"Student\"\n```"
+  },
+  {
+    "id": 4,
+    "section": "Fields",
+    "question": "The comment on `BrukerID` says `// StudentID or AnsattID`. What does this tell us?",
+    "options": [
+      "BrukerID can only be a StudentID",
+      "BrukerID can only be an AnsattID",
+      "Both students and employees can borrow books; BrukerID holds either type of ID",
+      "BrukerID is ignored by the system"
+    ],
+    "answerIndex": 2,
+    "explanation": "The library serves both students and employees. `BrukerID` holds whichever ID applies. `BrukerType` tells you which kind of user it is.",
+    "thinkOfIt": "Think of it like this:\n`BrukerID` = the ID on the library card\n`BrukerType` = whether the card belongs to a student or employee"
+  },
+  {
+    "id": 5,
+    "section": "Fields",
+    "question": "What values can `BrukerType` hold in practice?",
+    "options": [
+      "true or false",
+      "0 or 1",
+      "\"Student\" or \"Ansatt\"",
+      "Any string the user types"
+    ],
+    "answerIndex": 2,
+    "explanation": "`BrukerType` is set in `Program.cs` based on user choice: it becomes either `\"Student\"` or `\"Ansatt\"`. This decides how the loan is categorized.",
+    "example": "```csharp\n// In Program.cs:\nif (brukerType == \"1\")\n    type = \"Student\";\nelse if (brukerType == \"2\")\n    type = \"Ansatt\";\n// Then passed to LånUtBok()\n```"
+  },
+  {
+    "id": 6,
+    "section": "Constructor",
+    "question": "How many parameters does the `Lån` constructor take?",
+    "options": ["2", "3", "4", "5"],
+    "answerIndex": 2,
+    "explanation": "The constructor is `Lån(string bokID, string brukerID, string brukerNavn, string brukerType)` — 4 parameters, matching its 4 fields.",
+    "example": "```csharp\nLån l = new Lån(\"B01\", \"S01\", \"Jonas\", \"Student\");\n```"
+  },
+  {
+    "id": 7,
+    "section": "Constructor",
+    "question": "After `Lån l = new Lån(\"B01\", \"S01\", \"Jonas\", \"Student\")`, what is `l.BrukerType`?",
+    "options": ["\"B01\"", "\"S01\"", "\"Jonas\"", "\"Student\""],
+    "answerIndex": 3,
+    "explanation": "The fourth constructor parameter is `brukerType`, which is assigned to `BrukerType`. The fourth argument is `\"Student\"`.",
+    "example": "```csharp\nLån l = new Lån(\"B01\", \"S01\", \"Jonas\", \"Student\");\nConsole.WriteLine(l.BokID);      // \"B01\"\nConsole.WriteLine(l.BrukerID);   // \"S01\"\nConsole.WriteLine(l.BrukerNavn); // \"Jonas\"\nConsole.WriteLine(l.BrukerType); // \"Student\"\n```"
+  },
+  {
+    "id": 8,
+    "section": "Namespace",
+    "question": "What namespace does `Lån.cs` belong to?",
+    "options": ["UniSystem", "UniSystem.aSystemer", "UniSystem.aMain", "System.Loans"],
+    "answerIndex": 2,
+    "explanation": "`Lån` is a data model class in `UniSystem.aMain` — same as `Student`, `Ansatt`, `Bok`, and `Kurs`.",
+    "example": "```csharp\nnamespace UniSystem.aMain\n{\n    public class Lån { ... }\n}\n```"
+  },
+  {
+    "id": 9,
+    "section": "OOP Concepts",
+    "question": "In `BibliotekSystem.cs`, a `List<Lån> LånListe` is maintained. What is the relationship between `Lån` and `Bok`?",
+    "options": [
+      "Lån inherits Bok",
+      "Bok contains Lån objects",
+      "Lån references Bok by ID (composition/association)",
+      "They are in different namespaces and cannot relate"
+    ],
+    "answerIndex": 2,
+    "explanation": "`Lån` has a `BokID` string field that references a `Bok` by its ID. This is **association by ID** — a lightweight link without direct object reference.",
+    "thinkOfIt": "Think of it like this:\nA library receipt doesn't physically contain the book — it just has the book's ID number."
+  },
+  {
+    "id": 10,
+    "section": "Fields",
+    "question": "Why does `Lån` store `BrukerNavn` as a string instead of a reference to a `Student` or `Ansatt` object?",
+    "options": [
+      "It's a limitation of the language",
+      "A name string is simpler — the object doesn't need full Student/Ansatt details for a loan record",
+      "Student and Ansatt are in a different namespace",
+      "You can't store objects inside other objects"
+    ],
+    "answerIndex": 1,
+    "explanation": "The loan record only needs to know who borrowed the book. Storing just the name and ID (strings) keeps `Lån` simple and independent of the `Student`/`Ansatt` class hierarchy.",
+    "thinkOfIt": "Think of it like this:\nA library checkout slip needs your name, not your full student file."
+  },
+  {
+    "id": 11,
+    "section": "Constructor",
+    "question": "`Lån` constructor has all 4 fields as parameters. What if it was created without a constructor?",
+    "options": [
+      "Fields default to 0",
+      "Fields default to null — you'd have to set them separately after creation",
+      "Compile error — a class always needs a constructor",
+      "Nothing changes"
+    ],
+    "answerIndex": 1,
+    "explanation": "Without a constructor, you'd do: `Lån l = new Lån(); l.BokID = \"B01\"; l.BrukerID = \"S01\"; ...` — setting fields manually. A constructor bundles this into one step.",
+    "example": "```csharp\n// Without constructor:\nLån l = new Lån();\nl.BokID = \"B01\";\nl.BrukerID = \"S01\";\nl.BrukerNavn = \"Jonas\";\nl.BrukerType = \"Student\";\n\n// With constructor (cleaner):\nLån l = new Lån(\"B01\", \"S01\", \"Jonas\", \"Student\");\n```"
+  },
+  {
+    "id": 12,
+    "section": "Class Design",
+    "question": "Why does `Lån` NOT have a field for the borrow date?",
+    "options": [
+      "Dates are not supported in C#",
+      "The current version of the code doesn't track borrowing dates",
+      "Dates are stored in the Bok class",
+      "Dates are stored in the Student class"
+    ],
+    "answerIndex": 1,
+    "explanation": "The current `Lån` class is a simple implementation — it only tracks the who and what. A date field could be added later (e.g., `public DateTime LåneDato;`). This is an intentional simplification.",
+    "example": "```csharp\n// A future Lån class might have:\npublic DateTime LåneDato = DateTime.Now;\n```"
+  },
+  {
+    "id": 13,
+    "section": "Access Modifiers",
+    "question": "All `Lån` fields are `public`. This means `BibliotekSystem.cs` can:",
+    "options": [
+      "Only read Lån fields",
+      "Only call Lån methods",
+      "Both read and write Lån fields directly",
+      "Do nothing with Lån from outside"
+    ],
+    "answerIndex": 2,
+    "explanation": "`public` fields can be read and changed from anywhere. `BibliotekSystem` can check `lån.BokID` or change `lån.BrukerNavn` directly.",
+    "example": "```csharp\n// In BibliotekSystem:\nif (lån.BokID == bokID && lån.BrukerID == brukerID)\n{\n    funnetLån = lån;\n}\n```"
+  },
+  {
+    "id": 14,
+    "section": "Object Creation",
+    "question": "In `BibliotekSystem.LånUtBok()`, a `Lån` is created with `new Lån(bokID, brukerID, brukerNavn, brukerType)`. What does this line do?",
+    "options": [
+      "Updates an existing loan",
+      "Finds a loan by book ID",
+      "Creates a new loan record for this specific borrowing",
+      "Checks if a book is available"
+    ],
+    "answerIndex": 2,
+    "explanation": "`new Lån(...)` creates a fresh `Lån` object representing this specific borrowing event. It is then added to `LånListe` to be tracked by the system.",
+    "example": "```csharp\nLån nyttLån = new Lån(bokID, brukerID, brukerNavn, brukerType);\nLånListe.Add(nyttLån); // tracked in the system\n```"
+  },
+  {
+    "id": 15,
+    "section": "OOP Concepts",
+    "question": "What makes `Lån` a data class (vs a service class like `BibliotekSystem`)?",
+    "options": [
+      "Lån uses `using` directives; BibliotekSystem doesn't",
+      "Lån only holds data (fields + constructor); BibliotekSystem has methods that do work",
+      "Lån is in aMain; BibliotekSystem is in aSystemer",
+      "Both A and B and C"
+    ],
+    "answerIndex": 3,
+    "explanation": "All three points are true:\n- **Location**: `Lån` is in `aMain` (data layer); `BibliotekSystem` is in `aSystemer` (logic layer).\n- **Structure**: `Lån` = fields + constructor only. `BibliotekSystem` = methods that operate on data.\n- **Role**: `Lån` models data; `BibliotekSystem` manipulates data.",
+    "thinkOfIt": "Think of it like this:\n- Data class (`Lån`) = a piece of paper (holds info)\n- Service class (`BibliotekSystem`) = the librarian (does things with the papers)"
+  }
+]

@@ -1,0 +1,174 @@
+[
+  {
+    "id": 1,
+    "section": "Using Directive",
+    "question": "Why does `Kurs.cs` start with `using System.Collections.Generic;`?",
+    "options": [
+      "To enable Console.WriteLine",
+      "To use the List<T> collection type",
+      "To import the Student class",
+      "To enable string interpolation"
+    ],
+    "answerIndex": 1,
+    "explanation": "`List<T>` lives in the `System.Collections.Generic` namespace. Without this `using` directive, writing `List<Student>` would cause a compile error.",
+    "example": "```csharp\nusing System.Collections.Generic;\n// Now we can use List<T>:\npublic List<Student> Studenter = new List<Student>();\n```",
+    "thinkOfIt": "Think of it like this:\n`using` = \"I want to use tools from this toolbox\"\nWithout it, C# doesn't know where `List<T>` comes from."
+  },
+  {
+    "id": 2,
+    "section": "Generics",
+    "question": "In `List<Student> Studenter = new List<Student>()`, what does `<Student>` mean?",
+    "options": [
+      "The list will have a maximum of one Student",
+      "The list can only store Student objects",
+      "The list is read-only",
+      "Student is the namespace"
+    ],
+    "answerIndex": 1,
+    "explanation": "`<Student>` is a **type parameter** — it tells the list what type of objects it holds. A `List<Student>` will only accept `Student` objects; anything else causes a compile error.",
+    "example": "```csharp\nList<Student> studenter = new List<Student>();\nstudenter.Add(new Student(\"S1\", \"Ana\", \"a@b.no\")); // OK\n// studenter.Add(42); // ❌ compile error\n```",
+    "thinkOfIt": "Think of it like this:\n`List<Student>` = a box that ONLY accepts Student objects\n`List<int>` = a box that ONLY accepts integers"
+  },
+  {
+    "id": 3,
+    "section": "Fields",
+    "question": "How many fields does the `Kurs` class have?",
+    "options": ["4", "5", "6", "7"],
+    "answerIndex": 2,
+    "explanation": "`Kurs` has 6 fields: `Kode`, `Navn`, `Studiepoeng`, `MaksPlasser`, `LedigePlasser`, and `Studenter`.",
+    "example": "```csharp\npublic string Kode;\npublic string Navn;\npublic int Studiepoeng;\npublic int MaksPlasser;\npublic int LedigePlasser;\npublic List<Student> Studenter = new List<Student>();\n```"
+  },
+  {
+    "id": 4,
+    "section": "Constructor",
+    "question": "The `Kurs` constructor takes 4 parameters but the class has 6 fields. How do `LedigePlasser` and `Studenter` get their values?",
+    "options": [
+      "They stay null",
+      "LedigePlasser = MaksPlasser in the constructor body; Studenter = new List<> at field declaration",
+      "They are set externally after creation",
+      "The compiler sets them automatically"
+    ],
+    "answerIndex": 1,
+    "explanation": "`LedigePlasser = maksPlasser` is assigned inside the constructor body. `Studenter` is initialized directly at the field declaration: `= new List<Student>()`.",
+    "example": "```csharp\npublic List<Student> Studenter = new List<Student>(); // inline init\n\npublic Kurs(string kode, string navn, int studiepoeng, int maksPlasser)\n{\n    ...\n    LedigePlasser = maksPlasser; // derived from parameter\n}\n```"
+  },
+  {
+    "id": 5,
+    "section": "Fields",
+    "question": "Why does `Kurs` have both `MaksPlasser` and `LedigePlasser`?",
+    "options": [
+      "MaksPlasser tracks students enrolled; LedigePlasser tracks dropouts",
+      "MaksPlasser is the capacity (never changes); LedigePlasser is how many spots are still open",
+      "They are the same and one is redundant",
+      "MaksPlasser is for students; LedigePlasser is for teachers"
+    ],
+    "answerIndex": 1,
+    "explanation": "`MaksPlasser` = total capacity of the course (fixed). `LedigePlasser` = remaining open spots (decreases when students enroll, increases when they withdraw).",
+    "thinkOfIt": "Think of it like this:\n- `MaksPlasser` = total seats in a classroom (never changes)\n- `LedigePlasser` = empty seats right now"
+  },
+  {
+    "id": 6,
+    "section": "Constructor",
+    "question": "Right after `Kurs k = new Kurs(\"IS118\", \"Web\", 10, 30)`, what is `k.LedigePlasser`?",
+    "options": ["0", "10", "30", "null"],
+    "answerIndex": 2,
+    "explanation": "The constructor sets `LedigePlasser = maksPlasser`. `maksPlasser` was `30`, so `k.LedigePlasser` starts at `30`. When students enroll, it decreases.",
+    "example": "```csharp\nKurs k = new Kurs(\"IS118\", \"Web\", 10, 30);\nConsole.WriteLine(k.LedigePlasser); // 30 (all seats open)\n```"
+  },
+  {
+    "id": 7,
+    "section": "Generics",
+    "question": "`public List<Student> Studenter = new List<Student>()` is declared at the field level. What does this mean for a new Kurs object?",
+    "options": [
+      "The list is null until you manually create it",
+      "The list is already initialized and empty when the object is created",
+      "The list contains all registered students by default",
+      "Compile error — lists can't be initialized at field level"
+    ],
+    "answerIndex": 1,
+    "explanation": "Because `= new List<Student>()` is part of the field declaration, every new `Kurs` object automatically starts with an empty list — ready to hold students.",
+    "example": "```csharp\nKurs k = new Kurs(\"IS118\", \"Web\", 10, 30);\nConsole.WriteLine(k.Studenter.Count); // 0 (empty but not null)\n```"
+  },
+  {
+    "id": 8,
+    "section": "Namespace",
+    "question": "What namespace does `Kurs.cs` belong to?",
+    "options": ["UniSystem", "UniSystem.aSystemer", "UniSystem.aMain", "System.Kurs"],
+    "answerIndex": 2,
+    "explanation": "`Kurs.cs` belongs to `UniSystem.aMain` — same as all model classes. `using UniSystem.aMain` in other files is required to use it.",
+    "example": "```csharp\nnamespace UniSystem.aMain\n{\n    public class Kurs { ... }\n}\n```"
+  },
+  {
+    "id": 9,
+    "section": "Fields",
+    "question": "What type is `Studiepoeng` in `Kurs.cs`?",
+    "options": ["string", "double", "float", "int"],
+    "answerIndex": 3,
+    "explanation": "`Studiepoeng` is `int` — credit points are whole numbers like 5, 10, 15. Using `int` prevents invalid values like 7.5.",
+    "example": "```csharp\npublic int Studiepoeng;\n// e.g. 10 studiepoeng\n```"
+  },
+  {
+    "id": 10,
+    "section": "Object Creation",
+    "question": "After `Kurs k = new Kurs(\"IS101\", \"Intro\", 5, 20)`, what is `k.Kode`?",
+    "options": ["\"Intro\"", "\"IS101\"", "5", "20"],
+    "answerIndex": 1,
+    "explanation": "The first constructor parameter is `kode`, which is assigned to `Kode`. The first argument is `\"IS101\"`, so `k.Kode == \"IS101\"`.",
+    "example": "```csharp\nKurs k = new Kurs(\"IS101\", \"Intro\", 5, 20);\nConsole.WriteLine(k.Kode); // \"IS101\"\n```"
+  },
+  {
+    "id": 11,
+    "section": "Generics",
+    "question": "What does `k.Studenter.Count` return for a newly created Kurs?",
+    "options": ["null", "-1", "0", "MaksPlasser"],
+    "answerIndex": 2,
+    "explanation": "`Studenter` is initialized as an empty list. `Count` on an empty list is `0`. Students are added later via `KursSystem.MeldStudentPåKurs()`.",
+    "example": "```csharp\nKurs k = new Kurs(\"IS101\", \"Intro\", 5, 20);\nConsole.WriteLine(k.Studenter.Count); // 0\n```"
+  },
+  {
+    "id": 12,
+    "section": "Using Directive",
+    "question": "Which other model class files also need `using System.Collections.Generic`?",
+    "options": [
+      "All of them (Student, Ansatt, Bok, Lån)",
+      "Only Kurs, because only Kurs has a List<> field",
+      "DibliotekSystem.cs and KursSystem.cs",
+      "No other model file has a List<> field in the project"
+    ],
+    "answerIndex": 1,
+    "explanation": "Among the model classes in `aMain`, only `Kurs` has a `List<>` field (`Studenter`). `Student`, `Ansatt`, `Bok`, and `Lån` have only primitive fields.",
+    "thinkOfIt": "Think of it like this:\nImport a namespace only if you actually use something from it. Only Kurs.cs needs `System.Collections.Generic` among the model classes."
+  },
+  {
+    "id": 13,
+    "section": "Constructor",
+    "question": "The `Kurs` constructor has 4 parameters. How many arguments must you pass when calling `new Kurs(...)`?",
+    "options": ["2", "3", "4", "6"],
+    "answerIndex": 2,
+    "explanation": "C# constructors require exactly the number of arguments matching the parameter list (unless parameters have default values, which this one doesn't). You must pass all 4: `kode`, `navn`, `studiepoeng`, `maksPlasser`.",
+    "example": "```csharp\n// ✅ Correct — all 4 args:\nKurs k = new Kurs(\"IS118\", \"Web\", 10, 30);\n\n// ❌ Compile error — missing args:\nKurs k2 = new Kurs(\"IS118\", \"Web\");\n```"
+  },
+  {
+    "id": 14,
+    "section": "OOP Concepts",
+    "question": "`Kurs` has a `List<Student> Studenter` field. What is the relationship between `Kurs` and `Student`?",
+    "options": [
+      "Kurs inherits from Student",
+      "Student inherits from Kurs",
+      "Kurs contains a list of Students (composition)",
+      "They are unrelated classes"
+    ],
+    "answerIndex": 2,
+    "explanation": "This is **composition** — a `Kurs` contains (has-a) multiple `Student` objects via its `Studenter` list. This is different from inheritance (is-a).",
+    "thinkOfIt": "Think of it like this:\n- Inheritance: \"A Dog IS an Animal\"\n- Composition: \"A Course HAS students\" (Kurs HAS-A List of Students)"
+  },
+  {
+    "id": 15,
+    "section": "Fields",
+    "question": "What data type is `Kode` in the `Kurs` class?",
+    "options": ["int", "char", "string", "Guid"],
+    "answerIndex": 2,
+    "explanation": "`Kode` is `public string Kode` — course codes like `\"IS118\"` or `\"IN110\"` are strings (text), not numbers.",
+    "example": "```csharp\nKurs k = new Kurs(\"IS118\", \"Webteknologi\", 10, 30);\nConsole.WriteLine(k.Kode); // \"IS118\"\n```"
+  }
+]

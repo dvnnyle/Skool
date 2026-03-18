@@ -1,0 +1,152 @@
+[
+  {
+    "id": 1,
+    "section": "Class Structure",
+    "question": "How many fields does `Ansatt` have?",
+    "options": ["2", "3", "4", "5"],
+    "answerIndex": 1,
+    "explanation": "`Ansatt` declares three fields: `AnsattID`, `Navn`, and `Epost`.",
+    "example": "```csharp\npublic class Ansatt\n{\n    public string AnsattID;\n    public string Navn;\n    public string Epost;\n}\n```"
+  },
+  {
+    "id": 2,
+    "section": "Fields",
+    "question": "What type are all three fields in `Ansatt.cs`?",
+    "options": ["int", "bool", "string", "char"],
+    "answerIndex": 2,
+    "explanation": "`AnsattID`, `Navn`, and `Epost` are all declared as `string`. Strings hold text values — names, IDs, and email addresses.",
+    "example": "```csharp\npublic string AnsattID;\npublic string Navn;\npublic string Epost;\n```"
+  },
+  {
+    "id": 3,
+    "section": "Constructor",
+    "question": "What does `Ansatt(string id, string navn, string epost)` do when called?",
+    "options": ["Updates an existing Ansatt in a list", "Reads Ansatt data from a file", "Creates and initializes a new Ansatt object", "Returns a copy of another Ansatt"],
+    "answerIndex": 2,
+    "explanation": "The constructor is called with `new Ansatt(...)`. It creates the object and assigns the parameters to the class fields.",
+    "example": "```csharp\nAnsatt a = new Ansatt(\"A01\", \"Marie\", \"m@uni.no\");\nConsole.WriteLine(a.Navn); // \"Marie\"\n```"
+  },
+  {
+    "id": 4,
+    "section": "Namespace",
+    "question": "Which namespace does `Ansatt` belong to?",
+    "options": ["UniSystem", "UniSystem.aSystemer", "UniSystem.aMain", "System.UniSystem"],
+    "answerIndex": 2,
+    "explanation": "`Ansatt.cs` starts with `namespace UniSystem.aMain` — the same namespace as all model classes (Student, Bok, Kurs, Lån).",
+    "thinkOfIt": "Think of it like this:\nAll the \"data model\" classes share the `UniSystem.aMain` namespace — they are the building blocks of the system."
+  },
+  {
+    "id": 5,
+    "section": "Constructor",
+    "question": "Inside the `Ansatt` constructor, `AnsattID = id;` does what?",
+    "options": ["Prints the ID", "Creates a new variable id", "Assigns the parameter value to the class field", "Compares AnsattID and id"],
+    "answerIndex": 2,
+    "explanation": "The left side (`AnsattID`) is the field. The right side (`id`) is the parameter. The `=` assigns the parameter's value into the field.",
+    "example": "```csharp\npublic Ansatt(string id, string navn, string epost)\n{\n    AnsattID = id;   // field = parameter\n    Navn = navn;\n    Epost = epost;\n}\n```"
+  },
+  {
+    "id": 6,
+    "section": "Comparison",
+    "question": "How does `Ansatt` compare to `Student` structurally?",
+    "options": ["Ansatt has more fields than Student", "They are structurally identical — same field types and constructor pattern", "Ansatt uses int for ID, Student uses string", "Student has an extra field"],
+    "answerIndex": 1,
+    "explanation": "Both `Ansatt` and `Student` have three `string` fields and a three-parameter constructor that assigns them. The only real difference is the field names (`AnsattID` vs `StudentID`) and what they represent."
+  },
+  {
+    "id": 7,
+    "section": "Access Modifiers",
+    "question": "All fields in `Ansatt` are declared `public`. What can outside code do with `a.Epost`?",
+    "options": ["Only read it", "Only write to it", "Both read and write", "Nothing — public fields are compile errors"],
+    "answerIndex": 2,
+    "explanation": "`public` fields are both readable and writable from outside the class.",
+    "example": "```csharp\nAnsatt a = new Ansatt(\"A01\", \"Marie\", \"m@uni.no\");\nConsole.WriteLine(a.Epost);  // read: \"m@uni.no\"\na.Epost = \"new@uni.no\";      // write: OK\n```"
+  },
+  {
+    "id": 8,
+    "section": "Object Creation",
+    "question": "Which line correctly creates an `Ansatt` named Kari with ID A02 and email k@uni.no?",
+    "options": [
+      "Ansatt a = Ansatt(\"A02\", \"Kari\", \"k@uni.no\")",
+      "Ansatt a = new Ansatt(\"A02\", \"Kari\", \"k@uni.no\")",
+      "new Ansatt(id=\"A02\", navn=\"Kari\", epost=\"k@uni.no\")",
+      "Ansatt(\"A02\", \"Kari\", \"k@uni.no\")"
+    ],
+    "answerIndex": 1,
+    "explanation": "Always use `new ClassName(args)` to create an object. Named parameters like `id=` are not standard C# constructor syntax.",
+    "example": "```csharp\nAnsatt a = new Ansatt(\"A02\", \"Kari\", \"k@uni.no\");\n```"
+  },
+  {
+    "id": 9,
+    "section": "Fields",
+    "question": "After `Ansatt a = new Ansatt(\"A01\", \"Lars\", \"l@uni.no\")`, what is `a.AnsattID`?",
+    "options": ["\"Lars\"", "\"l@uni.no\"", "\"A01\"", "null"],
+    "answerIndex": 2,
+    "explanation": "The first argument maps to `id`, which is assigned to `AnsattID`. So `a.AnsattID` is `\"A01\"`.",
+    "example": "```csharp\nAnsatt a = new Ansatt(\"A01\", \"Lars\", \"l@uni.no\");\nConsole.WriteLine(a.AnsattID); // \"A01\"\nConsole.WriteLine(a.Navn);     // \"Lars\"\nConsole.WriteLine(a.Epost);    // \"l@uni.no\"\n```"
+  },
+  {
+    "id": 10,
+    "section": "OOP Concepts",
+    "question": "Both `Ansatt` and `Student` have similar structure. In OOP, what does each instance of `Ansatt` represent?",
+    "options": ["A class", "A namespace", "An object — one specific employee", "A method"],
+    "answerIndex": 2,
+    "explanation": "A class is the blueprint; each `new Ansatt(...)` creates a concrete **object** that represents one actual employee with their own field values.",
+    "thinkOfIt": "Think of it like this:\n- `Ansatt` class = the employee registration form template\n- `new Ansatt(...)` = one completed, filled-in form"
+  },
+  {
+    "id": 11,
+    "section": "Constructor",
+    "question": "How many parameters does the `Ansatt` constructor take?",
+    "options": ["1", "2", "3", "4"],
+    "answerIndex": 2,
+    "explanation": "The constructor `Ansatt(string id, string navn, string epost)` takes exactly 3 parameters — matching the 3 fields.",
+    "example": "```csharp\nnew Ansatt(\"A01\", \"Marie\", \"m@uni.no\");\n//         id     navn     epost\n```"
+  },
+  {
+    "id": 12,
+    "section": "Class Basics",
+    "question": "Why does the `Ansatt` constructor have no return type?",
+    "options": ["It's a bug", "Constructors never have a return type in C#", "It implicitly returns void", "It returns the object pointer"],
+    "answerIndex": 1,
+    "explanation": "In C#, constructors never have a return type (not even `void`). They are identified by having the same name as the class. This is a language rule.",
+    "example": "```csharp\npublic Ansatt(string id, string navn, string epost)  // no return type\n{\n    AnsattID = id;\n}\n```"
+  },
+  {
+    "id": 13,
+    "section": "Access Modifiers",
+    "question": "What would happen if `Ansatt` was declared `internal class Ansatt` instead of `public`?",
+    "options": [
+      "It would be accessible only within the same assembly",
+      "It would be accessible everywhere, same as public",
+      "Compile error — internal is invalid for classes",
+      "It would become abstract"
+    ],
+    "answerIndex": 0,
+    "explanation": "`internal` limits visibility to the same assembly (project). Since all files are in the same project, it would still work — but if another project tried to import it, it would fail.",
+    "thinkOfIt": "Think of it like this:\n- `public` = open to the whole world\n- `internal` = open only within this building (assembly)"
+  },
+  {
+    "id": 14,
+    "section": "Fields",
+    "question": "What is the default value of a `string` field that is never assigned?",
+    "options": ["\"\"", "\"null\"", "null", "0"],
+    "answerIndex": 2,
+    "explanation": "`string` is a reference type. Unassigned reference fields are `null`. The constructor exists to give fields proper values immediately after creation.",
+    "example": "```csharp\n// If you had a parameterless constructor or no constructor:\nAnsatt a = new Ansatt();\n// a.Navn == null (not assigned)\n```"
+  },
+  {
+    "id": 15,
+    "section": "OOP Concepts",
+    "question": "Can you have multiple `Ansatt` objects in a program at the same time?",
+    "options": [
+      "No — only one instance per class is allowed",
+      "Yes — each `new Ansatt(...)` creates a separate object",
+      "Only if using static fields",
+      "Only inside a List"
+    ],
+    "answerIndex": 1,
+    "explanation": "Each `new Ansatt(...)` call creates a completely separate object in memory with its own field values. You can have zero, one, or thousands of instances simultaneously.",
+    "example": "```csharp\nAnsatt a1 = new Ansatt(\"A01\", \"Marie\", \"m@uni.no\");\nAnsatt a2 = new Ansatt(\"A02\", \"Lars\", \"l@uni.no\");\n// a1 and a2 are independent objects\n```",
+    "thinkOfIt": "Think of it like this:\nEach `new Ansatt(...)` prints a new copy of the form — completely separate from all others."
+  }
+]
