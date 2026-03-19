@@ -1,0 +1,124 @@
+[
+  {
+    "id": 1,
+    "section": "Grunnbegrep",
+    "question": "Hva representerer class Lån i UniSystem?",
+    "options": [
+      "En bokliste",
+      "En registrering av utlån",
+      "Et kurs",
+      "En ansattliste"
+    ],
+    "answerIndex": 1,
+    "answer": "En registrering av utlån",
+    "explanation": "Lån-klassen lagrer hvem som låner og hvilken bok som er lånt.",
+    "shortExplanation": "Lån = utlånsregistrering."
+  },
+  {
+    "id": 2,
+    "section": "Felter",
+    "question": "Hva betyr feltet BokID i Lån-klassen?",
+    "options": [
+      "ID til kurset",
+      "ID til boka som er lånt",
+      "ID til studenten",
+      "ID til ansatte"
+    ],
+    "answerIndex": 1,
+    "answer": "ID til boka som er lånt",
+    "explanation": "BokID peker til bokposten i systemet som utlånet gjelder.",
+    "shortExplanation": "BokID identifiserer lånt bok."
+  },
+  {
+    "id": 3,
+    "section": "Felter",
+    "question": "Hva forteller BrukerType i Lån?",
+    "options": [
+      "Om brukeren er Student eller Ansatt",
+      "Om boka er digital",
+      "Om lånet er aktivt",
+      "Om kurset er fullt"
+    ],
+    "answerIndex": 0,
+    "answer": "Om brukeren er Student eller Ansatt",
+    "explanation": "BrukerType lagrer hvilken brukergruppe låneren tilhører.",
+    "shortExplanation": "BrukerType = Student eller Ansatt."
+  },
+  {
+    "id": 4,
+    "section": "Datatype",
+    "question": "Hvorfor er alle Lån-feltene av typen string?",
+    "options": [
+      "Fordi alle lagrer tekstverdier",
+      "Fordi int ikke finnes i C#",
+      "Fordi class krever string",
+      "Fordi namespace krever det"
+    ],
+    "answerIndex": 0,
+    "answer": "Fordi alle lagrer tekstverdier",
+    "explanation": "ID-er, navn og typebetegnelse behandles som tekst i modellen.",
+    "shortExplanation": "Alle disse verdiene er tekst."
+  },
+  {
+    "id": 5,
+    "section": "Konstruktør",
+    "question": "Hva er Lån(string bokID, string brukerID, string brukerNavn, string brukerType)?",
+    "options": [
+      "En namespace-definisjon",
+      "Konstruktøren til Lån-klassen",
+      "En kommentar",
+      "En ekstern metode"
+    ],
+    "answerIndex": 1,
+    "answer": "Konstruktøren til Lån-klassen",
+    "explanation": "Dette er metoden som kjøres når du oppretter et nytt Lån-objekt med new Lån(...).",
+    "shortExplanation": "Signaturen viser konstruktøren."
+  },
+  {
+    "id": 6,
+    "section": "Konstruktør",
+    "question": "Hva gjør konstruktøren konkret i koden?",
+    "options": [
+      "Den printer feltene",
+      "Den leser fra fil",
+      "Den kopierer parameterverdier inn i feltene",
+      "Den oppdaterer alle bøker"
+    ],
+    "answerIndex": 2,
+    "answer": "Den kopierer parameterverdier inn i feltene",
+    "explanation": "Linjene BokID = bokID osv. setter objektets startverdier.",
+    "shortExplanation": "Parametere lagres i felt.",
+    "example": "```csharp\npublic Lån(string bokID, string brukerID, string brukerNavn, string brukerType)\n{\n    BokID = bokID;\n    BrukerID = brukerID;\n    BrukerNavn = brukerNavn;\n    BrukerType = brukerType;\n}\n```"
+  },
+  {
+    "id": 7,
+    "section": "Namespace",
+    "question": "Hva er hovedpoenget med namespace UniSystem.aMain her?",
+    "options": [
+      "Gruppere modellklasser og hindre navnekollisjoner",
+      "Lage loops",
+      "Definere datatyper",
+      "Kompilere raskere"
+    ],
+    "answerIndex": 0,
+    "answer": "Gruppere modellklasser og hindre navnekollisjoner",
+    "explanation": "Namespace gir struktur og gjør fullt navn tydelig: UniSystem.aMain.Lån.",
+    "shortExplanation": "Gir organisering og navnesikkerhet."
+  },
+  {
+    "id": 8,
+    "section": "Relasjon",
+    "question": "Hvilken kombinasjon viser relasjon mellom flere aMain-klasser?",
+    "options": [
+      "Lån lagrer BokID + StudentID/AnsattID for å koble bok og låner",
+      "Bok lagrer alle studenter direkte",
+      "Student lagrer alle bøker i namespace",
+      "Ansatt arver fra Lån"
+    ],
+    "answerIndex": 0,
+    "answer": "Lån lagrer BokID + StudentID/AnsattID for å koble bok og låner",
+    "explanation": "Lån fungerer som bindeledd mellom bok og brukerdata.",
+    "shortExplanation": "Lån kobler bruker og bok i samme post.",
+    "example": "```csharp\nLån lan1 = new Lån(\"B02\", \"S07\", \"Ali\", \"Student\");\nLån lan2 = new Lån(\"B09\", \"A03\", \"Ina\", \"Ansatt\");\n```"
+  }
+]

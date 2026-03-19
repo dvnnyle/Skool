@@ -1,0 +1,125 @@
+[
+  {
+    "id": 1,
+    "section": "Grunnbegrep",
+    "question": "Hva representerer Bok-klassen i systemet?",
+    "options": [
+      "En bruker",
+      "Et kurs",
+      "En bok med metadata og antall",
+      "Et lån"
+    ],
+    "answerIndex": 2,
+    "answer": "En bok med metadata og antall",
+    "explanation": "Bok lagrer ID, tittel, forfatter, år og antall eksemplarer.",
+    "shortExplanation": "Bok = datastruktur for bokinformasjon."
+  },
+  {
+    "id": 2,
+    "section": "Datatyper",
+    "question": "Hvilke typer brukes i Bok-klassen?",
+    "options": [
+      "Kun string",
+      "Kun int",
+      "string og int",
+      "string og bool"
+    ],
+    "answerIndex": 2,
+    "answer": "string og int",
+    "explanation": "ID, Tittel, Forfatter er string, mens År og antallfelt er int.",
+    "shortExplanation": "Tekstfelt + heltallsfelt.",
+    "example": "```csharp\npublic string ID;\npublic string Tittel;\npublic int År;\npublic int AntallEksemplarer;\n```"
+  },
+  {
+    "id": 3,
+    "section": "Felter",
+    "question": "Hva er forskjellen på AntallEksemplarer og TilgjengeligeEksemplarer?",
+    "options": [
+      "Ingen forskjell",
+      "Total beholdning vs det som er ledig nå",
+      "Student vs ansatt",
+      "År vs tittel"
+    ],
+    "answerIndex": 1,
+    "answer": "Total beholdning vs det som er ledig nå",
+    "explanation": "AntallEksemplarer er total antall bøker, TilgjengeligeEksemplarer endres ved lån/innlevering.",
+    "shortExplanation": "Total vs tilgjengelig akkurat nå."
+  },
+  {
+    "id": 4,
+    "section": "Konstruktør",
+    "question": "Hva gjør Bok-konstruktøren med TilgjengeligeEksemplarer ved opprettelse?",
+    "options": [
+      "Setter den til 0",
+      "Setter den lik antallEksemplarer",
+      "Lar den være null",
+      "Øker den med 1"
+    ],
+    "answerIndex": 1,
+    "answer": "Setter den lik antallEksemplarer",
+    "explanation": "Ved opprettelse er alle registrerte eksemplarer tilgjengelige.",
+    "shortExplanation": "Tilgjengelig startes lik total antall.",
+    "example": "```csharp\nTilgjengeligeEksemplarer = antallEksemplarer;\n```"
+  },
+  {
+    "id": 5,
+    "section": "Namespace",
+    "question": "Hvorfor ligger Bok i namespace UniSystem.aMain?",
+    "options": [
+      "For å være i samme modell-lag som de andre klassene",
+      "For å koble til database direkte",
+      "Fordi C# krever navnet aMain",
+      "For å gjøre klassen privat"
+    ],
+    "answerIndex": 0,
+    "answer": "For å være i samme modell-lag som de andre klassene",
+    "explanation": "Namespace grupperer relaterte modeller og unngår navnekollisjoner.",
+    "shortExplanation": "aMain samler sentrale dataklasser."
+  },
+  {
+    "id": 6,
+    "section": "Relasjon",
+    "question": "Hvordan relaterer Bok seg til Lån?",
+    "options": [
+      "Lån bruker BokID for å peke til bok",
+      "Bok arver fra Lån",
+      "Bok inneholder alle lån i en liste",
+      "Ingen relasjon"
+    ],
+    "answerIndex": 0,
+    "answer": "Lån bruker BokID for å peke til bok",
+    "explanation": "Lån-klassen lagrer BokID for å representere hvilken bok som er lånt.",
+    "shortExplanation": "Lån refererer bok via BokID.",
+    "example": "```csharp\nLån lan = new Lån(\"B22\", \"S10\", \"Nora\", \"Student\");\n```"
+  },
+  {
+    "id": 7,
+    "section": "Eksempel",
+    "question": "Hva blir TilgjengeligeEksemplarer rett etter new Bok(\"B1\", \"C#\", \"X\", 2024, 3)?",
+    "options": [
+      "0",
+      "1",
+      "2",
+      "3"
+    ],
+    "answerIndex": 3,
+    "answer": "3",
+    "explanation": "Konstruktøren setter tilgjengelig lik total antall ved opprettelse.",
+    "shortExplanation": "Startverdi = antallEksemplarer."
+  },
+  {
+    "id": 8,
+    "section": "Forståelse",
+    "question": "Hvorfor er Bok en enkel datastruktur i denne versjonen?",
+    "options": [
+      "Den lagrer datafelt og enkel initialisering, men lite logikk",
+      "Den inneholder avansert algoritme",
+      "Den kjører SQL direkte",
+      "Den har ingen felter"
+    ],
+    "answerIndex": 0,
+    "answer": "Den lagrer datafelt og enkel initialisering, men lite logikk",
+    "explanation": "Klassen beskriver dataobjektet tydelig uten kompleks oppførsel i seg selv.",
+    "shortExplanation": "Bok er primært en modellklasse."
+  }
+]

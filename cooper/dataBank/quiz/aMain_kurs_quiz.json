@@ -1,0 +1,124 @@
+[
+  {
+    "id": 1,
+    "section": "Grunnbegrep",
+    "question": "Hva representerer Kurs-klassen i UniSystem?",
+    "options": [
+      "En lånepost",
+      "En ansattprofil",
+      "Et kurs med kapasitet og studenter",
+      "En bok"
+    ],
+    "answerIndex": 2,
+    "answer": "Et kurs med kapasitet og studenter",
+    "explanation": "Kurs-klassen lagrer kursdata, plasser og studentliste.",
+    "shortExplanation": "Kurs = kursmodell med kapasitet."
+  },
+  {
+    "id": 2,
+    "section": "Datatyper",
+    "question": "Hva brukes int-feltene i Kurs til?",
+    "options": [
+      "Lagre e-post",
+      "Lagre heltallsdata som studiepoeng og plasser",
+      "Lagre navneverdier",
+      "Lagre namespace-navn"
+    ],
+    "answerIndex": 1,
+    "answer": "Lagre heltallsdata som studiepoeng og plasser",
+    "explanation": "Studiepoeng, MaksPlasser og LedigePlasser er numeriske verdier.",
+    "shortExplanation": "int brukes for tallfelt."
+  },
+  {
+    "id": 3,
+    "section": "Lister",
+    "question": "Hva betyr List<Student> Studenter i Kurs-klassen?",
+    "options": [
+      "At kurset lagrer en liste over studentobjekter",
+      "At Student arver fra Kurs",
+      "At listen bare kan lagre ID-er",
+      "At listen er en string"
+    ],
+    "answerIndex": 0,
+    "answer": "At kurset lagrer en liste over studentobjekter",
+    "explanation": "Generisk liste med typen Student holder referanser til studentene i kurset.",
+    "shortExplanation": "Liste over påmeldte Student-objekter.",
+    "example": "```csharp\npublic List<Student> Studenter = new List<Student>();\n```"
+  },
+  {
+    "id": 4,
+    "section": "Felter",
+    "question": "Hva er forskjellen på MaksPlasser og LedigePlasser?",
+    "options": [
+      "Ingen forskjell",
+      "MaksPlasser er total kapasitet, LedigePlasser er plasser igjen",
+      "MaksPlasser er for ansatte, LedigePlasser for studenter",
+      "Begge er tekstfelt"
+    ],
+    "answerIndex": 1,
+    "answer": "MaksPlasser er total kapasitet, LedigePlasser er plasser igjen",
+    "explanation": "LedigePlasser endres når studenter meldes på eller av.",
+    "shortExplanation": "Total kapasitet vs nåværende ledige plasser."
+  },
+  {
+    "id": 5,
+    "section": "Konstruktør",
+    "question": "Hva gjør Kurs(string kode, string navn, int studiepoeng, int maksPlasser)?",
+    "options": [
+      "Oppretter kurs og setter opp startverdier",
+      "Sletter alle studenter",
+      "Lager nytt namespace",
+      "Returnerer en bool"
+    ],
+    "answerIndex": 0,
+    "answer": "Oppretter kurs og setter opp startverdier",
+    "explanation": "Konstruktøren fyller feltene og setter LedigePlasser lik MaksPlasser.",
+    "shortExplanation": "Setter felt + initierer ledige plasser.",
+    "example": "```csharp\nKurs k = new Kurs(\"IS118\", \"Programmering\", 10, 30);\nConsole.WriteLine(k.LedigePlasser); // 30\n```"
+  },
+  {
+    "id": 6,
+    "section": "Namespace",
+    "question": "Hvorfor er namespace viktig for Kurs også?",
+    "options": [
+      "For å gruppere klassen med andre modeller i UniSystem.aMain",
+      "For å gjøre klassen usynlig",
+      "For å erstatte using",
+      "For å lage constructors"
+    ],
+    "answerIndex": 0,
+    "answer": "For å gruppere klassen med andre modeller i UniSystem.aMain",
+    "explanation": "Det gir struktur på prosjektet og tydelig typeidentitet.",
+    "shortExplanation": "Namespace samler relaterte klasser."
+  },
+  {
+    "id": 7,
+    "section": "Relasjon",
+    "question": "Hvilken relasjon mellom aMain-klasser vises direkte i Kurs?",
+    "options": [
+      "Kurs bruker Student gjennom List<Student>",
+      "Kurs bruker Lån direkte",
+      "Kurs arver fra Bok",
+      "Kurs oppretter Ansatt automatisk"
+    ],
+    "answerIndex": 0,
+    "answer": "Kurs bruker Student gjennom List<Student>",
+    "explanation": "Dette er en tydelig kobling mellom Kurs- og Student-klassen.",
+    "shortExplanation": "Kurs har en direkte Student-relasjon."
+  },
+  {
+    "id": 8,
+    "section": "Forståelse",
+    "question": "Hvorfor passer Kurs-klassen godt i en teoriquiz om class, felter og konstruktør?",
+    "options": [
+      "Den viser både tekstfelt, tallfelt, listefelt og initiering i konstruktør",
+      "Den har ingen felter",
+      "Den mangler namespace",
+      "Den inneholder bare kommentarer"
+    ],
+    "answerIndex": 0,
+    "answer": "Den viser både tekstfelt, tallfelt, listefelt og initiering i konstruktør",
+    "explanation": "Kurs gir et godt helhetsbilde av sentrale C#-begreper i én modellklasse.",
+    "shortExplanation": "Kurs dekker mange basisbegreper samtidig."
+  }
+]

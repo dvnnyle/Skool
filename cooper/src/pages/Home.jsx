@@ -108,6 +108,13 @@ const ROADS = [
         { key: 'uniKurs', to: '/uni-kurs', title: 'Kurs.cs' },
         { key: 'uniLan', to: '/uni-lan', title: 'Lån.cs' },
       ]},
+      { name: 'Theory Quizzes', icon: '🧠', color: '#14b8a6', steps: [
+        { key: 'uniAnsattTheory', to: '/uni-ansatt-theory', title: 'Ansatt Theory' },
+        { key: 'uniStudentTheory', to: '/uni-student-theory', title: 'Student Theory' },
+        { key: 'uniBokTheory', to: '/uni-bok-theory', title: 'Bok Theory' },
+        { key: 'uniLanTheory', to: '/uni-lan-theory', title: 'Lan Theory' },
+        { key: 'uniKursTheory', to: '/uni-kurs-theory', title: 'Kurs Theory' },
+      ]},
       { name: 'Service Classes', icon: '⚙️', color: '#8b5cf6', steps: [
         { key: 'uniKursSystem', to: '/uni-kurs-system', title: 'KursSystem.cs' },
         { key: 'uniBibliotekSystem', to: '/uni-bibliotek-system', title: 'BibliotekSystem.cs' },
@@ -154,6 +161,11 @@ function Home() {
       { id: 'uniKursSystem', total: 15 },
       { id: 'uniBibliotekSystem', total: 15 },
       { id: 'uniProgram', total: 15 },
+      { id: 'uniAnsattTheory', total: 8 },
+      { id: 'uniStudentTheory', total: 8 },
+      { id: 'uniBokTheory', total: 8 },
+      { id: 'uniLanTheory', total: 8 },
+      { id: 'uniKursTheory', total: 8 },
     ]
     
     let totalCompleted = 0
@@ -337,6 +349,7 @@ function Home() {
       <aside className="table-of-contents">
         <h3>List</h3>
         <nav className="toc-nav">
+          <a href="#unisystem-theory" className="toc-link">UniSystem Theory</a>
           <a href="#unisystem" className="toc-link">UniSystem</a>
           <a href="#lectures" className="toc-link">Lectures</a>
           <a href="#learning-path" className="toc-link">Learning Path</a>
@@ -473,6 +486,39 @@ function Home() {
           </div>
         </div>
 
+        <div className="chapter-list" id="unisystem-theory">
+          <div className="chapter-divider">
+            <span>UniSystem Theory</span>
+          </div>
+          <div className="chapters-grid">
+            <Link to="/uni-ansatt-theory" className="chapter-button">
+              <h3>🧑‍💼 Ansatt Theory</h3>
+              <p>class, public, string, constructor, namespace, relasjon til Lån</p>
+              <span className="question-count">8 questions</span>
+            </Link>
+            <Link to="/uni-student-theory" className="chapter-button">
+              <h3>👤 Student Theory</h3>
+              <p>StudentID, feltforståelse, constructor, namespace og relasjoner</p>
+              <span className="question-count">8 questions</span>
+            </Link>
+            <Link to="/uni-bok-theory" className="chapter-button">
+              <h3>📖 Bok Theory</h3>
+              <p>string/int, bokfelter, constructor-logikk, relasjon til Lån</p>
+              <span className="question-count">8 questions</span>
+            </Link>
+            <Link to="/uni-lan-theory" className="chapter-button">
+              <h3>🔖 Lån Theory</h3>
+              <p>BokID, BrukerID, BrukerNavn, BrukerType, constructor og namespace</p>
+              <span className="question-count">8 questions</span>
+            </Link>
+            <Link to="/uni-kurs-theory" className="chapter-button">
+              <h3>📚 Kurs Theory</h3>
+              <p>List&lt;Student&gt;, kapasitet, constructor og klasse-relasjoner</p>
+              <span className="question-count">8 questions</span>
+            </Link>
+          </div>
+        </div>
+
         <div className="chapter-list" id="unisystem">
           <div className="chapter-divider">
             <span>UniSystem</span>
@@ -525,7 +571,6 @@ function Home() {
             </Link>
           </div>
         </div>
-
         <div className="chapter-list" id="lectures">
           <div className="chapter-divider">
             <span>Lectures</span>

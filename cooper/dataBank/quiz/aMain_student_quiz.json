@@ -1,0 +1,125 @@
+[
+  {
+    "id": 1,
+    "section": "Grunnbegrep",
+    "question": "Hva representerer Student-klassen i UniSystem?",
+    "options": [
+      "Et kurs",
+      "En bok",
+      "En studentmodell",
+      "Et lånesystem"
+    ],
+    "answerIndex": 2,
+    "answer": "En studentmodell",
+    "explanation": "Student-klassen er en datastruktur for studentinformasjon.",
+    "shortExplanation": "Student = modell for studentdata.",
+    "example": "```csharp\npublic class Student\n{\n    public string StudentID;\n    public string Navn;\n    public string Epost;\n}\n```"
+  },
+  {
+    "id": 2,
+    "section": "Felter",
+    "question": "Hva brukes StudentID-feltet til?",
+    "options": [
+      "Lagre kurstittel",
+      "Lagre unik identitet for studenten",
+      "Lagre studiepoeng",
+      "Lagre bok-ID"
+    ],
+    "answerIndex": 1,
+    "answer": "Lagre unik identitet for studenten",
+    "explanation": "StudentID identifiserer hver student entydig.",
+    "shortExplanation": "StudentID = unik studentnøkkel."
+  },
+  {
+    "id": 3,
+    "section": "Datatype",
+    "question": "Hvorfor er Navn og Epost av typen string?",
+    "options": [
+      "De er alltid tall",
+      "De er tekstverdier",
+      "De er lister",
+      "De er boolske"
+    ],
+    "answerIndex": 1,
+    "answer": "De er tekstverdier",
+    "explanation": "Både navn og e-post lagres som tekst i C# med string.",
+    "shortExplanation": "Tekstdata lagres som string."
+  },
+  {
+    "id": 4,
+    "section": "Konstruktør",
+    "question": "Hva gjør Student(string id, string navn, string epost)?",
+    "options": [
+      "Oppretter og initialiserer et Student-objekt",
+      "Sletter studenten",
+      "Validerer alle kurs",
+      "Lager en liste"
+    ],
+    "answerIndex": 0,
+    "answer": "Oppretter og initialiserer et Student-objekt",
+    "explanation": "Konstruktøren setter feltverdier ved opprettelse med new Student(...).",
+    "shortExplanation": "Konstruktøren fyller feltene ved oppstart.",
+    "example": "```csharp\nStudent s = new Student(\"S01\", \"Ola\", \"ola@uni.no\");\nConsole.WriteLine(s.StudentID); // S01\n```"
+  },
+  {
+    "id": 5,
+    "section": "Namespace",
+    "question": "Hva er fullstendig navn (full type name) for Student-klassen?",
+    "options": [
+      "Student",
+      "UniSystem.Student",
+      "UniSystem.aMain.Student",
+      "aMain.Student"
+    ],
+    "answerIndex": 2,
+    "answer": "UniSystem.aMain.Student",
+    "explanation": "Klassen ligger i namespace UniSystem.aMain.",
+    "shortExplanation": "Fullt navn inkluderer namespace + klassenavn."
+  },
+  {
+    "id": 6,
+    "section": "Relasjon",
+    "question": "Hvordan relaterer Student seg til Kurs-klassen?",
+    "options": [
+      "Kurs har List<Student> for påmeldte studenter",
+      "Student arver fra Kurs",
+      "Student inneholder alle kurs i felt",
+      "De har ingen kobling"
+    ],
+    "answerIndex": 0,
+    "answer": "Kurs har List<Student> for påmeldte studenter",
+    "explanation": "Kurs-klassen bruker List<Student> for å holde oversikt over registrerte studenter.",
+    "shortExplanation": "Kurs lagrer studentobjekter i en liste.",
+    "example": "```csharp\npublic List<Student> Studenter = new List<Student>();\n```"
+  },
+  {
+    "id": 7,
+    "section": "Relasjon",
+    "question": "Hvordan relaterer Student seg til Lån-klassen?",
+    "options": [
+      "Lån kan bruke StudentID som BrukerID",
+      "Student oppretter automatisk lån",
+      "Lån inneholder Student-objekt direkte",
+      "Ingen relasjon"
+    ],
+    "answerIndex": 0,
+    "answer": "Lån kan bruke StudentID som BrukerID",
+    "explanation": "I Lån-kommentaren står at BrukerID kan være StudentID eller AnsattID.",
+    "shortExplanation": "StudentID brukes i låneregistrering."
+  },
+  {
+    "id": 8,
+    "section": "Sammenligning",
+    "question": "Hva er hovedlikheten mellom Student og Ansatt i koden din?",
+    "options": [
+      "Begge har samme felt og konstruktørmønster med string-verdier",
+      "Begge har List<Student>",
+      "Begge har int-felter for studiepoeng",
+      "Begge inneholder bokdata"
+    ],
+    "answerIndex": 0,
+    "answer": "Begge har samme felt og konstruktørmønster med string-verdier",
+    "explanation": "Begge klassene er enkle datamodeller med ID, navn, e-post og konstruktør som setter feltene.",
+    "shortExplanation": "Student og Ansatt er strukturelt nesten like."
+  }
+]

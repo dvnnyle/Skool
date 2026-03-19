@@ -1,0 +1,126 @@
+[
+  {
+    "id": 1,
+    "section": "Grunnbegrep",
+    "question": "Hva er en class i C# (for eksempel Ansatt)?",
+    "options": [
+      "En navneplass",
+      "En mal for objekter",
+      "En loop",
+      "En pakke med imports"
+    ],
+    "answerIndex": 1,
+    "answer": "En mal for objekter",
+    "explanation": "En class er en mal som beskriver hvilke data og regler objekter skal ha.",
+    "shortExplanation": "Class = mal for objekter.",
+    "example": "```csharp\npublic class Ansatt\n{\n    public string AnsattID;\n    public string Navn;\n    public string Epost;\n}\n```"
+  },
+  {
+    "id": 2,
+    "section": "Tilgang",
+    "question": "Hva betyr public i public class Ansatt?",
+    "options": [
+      "Kan bare brukes i samme metode",
+      "Kan brukes fra andre deler av programmet",
+      "Gjør klassen privat",
+      "Betyr at klassen er statisk"
+    ],
+    "answerIndex": 1,
+    "answer": "Kan brukes fra andre deler av programmet",
+    "explanation": "public gjør klassen tilgjengelig utenfor sin egen fil/klasse.",
+    "shortExplanation": "public = tilgjengelig fra andre deler av koden."
+  },
+  {
+    "id": 3,
+    "section": "Datatype",
+    "question": "Hva betyr string i feltene til Ansatt?",
+    "options": [
+      "Heltall",
+      "Sann/usann",
+      "Tekst",
+      "Dato"
+    ],
+    "answerIndex": 2,
+    "answer": "Tekst",
+    "explanation": "string brukes for tekstverdier som ID, navn og e-post.",
+    "shortExplanation": "string = tekst.",
+    "example": "```csharp\npublic string AnsattID;\npublic string Navn;\npublic string Epost;\n```"
+  },
+  {
+    "id": 4,
+    "section": "Felter",
+    "question": "Hvilket felt lagrer e-postadresse i Ansatt?",
+    "options": [
+      "Navn",
+      "AnsattID",
+      "Epost",
+      "BrukerType"
+    ],
+    "answerIndex": 2,
+    "answer": "Epost",
+    "explanation": "Feltet Epost er laget for e-postadressen til den ansatte.",
+    "shortExplanation": "Epost-feltet lagrer e-post."
+  },
+  {
+    "id": 5,
+    "section": "Konstruktør",
+    "question": "Hva er en konstruktør i C#?",
+    "options": [
+      "En type kommentar",
+      "En metode som kjøres når objekt opprettes",
+      "En datatypedefinisjon",
+      "En if-setning"
+    ],
+    "answerIndex": 1,
+    "answer": "En metode som kjøres når objekt opprettes",
+    "explanation": "Konstruktøren setter startverdier når du skriver new Ansatt(...).",
+    "shortExplanation": "Konstruktør kjøres ved opprettelse av objekt."
+  },
+  {
+    "id": 6,
+    "section": "Konstruktør",
+    "question": "Hva gjør Ansatt(string id, string navn, string epost)?",
+    "options": [
+      "Sletter en ansatt",
+      "Lager nytt Ansatt-objekt og fyller feltene",
+      "Søker i en liste",
+      "Printer data automatisk"
+    ],
+    "answerIndex": 1,
+    "answer": "Lager nytt Ansatt-objekt og fyller feltene",
+    "explanation": "Parameterne kopieres inn i AnsattID, Navn og Epost.",
+    "shortExplanation": "Konstruktøren lagrer parameterverdier i feltene.",
+    "example": "```csharp\nAnsatt a = new Ansatt(\"A01\", \"Kari\", \"kari@uni.no\");\nConsole.WriteLine(a.Navn); // Kari\n```"
+  },
+  {
+    "id": 7,
+    "section": "Namespace",
+    "question": "Hva er namespace UniSystem.aMain?",
+    "options": [
+      "En variabel",
+      "En navneplass som grupperer relatert kode",
+      "En database",
+      "En konstruktør"
+    ],
+    "answerIndex": 1,
+    "answer": "En navneplass som grupperer relatert kode",
+    "explanation": "Namespace organiserer klasser og hindrer navnekollisjoner.",
+    "shortExplanation": "namespace = organisering og navnesikkerhet."
+  },
+  {
+    "id": 8,
+    "section": "Relasjon",
+    "question": "Hvordan relaterer Ansatt seg til Lån-klassen?",
+    "options": [
+      "Lån arver fra Ansatt",
+      "Lån kan lagre AnsattID i BrukerID når en ansatt låner bok",
+      "Ansatt inneholder alle lån automatisk",
+      "Det finnes ingen relasjon"
+    ],
+    "answerIndex": 1,
+    "answer": "Lån kan lagre AnsattID i BrukerID når en ansatt låner bok",
+    "explanation": "I Lån står det at BrukerID kan være StudentID eller AnsattID.",
+    "shortExplanation": "AnsattID brukes i Lån når ansatt låner.",
+    "example": "```csharp\nLån lan = new Lån(\"B10\", \"A01\", \"Kari\", \"Ansatt\");\n```"
+  }
+]
