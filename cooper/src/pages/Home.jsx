@@ -118,6 +118,11 @@ const ROADS = [
         { key: 'uniKursSystemTheory', to: '/uni-kurs-system-theory', title: 'KursSystem Theory' },
       ]},
       { name: 'Match Variations', icon: '🧩', color: '#f59e0b', steps: [
+        { key: 'matchpairuniansatt', to: '/match-pair-uni-ansatt', title: 'Match: Ansatt' },
+        { key: 'matchpairunistudent', to: '/match-pair-uni-student', title: 'Match: Student' },
+        { key: 'matchpairunibok', to: '/match-pair-uni-bok', title: 'Match: Bok' },
+        { key: 'matchpairunilan', to: '/match-pair-uni-lan', title: 'Match: Lån' },
+        { key: 'matchpairunikurs', to: '/match-pair-uni-kurs', title: 'Match: Kurs' },
         { key: 'matchpairunibiblioteksystem', to: '/match-pair-uni-bibliotek-system', title: 'Match: Bibliotek' },
         { key: 'matchpairunikurssystem', to: '/match-pair-uni-kurs-system', title: 'Match: Kurs' },
       ]},
@@ -159,6 +164,11 @@ function Home() {
       { id: 'matchpairstrings', total: 12 },
       { id: 'matchpairoperators', total: 14 },
       { id: 'matchpairoop', total: 14 },
+      { id: 'matchpairuniansatt', total: 8 },
+      { id: 'matchpairunistudent', total: 8 },
+      { id: 'matchpairunibok', total: 8 },
+      { id: 'matchpairunilan', total: 8 },
+      { id: 'matchpairunikurs', total: 8 },
       { id: 'matchpairunibiblioteksystem', total: 8 },
       { id: 'matchpairunikurssystem', total: 8 },
       { id: 'uniStudent', total: 15 },
@@ -686,6 +696,31 @@ function Home() {
               <h3>🦠 OOP</h3>
               <p>override, virtual, base, abstract, interface, enum, properties, exceptions</p>
               <span className="question-count">14 pairs</span>
+            </Link>
+            <Link to="/match-pair-uni-ansatt" className="chapter-button">
+              <h3>🧑‍💼 Uni Ansatt</h3>
+              <p>class, public, string, konstruktør, namespace og lån-kobling</p>
+              <span className="question-count">8 pairs</span>
+            </Link>
+            <Link to="/match-pair-uni-student" className="chapter-button">
+              <h3>👤 Uni Student</h3>
+              <p>StudentID, string, konstruktør, fullt navn og relasjoner</p>
+              <span className="question-count">8 pairs</span>
+            </Link>
+            <Link to="/match-pair-uni-bok" className="chapter-button">
+              <h3>📖 Uni Bok</h3>
+              <p>string/int, total vs tilgjengelig, konstruktør og BokID-kobling</p>
+              <span className="question-count">8 pairs</span>
+            </Link>
+            <Link to="/match-pair-uni-lan" className="chapter-button">
+              <h3>🔖 Uni Lån</h3>
+              <p>BokID, BrukerType, string-felter, konstruktør og relasjoner</p>
+              <span className="question-count">8 pairs</span>
+            </Link>
+            <Link to="/match-pair-uni-kurs" className="chapter-button">
+              <h3>📚 Uni Kurs</h3>
+              <p>int, List&lt;Student&gt;, kapasitet, konstruktør og Student-relasjon</p>
+              <span className="question-count">8 pairs</span>
             </Link>
             <Link to="/match-pair-uni-bibliotek-system" className="chapter-button">
               <h3>🏛️ Uni BibliotekSystem</h3>

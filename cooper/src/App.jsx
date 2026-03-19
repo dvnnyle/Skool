@@ -19,6 +19,11 @@ import MatchPairArrayList from './pages/moduleChapters/matchPairArrayList'
 import MatchPairStrings from './pages/moduleChapters/matchPairStrings'
 import MatchPairOperators from './pages/moduleChapters/matchPairOperators'
 import MatchPairOOP from './pages/moduleChapters/matchPairOOP'
+import MatchPairUniAnsatt from './pages/moduleChapters/matchPairUniAnsatt'
+import MatchPairUniStudent from './pages/moduleChapters/matchPairUniStudent'
+import MatchPairUniBok from './pages/moduleChapters/matchPairUniBok'
+import MatchPairUniLan from './pages/moduleChapters/matchPairUniLan'
+import MatchPairUniKurs from './pages/moduleChapters/matchPairUniKurs'
 import MatchPairUniBibliotekSystem from './pages/moduleChapters/matchPairUniBibliotekSystem'
 import MatchPairUniKursSystem from './pages/moduleChapters/matchPairUniKursSystem'
 import UniSystemCode from './pages/UniSystemCode'
@@ -62,6 +67,11 @@ function AnimatedRoutes() {
         <Route path="/match-pair-strings" element={<MatchPairStrings key="match-pair-strings" />} />
         <Route path="/match-pair-operators" element={<MatchPairOperators key="match-pair-operators" />} />
         <Route path="/match-pair-oop" element={<MatchPairOOP key="match-pair-oop" />} />
+        <Route path="/match-pair-uni-ansatt" element={<MatchPairUniAnsatt key="match-pair-uni-ansatt" />} />
+        <Route path="/match-pair-uni-student" element={<MatchPairUniStudent key="match-pair-uni-student" />} />
+        <Route path="/match-pair-uni-bok" element={<MatchPairUniBok key="match-pair-uni-bok" />} />
+        <Route path="/match-pair-uni-lan" element={<MatchPairUniLan key="match-pair-uni-lan" />} />
+        <Route path="/match-pair-uni-kurs" element={<MatchPairUniKurs key="match-pair-uni-kurs" />} />
         <Route path="/match-pair-uni-bibliotek-system" element={<MatchPairUniBibliotekSystem key="match-pair-uni-bibliotek-system" />} />
         <Route path="/match-pair-uni-kurs-system" element={<MatchPairUniKursSystem key="match-pair-uni-kurs-system" />} />
         <Route path="/unisystem" element={<UniSystemCode key="unisystem" />} />
