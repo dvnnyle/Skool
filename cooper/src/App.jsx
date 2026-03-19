@@ -33,6 +33,8 @@ import UniStudentTheory from './pages/moduleChapters/uniStudentTheory'
 import UniBokTheory from './pages/moduleChapters/uniBokTheory'
 import UniLanTheory from './pages/moduleChapters/uniLanTheory'
 import UniKursTheory from './pages/moduleChapters/uniKursTheory'
+import UniBibliotekSystemTheory from './pages/moduleChapters/uniBibliotekSystemTheory'
+import UniKursSystemTheory from './pages/moduleChapters/uniKursSystemTheory'
 
 function AnimatedRoutes() {
   const location = useLocation()
@@ -72,6 +74,8 @@ function AnimatedRoutes() {
         <Route path="/uni-bok-theory" element={<UniBokTheory key="uni-bok-theory" />} />
         <Route path="/uni-lan-theory" element={<UniLanTheory key="uni-lan-theory" />} />
         <Route path="/uni-kurs-theory" element={<UniKursTheory key="uni-kurs-theory" />} />
+        <Route path="/uni-bibliotek-system-theory" element={<UniBibliotekSystemTheory key="uni-bibliotek-system-theory" />} />
+        <Route path="/uni-kurs-system-theory" element={<UniKursSystemTheory key="uni-kurs-system-theory" />} />
       </Routes>
     </AnimatePresence>
   )

@@ -1,0 +1,124 @@
+[
+  {
+    "id": 1,
+    "section": "Grunnidé",
+    "question": "Hva er hovedoppgaven til klassen KursSystem?",
+    "options": [
+      "Å holde styr på kurs og påmeldte studenter",
+      "Å lagre bare én student",
+      "Å skrive ut tilfeldige farger i konsollen",
+      "Å erstatte Kurs-klassen"
+    ],
+    "answerIndex": 0,
+    "answer": "Å holde styr på kurs og påmeldte studenter",
+    "explanation": "KursSystem inneholder logikken for å opprette kurs, vise kurs og melde studenter på og av.",
+    "shortExplanation": "KursSystem = logikken for kursdelen."
+  },
+  {
+    "id": 2,
+    "section": "Lister",
+    "question": "Hva betyr List<Kurs> KursListe?",
+    "options": [
+      "En liste som lagrer mange Kurs-objekter",
+      "En liste med bare studentnavn",
+      "En metode for å lage kurskoder",
+      "Et tall som teller kurs"
+    ],
+    "answerIndex": 0,
+    "answer": "En liste som lagrer mange Kurs-objekter",
+    "explanation": "KursListe er samlingen av alle kursobjektene som finnes i systemet.",
+    "shortExplanation": "List<Kurs> lagrer mange Kurs-objekter.",
+    "example": "```csharp\npublic List<Kurs> KursListe = new List<Kurs>();\n```"
+  },
+  {
+    "id": 3,
+    "section": "Metoder",
+    "question": "Hva gjør OpprettKurs(Kurs kurs)?",
+    "options": [
+      "Den fjerner et kurs",
+      "Den legger et kurs inn i KursListe",
+      "Den melder av alle studenter",
+      "Den finner en student"
+    ],
+    "answerIndex": 1,
+    "answer": "Den legger et kurs inn i KursListe",
+    "explanation": "Metoden tar imot et Kurs-objekt og legger det til i listen over kurs.",
+    "shortExplanation": "OpprettKurs registrerer kurset i systemet."
+  },
+  {
+    "id": 4,
+    "section": "Flytkontroll",
+    "question": "Hva sjekker if(kurs.Studenter.Count < kurs.MaksPlasser) i MeldStudentPåKurs(...)?",
+    "options": [
+      "Om studenten allerede er slettet",
+      "Om kurset har ledige plasser",
+      "Om kurskoden er et tall",
+      "Om kurslisten er null"
+    ],
+    "answerIndex": 1,
+    "answer": "Om kurset har ledige plasser",
+    "explanation": "Betingelsen sammenligner hvor mange studenter som er på kurset med maksgrensen. Hvis det fortsatt er plass, kan studenten meldes på.",
+    "shortExplanation": "if-setningen sjekker kapasitet på kurset."
+  },
+  {
+    "id": 5,
+    "section": "Løkker",
+    "question": "Hvorfor brukes foreach(Kurs kurs in KursListe)?",
+    "options": [
+      "For å gå gjennom kursene ett om gangen",
+      "For å lage nye kurs automatisk",
+      "For å tømme listen",
+      "For å endre typen til KursListe"
+    ],
+    "answerIndex": 0,
+    "answer": "For å gå gjennom kursene ett om gangen",
+    "explanation": "foreach brukes når programmet skal sjekke eller skrive ut alle kurs i listen.",
+    "shortExplanation": "foreach går gjennom hvert kurs i KursListe."
+  },
+  {
+    "id": 6,
+    "section": "Søk",
+    "question": "Hva gjør Find(s => s.StudentID == studentID) i MeldStudentAvKurs(...)?",
+    "options": [
+      "Den oppretter en ny student",
+      "Den finner studenten i listen med riktig StudentID",
+      "Den teller alle studenter",
+      "Den gjør om studentID til tekst"
+    ],
+    "answerIndex": 1,
+    "answer": "Den finner studenten i listen med riktig StudentID",
+    "explanation": "Find søker etter ett element som passer betingelsen. Her betyr det å finne studenten der StudentID matcher verdien som ble sendt inn.",
+    "shortExplanation": "Find brukes til å lete etter ett passende objekt.",
+    "example": "```csharp\nStudent funnet = kurs.Studenter.Find(s => s.StudentID == studentID);\n```"
+  },
+  {
+    "id": 7,
+    "section": "Lister",
+    "question": "Hva gjør Remove(funnet) når studenten er funnet?",
+    "options": [
+      "Den legger studenten til en gang til",
+      "Den fjerner studenten fra kurslisten",
+      "Den nullstiller hele kurset",
+      "Den stopper programmet"
+    ],
+    "answerIndex": 1,
+    "answer": "Den fjerner studenten fra kurslisten",
+    "explanation": "Remove brukes til å fjerne objektet som ble funnet, slik at studenten ikke lenger er påmeldt kurset.",
+    "shortExplanation": "Remove fjerner objektet fra listen."
+  },
+  {
+    "id": 8,
+    "section": "Metodesign",
+    "question": "Hva betyr public void i en metode som OpprettKurs eller MeldStudentPåKurs?",
+    "options": [
+      "At metoden er skjult og returnerer tekst",
+      "At metoden kan brukes utenfra og ikke returnerer en verdi",
+      "At metoden bare kan brukes i samme løkke",
+      "At metoden alltid returnerer true eller false"
+    ],
+    "answerIndex": 1,
+    "answer": "At metoden kan brukes utenfra og ikke returnerer en verdi",
+    "explanation": "public betyr at andre deler av programmet kan kalle metoden. void betyr at metoden utfører en handling uten å sende tilbake en verdi.",
+    "shortExplanation": "public = tilgjengelig, void = ingen returverdi."
+  }
+]

@@ -1,0 +1,125 @@
+[
+  {
+    "id": 1,
+    "section": "Grunnidé",
+    "question": "Hva er hovedoppgaven til klassen BibliotekSystem?",
+    "options": [
+      "Å lagre bare én bok i en variabel",
+      "Å styre bøker og utlån i bibliotekdelen av programmet",
+      "Å lage grafikk i konsollen",
+      "Å erstatte Bok-klassen"
+    ],
+    "answerIndex": 1,
+    "answer": "Å styre bøker og utlån i bibliotekdelen av programmet",
+    "explanation": "BibliotekSystem samler logikken for registrering av bøker, visning av bøker, utlån og innlevering.",
+    "shortExplanation": "BibliotekSystem = logikken for biblioteket."
+  },
+  {
+    "id": 2,
+    "section": "Lister",
+    "question": "Hva betyr List<Bok> BokListe i BibliotekSystem?",
+    "options": [
+      "En tekst som viser boktitler",
+      "En liste som kan lagre mange Bok-objekter",
+      "En metode som lager bøker automatisk",
+      "Et heltall som teller bøker"
+    ],
+    "answerIndex": 1,
+    "answer": "En liste som kan lagre mange Bok-objekter",
+    "explanation": "List<Bok> betyr at listen inneholder objekter av typen Bok. BokListe brukes som oversikt over bøkene i systemet.",
+    "shortExplanation": "List<Bok> = en samling av Bok-objekter.",
+    "example": "```csharp\npublic List<Bok> BokListe = new List<Bok>();\n```"
+  },
+  {
+    "id": 3,
+    "section": "Metoder",
+    "question": "Hva gjør metoden RegistrerBok(Bok bok)?",
+    "options": [
+      "Fjerner en bok fra systemet",
+      "Leter etter et lån",
+      "Legger bok-objektet inn i BokListe",
+      "Printer bare bok-ID"
+    ],
+    "answerIndex": 2,
+    "answer": "Legger bok-objektet inn i BokListe",
+    "explanation": "Metoden bruker Add på BokListe for å registrere en bok i systemet.",
+    "shortExplanation": "RegistrerBok legger en bok til i listen.",
+    "example": "```csharp\npublic void RegistrerBok(Bok bok){\n    BokListe.Add(bok);\n}\n```"
+  },
+  {
+    "id": 4,
+    "section": "Flytkontroll",
+    "question": "Hva gjør if(BokListe.Count == 0) i VisAlleBøker()?",
+    "options": [
+      "Den oppretter en ny liste",
+      "Den sjekker om det ikke finnes noen registrerte bøker",
+      "Den teller hvor mange lån som finnes",
+      "Den skriver ut alle bøker"
+    ],
+    "answerIndex": 1,
+    "answer": "Den sjekker om det ikke finnes noen registrerte bøker",
+    "explanation": "if-setningen sjekker en betingelse. Her brukes den for å finne ut om listen er tom før programmet prøver å skrive ut bøker.",
+    "shortExplanation": "if brukes for å sjekke om boklisten er tom."
+  },
+  {
+    "id": 5,
+    "section": "Løkker",
+    "question": "Hvorfor brukes foreach(Bok bok in BokListe)?",
+    "options": [
+      "For å gå gjennom alle bøker i listen",
+      "For å opprette et nytt Bok-objekt",
+      "For å slette alle bøker",
+      "For å gjøre om boken til tekst"
+    ],
+    "answerIndex": 0,
+    "answer": "For å gå gjennom alle bøker i listen",
+    "explanation": "foreach brukes når programmet skal besøke hvert element i en liste, ett om gangen.",
+    "shortExplanation": "foreach går gjennom alle elementene i en liste."
+  },
+  {
+    "id": 6,
+    "section": "Objekter og relasjoner",
+    "question": "Hva skjer når LånUtBok(...) finner en bok med ledige eksemplarer?",
+    "options": [
+      "Programmet lager et nytt Lån-objekt og reduserer tilgjengelige eksemplarer",
+      "Programmet sletter boken fra BokListe",
+      "Programmet oppretter et nytt BibliotekSystem",
+      "Programmet gjør boktittelen tom"
+    ],
+    "answerIndex": 0,
+    "answer": "Programmet lager et nytt Lån-objekt og reduserer tilgjengelige eksemplarer",
+    "explanation": "Når en bok kan lånes ut, opprettes et Lån-objekt, lånet legges i LånListe, og bok.TilgjengeligeEksemplarer trekkes ned med 1.",
+    "shortExplanation": "Utlån = nytt Lån + én mindre tilgjengelig bok.",
+    "example": "```csharp\nLån nyttLån = new Lån(bokID, brukerID, brukerNavn, brukerType);\nLånListe.Add(nyttLån);\nbok.TilgjengeligeEksemplarer--;\n```"
+  },
+  {
+    "id": 7,
+    "section": "Nøkkelord",
+    "question": "Hva betyr Lån? funnetLån = null; i LeverInnBok(...)?",
+    "options": [
+      "At variabelen alltid må inneholde et lån",
+      "At variabelen kan være tom inntil riktig lån er funnet",
+      "At Lån er en metode",
+      "At null betyr tallet 0"
+    ],
+    "answerIndex": 1,
+    "answer": "At variabelen kan være tom inntil riktig lån er funnet",
+    "explanation": "Spørsmålstegnet gjør referansen nullable. Det betyr at funnetLån kan være null fram til programmet faktisk finner et passende lån.",
+    "shortExplanation": "Lån? betyr at variabelen kan være null."
+  },
+  {
+    "id": 8,
+    "section": "Stoppord",
+    "question": "Hva gjør break i søket gjennom LånListe i LeverInnBok(...)?",
+    "options": [
+      "Det starter løkken på nytt",
+      "Det stopper løkken når riktig lån er funnet",
+      "Det sletter hele listen",
+      "Det returnerer en tekst"
+    ],
+    "answerIndex": 1,
+    "answer": "Det stopper løkken når riktig lån er funnet",
+    "explanation": "break avslutter løkken med en gang. Her brukes det for å slippe å lete videre etter at riktig lån er funnet.",
+    "shortExplanation": "break stopper løkken med en gang det er nok informasjon."
+  }
+]

@@ -114,6 +114,8 @@ const ROADS = [
         { key: 'uniBokTheory', to: '/uni-bok-theory', title: 'Bok Theory' },
         { key: 'uniLanTheory', to: '/uni-lan-theory', title: 'Lan Theory' },
         { key: 'uniKursTheory', to: '/uni-kurs-theory', title: 'Kurs Theory' },
+        { key: 'uniBibliotekSystemTheory', to: '/uni-bibliotek-system-theory', title: 'BibliotekSystem Theory' },
+        { key: 'uniKursSystemTheory', to: '/uni-kurs-system-theory', title: 'KursSystem Theory' },
       ]},
       { name: 'Service Classes', icon: '⚙️', color: '#8b5cf6', steps: [
         { key: 'uniKursSystem', to: '/uni-kurs-system', title: 'KursSystem.cs' },
@@ -166,6 +168,8 @@ function Home() {
       { id: 'uniBokTheory', total: 8 },
       { id: 'uniLanTheory', total: 8 },
       { id: 'uniKursTheory', total: 8 },
+      { id: 'uniBibliotekSystemTheory', total: 8 },
+      { id: 'uniKursSystemTheory', total: 8 },
     ]
     
     let totalCompleted = 0
@@ -514,6 +518,16 @@ function Home() {
             <Link to="/uni-kurs-theory" className="chapter-button">
               <h3>📚 Kurs Theory</h3>
               <p>List&lt;Student&gt;, kapasitet, constructor og klasse-relasjoner</p>
+              <span className="question-count">8 questions</span>
+            </Link>
+            <Link to="/uni-bibliotek-system-theory" className="chapter-button">
+              <h3>🏛️ BibliotekSystem Theory</h3>
+              <p>List&lt;Bok&gt;, List&lt;Lån&gt;, if, foreach, break, nullable lån og utlån-logikk</p>
+              <span className="question-count">8 questions</span>
+            </Link>
+            <Link to="/uni-kurs-system-theory" className="chapter-button">
+              <h3>⚙️ KursSystem Theory</h3>
+              <p>List&lt;Kurs&gt;, if/else, foreach, Find, Remove og påmeldingslogikk</p>
               <span className="question-count">8 questions</span>
             </Link>
           </div>
