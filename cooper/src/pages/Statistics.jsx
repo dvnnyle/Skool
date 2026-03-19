@@ -22,6 +22,8 @@ const ALL_CHAPTERS = [
   { id: 'matchpairstrings', name: 'Match: Strings', total: 12, group: 'Match Pairs' },
   { id: 'matchpairoperators', name: 'Match: Operators', total: 14, group: 'Match Pairs' },
   { id: 'matchpairoop', name: 'Match: OOP', total: 14, group: 'Match Pairs' },
+  { id: 'matchpairunibiblioteksystem', name: 'Match: Uni BibliotekSystem', total: 8, group: 'Match Pairs' },
+  { id: 'matchpairunikurssystem', name: 'Match: Uni KursSystem', total: 8, group: 'Match Pairs' },
 ]
 
 function loadChapterProgress() {

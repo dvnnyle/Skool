@@ -117,6 +117,10 @@ const ROADS = [
         { key: 'uniBibliotekSystemTheory', to: '/uni-bibliotek-system-theory', title: 'BibliotekSystem Theory' },
         { key: 'uniKursSystemTheory', to: '/uni-kurs-system-theory', title: 'KursSystem Theory' },
       ]},
+      { name: 'Match Variations', icon: '🧩', color: '#f59e0b', steps: [
+        { key: 'matchpairunibiblioteksystem', to: '/match-pair-uni-bibliotek-system', title: 'Match: Bibliotek' },
+        { key: 'matchpairunikurssystem', to: '/match-pair-uni-kurs-system', title: 'Match: Kurs' },
+      ]},
       { name: 'Service Classes', icon: '⚙️', color: '#8b5cf6', steps: [
         { key: 'uniKursSystem', to: '/uni-kurs-system', title: 'KursSystem.cs' },
         { key: 'uniBibliotekSystem', to: '/uni-bibliotek-system', title: 'BibliotekSystem.cs' },
@@ -155,6 +159,8 @@ function Home() {
       { id: 'matchpairstrings', total: 12 },
       { id: 'matchpairoperators', total: 14 },
       { id: 'matchpairoop', total: 14 },
+      { id: 'matchpairunibiblioteksystem', total: 8 },
+      { id: 'matchpairunikurssystem', total: 8 },
       { id: 'uniStudent', total: 15 },
       { id: 'uniAnsatt', total: 15 },
       { id: 'uniBok', total: 15 },
@@ -680,6 +686,16 @@ function Home() {
               <h3>🦠 OOP</h3>
               <p>override, virtual, base, abstract, interface, enum, properties, exceptions</p>
               <span className="question-count">14 pairs</span>
+            </Link>
+            <Link to="/match-pair-uni-bibliotek-system" className="chapter-button">
+              <h3>🏛️ Uni BibliotekSystem</h3>
+              <p>List&lt;Bok&gt;, RegistrerBok, utlån, nullable lån og break</p>
+              <span className="question-count">8 pairs</span>
+            </Link>
+            <Link to="/match-pair-uni-kurs-system" className="chapter-button">
+              <h3>⚙️ Uni KursSystem</h3>
+              <p>List&lt;Kurs&gt;, OpprettKurs, kapasitet, Find, Remove og public void</p>
+              <span className="question-count">8 pairs</span>
             </Link>
           </div>
         </div>
