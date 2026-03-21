@@ -2,181 +2,181 @@
   {
     "id": 1,
     "section": "Keywords",
-    "question": "Hva gjør namespace i C#?",
+    "question": "What does namespace do in C#?",
     "options": [
-      "Sletter klasser etter kompilering",
-      "Grupperer relatert kode og hindrer navnekonflikter",
-      "Gjør koden raskere i løkker",
-      "Gjør metoder om til variabler"
+      "Deletes classes after compile",
+      "Groups related code and prevents name conflicts",
+      "Runs code faster in a loop",
+      "Turns methods into variables"
     ],
     "answerIndex": 1,
-    "answer": "Grupperer relatert kode og hindrer navnekonflikter",
-    "explanation": "Et namespace er en logisk beholder for klasser og andre typer. Det hjelper å organisere koden og unngå krasj når ulike filer bruker samme klassenavn.",
-    "shortExplanation": "namespace = kodegruppering + tryggere navn"
+    "answer": "Groups related code and prevents name conflicts",
+    "explanation": "A namespace is a logical container for classes and other types. It helps organize code and avoids collisions when different files use the same class name.",
+    "shortExplanation": "namespace = code grouping + safer naming"
   },
   {
     "id": 2,
     "section": "Keywords",
-    "question": "Hva er en klasse i denne sammenhengen?",
+    "question": "What is a class in this project context?",
     "options": [
-      "En tilfeldig liste med kommandoer",
-      "En mal som samler data og metoder",
-      "Bare en stil-fil",
-      "En JSON-parser"
+      "A random list of commands",
+      "A template that holds data and methods",
+      "Only a visual style file",
+      "A JSON parser"
     ],
     "answerIndex": 1,
-    "answer": "En mal som samler data og metoder",
-    "explanation": "En klasse er en oppskrift. For eksempel er BibliotekSystem en klasse som inneholder lister og metoder for å registrere, låne ut og levere inn bøker.",
-    "shortExplanation": "klasse = oppskrift for objekter og oppførsel"
+    "answer": "A template that holds data and methods",
+    "explanation": "A class is a blueprint. For example, BibliotekSystem is a class that contains lists and methods for registering, lending, and returning books.",
+    "shortExplanation": "class = blueprint for objects and behavior"
   },
   {
     "id": 3,
     "section": "Keywords",
-    "question": "Hva betyr 'void' i en metode som 'public void RegistrerBok(Bok bok)'?",
+    "question": "What does 'void' mean in a method like 'public void RegistrerBok(Bok bok)'?",
     "options": [
-      "Metoden returnerer ingen verdi, den bare gjør noe (f.eks. legger til en bok)",
-      "Metoden returnerer alltid true",
-      "Metoden virker bare én gang",
-      "Metoden er privat"
+      "The method returns no value; it just does something (like adding a book)",
+      "The method always returns true",
+      "The method only works once",
+      "The method is private"
     ],
     "answerIndex": 0,
-    "answer": "Metoden returnerer ingen verdi, den bare gjør noe (f.eks. legger til en bok)",
-    "explanation": "'void' betyr at metoden ikke gir noe tilbake til koden som kaller den. Den utfører bare en handling, som å legge til en bok i listen. Ser du 'void', vet du at metoden gjør noe, ikke regner ut og gir tilbake et resultat.",
-    "shortExplanation": "void = gjør noe, returnerer ingenting"
+    "answer": "The method returns no value; it just does something (like adding a book)",
+    "explanation": "'void' means the method does not return any value to the code that called it. It just performs an action, such as adding a book to the list. If you see 'void', you know the method is for doing something, not for calculating and giving back a result.",
+    "shortExplanation": "void = do something, return nothing"
   },
   {
     "id": 4,
     "section": "Collections",
-    "question": "Hva brukes List<Bok> BokListe til?",
+    "question": "What is List<Bok> BokListe used for?",
     "options": [
-      "Lagre alle bøker i systemet",
-      "Lagre kun ett aktivt lån",
-      "Lagre fargeinnstillinger",
-      "Lagre menyvalg"
+      "Store all books in the system",
+      "Store only one active loan",
+      "Store color settings",
+      "Store menu choices"
     ],
     "answerIndex": 0,
-    "answer": "Lagre alle bøker i systemet",
-    "explanation": "List<Bok> er en dynamisk samling av Bok-objekter. BibliotekSystem bruker BokListe som hovedkatalogen over registrerte bøker.",
-    "shortExplanation": "BokListe = alle registrerte bøker"
+    "answer": "Store all books in the system",
+    "explanation": "List<Bok> is a dynamic collection of Bok objects. BibliotekSystem uses BokListe as the central catalog of registered books.",
+    "shortExplanation": "BokListe keeps all registered books"
   },
   {
     "id": 5,
     "section": "Method Flow",
-    "question": "Hva gjør RegistrerBok(Bok bok)?",
+    "question": "What does RegistrerBok(Bok bok) do?",
     "options": [
-      "Fjerner et lån fra LånListe",
-      "Legger den mottatte bok-objektet til BokListe",
-      "Nullstiller alle tilgjengelige eksemplarer",
-      "Skriver ut alle bøker"
+      "Removes a loan from LaanListe",
+      "Adds the received book object to BokListe",
+      "Resets all available copies",
+      "Prints all books"
     ],
     "answerIndex": 1,
-    "answer": "Legger den mottatte bok-objektet til BokListe",
-    "explanation": "Metoden får inn ett Bok-objekt og kaller BokListe.Add(bok). Slik blir en ny bok en del av bibliotekets katalog.",
-    "shortExplanation": "RegistrerBok = legg til én bok"
+    "answer": "Adds the received book object to BokListe",
+    "explanation": "The method receives one Bok object and calls BokListe.Add(bok). That is how a new book becomes part of the library catalog.",
+    "shortExplanation": "RegistrerBok = add one book"
   },
   {
     "id": 6,
     "section": "Method Flow",
-    "question": "Hvorfor sjekker VisAlleBoker først 'if (BokListe.Count == 0)' før løkken?",
+    "question": "Why does VisAlleBoker first check 'if (BokListe.Count == 0)' before looping?",
     "options": [
-      "For å unngå å kjøre foreach og skrive ut når det ikke finnes bøker; gir en tydelig beskjed og stopper tidlig",
-      "For å duplisere alle bøker",
-      "For å gjøre om bøker til lån",
-      "For å tømme konsollen"
+      "To avoid running the foreach loop and printing when there are no books; it gives a clear message and stops early",
+      "To duplicate all books",
+      "To convert books to loans",
+      "To clear the console"
     ],
     "answerIndex": 0,
-    "answer": "For å unngå å kjøre foreach og skrive ut når det ikke finnes bøker; gir en tydelig beskjed og stopper tidlig",
-    "explanation": "Metoden sjekker om BokListe er tom før den prøver å skrive ut bøker. Hvis det ikke er noen bøker, skrives en beskjed og metoden returnerer, så foreach-løkken hoppes over. Dette hindrer feil og gir klar tilbakemelding til brukeren.",
-    "shortExplanation": "if-sjekk = hopp over løkke hvis tom, skriv beskjed"
+    "answer": "To avoid running the foreach loop and printing when there are no books; it gives a clear message and stops early",
+    "explanation": "The method checks if BokListe is empty before trying to print books. If there are no books, it prints a message and returns, so the foreach loop is skipped. This prevents errors and makes the output clear for the user.",
+    "shortExplanation": "if-check = skip loop if empty, print message"
   },
   {
     "id": 7,
     "section": "Keywords",
-    "question": "Hva gjør 'foreach (Bok bok i BokListe)', og hva er forskjellen på 'Bok' og 'bok'?",
+    "question": "What does 'foreach (Bok bok in BokListe)' do, and what is the difference between 'Bok' and 'bok'?",
     "options": [
-      "Den lager et nytt Bok-objekt hver gang; Bok og bok er det samme",
-      "Den går gjennom alle bøker i BokListe, der 'Bok' er typen (klassen) og 'bok' er variabelen for hver bok i løkken",
-      "Den kjører bare hvis BokListe har ett element; Bok er en metode",
-      "Den sletter bøker fra BokListe"
+      "It creates a new Bok object each time; Bok and bok are the same thing",
+      "It loops through all books in BokListe, where 'Bok' is the type (class) and 'bok' is the variable for each book in the loop",
+      "It only runs if BokListe has one item; Bok is a method",
+      "It deletes books from BokListe"
     ],
     "answerIndex": 1,
-    "answer": "Den går gjennom alle bøker i BokListe, der 'Bok' er typen (klassen) og 'bok' er variabelen for hver bok i løkken",
-    "explanation": "foreach-løkken går gjennom hver bok i BokListe, én om gangen. 'Bok' er klassen (oppskriften for en bok), og 'bok' (liten b) er en variabel som peker på den aktuelle boka i løkken. Slik kan du hente ut og skrive ut info om alle bøker, uansett hvor mange det er.",
-    "shortExplanation": "foreach = gå gjennom alle bøker; Bok = type, bok = aktuell bok"
+    "answer": "It loops through all books in BokListe, where 'Bok' is the type (class) and 'bok' is the variable for each book in the loop",
+    "explanation": "The foreach loop goes through every book in BokListe, one at a time. 'Bok' is the class (the blueprint for a book), and 'bok' (lowercase) is a variable that points to the current book in the loop. This lets you access each book's properties and print them, no matter how many books are in the list.",
+    "shortExplanation": "foreach = loop all books; Bok = type, bok = current book"
   },
   {
     "id": 8,
     "section": "Lending",
-    "question": "Hva må være sant i LånUtBok før et nytt Lån-objekt lages?",
+    "question": "In LaanUtBok, what must be true before creating a new Laan object?",
     "options": [
-      "Bok-ID må matche, og tilgjengelige eksemplarer må være større enn 0",
-      "Bare brukertype må være Student",
-      "Bare tittel må være utfylt",
-      "Listen må ha nøyaktig 10 bøker"
+      "Book ID must match, and available copies must be greater than 0",
+      "Only user type must be Student",
+      "Only title must be non-empty",
+      "The list must have exactly 10 books"
     ],
     "answerIndex": 0,
-    "answer": "Bok-ID må matche, og tilgjengelige eksemplarer må være større enn 0",
-    "explanation": "Metoden finner først riktig bok.ID. Så sjekker den at bok.TilgjengeligeEksemplarer > 0. Bare da lages og lagres et nytt Lån.",
-    "shortExplanation": "Gyldig bok + ledig eksemplar kreves"
+    "answer": "Book ID must match, and available copies must be greater than 0",
+    "explanation": "The method first finds matching bok.ID. Then it checks bok.TilgjengeligeEksemplarer > 0. Only then is a new Laan created and saved.",
+    "shortExplanation": "Valid book + free copy required"
   },
   {
     "id": 9,
     "section": "Return Rule",
-    "question": "For LeverInnBok, hvilken betingelse må være oppfylt for å levere inn?",
+    "question": "For LeverInnBok, which condition is required for a valid return?",
     "options": [
-      "Bare bokID må finnes i BokListe",
-      "Bare brukerID må finnes et sted i systemet",
-      "Både bokID og brukerID må matche samme aktive lån",
-      "En av ID-ene kan matche"
+      "Only bokID must exist in BokListe",
+      "Only brukerID must exist somewhere in system",
+      "Both bokID and brukerID must match the same active loan",
+      "Any one of the IDs can match"
     ],
     "answerIndex": 2,
-    "answer": "Både bokID og brukerID må matche samme aktive lån",
-    "explanation": "Innlevering godtas bare når systemet finner én Lån-oppføring der lån.BokID == bokID OG lån.BrukerID == brukerID.",
-    "shortExplanation": "Eksakt par-match kreves"
+    "answer": "Both bokID and brukerID must match the same active loan",
+    "explanation": "A return is accepted only when the system finds one Laan entry where laan.BokID == bokID AND laan.BrukerID == brukerID.",
+    "shortExplanation": "Exact pair match is required"
   },
   {
     "id": 10,
     "section": "Return Rule",
-    "question": "Eksempel: Aktivt lån er (B100, U10). Hva skjer for LeverInnBok(\"B100\", \"U99\")?",
+    "question": "Example: Active loan is (B100, U10). What happens for LeverInnBok(\"B100\", \"U99\")?",
     "options": [
-      "Godkjent, fordi bok-ID matcher",
-      "Godkjent, fordi brukeren finnes",
-      "Avvist, fordi bruker-ID ikke matcher samme lån",
-      "Godkjent bare for ansatte"
+      "Accepted, because book ID matches",
+      "Accepted, because user exists",
+      "Rejected, because user ID does not match the same loan",
+      "Accepted only for employees"
     ],
     "answerIndex": 2,
-    "answer": "Avvist, fordi bruker-ID ikke matcher samme lån",
-    "explanation": "Paret må matche nøyaktig. Riktig bok med feil bruker er fortsatt ugyldig og må ikke avslutte noen andres lån.",
-    "shortExplanation": "Feil bruker = ingen innlevering"
+    "answer": "Rejected, because user ID does not match the same loan",
+    "explanation": "The pair must match exactly. A correct book with wrong user is still invalid and must not close someone else's loan.",
+    "shortExplanation": "Wrong user = no return"
   },
   {
     "id": 11,
     "section": "Keywords",
-    "question": "Hva betyr Lån? funnetLån = null i prinsippet?",
+    "question": "What does Laan? funnetLaan = null mean in principle?",
     "options": [
-      "funnetLån må alltid inneholde data",
-      "funnetLån kan være tom (null) til en match er funnet",
-      "funnetLån er et tall",
-      "null betyr false"
+      "funnetLaan must always contain data",
+      "funnetLaan is nullable and can be empty until a match is found",
+      "funnetLaan is a number",
+      "null means false"
     ],
     "answerIndex": 1,
-    "answer": "funnetLån kan være tom (null) til en match er funnet",
-    "explanation": "? betyr at variabelen kan være null. Den starter tom (null) og får verdi bare når riktig aktivt lån er funnet.",
-    "shortExplanation": "nullable referanse for søk"
+    "answer": "funnetLaan is nullable and can be empty until a match is found",
+    "explanation": "The ? indicates a nullable reference. The variable starts empty (null) and gets assigned only when the correct active loan is found.",
+    "shortExplanation": "nullable reference for search workflow"
   },
   {
     "id": 12,
     "section": "Control Flow",
-    "question": "Hvorfor er både break og return viktige i disse metodene?",
+    "question": "Why are break and return both important in these methods?",
     "options": [
-      "De må være med i alle metoder",
-      "break stopper en løkke; return avslutter metoden når jobben er gjort",
-      "De gjør akkurat det samme",
-      "De bare formaterer utskrift"
+      "They are required in every method",
+      "break stops a loop; return exits the method after work is complete",
+      "Both do the exact same thing",
+      "They only format output"
     ],
     "answerIndex": 1,
-    "answer": "break stopper en løkke; return avslutter metoden når jobben er gjort",
-    "explanation": "break brukes når det du leter etter er funnet inne i en løkke. return brukes for å avslutte metoden og unngå å kjøre unødvendig kode.",
-    "shortExplanation": "break = stopp løkke, return = stopp metode"
+    "answer": "break stops a loop; return exits the method after work is complete",
+    "explanation": "break is used when the needed item is found inside a loop. return is used to finish the method and avoid running unnecessary code paths.",
+    "shortExplanation": "break = stop loop, return = stop method"
   }
 ]
