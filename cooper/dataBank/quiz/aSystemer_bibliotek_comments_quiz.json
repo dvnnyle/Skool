@@ -1,0 +1,182 @@
+[
+  {
+    "id": 1,
+    "section": "Keywords",
+    "question": "What does namespace do in C#?",
+    "options": [
+      "Deletes classes after compile",
+      "Groups related code and prevents name conflicts",
+      "Runs code faster in a loop",
+      "Turns methods into variables"
+    ],
+    "answerIndex": 1,
+    "answer": "Groups related code and prevents name conflicts",
+    "explanation": "A namespace is a logical container for classes and other types. It helps organize code and avoids collisions when different files use the same class name.",
+    "shortExplanation": "namespace = code grouping + safer naming"
+  },
+  {
+    "id": 2,
+    "section": "Keywords",
+    "question": "What is a class in this project context?",
+    "options": [
+      "A random list of commands",
+      "A template that holds data and methods",
+      "Only a visual style file",
+      "A JSON parser"
+    ],
+    "answerIndex": 1,
+    "answer": "A template that holds data and methods",
+    "explanation": "A class is a blueprint. For example, BibliotekSystem is a class that contains lists and methods for registering, lending, and returning books.",
+    "shortExplanation": "class = blueprint for objects and behavior"
+  },
+  {
+    "id": 3,
+    "section": "Keywords",
+    "question": "What does void mean in a method like RegistrerBok(...)?",
+    "options": [
+      "The method returns no value",
+      "The method always returns true",
+      "The method only works once",
+      "The method is private"
+    ],
+    "answerIndex": 0,
+    "answer": "The method returns no value",
+    "explanation": "void means the method performs an action but does not return a result value to the caller.",
+    "shortExplanation": "void = do work, return nothing"
+  },
+  {
+    "id": 4,
+    "section": "Collections",
+    "question": "What is List<Bok> BokListe used for?",
+    "options": [
+      "Store all books in the system",
+      "Store only one active loan",
+      "Store color settings",
+      "Store menu choices"
+    ],
+    "answerIndex": 0,
+    "answer": "Store all books in the system",
+    "explanation": "List<Bok> is a dynamic collection of Bok objects. BibliotekSystem uses BokListe as the central catalog of registered books.",
+    "shortExplanation": "BokListe keeps all registered books"
+  },
+  {
+    "id": 5,
+    "section": "Method Flow",
+    "question": "What does RegistrerBok(Bok bok) do?",
+    "options": [
+      "Removes a loan from LaanListe",
+      "Adds the received book object to BokListe",
+      "Resets all available copies",
+      "Prints all books"
+    ],
+    "answerIndex": 1,
+    "answer": "Adds the received book object to BokListe",
+    "explanation": "The method receives one Bok object and calls BokListe.Add(bok). That is how a new book becomes part of the library catalog.",
+    "shortExplanation": "RegistrerBok = add one book"
+  },
+  {
+    "id": 6,
+    "section": "Method Flow",
+    "question": "Why does VisAlleBoker first check if (BokListe.Count == 0)?",
+    "options": [
+      "To avoid printing a loop when there are no books",
+      "To duplicate all books",
+      "To convert books to loans",
+      "To clear the console"
+    ],
+    "answerIndex": 0,
+    "answer": "To avoid printing a loop when there are no books",
+    "explanation": "The method validates state first. If the list is empty, it prints a message and returns immediately instead of running foreach.",
+    "shortExplanation": "if-check guards empty list case"
+  },
+  {
+    "id": 7,
+    "section": "Keywords",
+    "question": "What does foreach do in VisAlleBoker()?",
+    "options": [
+      "Runs one time only",
+      "Iterates every item in a collection",
+      "Creates a new Bok object",
+      "Skips the first element always"
+    ],
+    "answerIndex": 1,
+    "answer": "Iterates every item in a collection",
+    "explanation": "foreach takes each Bok in BokListe one by one, so the method can print all registered books.",
+    "shortExplanation": "foreach = go through all elements"
+  },
+  {
+    "id": 8,
+    "section": "Lending",
+    "question": "In LaanUtBok, what must be true before creating a new Laan object?",
+    "options": [
+      "Book ID must match, and available copies must be greater than 0",
+      "Only user type must be Student",
+      "Only title must be non-empty",
+      "The list must have exactly 10 books"
+    ],
+    "answerIndex": 0,
+    "answer": "Book ID must match, and available copies must be greater than 0",
+    "explanation": "The method first finds matching bok.ID. Then it checks bok.TilgjengeligeEksemplarer > 0. Only then is a new Laan created and saved.",
+    "shortExplanation": "Valid book + free copy required"
+  },
+  {
+    "id": 9,
+    "section": "Return Rule",
+    "question": "For LeverInnBok, which condition is required for a valid return?",
+    "options": [
+      "Only bokID must exist in BokListe",
+      "Only brukerID must exist somewhere in system",
+      "Both bokID and brukerID must match the same active loan",
+      "Any one of the IDs can match"
+    ],
+    "answerIndex": 2,
+    "answer": "Both bokID and brukerID must match the same active loan",
+    "explanation": "A return is accepted only when the system finds one Laan entry where laan.BokID == bokID AND laan.BrukerID == brukerID.",
+    "shortExplanation": "Exact pair match is required"
+  },
+  {
+    "id": 10,
+    "section": "Return Rule",
+    "question": "Example: Active loan is (B100, U10). What happens for LeverInnBok(\"B100\", \"U99\")?",
+    "options": [
+      "Accepted, because book ID matches",
+      "Accepted, because user exists",
+      "Rejected, because user ID does not match the same loan",
+      "Accepted only for employees"
+    ],
+    "answerIndex": 2,
+    "answer": "Rejected, because user ID does not match the same loan",
+    "explanation": "The pair must match exactly. A correct book with wrong user is still invalid and must not close someone else's loan.",
+    "shortExplanation": "Wrong user = no return"
+  },
+  {
+    "id": 11,
+    "section": "Keywords",
+    "question": "What does Laan? funnetLaan = null mean in principle?",
+    "options": [
+      "funnetLaan must always contain data",
+      "funnetLaan is nullable and can be empty until a match is found",
+      "funnetLaan is a number",
+      "null means false"
+    ],
+    "answerIndex": 1,
+    "answer": "funnetLaan is nullable and can be empty until a match is found",
+    "explanation": "The ? indicates a nullable reference. The variable starts empty (null) and gets assigned only when the correct active loan is found.",
+    "shortExplanation": "nullable reference for search workflow"
+  },
+  {
+    "id": 12,
+    "section": "Control Flow",
+    "question": "Why are break and return both important in these methods?",
+    "options": [
+      "They are required in every method",
+      "break stops a loop; return exits the method after work is complete",
+      "Both do the exact same thing",
+      "They only format output"
+    ],
+    "answerIndex": 1,
+    "answer": "break stops a loop; return exits the method after work is complete",
+    "explanation": "break is used when the needed item is found inside a loop. return is used to finish the method and avoid running unnecessary code paths.",
+    "shortExplanation": "break = stop loop, return = stop method"
+  }
+]

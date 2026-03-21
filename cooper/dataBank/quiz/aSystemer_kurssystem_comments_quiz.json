@@ -1,0 +1,182 @@
+[
+  {
+    "id": 1,
+    "section": "Overview",
+    "question": "What is the main purpose of KursSystem?",
+    "options": [
+      "Draw UI components",
+      "Manage courses and student enrollment logic",
+      "Store only color constants",
+      "Replace Student class"
+    ],
+    "answerIndex": 1,
+    "answer": "Manage courses and student enrollment logic",
+    "explanation": "KursSystem holds course-related logic: create courses, list courses, enroll students, and remove students from courses.",
+    "shortExplanation": "KursSystem = course management logic"
+  },
+  {
+    "id": 2,
+    "section": "Keywords",
+    "question": "What does List<Kurs> KursListe represent?",
+    "options": [
+      "A single course object",
+      "A dynamic list of all courses in the system",
+      "A list of console messages",
+      "A list of ANSI colors"
+    ],
+    "answerIndex": 1,
+    "answer": "A dynamic list of all courses in the system",
+    "explanation": "List<Kurs> means the variable stores many objects of type Kurs and can grow/shrink during runtime.",
+    "shortExplanation": "KursListe stores all registered courses"
+  },
+  {
+    "id": 3,
+    "section": "Method Flow",
+    "question": "What does OpprettKurs(Kurs kurs) do?",
+    "options": [
+      "Deletes a course",
+      "Adds a new course to KursListe",
+      "Adds a student to a course",
+      "Shows all courses"
+    ],
+    "answerIndex": 1,
+    "answer": "Adds a new course to KursListe",
+    "explanation": "The method receives one Kurs object and appends it to KursListe using Add().",
+    "shortExplanation": "OpprettKurs = add one course"
+  },
+  {
+    "id": 4,
+    "section": "Method Flow",
+    "question": "Why does VisAlleKurs() check if (KursListe.Count == 0)?",
+    "options": [
+      "To print random test data",
+      "To handle empty list case before looping",
+      "To reset all courses",
+      "To sort courses alphabetically"
+    ],
+    "answerIndex": 1,
+    "answer": "To handle empty list case before looping",
+    "explanation": "If no courses exist, the method prints a clear message and returns. This avoids unnecessary foreach execution.",
+    "shortExplanation": "Guard clause for empty course list"
+  },
+  {
+    "id": 5,
+    "section": "Keywords",
+    "question": "What does foreach (Kurs kurs in KursListe) do?",
+    "options": [
+      "Iterates through every course object",
+      "Creates a new course each turn",
+      "Skips the first course always",
+      "Runs only if list has one item"
+    ],
+    "answerIndex": 0,
+    "answer": "Iterates through every course object",
+    "explanation": "foreach loops over each element in a collection one by one, here each Kurs in KursListe.",
+    "shortExplanation": "foreach = loop all items"
+  },
+  {
+    "id": 6,
+    "section": "Enrollment",
+    "question": "In MeldStudentPaKurs, which condition must be true to enroll?",
+    "options": [
+      "Only student name is required",
+      "Course code matches and enrolled count is below max capacity",
+      "Any course can always accept more",
+      "Only email must be unique"
+    ],
+    "answerIndex": 1,
+    "answer": "Course code matches and enrolled count is below max capacity",
+    "explanation": "The method finds the correct course by code, then checks if kurs.Studenter.Count < kurs.MaksPlasser before adding student.",
+    "shortExplanation": "Correct course + free seat required"
+  },
+  {
+    "id": 7,
+    "section": "Enrollment",
+    "question": "What happens when a student is successfully enrolled?",
+    "options": [
+      "Student is added and LedigePlasser decreases by 1",
+      "Course is removed",
+      "LedigePlasser increases by 1",
+      "KursListe is cleared"
+    ],
+    "answerIndex": 0,
+    "answer": "Student is added and LedigePlasser decreases by 1",
+    "explanation": "On success, the student is appended to kurs.Studenter and kurs.LedigePlasser-- keeps seat count in sync.",
+    "shortExplanation": "Add student, reduce available seats"
+  },
+  {
+    "id": 8,
+    "section": "Unenroll",
+    "question": "How does MeldStudentAvKurs find the student in a course?",
+    "options": [
+      "Using random index",
+      "Using Find(s => s.StudentID == studentID)",
+      "Using sort then pick first",
+      "By matching email domain"
+    ],
+    "answerIndex": 1,
+    "answer": "Using Find(s => s.StudentID == studentID)",
+    "explanation": "Find with a lambda returns the first student whose StudentID matches the target ID, or null if none is found.",
+    "shortExplanation": "Find + lambda searches by StudentID"
+  },
+  {
+    "id": 9,
+    "section": "Unenroll",
+    "question": "What happens when the student is found in MeldStudentAvKurs?",
+    "options": [
+      "Student is removed and LedigePlasser increases",
+      "Student stays but color changes",
+      "Course code is overwritten",
+      "Method throws an error automatically"
+    ],
+    "answerIndex": 0,
+    "answer": "Student is removed and LedigePlasser increases",
+    "explanation": "The method removes the found student from kurs.Studenter, then increments kurs.LedigePlasser to reopen one seat.",
+    "shortExplanation": "Remove student, increase available seats"
+  },
+  {
+    "id": 10,
+    "section": "Keywords",
+    "question": "What does return do in these methods?",
+    "options": [
+      "Pauses and resumes the loop",
+      "Immediately exits the current method",
+      "Deletes local variables only",
+      "Prints a default value"
+    ],
+    "answerIndex": 1,
+    "answer": "Immediately exits the current method",
+    "explanation": "return is used to stop execution once the target course path is handled, avoiding duplicate checks.",
+    "shortExplanation": "return = stop method now"
+  },
+  {
+    "id": 11,
+    "section": "Keywords",
+    "question": "What does public void mean for a method signature?",
+    "options": [
+      "Accessible from other classes, returns no value",
+      "Private method that returns bool",
+      "Only callable in loops",
+      "Static constructor"
+    ],
+    "answerIndex": 0,
+    "answer": "Accessible from other classes, returns no value",
+    "explanation": "public controls visibility and allows external callers. void means no return value is produced.",
+    "shortExplanation": "public = visible, void = no return"
+  },
+  {
+    "id": 12,
+    "section": "Data Integrity",
+    "question": "Why is seat tracking (LedigePlasser) updated on both enroll and unenroll?",
+    "options": [
+      "For console styling",
+      "To keep course capacity data consistent",
+      "To satisfy compiler warnings",
+      "To sort students faster"
+    ],
+    "answerIndex": 1,
+    "answer": "To keep course capacity data consistent",
+    "explanation": "Capacity must reflect reality: enrolling consumes one seat, removing a student frees one seat.",
+    "shortExplanation": "State stays correct in both directions"
+  }
+]
