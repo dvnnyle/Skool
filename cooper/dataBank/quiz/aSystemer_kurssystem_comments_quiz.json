@@ -4,12 +4,12 @@
     "section": "Oversikt",
     "question": "Hva er hovedformålet med KursSystem?",
     "options": [
-      "Tegne UI-komponenter",
-      "Administrere kurs og studentpåmeldingslogikk",
       "Lagre bare fargekonstanter",
-      "Erstatte Student-klassen"
+      "Erstatte Student-klassen",
+      "Tegne UI-komponenter",
+      "Administrere kurs og studentpåmeldingslogikk"
     ],
-    "answerIndex": 1,
+    "answerIndex": 3,
     "answer": "Administrere kurs og studentpåmeldingslogikk",
     "explanation": "KursSystem holder kursrelatert logikk: opprett kurs, list kurs, meld på studenter, og fjern studenter fra kurs.",
     "shortExplanation": "KursSystem = kursadministrasjonslogikk"
@@ -19,12 +19,12 @@
     "section": "Nøkkelord",
     "question": "Hva representerer List<Kurs> KursListe?",
     "options": [
-      "Et enkelt kursobjekt",
       "En dynamisk liste over alle kurs i systemet",
-      "En liste med konsollmeldinger",
-      "En liste med ANSI-farger"
+      "En liste med ANSI-farger",
+      "Et enkelt kursobjekt",
+      "En liste med konsollmeldinger"
     ],
-    "answerIndex": 1,
+    "answerIndex": 0,
     "answer": "En dynamisk liste over alle kurs i systemet",
     "explanation": "List<Kurs> betyr at variabelen lagrer mange objekter av typen Kurs og kan vokse/krympe under kjøring.",
     "shortExplanation": "KursListe lagrer alle registrerte kurs"
@@ -34,12 +34,12 @@
     "section": "Metodeflyt",
     "question": "Hva gjør OpprettKurs(Kurs kurs)?",
     "options": [
+      "Viser alle kurs",
       "Sletter et kurs",
       "Legger til et nytt kurs i KursListe",
-      "Legger til en student på et kurs",
-      "Viser alle kurs"
+      "Legger til en student på et kurs"
     ],
-    "answerIndex": 1,
+    "answerIndex": 2,
     "answer": "Legger til et nytt kurs i KursListe",
     "explanation": "Metoden mottar ett Kurs-objekt og legger det til i KursListe med Add().",
     "shortExplanation": "OpprettKurs = legg til ett kurs"
@@ -49,12 +49,12 @@
     "section": "Metodeflyt",
     "question": "Hvorfor sjekker VisAlleKurs() if (KursListe.Count == 0)?",
     "options": [
-      "For å skrive ut tilfeldige testdata",
       "For å håndtere tomt liste-tilfellet før løkken",
       "For å tilbakestille alle kurs",
-      "For å sortere kurs alfabetisk"
+      "For å sortere kurs alfabetisk",
+      "For å skrive ut tilfeldige testdata"
     ],
-    "answerIndex": 1,
+    "answerIndex": 0,
     "answer": "For å håndtere tomt liste-tilfellet før løkken",
     "explanation": "Hvis ingen kurs eksisterer, skriver metoden ut en klar melding og returnerer. Dette unngår unødvendig foreach-kjøring.",
     "shortExplanation": "Guard clause for tom kursliste"
@@ -64,13 +64,13 @@
     "section": "Nøkkelord",
     "question": "Hva gjør 'foreach (Kurs kurs in KursListe)', og hva er forskjellen mellom 'Kurs' og 'kurs'?",
     "options": [
-      "Den lager et nytt Kurs-objekt hver gang; Kurs og kurs er det samme",
-      "Den løper gjennom alle kurs i KursListe, der 'Kurs' er typen (klassen) og 'kurs' er variabelen for hvert kurs i løkken",
+      "Den sletter kurs fra KursListe",
       "Den kjører bare hvis KursListe har ett element; Kurs er en metode",
-      "Den sletter kurs fra KursListe"
+      "Den lager et nytt Kurs-objekt hver gang; Kurs og kurs er det samme",
+      "Den løper gjennom alle kurs i KursListe, der 'Kurs' er typen og 'kurs' er variabelen"
     ],
-    "answerIndex": 1,
-    "answer": "Den løper gjennom alle kurs i KursListe, der 'Kurs' er typen (klassen) og 'kurs' er variabelen for hvert kurs i løkken",
+    "answerIndex": 3,
+    "answer": "Den løper gjennom alle kurs i KursListe, der 'Kurs' er typen og 'kurs' er variabelen",
     "explanation": "Foreach-løkken går gjennom hvert kurs i KursListe, ett om gangen. 'Kurs' er klassen (oppskriften for et kurs), og 'kurs' (med liten bokstav) er en variabel som peker på det nåværende kurset i løkken. Dette lar deg få tilgang til hvert kurs sine egenskaper og skrive dem ut, uansett hvor mange kurs som er i listen.",
     "shortExplanation": "foreach = løkke alle kurs; Kurs = type, kurs = nåværende kurs"
   },
@@ -79,12 +79,12 @@
     "section": "Påmelding",
     "question": "I MeldStudentPaKurs, hvilken betingelse må være sann for å melde på?",
     "options": [
-      "Bare studentnavn kreves",
-      "Kurskode matcher og antall påmeldte er under maks kapasitet",
       "Ethvert kurs kan alltid ta imot flere",
-      "Bare e-post må være unik"
+      "Bare e-post må være unik",
+      "Kurskode matcher og antall påmeldte er under maks kapasitet",
+      "Bare studentnavn kreves"
     ],
-    "answerIndex": 1,
+    "answerIndex": 2,
     "answer": "Kurskode matcher og antall påmeldte er under maks kapasitet",
     "explanation": "Metoden finner riktig kurs etter kode, deretter sjekker den om kurs.Studenter.Count < kurs.MaksPlasser før studenten legges til.",
     "shortExplanation": "Riktig kurs + ledig plass kreves"
@@ -94,12 +94,12 @@
     "section": "Påmelding",
     "question": "Hva skjer når en student er vellykket påmeldt?",
     "options": [
+      "KursListe tømmes",
       "Student legges til og LedigePlasser reduseres med 1",
       "Kurs fjernes",
-      "LedigePlasser øker med 1",
-      "KursListe tømmes"
+      "LedigePlasser øker med 1"
     ],
-    "answerIndex": 0,
+    "answerIndex": 1,
     "answer": "Student legges til og LedigePlasser reduseres med 1",
     "explanation": "Ved suksess legges studenten til i kurs.Studenter og kurs.LedigePlasser-- holder plasstellingen synkronisert.",
     "shortExplanation": "Legg til student, reduser ledige plasser"
@@ -109,12 +109,12 @@
     "section": "Avmelding",
     "question": "Hvordan finner MeldStudentAvKurs studenten i et kurs?",
     "options": [
-      "Ved å bruke tilfeldig indeks",
       "Ved å bruke Find(s => s.StudentID == studentID)",
       "Ved å sortere og så velge første",
-      "Ved å matche e-postdomene"
+      "Ved å matche e-postdomene",
+      "Ved å bruke tilfeldig indeks"
     ],
-    "answerIndex": 1,
+    "answerIndex": 0,
     "answer": "Ved å bruke Find(s => s.StudentID == studentID)",
     "explanation": "Find med en lambda returnerer den første studenten hvis StudentID matcher mål-ID-en, eller null hvis ingen er funnet.",
     "shortExplanation": "Find + lambda søker etter StudentID"
@@ -124,12 +124,12 @@
     "section": "Avmelding",
     "question": "Hva skjer når studenten er funnet i MeldStudentAvKurs?",
     "options": [
-      "Student fjernes og LedigePlasser øker",
-      "Student blir værende men farge endres",
       "Kurskode overskrives",
-      "Metoden kaster en feil automatisk"
+      "Metoden kaster en feil automatisk",
+      "Student fjernes og LedigePlasser øker",
+      "Student blir værende men farge endres"
     ],
-    "answerIndex": 0,
+    "answerIndex": 2,
     "answer": "Student fjernes og LedigePlasser øker",
     "explanation": "Metoden fjerner den funne studenten fra kurs.Studenter, deretter øker kurs.LedigePlasser for å åpne én plass igjen.",
     "shortExplanation": "Fjern student, øk ledige plasser"
@@ -139,12 +139,12 @@
     "section": "Nøkkelord",
     "question": "Hva gjør return i disse metodene?",
     "options": [
-      "Pauser og gjenopptar løkken",
-      "Avslutter den nåværende metoden umiddelbart",
+      "Skriver ut en standardverdi",
       "Sletter bare lokale variabler",
-      "Skriver ut en standardverdi"
+      "Pauser og gjenopptar løkken",
+      "Avslutter den nåværende metoden umiddelbart"
     ],
-    "answerIndex": 1,
+    "answerIndex": 3,
     "answer": "Avslutter den nåværende metoden umiddelbart",
     "explanation": "return brukes for å stoppe utførelsen når målkurs-banen er håndtert, og unngår dupliserte sjekker.",
     "shortExplanation": "return = stopp metode nå"
@@ -154,12 +154,12 @@
     "section": "Nøkkelord",
     "question": "Hva betyr public void for en metodesignatur?",
     "options": [
-      "Tilgjengelig fra andre klasser, returnerer ingen verdi",
-      "Privat metode som returnerer bool",
       "Bare kallbar i løkker",
-      "Statisk konstruktør"
+      "Tilgjengelig fra andre klasser, returnerer ingen verdi",
+      "Statisk konstruktør",
+      "Privat metode som returnerer bool"
     ],
-    "answerIndex": 0,
+    "answerIndex": 1,
     "answer": "Tilgjengelig fra andre klasser, returnerer ingen verdi",
     "explanation": "public kontrollerer synlighet og tillater eksterne kallere. void betyr at ingen returverdi produseres.",
     "shortExplanation": "public = synlig, void = ingen retur"
@@ -169,12 +169,12 @@
     "section": "Dataintegritet",
     "question": "Hvorfor oppdateres plasssporing (LedigePlasser) ved både påmelding og avmelding?",
     "options": [
-      "For konsollstyling",
       "For å holde kurskapasitetsdata konsistent",
-      "For å tilfredsstille kompilatoradvarsler",
-      "For å sortere studenter raskere"
+      "For å sortere studenter raskere",
+      "For konsollstyling",
+      "For å tilfredsstille kompilatoradvarsler"
     ],
-    "answerIndex": 1,
+    "answerIndex": 0,
     "answer": "For å holde kurskapasitetsdata konsistent",
     "explanation": "Kapasitet må reflektere virkeligheten: påmelding bruker én plass, fjerning av en student frigjør én plass.",
     "shortExplanation": "Tilstand forblir korrekt i begge retninger"
