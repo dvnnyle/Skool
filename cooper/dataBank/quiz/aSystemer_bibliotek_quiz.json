@@ -4,10 +4,10 @@
     "section": "Grunnidé",
     "question": "Hva er hovedoppgaven til klassen BibliotekSystem?",
     "options": [
-      "Å lage grafikk i konsollen",
-      "Å erstatte Bok-klassen",
+      "Å lage grafikk og animasjoner i konsollvinduet",
+      "Å erstatte Bok-klassen med en ny versjon av objektet",
       "Å styre bøker og utlån i bibliotekdelen av programmet",
-      "Å lagre bare én bok i en variabel"
+      "Å lagre bare én enkelt bok i en variabel om gangen"
     ],
     "answerIndex": 2,
     "answer": "Å styre bøker og utlån i bibliotekdelen av programmet",
@@ -19,13 +19,13 @@
     "section": "Lister",
     "question": "Hva betyr List<Bok> BokListe i BibliotekSystem?",
     "options": [
-      "En liste som kan lagre mange Bok-objekter",
-      "En tekst som viser boktitler",
-      "Et heltall som teller bøker",
-      "En metode som lager bøker automatisk"
+      "En liste som kan lagre mange Bok-objekter i systemet",
+      "En tekststreng som viser boktitler og forfatternavn",
+      "Et heltall som teller hvor mange bøker som finnes",
+      "En metode som automatisk lager nye bøker i listen"
     ],
     "answerIndex": 0,
-    "answer": "En liste som kan lagre mange Bok-objekter",
+    "answer": "En liste som kan lagre mange Bok-objekter i systemet",
     "explanation": "List<Bok> betyr at listen inneholder objekter av typen Bok. BokListe brukes som oversikt over bøkene i systemet.",
     "shortExplanation": "List<Bok> = en samling av Bok-objekter.",
     "example": "```csharp\npublic List<Bok> BokListe = new List<Bok>();\n```"
@@ -35,13 +35,13 @@
     "section": "Metoder",
     "question": "Hva gjør metoden RegistrerBok(Bok bok)?",
     "options": [
-      "Fjerner en bok fra systemet",
-      "Printer bare bok-ID",
-      "Leter etter et lån",
-      "Legger bok-objektet inn i BokListe"
+      "Fjerner en bok fra systemet og sletter den",
+      "Printer bare bok-ID til konsollen uten lagring",
+      "Leter etter et lån som matcher bok-objektet",
+      "Legger bok-objektet inn i BokListe ved Add()"
     ],
     "answerIndex": 3,
-    "answer": "Legger bok-objektet inn i BokListe",
+    "answer": "Legger bok-objektet inn i BokListe ved Add()",
     "explanation": "Metoden bruker Add på BokListe for å registrere en bok i systemet.",
     "shortExplanation": "RegistrerBok legger en bok til i listen.",
     "example": "```csharp\npublic void RegistrerBok(Bok bok){\n    BokListe.Add(bok);\n}\n```"
@@ -51,10 +51,10 @@
     "section": "Flytkontroll",
     "question": "Hva gjør if(BokListe.Count == 0) i VisAlleBøker()?",
     "options": [
-      "Den teller hvor mange lån som finnes",
+      "Den teller hvor mange aktive lån som finnes i systemet",
       "Den sjekker om det ikke finnes noen registrerte bøker",
-      "Den oppretter en ny liste",
-      "Den skriver ut alle bøker"
+      "Den oppretter en ny tom liste og erstatter den gamle",
+      "Den skriver automatisk ut alle bøker til konsollen"
     ],
     "answerIndex": 1,
     "answer": "Den sjekker om det ikke finnes noen registrerte bøker",
@@ -66,13 +66,13 @@
     "section": "Løkker",
     "question": "Hvorfor brukes foreach(Bok bok in BokListe)?",
     "options": [
-      "For å slette alle bøker",
-      "For å gjøre om boken til tekst",
-      "For å opprette et nytt Bok-objekt",
-      "For å gå gjennom alle bøker i listen"
+      "For å slette alle bøker fra listen permanent",
+      "For å gjøre om boken til en tekststreng i minnet",
+      "For å opprette et nytt Bok-objekt automatisk hver gang",
+      "For å gå gjennom alle bøker i listen én om gangen"
     ],
     "answerIndex": 3,
-    "answer": "For å gå gjennom alle bøker i listen",
+    "answer": "For å gå gjennom alle bøker i listen én om gangen",
     "explanation": "foreach brukes når programmet skal besøke hvert element i en liste, ett om gangen.",
     "shortExplanation": "foreach går gjennom alle elementene i en liste."
   },
@@ -81,13 +81,13 @@
     "section": "Objekter og relasjoner",
     "question": "Hva skjer når LånUtBok(...) finner en bok med ledige eksemplarer?",
     "options": [
-      "Programmet sletter boken fra BokListe",
-      "Programmet gjør boktittelen tom",
-      "Programmet lager et nytt Lån-objekt og reduserer tilgjengelige eksemplarer",
-      "Programmet oppretter et nytt BibliotekSystem"
+      "Programmet sletter boken permanent fra hele BokListe",
+      "Programmet tømmer boktittelen og setter den til blank",
+      "Programmet lager et Lån-objekt og reduserer eksemplarer",
+      "Programmet oppretter et helt nytt BibliotekSystem-objekt"
     ],
     "answerIndex": 2,
-    "answer": "Programmet lager et nytt Lån-objekt og reduserer tilgjengelige eksemplarer",
+    "answer": "Programmet lager et Lån-objekt og reduserer eksemplarer",
     "explanation": "Når en bok kan lånes ut, opprettes et Lån-objekt, lånet legges i LånListe, og bok.TilgjengeligeEksemplarer trekkes ned med 1.",
     "shortExplanation": "Utlån = nytt Lån + én mindre tilgjengelig bok.",
     "example": "```csharp\nLån nyttLån = new Lån(bokID, brukerID, brukerNavn, brukerType);\nLånListe.Add(nyttLån);\nbok.TilgjengeligeEksemplarer--;\n```"
@@ -98,9 +98,9 @@
     "question": "Hva betyr Lån? funnetLån = null; i LeverInnBok(...)?",
     "options": [
       "At variabelen kan være tom inntil riktig lån er funnet",
-      "At Lån er en metode",
-      "At null betyr tallet 0",
-      "At variabelen alltid må inneholde et lån"
+      "At Lån er en metode som returnerer et heltall til kallet",
+      "At null betyr tallet 0 og brukes som standardverdi",
+      "At variabelen alltid må inneholde et gyldig lån-objekt"
     ],
     "answerIndex": 0,
     "answer": "At variabelen kan være tom inntil riktig lån er funnet",
@@ -112,13 +112,13 @@
     "section": "Stoppord",
     "question": "Hva gjør break i søket gjennom LånListe i LeverInnBok(...)?",
     "options": [
-      "Det returnerer en tekst",
-      "Det sletter hele listen",
-      "Det starter løkken på nytt",
-      "Det stopper løkken når riktig lån er funnet"
+      "Det returnerer en feilmelding som tekst til brukeren",
+      "Det sletter hele LånListe og nullstiller dataene",
+      "Det starter løkken på nytt fra begynnelsen igjen",
+      "Det stopper løkken når riktig lån allerede er funnet"
     ],
     "answerIndex": 3,
-    "answer": "Det stopper løkken når riktig lån er funnet",
+    "answer": "Det stopper løkken når riktig lån allerede er funnet",
     "explanation": "break avslutter løkken med en gang. Her brukes det for å slippe å lete videre etter at riktig lån er funnet.",
     "shortExplanation": "break stopper løkken med en gang det er nok informasjon."
   }
