@@ -115,7 +115,9 @@ const ROADS = [
         { key: 'uniLanTheory', to: '/uni-lan-theory', title: 'Lan Theory' },
         { key: 'uniKursTheory', to: '/uni-kurs-theory', title: 'Kurs Theory' },
         { key: 'uniBibliotekSystemTheory', to: '/uni-bibliotek-system-theory', title: 'BibliotekSystem Theory' },
+        { key: 'uniBibliotekSystemComments', to: '/uni-bibliotek-system-comments-quiz', title: 'Bibliotek Comments Quiz' },
         { key: 'uniKursSystemTheory', to: '/uni-kurs-system-theory', title: 'KursSystem Theory' },
+        { key: 'uniKursSystemComments', to: '/uni-kurs-system-comments-quiz', title: 'KursSystem Comments Quiz' },
       ]},
       { name: 'Match Variations', icon: '🧩', color: '#f59e0b', steps: [
         { key: 'matchpairuniansatt', to: '/match-pair-uni-ansatt', title: 'Match: Ansatt' },
@@ -185,7 +187,9 @@ function Home() {
       { id: 'uniLanTheory', total: 8 },
       { id: 'uniKursTheory', total: 8 },
       { id: 'uniBibliotekSystemTheory', total: 8 },
+      { id: 'uniBibliotekSystemComments', total: 12 },
       { id: 'uniKursSystemTheory', total: 8 },
+      { id: 'uniKursSystemComments', total: 12 },
     ]
     
     let totalCompleted = 0
@@ -369,6 +373,8 @@ function Home() {
       <aside className="table-of-contents">
         <h3>List</h3>
         <nav className="toc-nav">
+          <a href="#kurs-comments" className="toc-link">Kurs Comments</a>
+          <a href="#bibliotek-comments" className="toc-link">Bibliotek Comments</a>
           <a href="#unisystem-theory" className="toc-link">UniSystem Theory</a>
           <a href="#unisystem" className="toc-link">UniSystem</a>
           <a href="#lectures" className="toc-link">Lectures</a>
@@ -503,6 +509,72 @@ function Home() {
                 <span className="medal-count">{Math.min(Math.max(0, stats.totalCorrectFromAllAttempts), 2000)}/2000</span>
               </div>
             </div>
+          </div>
+        </div>
+
+        <div className="chapter-list" id="bibliotek-comments">
+          <div className="chapter-divider">
+            <span>BibliotekSystem Comments Track</span>
+          </div>
+          <div className="chapters-grid">
+            <Link to="/uni-bibliotek-system-comments-quiz" className="chapter-button starred">
+              <div className="star-badge">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#ffd700">
+                  <polygon points="12,2 15,10 23,10 17,15 19,23 12,18 5,23 7,15 1,10 9,10" />
+                </svg>
+              </div>
+              <h3>🧠 Comments + Keywords Quiz</h3>
+              <p>namespace, class, void, List&lt;T&gt;, if, foreach, break, return og nullable-forklaringer</p>
+              <span className="question-count">12 questions</span>
+            </Link>
+            <Link to="/uni-bibliotek-system-theory" className="chapter-button">
+              <h3>🏛️ BibliotekSystem Theory</h3>
+              <p>Stegvis teori for logikk i registrering, visning, utlån og innlevering</p>
+              <span className="question-count">8 questions</span>
+            </Link>
+            <Link to="/uni-bibliotek-system" className="chapter-button">
+              <h3>📘 BibliotekSystem.cs</h3>
+              <p>Quiz knyttet til selve klassen og hvordan metodene jobber sammen</p>
+              <span className="question-count">15 questions</span>
+            </Link>
+            <Link to="/match-pair-uni-bibliotek-system" className="chapter-button">
+              <h3>🧩 Match: BibliotekSystem</h3>
+              <p>Koble begreper til betydning for rask repetisjon av nøkkelord og flyt</p>
+              <span className="question-count">8 pairs</span>
+            </Link>
+          </div>
+        </div>
+
+        <div className="chapter-list" id="kurs-comments">
+          <div className="chapter-divider">
+            <span>KursSystem Comments Track</span>
+          </div>
+          <div className="chapters-grid">
+            <Link to="/uni-kurs-system-comments-quiz" className="chapter-button starred">
+              <div className="star-badge">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#ffd700">
+                  <polygon points="12,2 15,10 23,10 17,15 19,23 12,18 5,23 7,15 1,10 9,10" />
+                </svg>
+              </div>
+              <h3>🧠 Comments + Keywords Quiz</h3>
+              <p>List&lt;Kurs&gt;, if/else, foreach, Find(lambda), Remove, public void og flyt i påmelding/avmelding</p>
+              <span className="question-count">12 questions</span>
+            </Link>
+            <Link to="/uni-kurs-system-theory" className="chapter-button">
+              <h3>⚙️ KursSystem Theory</h3>
+              <p>Stegvis teori for kursliste, kapasitetssjekk og studenthåndtering</p>
+              <span className="question-count">8 questions</span>
+            </Link>
+            <Link to="/uni-kurs-system" className="chapter-button">
+              <h3>📘 KursSystem.cs</h3>
+              <p>Quiz knyttet til metoder for oppretting, visning, påmelding og avmelding</p>
+              <span className="question-count">15 questions</span>
+            </Link>
+            <Link to="/match-pair-uni-kurs-system" className="chapter-button">
+              <h3>🧩 Match: KursSystem</h3>
+              <p>Koble begreper til betydning for rask repetisjon av nøkkelord og kontrollflyt</p>
+              <span className="question-count">8 pairs</span>
+            </Link>
           </div>
         </div>
 

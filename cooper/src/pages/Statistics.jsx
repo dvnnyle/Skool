@@ -29,6 +29,8 @@ const ALL_CHAPTERS = [
   { id: 'matchpairunikurs', name: 'Match: Uni Kurs', total: 8, group: 'Match Pairs' },
   { id: 'matchpairunibiblioteksystem', name: 'Match: Uni BibliotekSystem', total: 8, group: 'Match Pairs' },
   { id: 'matchpairunikurssystem', name: 'Match: Uni KursSystem', total: 8, group: 'Match Pairs' },
+  { id: 'uniBibliotekSystemComments', name: 'BibliotekSystem: Comments Quiz', total: 12, group: 'UniSystem Theory' },
+  { id: 'uniKursSystemComments', name: 'KursSystem: Comments Quiz', total: 12, group: 'UniSystem Theory' },
 ]
 
 function loadChapterProgress() {
@@ -74,7 +76,7 @@ function Statistics() {
     return 'linear-gradient(180deg, #ef4444, #dc2626)'
   }
 
-  const groups = ['Lectures', 'Basics', 'Learning Path', 'C# Basics', 'Match Pairs']
+  const groups = ['Lectures', 'Basics', 'Learning Path', 'C# Basics', 'Match Pairs', 'UniSystem Theory']
 
   const handleReset = () => {
     if (confirm('Reset ALL quiz statistics? This cannot be undone.')) {

@@ -42,6 +42,8 @@ import UniLanTheory from './pages/moduleChapters/uniLanTheory'
 import UniKursTheory from './pages/moduleChapters/uniKursTheory'
 import UniBibliotekSystemTheory from './pages/moduleChapters/uniBibliotekSystemTheory'
 import UniKursSystemTheory from './pages/moduleChapters/uniKursSystemTheory'
+import UniBibliotekSystemComments from './pages/moduleChapters/uniBibliotekSystemComments'
+import UniKursSystemComments from './pages/moduleChapters/uniKursSystemComments'
 
 function AnimatedRoutes() {
   const location = useLocation()
@@ -90,6 +92,8 @@ function AnimatedRoutes() {
         <Route path="/uni-kurs-theory" element={<UniKursTheory key="uni-kurs-theory" />} />
         <Route path="/uni-bibliotek-system-theory" element={<UniBibliotekSystemTheory key="uni-bibliotek-system-theory" />} />
         <Route path="/uni-kurs-system-theory" element={<UniKursSystemTheory key="uni-kurs-system-theory" />} />
+        <Route path="/uni-bibliotek-system-comments-quiz" element={<UniBibliotekSystemComments key="uni-bibliotek-system-comments-quiz" />} />
+        <Route path="/uni-kurs-system-comments-quiz" element={<UniKursSystemComments key="uni-kurs-system-comments-quiz" />} />
       </Routes>
     </AnimatePresence>
   )
