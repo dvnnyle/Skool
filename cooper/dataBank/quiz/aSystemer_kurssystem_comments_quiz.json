@@ -2,181 +2,181 @@
   {
     "id": 1,
     "section": "Overview",
-    "question": "What is the main purpose of KursSystem?",
+    "question": "Hva er hovedformålet med KursSystem?",
     "options": [
-      "Draw UI components",
-      "Manage courses and student enrollment logic",
-      "Store only color constants",
-      "Replace Student class"
+      "Tegne UI-komponenter",
+      "Håndtere kurs og påmeldingslogikk for studenter",
+      "Lagre bare fargekonstanter",
+      "Erstatte Student-klassen"
     ],
     "answerIndex": 1,
-    "answer": "Manage courses and student enrollment logic",
-    "explanation": "KursSystem holds course-related logic: create courses, list courses, enroll students, and remove students from courses.",
-    "shortExplanation": "KursSystem = course management logic"
+    "answer": "Håndtere kurs og påmeldingslogikk for studenter",
+    "explanation": "KursSystem inneholder logikken for kurs: opprette kurs, vise kurs, melde på studenter og fjerne studenter fra kurs.",
+    "shortExplanation": "KursSystem = kursadministrasjon"
   },
   {
     "id": 2,
     "section": "Keywords",
-    "question": "What does List<Kurs> KursListe represent?",
+    "question": "Hva representerer List<Kurs> KursListe?",
     "options": [
-      "A single course object",
-      "A dynamic list of all courses in the system",
-      "A list of console messages",
-      "A list of ANSI colors"
+      "Ett enkelt kurs-objekt",
+      "En dynamisk liste over alle kurs i systemet",
+      "En liste med konsollmeldinger",
+      "En liste med ANSI-farger"
     ],
     "answerIndex": 1,
-    "answer": "A dynamic list of all courses in the system",
-    "explanation": "List<Kurs> means the variable stores many objects of type Kurs and can grow/shrink during runtime.",
-    "shortExplanation": "KursListe stores all registered courses"
+    "answer": "En dynamisk liste over alle kurs i systemet",
+    "explanation": "List<Kurs> betyr at variabelen lagrer mange Kurs-objekter og kan vokse eller krympe under kjøring.",
+    "shortExplanation": "KursListe = alle registrerte kurs"
   },
   {
     "id": 3,
     "section": "Method Flow",
-    "question": "What does OpprettKurs(Kurs kurs) do?",
+    "question": "Hva gjør OpprettKurs(Kurs kurs)?",
     "options": [
-      "Deletes a course",
-      "Adds a new course to KursListe",
-      "Adds a student to a course",
-      "Shows all courses"
+      "Sletter et kurs",
+      "Legger til et nytt kurs i KursListe",
+      "Legger til en student på et kurs",
+      "Viser alle kurs"
     ],
     "answerIndex": 1,
-    "answer": "Adds a new course to KursListe",
-    "explanation": "The method receives one Kurs object and appends it to KursListe using Add().",
-    "shortExplanation": "OpprettKurs = add one course"
+    "answer": "Legger til et nytt kurs i KursListe",
+    "explanation": "Metoden får inn ett Kurs-objekt og legger det til i KursListe med Add().",
+    "shortExplanation": "OpprettKurs = legg til kurs"
   },
   {
     "id": 4,
     "section": "Method Flow",
-    "question": "Why does VisAlleKurs() check if (KursListe.Count == 0)?",
+    "question": "Hvorfor sjekker VisAlleKurs() om (KursListe.Count == 0)?",
     "options": [
-      "To print random test data",
-      "To handle empty list case before looping",
-      "To reset all courses",
-      "To sort courses alphabetically"
+      "For å skrive ut tilfeldig testdata",
+      "For å håndtere tom liste før løkken",
+      "For å nullstille alle kurs",
+      "For å sortere kurs alfabetisk"
     ],
     "answerIndex": 1,
-    "answer": "To handle empty list case before looping",
-    "explanation": "If no courses exist, the method prints a clear message and returns. This avoids unnecessary foreach execution.",
-    "shortExplanation": "Guard clause for empty course list"
+    "answer": "For å håndtere tom liste før løkken",
+    "explanation": "Hvis det ikke finnes kurs, skriver metoden ut en tydelig beskjed og returnerer. Dette unngår unødvendig foreach-kjøring.",
+    "shortExplanation": "Sjekk for tom kursliste"
   },
   {
     "id": 5,
     "section": "Keywords",
-    "question": "What does foreach (Kurs kurs in KursListe) do?",
+    "question": "Hva gjør foreach (Kurs kurs i KursListe)?",
     "options": [
-      "Iterates through every course object",
-      "Creates a new course each turn",
-      "Skips the first course always",
-      "Runs only if list has one item"
+      "Går gjennom hvert kurs-objekt",
+      "Lager et nytt kurs hver gang",
+      "Hopper alltid over første kurs",
+      "Kjører bare hvis listen har ett element"
     ],
     "answerIndex": 0,
-    "answer": "Iterates through every course object",
-    "explanation": "foreach loops over each element in a collection one by one, here each Kurs in KursListe.",
-    "shortExplanation": "foreach = loop all items"
+    "answer": "Går gjennom hvert kurs-objekt",
+    "explanation": "foreach går gjennom hvert element i en samling én etter én, her hver Kurs i KursListe.",
+    "shortExplanation": "foreach = gå gjennom alle"
   },
   {
     "id": 6,
     "section": "Enrollment",
-    "question": "In MeldStudentPaKurs, which condition must be true to enroll?",
+    "question": "Hvilket krav må være oppfylt i MeldStudentPaKurs for å melde på?",
     "options": [
-      "Only student name is required",
-      "Course code matches and enrolled count is below max capacity",
-      "Any course can always accept more",
-      "Only email must be unique"
+      "Bare studentnavn kreves",
+      "Kurskode må matche og antall påmeldte må være under maks kapasitet",
+      "Alle kurs kan alltid ta flere",
+      "Bare e-post må være unik"
     ],
     "answerIndex": 1,
-    "answer": "Course code matches and enrolled count is below max capacity",
-    "explanation": "The method finds the correct course by code, then checks if kurs.Studenter.Count < kurs.MaksPlasser before adding student.",
-    "shortExplanation": "Correct course + free seat required"
+    "answer": "Kurskode må matche og antall påmeldte må være under maks kapasitet",
+    "explanation": "Metoden finner riktig kurs med kode, og sjekker så at kurs.Studenter.Count < kurs.MaksPlasser før studenten legges til.",
+    "shortExplanation": "Riktig kurs + ledig plass kreves"
   },
   {
     "id": 7,
     "section": "Enrollment",
-    "question": "What happens when a student is successfully enrolled?",
+    "question": "Hva skjer når en student blir meldt på?",
     "options": [
-      "Student is added and LedigePlasser decreases by 1",
-      "Course is removed",
-      "LedigePlasser increases by 1",
-      "KursListe is cleared"
+      "Studenten legges til og LedigePlasser reduseres med 1",
+      "Kurset fjernes",
+      "LedigePlasser øker med 1",
+      "KursListe tømmes"
     ],
     "answerIndex": 0,
-    "answer": "Student is added and LedigePlasser decreases by 1",
-    "explanation": "On success, the student is appended to kurs.Studenter and kurs.LedigePlasser-- keeps seat count in sync.",
-    "shortExplanation": "Add student, reduce available seats"
+    "answer": "Studenten legges til og LedigePlasser reduseres med 1",
+    "explanation": "Når det lykkes, legges studenten til i kurs.Studenter og kurs.LedigePlasser reduseres med én for å holde styr på plasser.",
+    "shortExplanation": "Legg til student, færre ledige plasser"
   },
   {
     "id": 8,
     "section": "Unenroll",
-    "question": "How does MeldStudentAvKurs find the student in a course?",
+    "question": "Hvordan finner MeldStudentAvKurs studenten i et kurs?",
     "options": [
-      "Using random index",
-      "Using Find(s => s.StudentID == studentID)",
-      "Using sort then pick first",
-      "By matching email domain"
+      "Med tilfeldig indeks",
+      "Med Find(s => s.StudentID == studentID)",
+      "Med sortering og så første",
+      "Ved å matche e-postdomene"
     ],
     "answerIndex": 1,
-    "answer": "Using Find(s => s.StudentID == studentID)",
-    "explanation": "Find with a lambda returns the first student whose StudentID matches the target ID, or null if none is found.",
-    "shortExplanation": "Find + lambda searches by StudentID"
+    "answer": "Med Find(s => s.StudentID == studentID)",
+    "explanation": "Find med en lambda returnerer første student der StudentID matcher ønsket ID, eller null hvis ingen finnes.",
+    "shortExplanation": "Find + lambda søker på StudentID"
   },
   {
     "id": 9,
     "section": "Unenroll",
-    "question": "What happens when the student is found in MeldStudentAvKurs?",
+    "question": "Hva skjer når studenten finnes i MeldStudentAvKurs?",
     "options": [
-      "Student is removed and LedigePlasser increases",
-      "Student stays but color changes",
-      "Course code is overwritten",
-      "Method throws an error automatically"
+      "Studenten fjernes og LedigePlasser øker",
+      "Studenten blir, men fargen endres",
+      "Kurskoden overskrives",
+      "Metoden kaster automatisk feil"
     ],
     "answerIndex": 0,
-    "answer": "Student is removed and LedigePlasser increases",
-    "explanation": "The method removes the found student from kurs.Studenter, then increments kurs.LedigePlasser to reopen one seat.",
-    "shortExplanation": "Remove student, increase available seats"
+    "answer": "Studenten fjernes og LedigePlasser øker",
+    "explanation": "Metoden fjerner studenten fra kurs.Studenter, og øker så kurs.LedigePlasser for å åpne en ny plass.",
+    "shortExplanation": "Fjern student, flere ledige plasser"
   },
   {
     "id": 10,
     "section": "Keywords",
-    "question": "What does return do in these methods?",
+    "question": "Hva gjør return i disse metodene?",
     "options": [
-      "Pauses and resumes the loop",
-      "Immediately exits the current method",
-      "Deletes local variables only",
-      "Prints a default value"
+      "Pauser og gjenopptar løkken",
+      "Avslutter metoden umiddelbart",
+      "Sletter bare lokale variabler",
+      "Skriver ut en standardverdi"
     ],
     "answerIndex": 1,
-    "answer": "Immediately exits the current method",
-    "explanation": "return is used to stop execution once the target course path is handled, avoiding duplicate checks.",
-    "shortExplanation": "return = stop method now"
+    "answer": "Avslutter metoden umiddelbart",
+    "explanation": "return brukes for å stoppe kjøringen når riktig kurs er håndtert, og unngå dobbeltsjekk.",
+    "shortExplanation": "return = stopp metoden nå"
   },
   {
     "id": 11,
     "section": "Keywords",
-    "question": "What does public void mean for a method signature?",
+    "question": "Hva betyr public void i en metode-signatur?",
     "options": [
-      "Accessible from other classes, returns no value",
-      "Private method that returns bool",
-      "Only callable in loops",
-      "Static constructor"
+      "Tilgjengelig fra andre klasser, returnerer ingen verdi",
+      "Privat metode som returnerer bool",
+      "Kan bare kalles i løkker",
+      "Statisk konstruktør"
     ],
     "answerIndex": 0,
-    "answer": "Accessible from other classes, returns no value",
-    "explanation": "public controls visibility and allows external callers. void means no return value is produced.",
-    "shortExplanation": "public = visible, void = no return"
+    "answer": "Tilgjengelig fra andre klasser, returnerer ingen verdi",
+    "explanation": "public styrer synlighet og lar eksterne kalle metoden. void betyr at ingen verdi returneres.",
+    "shortExplanation": "public = synlig, void = ingen retur"
   },
   {
     "id": 12,
     "section": "Data Integrity",
-    "question": "Why is seat tracking (LedigePlasser) updated on both enroll and unenroll?",
+    "question": "Hvorfor oppdateres LedigePlasser både ved påmelding og avmelding?",
     "options": [
-      "For console styling",
-      "To keep course capacity data consistent",
-      "To satisfy compiler warnings",
-      "To sort students faster"
+      "For konsoll-styling",
+      "For å holde kurskapasitet oppdatert og riktig",
+      "For å tilfredsstille kompilatorvarsler",
+      "For å sortere studenter raskere"
     ],
     "answerIndex": 1,
-    "answer": "To keep course capacity data consistent",
-    "explanation": "Capacity must reflect reality: enrolling consumes one seat, removing a student frees one seat.",
-    "shortExplanation": "State stays correct in both directions"
+    "answer": "For å holde kurskapasitet oppdatert og riktig",
+    "explanation": "Kapasiteten må gjenspeile virkeligheten: påmelding tar én plass, fjerning av student frigjør én plass.",
+    "shortExplanation": "Riktig tilstand begge veier"
   }
 ]
