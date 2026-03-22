@@ -31,6 +31,21 @@
   },
   {
     "id": 3,
+    "section": "Samlinger",
+    "question": "BibliotekSystem har to hovedlister. Hva brukes de til?",
+    "options": [
+      "BokListe lagrer bøker, LånListe lagrer aktive utlån",
+      "BokListe lagrer farger, LånListe lagrer meldinger",
+      "Begge listene lagrer kun studentinformasjon i systemet",
+      "BokListe lagrer metoder, LånListe lagrer variabler"
+    ],
+    "answerIndex": 0,
+    "answer": "BokListe lagrer bøker, LånListe lagrer aktive utlån",
+    "explanation": "BibliotekSystem bruker to lister: BokListe holder alle registrerte bøker, mens LånListe holder oversikt over hvem som har lånt hvilke bøker akkurat nå.",
+    "shortExplanation": "To-liste-system: bøker + utlån"
+  },
+  {
+    "id": 4,
     "section": "Nøkkelord",
     "question": "Hva betyr 'void' i en metode som 'public void RegistrerBok(Bok bok)'?",
     "options": [
@@ -41,56 +56,11 @@
     ],
     "answerIndex": 3,
     "answer": "Metoden returnerer ingen verdi; den bare utfører en handling",
-    "explanation": "'void' betyr at metoden ikke returnerer noen verdi til koden som kalte den. Den utfører bare en handling, som å legge til en bok i listen. Hvis du ser 'void', vet du at metoden er for å gjøre noe, ikke for å beregne og gi tilbake et resultat.",
+    "explanation": "'void' betyr at metoden ikke returnerer noen verdi til koden som kalte den. Den utfører bare en handling, som å legge til en bok i listen.",
     "shortExplanation": "void = gjør noe, returner ingenting"
   },
   {
-    "id": 4,
-    "section": "Samlinger",
-    "question": "Hva brukes List<Bok> BokListe til?",
-    "options": [
-      "Lagre menyvalg som vises i programmet",
-      "Lagre alle registrerte bøker i systemet",
-      "Lagre bare ett enkelt aktivt lån om gangen",
-      "Lagre fargeinnstillinger for konsollvisning"
-    ],
-    "answerIndex": 1,
-    "answer": "Lagre alle registrerte bøker i systemet",
-    "explanation": "List<Bok> er en dynamisk samling av Bok-objekter. BibliotekSystem bruker BokListe som den sentrale katalogen over registrerte bøker.",
-    "shortExplanation": "BokListe holder alle registrerte bøker"
-  },
-  {
     "id": 5,
-    "section": "Metodeflyt",
-    "question": "Hva gjør RegistrerBok(Bok bok)?",
-    "options": [
-      "Tilbakestiller alle tilgjengelige eksemplarer til null",
-      "Skriver ut alle bøker i listen til konsollen",
-      "Legger det mottatte bokobjektet til i BokListe",
-      "Fjerner et aktivt lån fra LaanListe permanent"
-    ],
-    "answerIndex": 2,
-    "answer": "Legger det mottatte bokobjektet til i BokListe",
-    "explanation": "Metoden mottar ett Bok-objekt og kaller BokListe.Add(bok). Slik blir en ny bok en del av bibliotekskatalogen.",
-    "shortExplanation": "RegistrerBok = legg til én bok"
-  },
-  {
-    "id": 6,
-    "section": "Metodeflyt",
-    "question": "Hvorfor sjekker VisAlleBoker først 'if (BokListe.Count == 0)' før løkken?",
-    "options": [
-      "For å duplisere alle bøker og lage sikkerhetskopi",
-      "For å tømme konsollen før ny utskrift vises",
-      "For å konvertere bøker til lånobjekter i systemet",
-      "For å unngå foreach-løkken når listen er tom og gi melding"
-    ],
-    "answerIndex": 3,
-    "answer": "For å unngå foreach-løkken når listen er tom og gi melding",
-    "explanation": "Metoden sjekker om BokListe er tom før den prøver å skrive ut bøker. Hvis det ikke er noen bøker, skriver den ut en melding og returnerer, slik at foreach-løkken hoppes over. Dette forhindrer feil og gjør utskriften tydelig for brukeren.",
-    "shortExplanation": "if-sjekk = hopp over løkke hvis tom, skriv melding"
-  },
-  {
-    "id": 7,
     "section": "Nøkkelord",
     "question": "Hva gjør 'foreach (Bok bok in BokListe)', og hva er forskjellen mellom 'Bok' og 'bok'?",
     "options": [
@@ -101,13 +71,43 @@
     ],
     "answerIndex": 0,
     "answer": "Den løper gjennom BokListe; 'Bok' er typen og 'bok' er variabelen",
-    "explanation": "Foreach-løkken går gjennom hver bok i BokListe, én om gangen. 'Bok' er klassen (oppskriften for en bok), og 'bok' (med liten bokstav) er en variabel som peker på den nåværende boken i løkken. Dette lar deg få tilgang til hver boks egenskaper og skrive dem ut, uansett hvor mange bøker som er i listen.",
-    "shortExplanation": "foreach = løkke alle bøker; Bok = type, bok = nåværende bok"
+    "explanation": "'Bok' (stor B) er klassen/malen som definerer hva en bok er. 'bok' (liten b) er variabelen som peker på den nåværende boken i løkken. Tenk på Bok som oppskriften og bok som den faktiske kaken!",
+    "shortExplanation": "Bok = oppskrift, bok = faktisk objekt"
+  },
+  {
+    "id": 6,
+    "section": "Operatorer",
+    "question": "Hva er forskjellen mellom '=' og '==' i C#?",
+    "options": [
+      "'=' setter en verdi, '==' sjekker om to verdier er like",
+      "Begge gjør det samme og kan brukes om hverandre",
+      "'=' sammenligner tall, '==' sammenligner tekst",
+      "'==' setter en verdi, '=' sjekker om verdier er like"
+    ],
+    "answerIndex": 0,
+    "answer": "'=' setter en verdi, '==' sjekker om to verdier er like",
+    "explanation": "'=' er tilordning (x = 5 betyr 'sett x til 5'). '==' er sammenligning (if x == 5 betyr 'er x lik 5?'). Vanlig feil er å bruke = når man mener ==.",
+    "shortExplanation": "= tilordner, == sammenligner"
+  },
+  {
+    "id": 7,
+    "section": "Operatorer",
+    "question": "Hva gjør 'bok.TilgjengeligeEksemplarer--' ved utlån?",
+    "options": [
+      "Sletter boken permanent fra systemets database",
+      "Trekker fra 1 fra antall tilgjengelige eksemplarer",
+      "Legger til 1 ekstra eksemplar i boklisten",
+      "Nullstiller alle eksemplarer til standardverdi"
+    ],
+    "answerIndex": 1,
+    "answer": "Trekker fra 1 fra antall tilgjengelige eksemplarer",
+    "explanation": "'--' er dekrement-operatoren som trekker fra 1. Ved utlån brukes den for å redusere antall ledige eksemplarer. Ved innlevering brukes '++' for å øke med 1.",
+    "shortExplanation": "-- = trekk fra 1, ++ = legg til 1"
   },
   {
     "id": 8,
     "section": "Utlån",
-    "question": "I LaanUtBok, hva må være sant før et nytt Laan-objekt opprettes?",
+    "question": "I LånUtBok, hva må være sant før et nytt Lån-objekt opprettes?",
     "options": [
       "BokListe må ha minst ti registrerte bøker i systemet",
       "Bok-ID må matche, og tilgjengelige eksemplarer må være over null",
@@ -116,28 +116,28 @@
     ],
     "answerIndex": 1,
     "answer": "Bok-ID må matche, og tilgjengelige eksemplarer må være over null",
-    "explanation": "Metoden finner først matchende bok.ID. Deretter sjekker den bok.TilgjengeligeEksemplarer > 0. Bare da opprettes et nytt Laan og lagres.",
+    "explanation": "Metoden finner først matchende bok.ID. Deretter sjekker den bok.TilgjengeligeEksemplarer > 0. Bare da opprettes et nytt Lån og lagres i LånListe.",
     "shortExplanation": "Gyldig bok + ledig eksemplar kreves"
   },
   {
     "id": 9,
-    "section": "Returneringsregel",
-    "question": "For LeverInnBok, hvilken betingelse kreves for en gyldig retur?",
+    "section": "Operatorer",
+    "question": "Hva betyr '&&' i betingelsen 'if (lån.BokID == bokID && lån.BrukerID == brukerID)'?",
     "options": [
-      "Både bokID og brukerID må matche samme aktive lån i systemet",
-      "Bare bokID må finnes i BokListe for at retur aksepteres",
-      "En av ID-ene kan matche for at returen skal godkjennes",
-      "Bare brukerID må finnes et sted i systemet for retur"
+      "ELLER - minst én av betingelsene må være sann",
+      "OG - begge betingelsene må være sanne samtidig",
+      "IKKE - snur verdien av den første betingelsen",
+      "PLUSS - legger sammen de to verdiene til én"
     ],
-    "answerIndex": 0,
-    "answer": "Både bokID og brukerID må matche samme aktive lån i systemet",
-    "explanation": "En retur aksepteres bare når systemet finner en Laan-oppføring der laan.BokID == bokID OG laan.BrukerID == brukerID.",
-    "shortExplanation": "Nøyaktig par-match kreves"
+    "answerIndex": 1,
+    "answer": "OG - begge betingelsene må være sanne samtidig",
+    "explanation": "'&&' er OG-operatoren. Koden inni if kjører BARE hvis BÅDE bok-ID matcher OG bruker-ID matcher. Dette sikrer at vi finner det eksakte lånet.",
+    "shortExplanation": "&& = begge må være sanne"
   },
   {
     "id": 10,
     "section": "Returneringsregel",
-    "question": "Eksempel: Aktivt lån er (B100, U10). Hva skjer for LeverInnBok(\"B100\", \"U99\")?",
+    "question": "Aktivt lån er (B100, U10). Hva skjer for LeverInnBok(\"B100\", \"U99\")?",
     "options": [
       "Akseptert, fordi bok-ID matcher lånet i systemet",
       "Akseptert bare dersom brukeren er ansatt i systemet",
@@ -146,37 +146,67 @@
     ],
     "answerIndex": 3,
     "answer": "Avvist, fordi bruker-ID ikke matcher det aktive lånet",
-    "explanation": "Paret må matche nøyaktig. En riktig bok med feil bruker er fortsatt ugyldig og må ikke lukke noen andres lån.",
+    "explanation": "BÅDE bokID OG brukerID må matche samme lån. En riktig bok med feil bruker er fortsatt ugyldig - dette hindrer at feil person leverer inn feil bok.",
     "shortExplanation": "Feil bruker = ingen retur"
   },
   {
     "id": 11,
     "section": "Nøkkelord",
-    "question": "Hva betyr Laan? funnetLaan = null i prinsippet?",
+    "question": "Hva betyr 'Lån? funnetLån = null' i LeverInnBok?",
     "options": [
-      "funnetLaan er et heltall som brukes til telling av lån",
+      "funnetLån er et heltall som brukes til telling av lån",
       "null betyr false som boolsk verdi i betingelser",
-      "funnetLaan er nullable og kan være tom til match er funnet",
-      "funnetLaan må alltid inneholde et gyldig lånobjekt"
+      "funnetLån er nullable og kan være tom til match er funnet",
+      "funnetLån må alltid inneholde et gyldig lånobjekt"
     ],
     "answerIndex": 2,
-    "answer": "funnetLaan er nullable og kan være tom til match er funnet",
-    "explanation": "? indikerer en nullable referanse. Variabelen starter tom (null) og får verdi bare når riktig aktivt lån er funnet.",
-    "shortExplanation": "nullable referanse for søke-arbeidsflyt"
+    "answer": "funnetLån er nullable og kan være tom til match er funnet",
+    "explanation": "'?' gjør typen nullable - variabelen kan være null (tom) til vi finner et match. Vi starter tom, leter i listen, og hvis vi finner riktig lån lagrer vi det i funnetLån.",
+    "shortExplanation": "? = kan være null/tom"
   },
   {
     "id": 12,
-    "section": "Kontrollflyt",
-    "question": "Hvorfor er break og return begge viktige i disse metodene?",
+    "section": "StringInterpolation",
+    "question": "Hva gjør $\"Boken '{bok.Tittel}' ble lånt ut\" i koden?",
     "options": [
-      "break stopper en løkke; return avslutter metoden helt",
-      "Begge gjør nøyaktig det samme og er utbyttbare",
-      "De formaterer bare utskrift og styrer konsollfarger",
-      "De kreves i alle metoder for at koden skal kompilere"
+      "Setter inn verdien av bok.Tittel direkte i tekststrengen",
+      "Lager en ny variabel som heter bok.Tittel i minnet",
+      "Sletter innholdet i variabelen bok.Tittel permanent",
+      "Konverterer hele setningen til et tall automatisk"
     ],
     "answerIndex": 0,
-    "answer": "break stopper en løkke; return avslutter metoden helt",
-    "explanation": "break brukes når det trengte elementet er funnet inne i en løkke. return brukes for å fullføre metoden og unngå å kjøre unødvendige kodebaner.",
+    "answer": "Setter inn verdien av bok.Tittel direkte i tekststrengen",
+    "explanation": "String interpolation ($\"...\") lar deg sette variabler direkte inn i tekst med {variabel}. Det er lettere å lese enn \"tekst\" + variabel + \"mer tekst\".",
+    "shortExplanation": "$\"...{variabel}...\" = sett inn verdi i tekst"
+  },
+  {
+    "id": 13,
+    "section": "Kontrollflyt",
+    "question": "Hva er forskjellen mellom 'break' og 'return' i en løkke?",
+    "options": [
+      "break stopper løkken; return avslutter hele metoden",
+      "Begge gjør nøyaktig det samme og er utbyttbare",
+      "De formaterer bare utskrift og styrer konsollfarger",
+      "return stopper løkken; break avslutter hele metoden"
+    ],
+    "answerIndex": 0,
+    "answer": "break stopper løkken; return avslutter hele metoden",
+    "explanation": "'break' stopper bare løkken du er i - koden etter løkken kjører fortsatt. 'return' stopper hele metoden umiddelbart.",
     "shortExplanation": "break = stopp løkke, return = stopp metode"
+  },
+  {
+    "id": 14,
+    "section": "Metodeflyt",
+    "question": "Hvorfor sjekker VisAlleBøker 'if (BokListe.Count == 0)' før foreach-løkken?",
+    "options": [
+      "For å duplisere alle bøker og lage sikkerhetskopi",
+      "For å tømme konsollen før ny utskrift vises",
+      "For å unngå tom foreach-løkke og gi brukeren beskjed",
+      "For å konvertere bøker til lånobjekter i systemet"
+    ],
+    "answerIndex": 2,
+    "answer": "For å unngå tom foreach-løkke og gi brukeren beskjed",
+    "explanation": "Dette er en 'guard clause' - vi sjekker om listen er tom FØR vi prøver å gå gjennom den. Hvis tom, skriver vi 'Ingen bøker registrert' og stopper med return.",
+    "shortExplanation": "Guard clause = sjekk først, unngå problemer"
   }
 ]
